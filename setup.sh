@@ -468,7 +468,7 @@ print_success "Konfigurasi Packet"
 function ssh(){
 clear
 print_install "Memasang Password SSH"
-    wget -O /etc/pam.d/common-password "${instalasi}limit/password"
+    wget -O /etc/pam.d/common-password "${instalasi}config/password"
 chmod +x /etc/pam.d/common-password
 
     DEBIAN_FRONTEND=noninteractive dpkg-reconfigure keyboard-configuration
