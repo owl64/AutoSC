@@ -544,7 +544,7 @@ print_install "Memasang Service Limit Quota"
 wget raw.githubusercontent.com/wingshope/ngentod/main/limit/limit.sh && chmod +x limit.sh && ./limit.sh
 
 cd
-wget -q -O /usr/bin/limit-ip "${instalasi}limit/limit-ip"
+wget -q -O /usr/bin/limit-ip "${instalasi}config/limit-ip"
 chmod +x /usr/bin/*
 cd /usr/bin
 sed -i 's/\r//' limit-ip
