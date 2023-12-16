@@ -100,7 +100,7 @@ repo="https://raw.githubusercontent.com/andi64/";
 #########################
 # USERNAME
 rm -f /usr/bin/user
-username=$(curl ${repo}ngentod/main/izin | grep $MYIP | awk '{print $2}')
+username=$(curl ${repo}AutoSC/user/user | grep $MYIP | awk '{print $2}')
 echo "$username" >/usr/bin/user
 expx=$(curl ${repo}ngentod/main/izin | grep $MYIP | awk '{print $3}')
 echo "$expx" >/usr/bin/e
