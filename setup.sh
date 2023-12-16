@@ -96,13 +96,13 @@ clear
 clear
 
 #Repo git
-repo="https://raw.githubusercontent.com/andi64/";
+repo="https://raw.githubusercontent.com/owl64/";
 #########################
 # USERNAME
 rm -f /usr/bin/user
-username=$(curl ${repo}AutoSC/user/user | grep $MYIP | awk '{print $2}')
+username=$(curl ${repo}AutoSC/main/user/user | grep $MYIP | awk '{print $2}')
 echo "$username" >/usr/bin/user
-expx=$(curl ${repo}ngentod/main/izin | grep $MYIP | awk '{print $3}')
+expx=$(curl ${repo}AutoSC/main/user/user | grep $MYIP | awk '{print $3}')
 echo "$expx" >/usr/bin/e
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
@@ -135,7 +135,7 @@ fi
 echo -e "\e[32mloading...\e[0m"
 clear
 # REPO    
-    instalasi="${repo}ngentod/main/"
+    instalasi="${repo}AutoSC/main/"
 
 ####
 start=$(date +%s)
@@ -287,10 +287,10 @@ echo -e ""
 clear
     echo -e "   .----------------------------------."
 echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
-echo -e "   '----------------------------------'"
-echo -e "     \e[1;32m1)1. Domain Sendiri"
-echo -e "     \e[1;32m2)2. Gunakan Domain Random Khusus Digital ocean ISP LAIN âœ–ï¸ "
-echo -e "   ------------------------------------"
+echo -e "    '----------------------------------'"
+echo -e "     1. Domain Sendiri"
+echo -e "     2. Gunakan Domain Random Khusus Digital ocean ISP LAIN"
+echo -e "    '------------------------------------"
 read -p "   Please select numbers 1-2 or Any Button(Random) : " host
 echo ""
 if [[ $host == "1" ]]; then
@@ -302,7 +302,7 @@ echo $host1 > /root/domain
 echo ""
 elif [[ $host == "2" ]]; then
 #install cf
-wget ${instalasi}limit/cf.sh && chmod +x cf.sh && ./cf.sh
+wget ${instalasi}AutoCF/cf.sh && chmod +x cf.sh && ./cf.sh
 rm -f /root/cf.sh
 clear
 else
@@ -330,7 +330,7 @@ restart_system(){
 <code>Time     :</code><code>$TIMEZONE</code>
 <code>Exp Sc.  :</code><code>$exp</code>
 <code>${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m</code>
-<b> WINGS STORE SCRIPT  </b>
+<b> SDC STORE SCRIPT  </b>
 <code>${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m</code>
 <i>Automatic Notifications From Github</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"á´Ê€á´…á´‡Ê€","url":"https://wa.me/6282217067357"}]]}' 
@@ -416,9 +416,9 @@ latest_version="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases |
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version $latest_version
  
     # // Ambil Config Server
-    wget -O /etc/xray/config.json "${instalasi}limit/config.json" >/dev/null 2>&1
+    wget -O /etc/xray/config.json "${instalasi}config/config.json" >/dev/null 2>&1
     #wget -O /usr/local/bin/xray "${REPO}xray/xray.linux.64bit" >/dev/null 2>&1
-    wget -O /etc/systemd/system/runn.service "${instalasi}limit/runn.service" >/dev/null 2>&1
+    wget -O /etc/systemd/system/runn.service "${instalasi}config/runn.service" >/dev/null 2>&1
     #chmod +x /usr/local/bin/xray
     domain=$(cat /etc/xray/domain)
     IPVS=$(cat /etc/xray/ipvps)
@@ -429,11 +429,11 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     curl -s ipinfo.io/city >>/etc/xray/city
     curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
-    wget -O /etc/haproxy/haproxy.cfg "${instalasi}limit/haproxy.cfg" >/dev/null 2>&1
-    wget -O /etc/nginx/conf.d/xray.conf "${instalasi}limit/xray.conf" >/dev/null 2>&1
+    wget -O /etc/haproxy/haproxy.cfg "${instalasi}config/haproxy.cfg" >/dev/null 2>&1
+    wget -O /etc/nginx/conf.d/xray.conf "${instalasi}config/xray.conf" >/dev/null 2>&1
     sed -i "s/xxx/${domain}/g" /etc/haproxy/haproxy.cfg
     sed -i "s/xxx/${domain}/g" /etc/nginx/conf.d/xray.conf
-    curl ${instalasi}limit/nginx.conf > /etc/nginx/nginx.conf
+    curl ${instalasi}config/nginx.conf > /etc/nginx/nginx.conf
     
 cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
 
