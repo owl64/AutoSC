@@ -606,11 +606,11 @@ systemctl enable trip
 #SERVICE VMESS
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
-wget -q -O /usr/local/kyt/udp-mini "${instalasi}limit/udp-mini"
+wget -q -O /usr/local/kyt/udp-mini "${instalasi}Udp/udp-mini"
 chmod +x /usr/local/kyt/udp-mini
-wget -q -O /etc/systemd/system/udp-mini-1.service "${instalasi}limit/udp-mini-1.service"
-wget -q -O /etc/systemd/system/udp-mini-2.service "${instalasi}limit/udp-mini-2.service"
-wget -q -O /etc/systemd/system/udp-mini-3.service "${instalasi}limit/udp-mini-3.service"
+wget -q -O /etc/systemd/system/udp-mini-1.service "${instalasi}Udp/udp-mini-1.service"
+wget -q -O /etc/systemd/system/udp-mini-2.service "${instalasi}Udp/udp-mini-2.service"
+wget -q -O /etc/systemd/system/udp-mini-3.service "${instalasi}Udp/udp-mini-3.service"
 systemctl disable udp-mini-1
 systemctl stop udp-mini-1
 systemctl enable udp-mini-1
@@ -630,7 +630,7 @@ function ssh_slow(){
 clear
 # // Installing UDP Mini
 print_install "Memasang modul SlowDNS Server"
-    wget -q -O /tmp/nameserver "${instalasi}limit/nameserver" >/dev/null 2>&1
+    wget -q -O /tmp/nameserver "${instalasi}Udp/nameserver" >/dev/null 2>&1
     chmod +x /tmp/nameserver
     bash /tmp/nameserver | tee /root/install.log
  print_success "SlowDNS"
@@ -640,7 +640,7 @@ clear
 function ins_SSHD(){
 clear
 print_install "Memasang SSHD"
-wget -q -O /etc/ssh/sshd_config "${instalasi}limit/sshd" >/dev/null 2>&1
+wget -q -O /etc/ssh/sshd_config "${instalasi}config/sshd" >/dev/null 2>&1
 chmod 700 /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 systemctl restart ssh
@@ -654,7 +654,7 @@ clear
 print_install "Menginstall Dropbear"
 # // Installing Dropbear
 apt-get install dropbear -y > /dev/null 2>&1
-wget -q -O /etc/default/dropbear "${instalasi}limit/dropbear.conf"
+wget -q -O /etc/default/dropbear "${instalasi}config/dropbear.conf"
 chmod +x /etc/default/dropbear
 /etc/init.d/dropbear restart
 /etc/init.d/dropbear status
@@ -689,7 +689,7 @@ function ins_openvpn(){
 clear
 print_install "Menginstall OpenVPN"
 #OpenVPN
-wget ${instalasi}limit/openvpn &&  chmod +x openvpn && ./openvpn
+wget ${instalasi}config/openvpn &&  chmod +x openvpn && ./openvpn
 /etc/init.d/openvpn restart
 print_success "OpenVPN"
 }
@@ -700,7 +700,7 @@ print_install "Memasang Backup Server"
 #BackupOption
 apt install rclone -y
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "${instalasi}limit/rclone.conf"
+wget -O /root/.config/rclone/rclone.conf "${instalasi}config/rclone.conf"
 #Install Wondershaper
 cd /bin
 git clone  https://github.com/magnific0/wondershaper.git
@@ -726,7 +726,7 @@ password jokerman77
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
-wget -q -O /etc/ipserver "${instalasi}limit/ipserver" && bash /etc/ipserver
+wget -q -O /etc/ipserver "${instalasi}config/ipserver" && bash /etc/ipserver
 print_success "Backup Server"
 }
 
@@ -778,16 +778,16 @@ echo "Banner /etc/kyt.txt" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/kyt.txt"@g' /etc/default/dropbear
 
 # Ganti Banner
-wget -O /etc/kyt.txt "${instalasi}limit/issue.net"
+wget -O /etc/kyt.txt "${instalasi}config/issue.net"
 print_success "Fail2ban"
 }
 
 function ins_epro(){
 clear
 print_install "Menginstall ePro WebSocket Proxy"
-    wget -O /usr/bin/ws "${instalasi}limit/ws" >/dev/null 2>&1
-    wget -O /usr/bin/tun.conf "${instalasi}limit/tun.conf" >/dev/null 2>&1
-    wget -O /etc/systemd/system/ws.service "${instalasi}limit/ws.service" >/dev/null 2>&1
+    wget -O /usr/bin/ws "${instalasi}config/ws" >/dev/null 2>&1
+    wget -O /usr/bin/tun.conf "${instalasi}config/tun.conf" >/dev/null 2>&1
+    wget -O /etc/systemd/system/ws.service "${instalasi}config/ws.service" >/dev/null 2>&1
     chmod +x /etc/systemd/system/ws.service
     chmod +x /usr/bin/ws
     chmod 644 /usr/bin/tun.conf
@@ -798,7 +798,7 @@ systemctl start ws
 systemctl restart ws
 wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
 wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
-wget -O /usr/sbin/ftvpn "${instalasi}limit/ftvpn" >/dev/null 2>&1
+wget -O /usr/sbin/ftvpn "${instalasi}config/ftvpn" >/dev/null 2>&1
 chmod +x /usr/sbin/ftvpn
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
 iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
@@ -860,7 +860,7 @@ print_success "All Packet"
 function menu(){
     clear
     print_install "Memasang Menu Packet"
-    wget ${instalasi}limit/menu.zip
+    wget ${instalasi}menu/menu.zip
     unzip menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin
