@@ -96,45 +96,45 @@ nginx_service=$(systemctl status nginx | grep Active | awk '{print $3}' | cut -d
 clear
 # STATUS SERVICE  SSH 
 if [[ $ssh_service == "running" ]]; then 
-   status_ssh="${green}ONâœ“${NC}"
+   status_ssh="${green}ON✓${NC}"
 else
-   status_ssh="${RED}ðŸ”´${NC} "
+   status_ssh="${RED}🔴${NC} "
 fi
 
 # // SSH Websocket Proxy
 ssh_ws=$( systemctl status ws | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $ssh_ws == "running" ]]; then
-    status_ws_epro="${green}ONâœ“${NC}"
+    status_ws_epro="${green}ON✓${NC}"
 else
-    status_ws_epro="${RED}ðŸ”´${NC} "
+    status_ws_epro="${RED}🔴${NC} "
 fi
 
 # STATUS SERVICE HAPROXY
 if [[ $haproxy_service == "running" ]]; then 
-   status_haproxy="${green}ONâœ“${NC}"
+   status_haproxy="${green}ON✓${NC}"
 else
-   status_haproxy="${RED}ðŸ”´${NC} "
+   status_haproxy="${RED}🔴${NC} "
 fi
 
 # STATUS SERVICE XRAY
 if [[ $xray_service == "running" ]]; then 
-   status_xray="${green}ONâœ“${NC}"
+   status_xray="${green}ON✓${NC}"
 else
-   status_xray="${RED}ðŸ”´${NC} "
+   status_xray="${RED}🔴${NC} "
 fi
 
 # STATUS SERVICE NGINX
 if [[ $nginx_service == "running" ]]; then 
-   status_nginx="${green}ONâœ“${NC}"
+   status_nginx="${green}ON✓${NC}"
 else
-   status_nginx="${RED}ðŸ”´${NC} "
+   status_nginx="${RED}🔴${NC} "
 fi
 
 # STATUS SERVICE Dropbear
 if [[ $dropbear_service == "running" ]]; then 
-   status_dropbear="${green}ONâœ“${NC}"
+   status_dropbear="${green}ON✓${NC}"
 else
-   status_dropbear="${RED}ðŸ”´${NC} "
+   status_dropbear="${RED}🔴${NC} "
 fi
 #####INFOAKUN
 vlx=$(grep -c -E "^#& " "/etc/xray/config.json")
