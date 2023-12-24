@@ -52,9 +52,9 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
@@ -62,7 +62,7 @@ checking_sc() {
     echo -e "             \033[0;33mContact Admin :${NC}"
     echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\\033[0m"
     sleep 5
     reboot
   fi
@@ -80,23 +80,23 @@ fi
 #tls="$(cat ~/log-install.txt | grep -w "Vmess TLS" | cut -d: -f2|sed 's/ //g')"
 #none="$(cat ~/log-install.txt | grep -w "Vmess None TLS" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93────────────────────────────────────────────\\033[0m"
 echo -e "CREATE VMESS ACCOUNT           "
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93────────────────────────────────────────────\\033[0m"
 
 		read -rp "User: " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
 clear
-            echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+            echo -e "\033[1;93────────────────────────────────────────────\\033[0m"
             echo -e " CREATE VMESS ACCOUNT           "
-            echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+            echo -e "\033[1;93────────────────────────────────────────────\\033[0m"
 
 			echo ""
 			echo "A client with the specified name was already created, please choose another name."
 			echo ""
-			echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+			echo -e "\033[0;34────────────────────────────────────────────\\033[0m"
 			read -n 1 -s -r -p "Press any key to back on menu"
       menu
 		fi
@@ -180,7 +180,7 @@ service cron restart > /dev/null 2>&1
 cat >/var/www/html/vmess-$user.txt <<-END
 
 =========================
-  WINGS VPN TUNNELING 
+  SDC VPN TUNNELING 
 =========================
 # Format Vmess WS TLS
 
@@ -277,61 +277,18 @@ if [[ "${DATADB}" != '' ]]; then
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vmess/.vmess.db
 clear
-CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-  TIME="10"
-   URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT="<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code>      XRAY/VMESS</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code>Remarks   : ${user}
-Domain    : ${domain}
-Limit Quota : ${Quota} GB
-Port TLS  : 400-900
-Port NTLS : 80, 8080, 8081-9999
-id        : ${uuid}
-alterId   : 0
-Security  : auto
-network   : ws or grpc
-Path      : /Multi-Path
-Dynamic   : https://bugmu.com/path
-Name      : vmess-grpc</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code> VMESS WS TLS</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code>${vmesslink1}</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code>VMESS WS NO TLS</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code>${vmesslink2}</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code> VMESS gRPC</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code>${vmesslink3}</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-Format OpenClash : https://${domain}:81/vmess-$user.txt
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-Aktif Selama   : $masaaktif Hari
-Dibuat Pada    : $tnggl
-Berakhir Pada  : $expe
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-"
-
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-clear
-clear
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\\\033[0m"
 echo -e " Xray/Vmess Account "
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\\\033[0m"
 echo -e "Remarks          : ${user}"
 echo -e "Domain           : ${domain}"
 echo -e "User Quota       : ${Quota} GB"
-echo -e "User Ip            : ${iplimit} IP"
+echo -e "User Ip          : ${iplimit} IP"
 echo -e "Port TLS         : 400-900"
 echo -e "Port none TLS    : 80, 8080, 8081-9999"
 echo -e "id               : ${uuid}"
-echo -e "Xray Dns      : ${NS}"
-echo -e "Pubkey        : ${PUB}"
+echo -e "Xray Dns         : ${NS}"
+echo -e "Pubkey           : ${PUB}"
 echo -e "alterId          : 0"
 echo -e "Security         : auto"
 echo -e "Network          : ws"
@@ -341,17 +298,17 @@ echo -e "ServiceName      : vmess-grpc"
 #echo -e "Host XrayDNS : ${NS}"
 #echo -e "Location         : $CITY"
 #echo -e "Pub Key          : ${PUB}"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\\033[0m"
 echo -e "Link TLS         : ${vmesslink1}"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\\033[0m"
 echo -e "Link none TLS    : ${vmesslink2}"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\\033[0m"
 echo -e "Link GRPC        : ${vmesslink3}"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\\033[0m"
 echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\\033[0m"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\\033[0m"
 echo ""

@@ -123,7 +123,7 @@ trojanlink="trojan://${uuid}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host
 
 cat >/var/www/html/trojan-$user.txt <<-END
 =========================
-   Wings VpN Tunneling 
+   SDC VpN Tunneling 
 =========================
 
 # Format Trojan GO/WS
@@ -157,20 +157,6 @@ cat >/var/www/html/trojan-$user.txt <<-END
     grpc-service-name: trojan-grpc
 END
 
-TEXT="
-<code>=========================</code>
-<code>Link Akun Trojan </code>
-<code>=========================</code>
-<code>Link WS          : </code>
-<code>${trojanlink}</code>
-<code>=========================</code>
-<code>Link GRPC        : </code>
-<code>${trojanlink1}</code>
-<code>=========================</code>
-"
-
-
-
 systemctl reload xray
 systemctl reload nginx
 service cron restart
@@ -202,7 +188,6 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
-curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL
 clear
 echo -e ""
 echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
