@@ -43,23 +43,23 @@ clear
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/wingshope/ngentod/main/izin"
+data_ip="https://raw.githubusercontent.com/owl64/AutoSC/main/user/user"
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
+    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     exit
   fi
 }
@@ -116,20 +116,23 @@ function pasang_ssl() {
 function notif_addhost() {
     green "Notif AddHost Tele"
     sleep 2
-    CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-  TIME="10"
-   URL="https://api.telegram.org/bot$KEY/sendMessage"
-  TEXT="Installasi VPN Script Stable V3.0
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<b>   âš ï¸ADDHOST NOTIFâš ï¸</b>
+    #CHATID="5008116231"
+    #KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
+    CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+    KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+    versiedition=$(cat /root/versi/version)
+    TIME="10"
+    URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TEXT="Installasi VPN Script $versiedition
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+<b>   **⚡ ADDHOST NOTIF ⚡**</b>
 <b>     Add Domain New</b>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
 <b>IP VPS  :</b> <code>$MYIP </code>
 <b>DOMAIN :</b> <code>$pp</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
 <code>NEW ADD DOMAIN</code>
-<code>BY BOT : @wingshopebot</code>
+<code>BY BOT : @sdctunneling_bot</code>
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }

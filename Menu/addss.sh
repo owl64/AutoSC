@@ -43,23 +43,23 @@ clear
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/wingshope/ngentod/main/izin"
+data_ip="https://raw.githubusercontent.com/owl64/AutoSC/main/user/user"
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
+    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     exit
   fi
 }
@@ -77,22 +77,22 @@ fi
 
 #tls="$(cat ~/log-install.txt | grep -w "Sodosok WS/GRPC" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
+echo -e "\033[1;93┌──────────────────────────────────────────┐\033[0m"
   echo -e "       CREATE SHADOWSOCKS ACCOUNT        "
-  echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
+  echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
 
 		read -rp "User: " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
 clear
-            echo -e "\033[0;34mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
+            echo -e "\033[0;34m────────────────────────────────────────────\033[0m"
             echo -e "\\E[0;41;36m      Add Shadowsock Ws/Grpc Account      \E[0m"
-            echo -e "\033[0;34mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
+            echo -e "\033[0;34m────────────────────────────────────────────\033[0m"
 			echo ""
 			echo "A client with the specified name was already created, please choose another name."
 			echo ""
-			echo -e "\033[0;34mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
+			echo -e "\033[0;34m────────────────────────────────────────────\033[0m"
 			read -n 1 -s -r -p "Press any key to back on menu"
 v2ray-menu
 		fi
@@ -370,28 +370,28 @@ echo "### ${user} ${exp} ${uuid}" >>/etc/shadowsocks/.shadowsocks.db
 clear
 
 clear
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " CREATE SHADOWSOCKS         "
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Remarks     : ${user}"
 echo -e "Domain      : ${domain}"
-echo -e "User Quota       : ${Quota} GB"
+echo -e "User Quota  : ${Quota} GB"
 echo -e "Port TLS    : 400-900"
 echo -e "Password    : ${uuid}"
 echo -e "Cipers      : aes-128-gcm"
 echo -e "Network     : ws/grpc"
 echo -e "Path        : /ss-ws"
 echo -e "ServiceName : ss-grpc"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link WS TLS : ${sslinkws}"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link WS None TLS : ${nonsslinkws}"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link GRPC : ${sslinkgrpc}"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Aktif Selama   : $masaaktif Hari"
 echo -e "Dibuat Pada    : $tnggl"
 echo -e "Berakhir Pada  : $expe"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
