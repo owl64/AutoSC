@@ -151,6 +151,7 @@ res1() {
     chmod +x menu/*
     mv menu/* /usr/local/sbin
     rm -rf menu
+    
     #rm -rf menu.zip
 }
 netfilter-persistent
@@ -161,6 +162,7 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e ""
 echo -e "  \033[1;91m update script service\033[1;37m"
 show_progress 'res1'
+rm update.sh >/dev/null 2>&1
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press [ Enter ] to back on menu"
