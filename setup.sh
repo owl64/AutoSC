@@ -138,6 +138,16 @@ clear
     instalasi="https://raw.githubusercontent.com/owl64/AutoSC/main/"
 
 ####
+
+###versi
+function versionSC(){
+    if [ ! -e /root/versi ]; then
+        mkdir -p /root/versi
+    fi
+
+    wget -O /root/versi/version "${instalasi}system/version" >/dev/null 2>&1
+}
+
 start=$(date +%s)
 secs_to_human() {
     echo "Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
@@ -966,6 +976,7 @@ print_install "Enable Service"
 # Fingsi Install Script
 function instal(){
 clear
+    versionSC
     first_setup
     nginx_install
     base_package
