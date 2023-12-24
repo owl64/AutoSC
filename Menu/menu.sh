@@ -146,6 +146,10 @@ trx=$(grep -c -E "^#! " "/etc/xray/config.json")
 let trb=$trx/2
 ssx=$(grep -c -E "^#ss# " "/etc/xray/config.json")
 let ssa=$ssx/2
+
+### Version SC
+versiedition=$(cat /root/versi/version)
+
 ###########
 KANAN="\033[1;32m<\033[1;33m<\033[1;31m<\033[1;31m$NC"
 KIRI="\033[1;32m>\033[1;33m>\033[1;31m>\033[1;31m$NC"
@@ -195,7 +199,7 @@ echo -e " ${z}│$NC [${grenbo}25${NC}]${z} CHANGE BANNER$NC ${KANAN} \E[0m\033[
 echo -e " ${z}│$NC [${grenbo}0${NC}]${z} BACK TO EXIT MENU$NC ${KANAN} \E[0m\033[0;34m                               $NC${z}│$NC"
 echo -e " ${z}╰══════════════════════════════════════════════════════════╯${NC}"
 echo -e " ${z}╭══════════════════════════════════════════════════════════╮${NC}"
-echo -e " ${z}│$NC${z} Version$NC       ${Blue}=$NC V2.9"
+echo -e " ${z}│$NC${z} Version$NC       ${Blue}=$NC $versiedition"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username"
 echo -e " ${z}│$NC${z} Script Status$NC ${Blue}=$NC $sts "
 echo -e " ${z}│$NC${z} Expiry script$NC $Blue=$green $exp $certifacate Days$NC "
