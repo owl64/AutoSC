@@ -1,3 +1,4 @@
+#!/bin/bash
 # SL
 # ==========================================
 # Color
@@ -72,3 +73,4 @@ clear
 echo " You Entered The Wrong Number"
 menu
 fi
+

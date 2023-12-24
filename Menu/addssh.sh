@@ -51,23 +51,23 @@ clear
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/wingshope/ngentod/main/izin"
+data_ip="https://raw.githubusercontent.com/owl64/AutoSC/main/user/user"
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
+    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
+    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     exit
   fi
 }
@@ -80,9 +80,9 @@ ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
 clear
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93┌──────────────────────────────────────────┐\033[0m"
 echo -e " SSH Ovpn Account           "
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
 read -p " Username : " Login
 read -p " Password : " Pass
 read -p " Limit IP     : " iplimit
@@ -134,7 +134,7 @@ clear
 
 cat > /var/www/html/ssh-$Login.txt <<-END
 =========================
-   Wings Vpn Tunneling 
+   SDC Vpn Tunneling 
 =========================
 
 Format SSH OVPN Account
@@ -173,13 +173,13 @@ CHATID="5008116231"
   TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
   TEXT="Installasi VPN Script Stable V3.0
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>────────────────────</code>
 <code>SSH OVPN Account     </code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>────────────────────</code>
 <code>Username         : </code> <code>$Login</code>
 <code>Password         : </code> <code>$Pass</code>
 <code>Limit Quota       ; </code> <code>$Quota</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>────────────────────</code>
 <code>IP               : $IP</code>
 <code>Host             : </code> <code>$domain</code>
 <code>Port OpenSSH     : 443, 80, 22</code>
@@ -193,29 +193,29 @@ CHATID="5008116231"
 <code>Port OVPN TCP    : 443, 1194</code>
 <code>Port OVPN UDP    : 2200</code>
 <code>BadVPN UDP       : 7100, 7300, 7300</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>────────────────────</code>
 <code>Payload WSS      : </code><code>GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>────────────────────</code>
 OVPN Download : https://$domain:81/
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>────────────────────</code>
 <code>Save Link Account: </code>https://$domain:81/ssh-$Login.txt
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>────────────────────</code>
 Aktif Selama         : $masaaktif Hari
 Dibuat Pada          : $tnggl
 Berakhir Pada        : $expe
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>────────────────────</code>
 "
 
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 clear
 echo ""
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93┌──────────────────────────────────────────┐\033[0m"
 echo -e " SSH OVPN Account    "
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
 echo -e "Username         : $Login"
 echo -e "Password         : $Pass"
 echo -e "Limit Quota      : $Quota GB"
-echo -e "Limit Ip          : ${iplimit} User"
+echo -e "Limit Ip         : ${iplimit} User"
 echo -e "IP               : $IP"
 echo -e "Host             : $domain"
 #echo -e "Host Slowdns     : ${NS}"

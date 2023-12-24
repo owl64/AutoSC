@@ -1,3 +1,49 @@
+#!/bin/bash
+# Menu For Script
+# Edition : Stable Edition V3.0
+# Auther  : Yg Recode
+# (C) Copyright 2023-2024
+# =========================================
+BIBlack='\033[1;90m'      # Black
+BIRed='\033[1;91m'        # Red
+BIGreen='\033[1;92m'      # Green
+BIYellow='\033[1;93m'     # Yellow
+BIBlue='\033[1;94m'       # Blue
+BIPurple='\033[1;95m'     # Purple
+BICyan='\033[1;96m'       # Cyan
+BIWhite='\033[1;97m'      # White
+UWhite='\033[4;37m'       # White
+On_IPurple='\033[0;105m'  #
+On_IRed='\033[0;101m'
+IBlack='\033[0;90m'       # Black
+IRed='\033[0;91m'         # Red
+IGreen='\033[0;92m'       # Green
+IYellow='\033[0;93m'      # Yellow
+IBlue='\033[0;94m'        # Blue
+IPurple='\033[0;95m'      # Purple
+ICyan='\033[0;96m'        # Cyan
+IWhite='\033[0;97m'       # White
+NC='\e[0m'
+
+# // Export Color & Information
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export YELLOW='\033[0;33m'
+export BLUE='\033[0;34m'
+export PURPLE='\033[0;35m'
+export CYAN='\033[0;36m'
+export LIGHT='\033[0;37m'
+export NC='\033[0m'
+
+# // Export Banner Status Information
+export EROR="[${RED} EROR ${NC}]"
+export INFO="[${YELLOW} INFO ${NC}]"
+export OKEY="[${GREEN} OKEY ${NC}]"
+export PENDING="[${YELLOW} PENDING ${NC}]"
+export SEND="[${YELLOW} SEND ${NC}]"
+export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
+clear
+red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(wget -qO- icanhazip.com);
@@ -13,22 +59,22 @@ chmod +x /usr/local/bin/reboot_otomatis
 fi
 clear
 echo -e ""
-echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
-echo -e "\033[1;93mâ”‚$NC\033[42m           MENU MANAGER AUTOREBOOT        $NC"
-echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
-echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
-echo -e "\033[1;93mâ”‚  ${green}1.${NC} \033[0;36mSet Auto-Reboot 1 Hour Period"
-echo -e "\033[1;93mâ”‚  ${green}2.${NC} \033[0;36mSet Auto-Reboot 6 Hour Period"
-echo -e "\033[1;93mâ”‚  ${green}3.${NC} \033[0;36mSet Auto-Reboot 12 Hour Period"
-echo -e "\033[1;93mâ”‚  ${green}4.${NC} \033[0;36mSet Auto-Reboot 1 Day Period"
-echo -e "\033[1;93mâ”‚  ${green}5.${NC} \033[0;36mSet Auto-Reboot 1 Week Period"
-echo -e "\033[1;93mâ”‚  ${green}6.${NC} \033[0;36mSet Auto-Reboot 1 Month Period"
-echo -e "\033[1;93mâ”‚  ${green}7.${NC} \033[0;36mDeactivate Auto-Reboot"
-echo -e "\033[1;93mâ”‚  ${green}8.${NC} \033[0;36mSee Reboot Log"
-echo -e "\033[1;93mâ”‚  ${green}9.${NC} \033[0;36mDelete Reboot Log"
-echo -e "\033[1;93mâ”‚  $NC "
-echo -e "\033[1;93mâ”‚  ${green}0.${NC} \033[0;36mBACK TO EXIT MENU \033[1;32m<\033[1;33m<\033[1;31m<\033[1;31m$NC \E[0m\033[0;34m "
-echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
+echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
+echo -e "\033[1;93m│$NC\033[42m           MENU MANAGER AUTOREBOOT        $NC"
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
+echo -e "\033[1;93m│  ${green}1.${NC} \033[0;36mSet Auto-Reboot 1 Hour Period"
+echo -e "\033[1;93m│  ${green}2.${NC} \033[0;36mSet Auto-Reboot 6 Hour Period"
+echo -e "\033[1;93m│  ${green}3.${NC} \033[0;36mSet Auto-Reboot 12 Hour Period"
+echo -e "\033[1;93m│  ${green}4.${NC} \033[0;36mSet Auto-Reboot 1 Day Period"
+echo -e "\033[1;93m│  ${green}5.${NC} \033[0;36mSet Auto-Reboot 1 Week Period"
+echo -e "\033[1;93m│  ${green}6.${NC} \033[0;36mSet Auto-Reboot 1 Month Period"
+echo -e "\033[1;93m│  ${green}7.${NC} \033[0;36mDeactivate Auto-Reboot"
+echo -e "\033[1;93m│  ${green}8.${NC} \033[0;36mSee Reboot Log"
+echo -e "\033[1;93m│  ${green}9.${NC} \033[0;36mDelete Reboot Log"
+echo -e "\033[1;93m│  $NC "
+echo -e "\033[1;93m│  ${green}0.${NC} \033[0;36mBACK TO EXIT MENU \033[1;32m<\033[1;33m<\033[1;31m<\033[1;31m$NC \E[0m\033[0;34m "
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
 echo
 read -p " Select menu : " opt
 echo -e ""
@@ -96,47 +142,12 @@ if [ ! -e /root/log-reboot.txt ]; then
   echo -e "\033[1;93m======================================\033[0m"
 	else 
 	#echo ' LOG REBOOT |'
-	echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
-echo -e "\033[1;93mâ”‚$NC\033[42m               LOG TIME REBOOT            $NC"
-echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
-	echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
+	echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
+echo -e "\033[1;93m│$NC\033[42m               LOG TIME REBOOT            $NC"
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+	echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
 cat /root/log-reboot.txt
- echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
- echo -e "\033[1;93m======================================\033[0m"
-fi
-read -n 1 -s -r -p "Press any key to back on menu"
-autoreboot
-;;
-9 | 09)
-clear
-echo "" > /root/log-reboot.txt
-echo -e "Auto Reboot Log Sucsesfully \e[31mDeleted ..!\e[0m"
-echo -e "\033[1;93m======================================\033[0m"
-read -n 1 -s -r -p "Press any key to back on menu"
-autoreboot
-;;
-0 | 00)
-clear
-menu
-;;
-x)
-exit
-;;
-*)
-echo -e ""
-autoreboot
-;;
-esac
-ivity Found"
-  echo -e "\033[1;93m======================================\033[0m"
-	else 
-	#echo ' LOG REBOOT |'
-	echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
-echo -e "\033[1;93mâ”‚$NC\033[42m               LOG TIME REBOOT            $NC"
-echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
-	echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
-cat /root/log-reboot.txt
- echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
+ echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
  echo -e "\033[1;93m======================================\033[0m"
 fi
 read -n 1 -s -r -p "Press any key to back on menu"

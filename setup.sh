@@ -126,7 +126,7 @@ mai="datediff "$Exp" "$DATE""
 Info="(${green}Active${NC})"
 Error="(${RED}ExpiRED${NC})"
 today=`date -d "0 days" +"%Y-%m-%d"`
-Exp1=$(curl ${repo}ngentod/main/izin | grep $MYIP | awk '{print $4}')
+Exp1=$(curl ${repo}AutoSC/main/user/user | grep $MYIP | awk '{print $4}')
 if [[ $today < $Exp1 ]]; then
 sts="${Info}"
 else
@@ -135,7 +135,7 @@ fi
 echo -e "\e[32mloading...\e[0m"
 clear
 # REPO    
-    instalasi="${repo}AutoSC/main/"
+    instalasi="https://raw.githubusercontent.com/owl64/AutoSC/main/"
 
 ####
 start=$(date +%s)
