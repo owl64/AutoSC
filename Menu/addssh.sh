@@ -57,9 +57,9 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
@@ -67,7 +67,7 @@ checking_sc() {
     echo -e "             \033[0;33mContact Admin :${NC}"
     echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     exit
   fi
 }
@@ -80,9 +80,9 @@ ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
 clear
-echo -e "\033[1;93┌──────────────────────────────────────────┐\033[0m"
+echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
 echo -e " SSH Ovpn Account           "
-echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
 read -p " Username : " Login
 read -p " Password : " Pass
 read -p " Limit IP     : " iplimit
@@ -169,9 +169,9 @@ OVPN Download : https://$domain:81/
 END
 clear
 echo ""
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " SSH OVPN Account    "
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Username         : $Login"
 echo -e "Password         : $Pass"
 echo -e "Limit Quota      : $Quota GB"
@@ -193,14 +193,14 @@ echo -e "Port OVPN SSL    : 443"
 echo -e "Port OVPN TCP    : 443, 1194"
 echo -e "Port OVPN UDP    : 2200"
 echo -e "BadVPN UDP       : 7100, 7300, 7300"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Payload WSS      : GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "OVPN Download    : https://$domain:81/"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Save Link Account: https://$domain:81/ssh-$Login.txt"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"

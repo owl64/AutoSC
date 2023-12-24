@@ -51,9 +51,9 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
@@ -61,7 +61,7 @@ checking_sc() {
     echo -e "             \033[0;33mContact Admin :${NC}"
     echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     sleep 5
     reboot
   fi
@@ -77,18 +77,18 @@ domain=$IP
 fi
 #tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
-echo -e "\033[1;93┌──────────────────────────────────────────┐\033[0m"
+echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
 echo -e " CREATE TROJAN ACCOUNT          "
-echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
 
 		read -rp "User: " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${user_EXISTS} == '1' ]]; then
 clear
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e " CREATE TROJAN ACCOUNT          "
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
 			echo ""
 			echo "A client with the specified name was already created, please choose another name."
 			echo ""
@@ -190,9 +190,9 @@ fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
 clear
 echo -e ""
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " CREATE TROJAN ACCOUNT          "
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Remarks          : ${user}" 
 echo -e "Host/IP          : ${domain}"
 echo -e "User Quota       : ${Quota} GB"

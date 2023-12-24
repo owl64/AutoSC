@@ -51,9 +51,9 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
@@ -61,7 +61,7 @@ checking_sc() {
     echo -e "             \033[0;33mContact Admin :${NC}"
     echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     sleep 5
     reboot
   fi
@@ -73,18 +73,18 @@ clear
 domain=$(cat /etc/xray/domain)
 clear
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-  echo -e "\033[1;93┌──────────────────────────────────────────┐\033[0m"
+  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
   echo -e " CREATE VLESS ACCOUNT           "
-  echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
+  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
 
   read -rp "User: " -e user
   CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
   if [[ ${CLIENT_EXISTS} == '1' ]]; then
     clear
-  echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+  echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
   echo -e " CREATE VLESS ACCOUNT           "
-  echo -e "\033[1;93────────────────────────────────────────────\033[0m"
+  echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo ""
     echo "A client with the specified name was already created, please choose another name."
     echo ""
@@ -217,9 +217,9 @@ systemctl restart xray
 systemctl restart nginx
 clear
 echo -e ""
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " CREATE VLESS ACCOUNT           "
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Remarks     : ${user}"
 echo -e "Domain      : ${domain}"
 echo -e "User Quota  : ${Quota} GB"
@@ -233,16 +233,16 @@ echo -e "User ID     : ${uuid}"
 echo -e "Encryption  : none"
 echo -e "Path TLS    : /vless "
 echo -e "ServiceName : vless-grpc"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link TLS    : ${vlesslink1}"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link NTLS   : ${vlesslink2}"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link GRPC   : ${vlesslink3}"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Format OpenClash : https://${domain}:81/vless-$user.txt"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[1;93◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
