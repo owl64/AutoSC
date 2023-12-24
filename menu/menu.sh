@@ -158,7 +158,7 @@ r="\033[1;31m"  #REDTERANG
 a=" ${CYAN}ACCOUNT PREMIUM" 
 echo -e " "
 echo -e " ${z}╭══════════════════════════════════════════════════════════╮${NC}"
-echo -e " ${z}│$NC\033[91m                     SCRIPT WINGS STORE                   $NC${z}│$NC"
+echo -e " ${z}│$NC\033[91m                     SCRIPT SDC STORE                   $NC${z}│$NC"
 echo -e " ${z}╰══════════════════════════════════════════════════════════╯${NC}"
 echo -e " ${z}╭══════════════════════════════════════════════════════════╮${NC}"
 echo -e " ${z}│$NC$r â€¢ $NC${z} System OS ${NC}     $Blue=$NC $MODEL${NC}"
