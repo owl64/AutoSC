@@ -122,7 +122,7 @@ res1() {
     #unzip menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin
-    rm -rf menu
+    #rm -rf menu
     #rm -rf menu.zip
 }
 netfilter-persistent
