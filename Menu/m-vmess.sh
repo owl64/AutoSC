@@ -74,6 +74,7 @@ echo -e "  ${ORANGE}3.${NC} \033[0;36m Delete Vmess Account WS/GRPC${NC}"
 echo -e "  ${ORANGE}4.${NC} \033[0;36m Renew Vmess Account${NC}"
 echo -e "  ${ORANGE}5.${NC} \033[0;36m Check Vmess login Account${NC}"
 echo -e "  ${ORANGE}6.${NC} \033[0;36m Check Config Vmess Account${NC}"
+echo -e "  ${ORANGE}7.${NC} \033[0;36m Restore Vmess Account${NC}"
 echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
 echo -e ""
 read -p "Select From Options [ 1 - 6 ] : " menu
