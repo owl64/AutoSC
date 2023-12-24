@@ -312,7 +312,7 @@ bot
 ;;
 23)
 clear
-wget https://raw.githubusercontent.com/wingshope/ngentod/main/update.sh && chmod +x update.sh && ./update.sh
+wget https://raw.githubusercontent.com/owl64/AutoSC/main/update.sh && chmod +x update.sh && ./update.sh
 ;;
 24)
 clear

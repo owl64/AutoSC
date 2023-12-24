@@ -50,6 +50,8 @@ res1() {
     #rm -rf menu
     #rm -rf menu.zip
     #rm -rf update.sh
+    instalasi="https://raw.githubusercontent.com/owl64/AutoSC/main/"
+
     mkdir menu
     cd menu
     wget -O add-bot-notif "${instalasi}menu/add-bot-notif.sh"
