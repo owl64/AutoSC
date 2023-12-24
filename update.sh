@@ -42,6 +42,34 @@ fun_bar() {
     echo -e "\033[0;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
     tput cnorm
 }
+
+bar_size=40
+bar_char_done="#"
+bar_char_todo="-"
+bar_percentage_scale=2
+
+function show_progress {
+    current="$1"
+    total="$2"
+
+    # calculate the progress in percentage 
+    percent=$(bc <<< "scale=$bar_percentage_scale; 100 * $current / $total" )
+    # The number of done and todo characters
+    done=$(bc <<< "scale=0; $bar_size * $percent / 100" )
+    todo=$(bc <<< "scale=0; $bar_size - $done" )
+
+    # build the done and todo sub-bars
+    done_sub_bar=$(printf "%${done}s" | tr " " "${bar_char_done}")
+    todo_sub_bar=$(printf "%${todo}s" | tr " " "${bar_char_todo}")
+
+    # output the bar
+    echo -ne "\033[0;33m\rProgress : ${Green}[${done_sub_bar}${todo_sub_bar}] ${green}${percent}%"
+
+    if [ $total -eq $current ]; then
+        echo -e "${Green}\nUpdate Berhasil !"
+    fi
+}
+
 res1() {
     #wget https://raw.githubusercontent.com/wingshope/ngentod/main/limit/menu.zip
     #unzip menu.zip
@@ -132,7 +160,7 @@ echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 echo -e "  \033[1;91m update script service\033[1;37m"
-fun_bar 'res1'
+show_progress 'res1'
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press [ Enter ] to back on menu"
