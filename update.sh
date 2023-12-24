@@ -161,7 +161,7 @@ echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 echo -e "  \033[1;91m update script service\033[1;37m"
-show_progress 'res1'
+fun_bar 'res1'
 rm update.sh >/dev/null 2>&1
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
