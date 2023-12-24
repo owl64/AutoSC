@@ -76,7 +76,7 @@ echo -e ""
 read -p " Select menu :  "  opt
 echo -e   ""
 case $opt in
-01 | 1) clear ; wget https://raw.githubusercontent.com/wingshope/ngentod/main/kyt.sh && chmod +x kyt.sh && ./kyt.sh ;;
+01 | 1) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/kyt.sh && chmod +x kyt.sh && ./kyt.sh ;;
 02 | 2) clear ; hapus-bot ;;
 02 | 3) clear ; stop-bot ;;
 00 | 4) clear ; restart-bot ;;
