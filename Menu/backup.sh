@@ -1,4 +1,3 @@
-# My Telegram : https://t.me/wingsofhope
 # ==========================================
 # Color
 RED='\033[0;31m'
@@ -74,7 +73,7 @@ CHATID="5008116231"
 <code>Silahkan copy Link dan restore di VPS baru</code>
 <code>BY BOT : @wingshopebot</code>
 "
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+#curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 echo ""
 clear
 echo -e "
