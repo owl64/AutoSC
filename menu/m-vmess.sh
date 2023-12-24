@@ -97,6 +97,9 @@ case $menu in
 6) clear ;
     user-ws
     ;;
+7) clear ;
+    restorevmess
+    ;;
 *) clear ;
     menu
     ;;
