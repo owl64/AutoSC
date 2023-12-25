@@ -14,7 +14,7 @@ echo -e "\e[32mloading...\e[0m"
 clear
 IP=$(wget -qO- icanhazip.com)
 dateToday=$(date +"%Y-%m-%d")
-Name=$(curl https://raw.githubusercontent.com/wingshope/ngentod/main/izin | grep $MYIP | awk '{print $2}')
+Name=$(curl https://raw.githubusercontent.com/owl64/AutoSC/main/user/user | grep $MYIP | awk '{print $2}')
 
 setup_bot() {
     switch=$(grep -i "switch" /root/.bckupbot | awk '{print $2}')
@@ -159,10 +159,10 @@ botbckpBot_menu() {
     else
         sts="\033[1;31m[Off]\033[0m"
     fi
-	echo -e " ${Blue}â•­â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•®${NC}"
+	echo -e " ${Blue}┌──────────────────────────────────────────┐${NC}"
 	echo -e " ${Blue}â”‚$NC\033[41m               Telegram Bot (AutoBackup)               \E[0m"
-	echo -e " ${Blue}â•°â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•¯${NC}"
-    echo -e " ${Blue}â•­â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•®${NC}"
+	echo -e " ${Blue}└──────────────────────────────────────────┘${NC}"
+    echo -e " ${Blue}┌──────────────────────────────────────────┐${NC}"
     echo -e " ${Blue}â”‚$NC ${green} VPS Data Backup By KYT"
     echo -e " ${Blue}â”‚$NC"
     echo -e " ${Blue}â”‚$NC ${green} Status AutoBackup : $sts"
@@ -171,7 +171,7 @@ botbckpBot_menu() {
     echo -e " ${Blue}â”‚$NC [${green}3${NC}] Backup VPS (Telegram Bot) \e[0m"
     echo -e " ${Blue}â”‚$NC [${green}4${NC}] Restore Data \e[0m"
     echo -e " ${Blue}â”‚$NC [${green}5${NC}] Back To Main Menu \e[0m"
-    echo -e " ${Blue}â•°â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•¯${NC}"
+    echo -e " ${Blue}└──────────────────────────────────────────┘${NC}"
     echo -e ""
     echo -ne "Select From Options [ 1 - 5 ] : "
     read botch
