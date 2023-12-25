@@ -187,5 +187,5 @@ rm update.sh >/dev/null 2>&1
 echo -e "  ${Green}UPDATE SELESAI !!"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
-read -n 1 -s -r -p "Press [ Enter ] to back on menu"
-menu
+read -n 1 -s -r -p "Press [ Enter ] to back"
+info
