@@ -937,6 +937,7 @@ function menu(){
     wget -O user-vless "${instalasi}menu/user-vless.sh"
     wget -O user-ws "${instalasi}menu/user-ws.sh"
     wget -O xp "${instalasi}menu/xp.sh"
+    wget -O info "${instalasi}menu/info.sh"
     cd /root
     #wget ${instalasi}menu/menu.zip
     #unzip menu.zip
@@ -957,7 +958,7 @@ if [ "$BASH" ]; then
     fi
 fi
 mesg n || true
-menu
+info
 EOF
 
 cat >/etc/cron.d/xp_all <<-END

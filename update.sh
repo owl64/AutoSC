@@ -71,6 +71,20 @@ function show_progress {
     fi
 }
 
+function profile(){
+clear
+    cat >/root/.profile <<EOF
+# ~/.profile: executed by Bourne-compatible login shells.
+if [ "$BASH" ]; then
+    if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+    fi
+fi
+mesg n || true
+info
+EOF
+}
+
 res1() {
     #wget https://raw.githubusercontent.com/wingshope/ngentod/main/limit/menu.zip
     #unzip menu.zip
@@ -161,10 +175,10 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
-echo -e "  \033[1;91m update script service\033[1;37m"
-fun_bar 'res1'
+echo -e "  \033[1;91m UPDATE SCRIPT SERVICE\033[1;37m"
+fun_bar 'res1''profile'
 rm update.sh >/dev/null 2>&1
-echo -e " ${Green}UPDATE SELESAI !!"
+echo -e "  ${Green}UPDATE SELESAI !!"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press [ Enter ] to back on menu"
