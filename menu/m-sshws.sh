@@ -1,4 +1,4 @@
-                                                                                    #!/bin/bash
+#!/bin/bash
 Green="\e[92;1m"
 RED="\033[31m"
 YELLOW="\033[33m"
@@ -9,7 +9,7 @@ REDBG="\033[41;37m"
 OK="${Green}--->${FONT}"
 ERROR="${RED}[ERROR]${FONT}"
 GRAY="\e[1;30m"
-NC='\e[0m'
+NC='\033[0m'
 red='\e[1;31m'
 green='\e[0;32m'
 DF='\e[39m'
@@ -24,7 +24,7 @@ cyan='\e[36m'
 Lred='\e[91m'
 Lgreen='\e[92m'
 Lyellow='\e[93m'
-NC='\e[0m'
+z="\033[96m"
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
@@ -44,23 +44,23 @@ clear
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/wingshope/ngentod/main/izin"
+data_ip="https://raw.githubusercontent.com/owl64/AutoSC/main/user/user"
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
+    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     exit
   fi
 }
@@ -70,10 +70,10 @@ clear
 #Domain
 domain=$(cat /etc/xray/domain)
 
-echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
-echo -e "                SSH & OpenVPN           "
-echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
-echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e " $NC$purple                  SSH & OpenVPN           $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "  ${ORANGE}[1].${NC}\033[0;36m Create SSH & OpenVPN Account${NC}"
 echo -e "  ${ORANGE}[2].${NC}\033[0;36m Trial SSH & OpenVPN ${NC}"
 echo -e "  ${ORANGE}[3].${NC}\033[0;36m Renew SSH & OpenVPN ${NC}"
@@ -85,7 +85,7 @@ echo -e "  ${ORANGE}[8].${NC}\033[0;36m Set up Autokill SSH ${NC}"
 echo -e "  ${ORANGE}[9].${NC}\033[0;36m Cek User Multi Login SSH ${NC}"
 echo -e "  ${ORANGE}[10].${NC}\033[0;36mConfig SSH ACCOUNT ${NC}"
 echo -e "  ${ORANGE}[11].${NC}\033[0;36mExit ${NC}"
-echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 read -p "Select From Options [ 1 - 10 ] : " menu
 echo -e ""
 case $menu in
