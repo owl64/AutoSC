@@ -1,4 +1,4 @@
-                                                                                             #!/bin/bash
+#!/bin/bash
 Green="\e[92;1m"
 RED="\033[31m"
 YELLOW="\033[33m"
@@ -9,9 +9,10 @@ REDBG="\033[41;37m"
 OK="${Green}--->${FONT}"
 ERROR="${RED}[ERROR]${FONT}"
 GRAY="\e[1;30m"
-NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
+z="\033[96m"
+NC='\033[0m'
 DF='\e[39m'
 Bold='\e[1m'
 Blink='\e[5m'
@@ -24,7 +25,6 @@ cyan='\e[36m'
 Lred='\e[91m'
 Lgreen='\e[92m'
 Lyellow='\e[93m'
-NC='\e[0m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
@@ -64,10 +64,10 @@ checking_sc() {
 checking_sc
 echo -e "\e[32mloading...\e[0m"
 clear
-echo -e "\033[1;93┌──────────────────────────────────────────┐\033[0m"
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "                 MENU VMESS              $NC"
-echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
-echo -e "\033[1;93┌──────────────────────────────────────────┐\033[0m"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "  ${ORANGE}1.${NC} \033[0;36m Creating Vmess Account WS/GRPC${NC}"
 echo -e "  ${ORANGE}2.${NC} \033[0;36m Creating Trial Vmess Account WS/GRPC${NC}"
 echo -e "  ${ORANGE}3.${NC} \033[0;36m Delete Vmess Account WS/GRPC${NC}"
@@ -75,7 +75,7 @@ echo -e "  ${ORANGE}4.${NC} \033[0;36m Renew Vmess Account${NC}"
 echo -e "  ${ORANGE}5.${NC} \033[0;36m Check Vmess login Account${NC}"
 echo -e "  ${ORANGE}6.${NC} \033[0;36m Check Config Vmess Account${NC}"
 echo -e "  ${ORANGE}7.${NC} \033[0;36m Restore Vmess Account${NC}"
-echo -e "\033[1;93└──────────────────────────────────────────┘\033[0m"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p "Select From Options [ 1 - 6 ] : " menu
 case $menu in
