@@ -81,6 +81,7 @@ if [ "$BASH" ]; then
     fi
 fi
 mesg n || true
+##baru
 info
 EOF
 }
