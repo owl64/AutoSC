@@ -185,7 +185,7 @@ echo -e " ${z}╭═════════════════════
 echo -e " ${z}│ ${NC}${z} SSH$NC : $status_ssh" "        ${z} NGINX$NC : $status_nginx" "        ${z} XRAY$NC : $status_xray      $NC${z}│$NC" 
 echo -e " ${z}│ ${NC}${z} WS-ePRO$NC : $status_ws_epro" "    ${z} DROPBEAR$NC : $status_dropbear" "     ${z} HAPROXY$NC : $status_haproxy   $NC${z}│$NC" 
 echo -e " ${z}╰══════════════════════════════════════════════════════════╯${NC}"
-echo -e " ${z}╭══════════════════════════════════════════════════════════╮${NC}"
+echo -e "${z}┌─────────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}│$NC [${grenbo}01${NC}]${z} SSH MENU$NC     ${z}│$NC [${grenbo}08${NC}]${z} DELL ALL EXP$NC ${z}│$NC [${grenbo}15${NC}]${z} BCKP/RSTR   $NC${z}│$NC"
 echo -e " ${z}│$NC [${grenbo}02${NC}]${z} VMESS MENU$NC   ${z}│$NC [${grenbo}09${NC}]${z} AUTOREBOOT$NC  ${z} │$NC [${grenbo}16${NC}]${z} REBOOT      $NC${z}│$NC"    
 echo -e " ${z}│$NC [${grenbo}03${NC}]${z} VLESS MENU$NC   ${z}│$NC [${grenbo}10${NC}]${z} INFO PORT$NC   ${z} │$NC [${grenbo}17${NC}]${z} RESTART     $NC${z}│$NC"   
@@ -198,7 +198,7 @@ echo -e " ${z}│                                                          $NC${
 echo -e " ${z}│$NC [${grenbo}25${NC}]${z} CHANGE BANNER$NC ${KANAN} \E[0m\033[0;34m                                  $NC${z}│$NC"
 echo -e " ${z}│$NC [${grenbo}0${NC}]${z} BACK TO EXIT MENU$NC ${KANAN} \E[0m\033[0;34m                               $NC${z}│$NC"
 echo -e " ${z}╰══════════════════════════════════════════════════════════╯${NC}"
-echo -e " ${z}╭══════════════════════════════════════════════════════════╮${NC}"
+echo -e "${CYAN}┌─────────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}│$NC${z} Version$NC       ${Blue}=$NC $versiedition"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username"
 echo -e " ${z}│$NC${z} Script Status$NC ${Blue}=$NC $sts "
@@ -323,7 +323,7 @@ clear
 nano /etc/kyt.txt
 ;;
 0 | 00)
-figlet WINGS STORE 
+figlet SDC STORE 
 exit
 ;;
 x)
