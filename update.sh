@@ -164,6 +164,7 @@ echo -e ""
 echo -e "  \033[1;91m update script service\033[1;37m"
 fun_bar 'res1'
 rm update.sh >/dev/null 2>&1
+echo -e " ${Green}UPDATE SELESAI !!"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press [ Enter ] to back on menu"
