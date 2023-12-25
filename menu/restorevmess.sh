@@ -103,7 +103,6 @@ clear
 	done
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
-uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "UUID : " uuid
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota
