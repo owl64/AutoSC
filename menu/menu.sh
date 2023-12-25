@@ -158,7 +158,7 @@ r="\033[1;31m"  #REDTERANG
 a=" ${CYAN}ACCOUNT PREMIUM" 
 echo -e " "
 echo -e " ${z}┌──────────────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC$purple                    SCRIPT SDC STORE                     $NC${z}│$NC"
+echo -e " ${z}│$NC$purple                    SCRIPT SDC STORE                      $NC${z}│$NC"
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}│$NC$r □ $NC${z} System OS ${NC}     $Blue=$NC $MODEL${NC}"
