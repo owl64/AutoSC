@@ -29,11 +29,12 @@ clear
 function notif_ssl() {
     green "Notif AddHost Tele"
     sleep 2
-    CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-  TIME="10"
-   URL="https://api.telegram.org/bot$KEY/sendMessage"
-  TEXT="Installasi VPN Script Stable V3.0
+    versi=$(cat /root/versi/version)
+    CHATID="1624209723"
+    KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
+    TIME="10"
+    URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TEXT="Installasi VPN Script $versi
 <code>====================</code>
 <code>Notif Pasang SSL    </code>
 <code>====================</code>
