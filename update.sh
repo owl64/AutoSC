@@ -198,7 +198,7 @@ echo -e ""
             rm -rf update
             else
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-            echo -e "                 MENU VMESS              $NC"
+            echo -e "                 NEW UPDATE              $NC"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update !"
             echo -e "  \033[1;91m UPDATE SCRIPT SERVICE\033[1;37m"
