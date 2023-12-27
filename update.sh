@@ -31,7 +31,7 @@ fun_bar() {
     while true; do
         for ((i = 0; i < 18; i++)); do
             #progresbar Update
-            echo -ne "\033[0;32m#"
+            echo -ne "\033[0;32m$GREENBG "
             sleep 0.1s
         done
         [[ -e $HOME/fim ]] && rm $HOME/fim && break
