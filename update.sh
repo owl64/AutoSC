@@ -172,7 +172,7 @@ res1() {
 }
 
     ##Check Version SC
-    versi=$(cat /root/versi/version)
+    versi123=$(cat /root/versi/version)
     
 
     ##Check Version SC Baru
@@ -191,11 +191,10 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
-    if [[ "${versi}" != "${updatebaru}" ]]; then
-            echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
-            rm update.sh >/dev/null 2>&1
-            rm -rf update
-        else
+            IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $MYIP );
+            if [ $versi123 = $IZIN ]; then
+            echo -e "${NC}${GREEN}Permission denied...${NC}"
+            else
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "                 MENU VMESS              $NC"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
