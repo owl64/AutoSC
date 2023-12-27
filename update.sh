@@ -191,7 +191,7 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
-            IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $MYIP );
+            IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versi123 );
             if [ $versi123 = $IZIN ]; then
             echo -e "${NC}${GREEN}Permission denied...${NC}"
             else
