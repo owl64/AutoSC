@@ -27,7 +27,7 @@ fun_bar() {
         touch $HOME/fim
     ) >/dev/null 2>&1 &
     tput civis
-    echo -ne "  \033[0;33m                 Please Wait Loading \033[1;37m- \033[0;33m["
+    echo -ne "  \033[0;33m            Please Wait Loading \033[1;37m- \033[0;33m["
     while true; do
         for ((i = 0; i < 18; i++)); do
             #progresbar Update
@@ -39,7 +39,7 @@ fun_bar() {
         sleep 1s
         tput cuu1
         tput dl1
-        echo -ne "  \033[0;33m              Please Wait Downloading \033[1;37m- \033[0;33m["
+        echo -ne "  \033[0;33m         Please Wait Downloading \033[1;37m- \033[0;33m["
     done
     echo -e "\033[0;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
     tput cnorm
@@ -182,13 +182,13 @@ echo -e ""
             echo -e "          ${BLUE}[*] ${YELLOW}Add Restore Account Vmess ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-            read -n 1 -s -r -p "Press [ Enter ] to Update ! ${NC}"
+            read -n 1 -s -r -p "Press [ Enter ] to Update !"
             echo -e ""
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-            echo -e "  \033[1;91m              UPDATE SCRIPT SERVICE\033[1;37m"
+            echo -e "  \033[1;91m         UPDATE SCRIPT SERVICE\033[1;37m"
             fun_bar 'update'
             rm update.sh >/dev/null 2>&1
-            echo -e "  ${Green}                UPDATE SELESAI !!"
+            echo -e "  ${Green}           UPDATE SELESAI !!"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             fi
 echo -e ""
