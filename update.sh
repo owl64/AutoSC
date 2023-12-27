@@ -172,6 +172,7 @@ echo -e ""
             rm update.sh >/dev/null 2>&1
             rm -rf update
             else
+            clear
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "                 NEW UPDATE AVAIBLE              $NC"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
@@ -181,7 +182,8 @@ echo -e ""
             echo -e "          ${BLUE}[*] ${YELLOW}Add Restore Account Vmess ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-            read -n 1 -s -r -p "Press [ Enter ] to Update !"
+            read -n 1 -s -r -p "Press [ Enter ] to Update ! ${NC}"
+            echo -e ""
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "  \033[1;91m              UPDATE SCRIPT SERVICE\033[1;37m"
             fun_bar 'update'
