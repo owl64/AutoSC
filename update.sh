@@ -177,9 +177,14 @@ res1() {
 
     IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versi123 ); >/dev/null 2>&1
 
+function gantiSC(){
+    wget -O /root/versi/version "${instalasi}system/version" >/dev/null 2>&1
+}
+
 function update(){
     res1
     profile
+    gantiSC
 }
 netfilter-persistent
 clear
