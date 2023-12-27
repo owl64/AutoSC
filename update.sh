@@ -171,21 +171,14 @@ res1() {
     #rm -rf menu.zip
 }
 
-function checkSCLAMA(){
     ##Check Version SC
     versi=$(cat /root/versi/version)
 
-    echo -e "$versi"
-}
-
-function checkSCBARU(){
+    ##Check Version SC Baru
     mkdir update
     cd update
     wget -q "https://raw.githubusercontent.com/owl64/AutoSC/main/system/version"
     updatebaru=$(cat /root/update/version)
-
-    echo -e "$updatebaru"
-}
 
 function update(){
     res1
@@ -197,7 +190,7 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
-    if [[ checkSCLAMA = checkSCBARU ]]; then
+    if [[ $versi = $updatebaru ]]; then
             echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
         else
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
