@@ -192,6 +192,7 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e ""
     if [[ $versi = $updatebaru ]]; then
             echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
+                        rm update.sh >/dev/null 2>&1
         else
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "                 MENU VMESS              $NC"
@@ -201,7 +202,6 @@ echo -e ""
             fun_bar 'update'
             rm update.sh >/dev/null 2>&1
             echo -e "  ${Green}UPDATE SELESAI !!"
-
     fi
 
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
