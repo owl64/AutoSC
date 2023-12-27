@@ -176,17 +176,8 @@ function checkSCLAMA(){
     versi=$(cat /root/versi/version)
 
     echo -e "$versi"
-
-    if [[ ${version} = ${update} ]]; then
-        echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
-    else
-        echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-        echo -e "                 MENU VMESS              $NC"
-        echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-        read -n 1 -s -r -p "Press [ Enter ] to back"
-
-    fi
 }
+
 function checkSCBARU(){
     mkdir update
     cd update
@@ -206,7 +197,7 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
-    if [[ ${version} = ${update} ]]; then
+    if [[ checkSCLAMA = checkSCBARU ]]; then
             echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
         else
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
