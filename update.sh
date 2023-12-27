@@ -38,7 +38,7 @@ fun_bar() {
         sleep 1s
         tput cuu1
         tput dl1
-        echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
+        echo -ne "  \033[0;33m Please Wait Downloading \033[1;37m- \033[0;33m["
     done
     echo -e "\033[0;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
     tput cnorm
@@ -169,6 +169,27 @@ res1() {
     rm -rf menu
     
     #rm -rf menu.zip
+}
+
+function checkSC(){
+    ##Check Version SC
+    versi=$(cat /root/versi/version)
+
+    ##download versi terbaru
+    mkdir update
+    cd update
+    wget -q "https://raw.githubusercontent.com/owl64/AutoSC/main/system/version"
+    updatebaru=$(cat /root/update/version)
+
+    if [[ ${version} = ${update} ]]; then
+        echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
+    else
+        echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+        echo -e "                 MENU VMESS              $NC"
+        echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+        read -n 1 -s -r -p "Press [ Enter ] to back"
+
+    fi
 }
 
 function update(){
