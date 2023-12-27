@@ -171,15 +171,11 @@ res1() {
     #rm -rf menu.zip
 }
 
-function checkSC(){
+function checkSCLAMA(){
     ##Check Version SC
     versi=$(cat /root/versi/version)
 
-    ##download versi terbaru
-    mkdir update
-    cd update
-    wget -q "https://raw.githubusercontent.com/owl64/AutoSC/main/system/version"
-    updatebaru=$(cat /root/update/version)
+    echo -e "$versi"
 
     if [[ ${version} = ${update} ]]; then
         echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
@@ -190,6 +186,14 @@ function checkSC(){
         read -n 1 -s -r -p "Press [ Enter ] to back"
 
     fi
+}
+function checkSCBARU(){
+    mkdir update
+    cd update
+    wget -q "https://raw.githubusercontent.com/owl64/AutoSC/main/system/version"
+    updatebaru=$(cat /root/update/version)
+
+    echo -e "$updatebaru"
 }
 
 function update(){
@@ -202,6 +206,15 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
+    if [[ ${version} = ${update} ]]; then
+            echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
+        else
+            echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+            echo -e "                 MENU VMESS              $NC"
+            echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+            read -n 1 -s -r -p "Press [ Enter ] to back"
+
+    fi
 echo -e "  \033[1;91m UPDATE SCRIPT SERVICE\033[1;37m"
 fun_bar 'update'
 rm update.sh >/dev/null 2>&1
