@@ -181,11 +181,11 @@ function update(){
 }
 netfilter-persistent
 clear
-echo -e "${YELLOW}┌──────────────────────────────────────────┐\033[0m"
-echo -e "                   UPDATE SCRIPT SDC STORE       "
-echo -e "${YELLOW}└──────────────────────────────────────────┘\033[0m"
+echo -e "${z}┌──────────────────────────────────────────┐\033[0m"
+echo -e "             UPDATE SCRIPT SDC STORE       "
+echo -e "${z}└──────────────────────────────────────────┘\033[0m"
 echo -e ""
-            IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versi123 );
+            IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versi123 ); >/dev/null 2>&1
             if [ $versi123 = $IZIN ]; then
             echo -e "${NC}${Green}OUR SCRIPT IS UP TO DATE !${NC}"
             rm update.sh >/dev/null 2>&1
