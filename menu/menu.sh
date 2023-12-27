@@ -193,7 +193,7 @@ echo -e " ${z}│$NC [${grenbo}25${NC}]${z} CHANGE BANNER$NC ${KANAN} \E[0m\033[
 echo -e " ${z}│$NC [${grenbo}0${NC}]${z} BACK TO EXIT MENU$NC ${KANAN} \E[0m\033[0;34m                               $NC${z}│$NC"
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌─────────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC${z} Version$NC       ${Blue}=$NC v$YELL$versiedition R[Longterm]"
+echo -e " ${z}│$NC${z} Version$NC       ${Blue}=$NC $YELL V$versiedition R[Longterm]"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username"
 echo -e " ${z}│$NC${z} Script Status$NC ${Blue}=$NC $sts "
 echo -e " ${z}│$NC${z} Expiry script$NC $Blue=$green $exp $certifacate Days$NC "

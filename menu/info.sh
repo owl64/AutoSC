@@ -180,7 +180,7 @@ echo -e " ${z}│ ${NC}${z} SSH$NC : $status_ssh" "        ${z} NGINX$NC : $stat
 echo -e " ${z}│ ${NC}${z} WS-ePRO$NC : $status_ws_epro" "    ${z} DROPBEAR$NC : $status_dropbear" "     ${z} HAPROXY$NC : $status_haproxy   $NC${z}│$NC" 
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌─────────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC${z} Version$NC       ${Blue}=$NC $YELL$versiedition"
+echo -e " ${z}│$NC${z} Version$NC       ${Blue}=$NC $YELL V$versiedition R[Longterm]"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username"
 echo -e " ${z}│$NC${z} Script Status$NC ${Blue}=$NC $sts "
 echo -e " ${z}│$NC${z} Expiry script$NC $Blue=$green $exp $certifacate Days$NC "

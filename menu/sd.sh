@@ -24,11 +24,11 @@ ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
 clear
-echo -e "\033[1;93mâ”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\033[0m"
+echo -e "${blue}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 read -p "   Username      : " Login
 read -p "   Password      : " Pass
 read -p "   Expired (Days): " masaaktif
-echo -e "\033[1;93mâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜\033[0m"
+echo -e "${blue}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 IP=$(wget -qO- ipinfo.io/ip);
 # // String For IP & Port
 IP=$(curl -sS ifconfig.me);
@@ -87,19 +87,19 @@ clear
 clear && clear && clear
 clear;clear;clear
 echo -e ""
-echo -e " â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡"
+echo -e " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo -e " Your Premium VPN Details"
-echo -e " â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡"
+echo -e " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo -e " IP Server        = ${IP}"
 echo -e " Host Slowdns     = ${NS}"
 echo -e " Pub Key          = ${PUB}"
 echo -e " Username         = ${Login}"
 echo -e " Password         = ${Pass}"
-echo -e "â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo -e " Aktif Selama   : $masaaktif Hari"
 echo -e " Dibuat Pada    : $tnggl"
 echo -e " Berakhir Pada  : $expe"
-echo -e "â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu

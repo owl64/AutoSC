@@ -16,17 +16,17 @@ function notif_restore() {
     green "Notif AddHost Tele"
     sleep 2
     CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-  TIME="10"
-   URL="https://api.telegram.org/bot$KEY/sendMessage"
-  TEXT="Installasi VPN Script Stable V3.0
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+    KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
+    TIME="10"
+    URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TEXT="Installasi VPN Script Stable V3.0
+<code>━━━━━━━━━━━━━━━━</code>
 <b>  âš ï¸ RESTORE NOTIFâš ï¸</b>
 <b>     Detail Restore VPS</b>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>━━━━━━━━━━━━━━━━</code>
 <code>Restore Vps Done</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<code>BY BOT : @wingshopebot</code>
+<code>━━━━━━━━━━━━━━━━</code>
+<code>BY BOT : @sdctunneling_bot</code>
 "
 
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null

@@ -27,7 +27,7 @@ fun_bar() {
         touch $HOME/fim
     ) >/dev/null 2>&1 &
     tput civis
-    echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
+    echo -ne "  \033[0;33m                 Please Wait Loading \033[1;37m- \033[0;33m["
     while true; do
         for ((i = 0; i < 18; i++)); do
             #progresbar Update
@@ -39,37 +39,10 @@ fun_bar() {
         sleep 1s
         tput cuu1
         tput dl1
-        echo -ne "  \033[0;33m Please Wait Downloading \033[1;37m- \033[0;33m["
+        echo -ne "  \033[0;33m              Please Wait Downloading \033[1;37m- \033[0;33m["
     done
     echo -e "\033[0;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
     tput cnorm
-}
-
-bar_size=40
-bar_char_done="#"
-bar_char_todo="-"
-bar_percentage_scale=2
-
-function show_progress {
-    current="$1"
-    total="$2"
-
-    # calculate the progress in percentage 
-    percent=$(bc <<< "scale=$bar_percentage_scale; 100 * $current / $total" )
-    # The number of done and todo characters
-    done=$(bc <<< "scale=0; $bar_size * $percent / 100" )
-    todo=$(bc <<< "scale=0; $bar_size - $done" )
-
-    # build the done and todo sub-bars
-    done_sub_bar=$(printf "%${done}s" | tr " " "${bar_char_done}")
-    todo_sub_bar=$(printf "%${todo}s" | tr " " "${bar_char_todo}")
-
-    # output the bar
-    echo -ne "\033[0;33m\rProgress : ${Green}[${done_sub_bar}${todo_sub_bar}] ${green}${percent}%"
-
-    if [ $total -eq $current ]; then
-        echo -e "${Green}\nUpdate Berhasil !"
-    fi
 }
 
 function profile(){
@@ -198,13 +171,20 @@ echo -e ""
             rm -rf update
             else
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-            echo -e "                 NEW UPDATE              $NC"
+            echo -e "                 NEW UPDATE AVAIBLE              $NC"
+            echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+            echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+            echo -e "          [*] Fixing All Service Menu ${NC}"
+            echo -e "          [*] Add Restore Account Vmess ${NC}"
+            echo -e "          [*] Optimasi Menu ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update !"
-            echo -e "  \033[1;91m UPDATE SCRIPT SERVICE\033[1;37m"
+            echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+            echo -e "  \033[1;91m              UPDATE SCRIPT SERVICE\033[1;37m"
             fun_bar 'update'
             rm update.sh >/dev/null 2>&1
-            echo -e "  ${Green}UPDATE SELESAI !!"
+            echo -e "  ${Green}                UPDATE SELESAI !!"
+            echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             fi
 echo -e ""
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
