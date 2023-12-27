@@ -1,25 +1,24 @@
 clear
-
 PUB=$(cat /etc/slowdns/server.pub)
 NS=$(cat /etc/xray/dns)
 CITY=$(cat /etc/xray/city)
 clear
 NUMBER_OF_CLIENTS=$(grep -c -E "^#& " "/etc/xray/config.json")
         if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
-    echo -e "\033[1;36mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
+    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo -e " \e[1;97;101m                CONFIG VLESS ACCOUNT                   \e[0m"
-    echo -e "\033[1;36mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
+    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
     echo "You have no existing clients!"
     echo ""
-    echo -e "\033[1;36mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
+    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     read -n 1 -s -r -p "Press [ Enter ] to back on menu vless"
     vless
 fi
 
-  echo -e "\033[1;36mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   echo -e "  \e[1;97;101m        CONFIG VLESS ACCOUNT         \E[0m"
-  echo -e "\033[1;36mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         echo "     No  Expired   User"
         grep -E "^#& " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | nl -s ') '
         until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
@@ -39,9 +38,9 @@ exp=$(grep -E "^#& " "/etc/xray/config.json" | cut -d ' ' -f 3 | sed -n "${CLIEN
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 cat >/var/www/html/vless-$user.txt <<-END
 
-â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡
+=========================
   Wings VPN Tunneling 
-â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡
+=========================
 # Format Vless WS TLS
 
 - name: Vless-$user-WS TLS
@@ -93,57 +92,60 @@ cat >/var/www/html/vless-$user.txt <<-END
   grpc-mode: gun
     grpc-service-name: vless-grpc
 
-â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡
+=========================
 Link Akun Vless 
-â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡
+=========================
 Link TLS      : 
 ${vlesslink1}
-â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡
+=========================
 Link none TLS : 
 ${vlesslink2}
-â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡
+=========================
 Link GRPC     : 
 ${vlesslink3}
-â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡
+=========================
+
+END
 vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws#${user}"
 vlesslink2="vless://${uuid}@${domain}:80?path=/vless&encryption=none&type=ws#${user}"
 vlesslink3="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${user}"
+
 clear
 echo -e ""
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " CREATE VLESS ACCOUNT           "
-echo -e "\033[1;93m====================\033[0m"
-echo -e "Remarks     : ${user}"
-echo -e "Domain      : ${domain}"
-echo -e "Host XrayDNS: ${NS}"
-echo -e "Pub Key     : ${PUB}"
-echo -e "User Quota  : ${Quota} GB"
-echo -e "Limit IP    : ${iplim} IP"
-echo -e "port TLS    : 443"
-echo -e "Port NTLS   : 80, 8080, 8081-9999"
-echo -e "port Grpc   : 443"
-echo -e "port OpenClash TLS: 443"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "Remarks            : ${user}"
+echo -e "Domain             : ${domain}"
+echo -e "Host XrayDNS       : ${NS}"
+echo -e "Pub Key            : ${PUB}"
+echo -e "User Quota         : ${Quota} GB"
+echo -e "Limit IP           : ${iplim} IP"
+echo -e "port TLS           : 443"
+echo -e "Port NTLS          : 80, 8080, 8081-9999"
+echo -e "port Grpc          : 443"
+echo -e "port OpenClash TLS : 443"
 echo -e "port OpenClash NTLS: 80, 8080, 8081-9999"
-echo -e "port CDN TLS : 443"
-echo -e "port CDN NTLS: 80, 8080, 8081-9999"
-echo -e "port CDN Grpc: 443"
-echo -e "User ID     : ${uuid}"
-echo -e "Encryption  : none"
-echo -e "Path TLS    : /vless "
-echo -e "ServiceName : vless-grpc"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "port CDN TLS       : 443"
+echo -e "port CDN NTLS      : 80, 8080, 8081-9999"
+echo -e "port CDN Grpc      : 443"
+echo -e "User ID            : ${uuid}"
+echo -e "Encryption         : none"
+echo -e "Path TLS           : /vless "
+echo -e "ServiceName        : vless-grpc"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link TLS    : ${vlesslink1}"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link NTLS   : ${vlesslink2}"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link GRPC   : ${vlesslink3}"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link Format Openclash   : https://${domain}:81/vless-$user.txt"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link Via Qris  :https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${vlesslink1}"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Expired    : $exp"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press [ Enter ] to back on menu"
 menu

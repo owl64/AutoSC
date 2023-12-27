@@ -77,7 +77,7 @@ echo -e "  ${ORANGE}6.${NC} \033[0;36m Check Config Vmess Account${NC}"
 echo -e "  ${ORANGE}7.${NC} \033[0;36m Restore Vmess Account${NC}"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-read -p "Select From Options [ 1 - 6 ] : " menu
+read -p "Select From Options [ 1 - 7 ] : " menu
 case $menu in
 1)   clear ;
     addws
