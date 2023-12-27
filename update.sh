@@ -1,4 +1,5 @@
 #!/bin/bash
+z="\033[96m"
 Green="\e[92;1m"
 RED="\033[31m"
 YELLOW="\033[33m"
@@ -173,13 +174,6 @@ res1() {
 
     ##Check Version SC
     versi123=$(cat /root/versi/version)
-    
-
-    ##Check Version SC Baru
-    mkdir update
-    cd update
-    wget -q "https://raw.githubusercontent.com/owl64/AutoSC/main/system/version"
-    updatebaru=$(cat /root/update/version)
 
 function update(){
     res1
@@ -187,24 +181,26 @@ function update(){
 }
 netfilter-persistent
 clear
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "${YELLOW}┌──────────────────────────────────────────┐\033[0m"
+echo -e "                   UPDATE SCRIPT SDC STORE       "
+echo -e "${YELLOW}└──────────────────────────────────────────┘\033[0m"
 echo -e ""
             IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versi123 );
             if [ $versi123 = $IZIN ]; then
-            echo -e "${NC}${GREEN}Permission denied...${NC}"
+            echo -e "${NC}${Green}OUR SCRIPT IS UP TO DATE !${NC}"
+            rm update.sh >/dev/null 2>&1
+            rm -rf update
             else
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "                 MENU VMESS              $NC"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-            read -n 1 -s -r -p "Press [ Enter ] to back"
+            read -n 1 -s -r -p "Press [ Enter ] to Update !"
             echo -e "  \033[1;91m UPDATE SCRIPT SERVICE\033[1;37m"
             fun_bar 'update'
             rm update.sh >/dev/null 2>&1
             echo -e "  ${Green}UPDATE SELESAI !!"
-    fi
-
+            fi
+echo -e ""
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press [ Enter ] to back"
