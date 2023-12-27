@@ -150,6 +150,8 @@ res1() {
 
     IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versi123 ); >/dev/null 2>&1
 
+    versiupdate=$(curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version);
+
 function gantiSC(){
     wget -O /root/versi/version "${instalasi}system/version" >/dev/null 2>&1
 }
@@ -174,9 +176,10 @@ echo -e ""
             echo -e "                 NEW UPDATE AVAIBLE              $NC"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-            echo -e "          [*] Fixing All Service Menu ${NC}"
-            echo -e "          [*] Add Restore Account Vmess ${NC}"
-            echo -e "          [*] Optimasi Menu ${NC}"
+            echo -e "          ${BLUE}[*] ${YELLOW}V${versiupdate} R[Longterm]${NC}"
+            echo -e "          ${BLUE}[*] ${YELLOW}Fixing All Service Menu ${NC}"
+            echo -e "          ${BLUE}[*] ${YELLOW}Add Restore Account Vmess ${NC}"
+            echo -e "          ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update !"
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
