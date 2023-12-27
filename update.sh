@@ -190,9 +190,10 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo -e " \e[1;97;101m          UPDATE SCRIPT SDC STORE       \e[0m"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
-    if [[ $versi != $updatebaru ]]; then
+    if [ $versi = $updatebaru ]; then
             echo -e "${YELLOW}YOUR SCRIPT IS UPDATED !"
-                        rm update.sh >/dev/null 2>&1
+            rm update.sh >/dev/null 2>&1
+            rm -rf update
         else
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "                 MENU VMESS              $NC"
