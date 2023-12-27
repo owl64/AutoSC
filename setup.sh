@@ -451,6 +451,10 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     
 cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
 
+#perubahan baru
+    systemctl daemon-reload
+    systemctl restart haproxy
+
     # > Set Permission
     chmod +x /etc/systemd/system/runn.service
 
