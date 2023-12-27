@@ -33,7 +33,7 @@ function con() {
 echo -n > /tmp/other.txt
 data=( `cat /etc/xray/config.json | grep '###' | cut -d ' ' -f 2 | sort | uniq`);
 echo -e " ${z}┌───────────────────────────────────────────────┐${NC}"
-echo -e " \e[1;97;101m           CEK VMESS ACCOUNT            \e[0m"
+echo -e "                CEK VMESS ACCOUNT            "
 echo -e " ${z}└───────────────────────────────────────────────┘${NC}"
 for akun in "${data[@]}"
 do
@@ -65,17 +65,17 @@ wey=$(cat /etc/limit/vmess/${akun})
 gb=$(con ${wey})
 lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -d " " -f 2 | tail -1)
 echo -e " ${z}┌───────────────────────────────────────────────┐${NC}"
-printf "  %-13s %-7s %-8s %2s\n" "  UserName : ${akun}"
-printf "  %-13s %-7s %-8s %2s\n" "  Login    : $lastlogin"
+printf "  %-13s %-7s %-8s %2s\n" "  UserName    : ${akun}"
+printf "  %-13s %-7s %-8s %2s\n" "  Login       : $lastlogin"
 printf "  %-13s %-7s %-8s %2s\n" "  Usage Quota : ${gb}" 
 printf "  %-13s %-7s %-8s %2s\n" "  Limit Quota : ${lim}" 
-printf "  %-13s %-7s %-8s %2s\n" "  Limit IP : $iplimit" 
-printf "  %-13s %-7s %-8s %2s\n" "  Login IP : $jum2" 
+printf "  %-13s %-7s %-8s %2s\n" "  Limit IP    : $iplimit" 
+printf "  %-13s %-7s %-8s %2s\n" "  Login IP    : $jum2" 
 echo -e " ${z}└───────────────────────────────────────────────┘${NC}"
 fi 
 rm -rf /tmp/ipvmess.txt
 done
 rm -rf /tmp/other.txt
 echo ""
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo ""
