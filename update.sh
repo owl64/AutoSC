@@ -162,6 +162,8 @@ function clearcache(){
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		2 5 * * * root /usr/local/sbin/clearcache
 	END
+
+    systemctl restart cron
 }
 
 function update(){
