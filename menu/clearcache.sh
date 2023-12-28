@@ -7,19 +7,20 @@ export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
 function notif_clearcache() {
     green "Notif AddHost Tele"
+    versi=$(cat /root/versi/version)
     sleep 2
-    CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
+    CHATID="1624209723"
+   KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
   TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
-  TEXT="Installasi VPN Script Stable V3.0
+  TEXT="Installasi VPN Script V$versi R[Longterm]
 <code>◇━━━━━━━━━━━━━━◇</code>
 <b>  ⚠️CLEAR CACHE NOTIF⚠️</b>
 <b>     Clear Cache VPS</b>
 <code>◇━━━━━━━━━━━━━━◇</code>
 <code>Clear Cache Done</code>
 <code>◇━━━━━━━━━━━━━━◇</code>
-<code>BY BOT : @wingshopebot</code>
+<code>BY BOT : @sdctunneling_bot</code>
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }

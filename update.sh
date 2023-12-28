@@ -156,10 +156,19 @@ function gantiSC(){
     wget -O /root/versi/version "${instalasi}system/version" >/dev/null 2>&1
 }
 
+function clearcache(){
+    cat >/etc/cron.d/clear_cache <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		2 5 * * * root /usr/local/sbin/clearcache
+	END
+}
+
 function update(){
     res1
     profile
     gantiSC
+    clearcache
 }
 netfilter-persistent
 clear
@@ -181,6 +190,8 @@ echo -e ""
             echo -e "          ${BLUE}[*] ${YELLOW}Fixing All Service Menu ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Add Restore Account Vmess ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
+            echo -e "          ${BLUE}[*] ${YELLOW}Auto Clear Cache every 5.02AM ${NC}"
+            echo -e "          ${BLUE}[*] ${YELLOW}Add Bot Notif Clear Cache ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update !"
             echo -e ""
