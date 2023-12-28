@@ -135,6 +135,7 @@ res1() {
     wget -O user-ws "${instalasi}menu/user-ws.sh"
     wget -O xp "${instalasi}menu/xp.sh"
     wget -O info "${instalasi}menu/info.sh"
+    wget -O notif-info-bot "${instalasi}bot/notif-info-bot.sh"
     cd /root
     #wget ${instalasi}menu/menu.zip
     #unzip menu.zip
@@ -161,6 +162,7 @@ function clearcache(){
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		2 5 * * * root /usr/local/sbin/clearcache
+        3 5 * * * root /usr/local/sbin/notif-info-bot
 	END
 
     systemctl restart cron
@@ -194,6 +196,7 @@ echo -e ""
             echo -e "          ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Auto Clear Cache every 5.02AM ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Add Bot Notif Clear Cache ${NC}"
+            echo -e "          ${BLUE}[*] ${YELLOW}Add Bot Notif Status Service ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update !"
             echo -e ""
