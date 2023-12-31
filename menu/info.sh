@@ -150,6 +150,16 @@ let ssa=$ssx/2
 ### Version SC
 versiedition=$(cat /root/versi/version)
 
+##cek update
+function cekupdate(){
+   IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versiedition ); >/dev/null 2>&1
+   if [ $versiedition = $IZIN ]; then
+         cekupdateinfo="${green}UPTO DATE!${NC}"
+   else
+         cekupdateinfo="${y}New Update V$IZIN R[Longterm] Cek Menu to Update!${NC}"
+   fi
+}
+
 ###########
 KANAN="\033[1;32m<\033[1;33m<\033[1;31m<\033[1;31m$NC"
 KIRI="\033[1;32m>\033[1;33m>\033[1;31m>\033[1;31m$NC"
@@ -188,4 +198,6 @@ echo -e " ${z}└─────────────────────
 echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
 echo -e "                 to access use$YELL >>$green menu$NC commands"
 echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+cekupdate
+echo -e " ${Blue}[*]$y SCRIPT : $cekupdateinfo"
 echo -e ""
