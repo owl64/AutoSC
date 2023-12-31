@@ -22,51 +22,51 @@ nginx_service=$(systemctl status nginx | grep Active | awk '{print $3}' | cut -d
 clear
 # STATUS SERVICE  SSH 
 if [[ $ssh_service == "running" ]]; then 
-   status_ssh="${green}ON✓${NC}"
+   status_ssh="ON✓"
 else
-   status_ssh="${RED}🔴OFF${NC} "
+   status_ssh="🔴OFF "
 fi
 
 # // SSH Websocket Proxy
 ssh_ws=$( systemctl status ws | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $ssh_ws == "running" ]]; then
-    status_ws_epro="${green}ON✓${NC}"
+    status_ws_epro="ON✓"
 else
-    status_ws_epro="${RED}🔴OFF${NC} "
+    status_ws_epro="🔴OFF "
 fi
 
 # STATUS SERVICE HAPROXY
 if [[ $haproxy_service == "running" ]]; then 
-   status_haproxy="${green}ON✓${NC}"
+   status_haproxy="ON✓"
 else
-   status_haproxy="${RED}🔴OFF${NC} "
+   status_haproxy="🔴OFF "
 fi
 
 # STATUS SERVICE XRAY
 if [[ $xray_service == "running" ]]; then 
-   status_xray="${green}ON✓${NC}"
+   status_xray="ON✓"
 else
-   status_xray="${RED}🔴OFF${NC} "
+   status_xray="🔴OFF "
 fi
 
 # STATUS SERVICE NGINX
 if [[ $nginx_service == "running" ]]; then 
-   status_nginx="${green}ON✓${NC}"
+   status_nginx="ON✓"
 else
-   status_nginx="${RED}🔴OFF${NC} "
+   status_nginx="🔴OFF "
 fi
 
 # STATUS SERVICE Dropbear
 if [[ $dropbear_service == "running" ]]; then 
-   status_dropbear="${green}ON✓${NC}"
+   status_dropbear="ON✓"
 else
-   status_dropbear="${RED}🔴${NC} "
+   status_dropbear="🔴 "
 fi
 ###DOMAIN
 domain=$(cat /root/domain)
 
-function notif_clearcache() {
-    green "Notif AddHost Tele"
+function notif_statusvps() {
+    green "Notif Status VPS"
     versi=$(cat /root/versi/version)
     sleep 2
     CHATID="1624209723"
@@ -89,4 +89,4 @@ function notif_clearcache() {
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
-notif_clearcache
+notif_statusvps
