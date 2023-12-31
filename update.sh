@@ -136,6 +136,7 @@ res1() {
     wget -O xp "${instalasi}menu/xp.sh"
     wget -O info "${instalasi}menu/info.sh"
     wget -O notif-info-bot "${instalasi}bot/notif-info-bot.sh"
+    wget -O fixhaproxy "${instalasi}system/fixhaproxy.sh"
     cd /root
     #wget ${instalasi}menu/menu.zip
     #unzip menu.zip
@@ -157,12 +158,17 @@ function gantiSC(){
     wget -O /root/versi/version "${instalasi}system/version" >/dev/null 2>&1
 }
 
-function clearcache(){
+function clearcacheAndFix(){
+    cat >/etc/cron.d/fix_hap <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		1 5 * * * root /usr/local/sbin/fixhaproxy
+	END
+
     cat >/etc/cron.d/clear_cache <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		2 5 * * * root /usr/local/sbin/clearcache
-        3 5 * * * root /usr/local/sbin/notif-info-bot
 	END
 
     cat >/etc/cron.d/notif_status <<-END
@@ -174,15 +180,11 @@ function clearcache(){
     systemctl restart cron
 }
 
-function fixhaproxy(){
-
-}
-
 function update(){
     res1
     profile
     gantiSC
-    clearcache
+    clearcacheAndFix
 }
 netfilter-persistent
 clear
@@ -201,12 +203,11 @@ echo -e ""
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}V ${versiupdate}R[Longterm]${NC}"
-            echo -e "          ${BLUE}[*] ${YELLOW}Fixing All Service Menu ${NC}"
-            echo -e "          ${BLUE}[*] ${YELLOW}Add Restore Account Vmess ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Auto Clear Cache every 5.02AM ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Add Bot Notif Clear Cache ${NC}"
             echo -e "          ${BLUE}[*] ${YELLOW}Add Bot Notif Status Service ${NC}"
+            echo -e "          ${BLUE}[*] ${YELLOW}Fix Bug Haproxy ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update !"
             echo -e ""
