@@ -52,14 +52,17 @@ function fix(){
     systemctl stop nginx
     systemctl stop haproxy
 
-    fixingKey=$(curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/key/xray.key);
-    fixingcrt=$(curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/key/xray.crt);
+    fixing="https://raw.githubusercontent.com/owl64/AutoSC/main/"
 
-    wget -O /etc/xray/xray.crt "${fixingcrt}"
-    wget -O /etc/xray/xray.key "${fixingKey}"
+    wget -O /etc/xray/xray.crt "${fixing}system/key/xray.crt" >/dev/null 2>&1
+    wget -O /etc/xray/xray.key "${fixing}system/key/xray.key" >/dev/null 2>&1
 
     chmod 777 /etc/xray/xray.key
 
+    rm -fr /etc/haproxy/hap.pem
+    cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
+    
+    systemctl daemon-reload
     systemctl restart nginx
     systemctl restart xray
     systemctl restart haproxy
