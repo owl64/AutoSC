@@ -145,7 +145,7 @@ function versionSC(){
         mkdir -p /root/versi
     fi
 
-    wget -O /root/versi/version "${instalasi}system/version" >/dev/null 2>&1
+    wget -O /root/versi/version "${instalasi}system/install" >/dev/null 2>&1
 }
 
 start=$(date +%s)
