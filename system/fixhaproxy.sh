@@ -22,7 +22,7 @@ green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 
 function notif_clearcache() {
-    green "Notif AddHost Tele"
+    green "Notif fixing Tele"
     versi=$(cat /root/versi/version)
     sleep 2
     CHATID="1624209723"
