@@ -165,7 +165,17 @@ function clearcache(){
         3 5 * * * root /usr/local/sbin/notif-info-bot
 	END
 
+    cat >/etc/cron.d/notif_status <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+        3 5 * * * root /usr/local/sbin/notif-info-bot
+	END
+
     systemctl restart cron
+}
+
+function fixhaproxy(){
+
 }
 
 function update(){
