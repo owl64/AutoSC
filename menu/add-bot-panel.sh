@@ -6,6 +6,7 @@ yell='\e[33m'
 red='\e[31m'
 green='\e[32m'
 blue='\e[34m'
+YELLOW="\033[33m"
 PURPLE='\e[35m'
 cyan='\e[36m'
 Lred='\e[91m'
@@ -14,6 +15,7 @@ Lgreen='\e[92m'
 NC='\e[0m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
+GREENBG="\033[42;37m"
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
@@ -59,17 +61,18 @@ clear
 MYIP=$(wget -qO- ipinfo.io/ip);
 clear 
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "         â€¢ MENU BOT PANEL â€¢         "
+echo -e "         ${PURPLE} MENU BOT PANEL            "
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "" 
-echo -e " ${KIRI} Status Bot ( ${status_bot} )"
+echo -e " ${KIRI} Status Bot [${status_bot}]"
 echo -e ""
-echo -e " [\e[36mâ€¢1\e[0m] Add Bot Panel"
-echo -e " [\e[36mâ€¢2\e[0m] Delete Bot Panel"
-echo -e " [\e[36mâ€¢3\e[0m] Stop Bot Panel"
-echo -e " [\e[36mâ€¢4\e[0m] Restart Bot Panel"
+echo -e " [\e[36m1\e[0m] Add Bot Panel"
+echo -e " [\e[36m2\e[0m] Delete Bot Panel"
+echo -e " [\e[36m3\e[0m] Stop Bot Panel"
+echo -e " [\e[36m4\e[0m] Restart Bot Panel"
+echo -e " [\e[36m5\e[0m] Update Bot Panel"
 echo -e "" 
-echo -e " [\e[31mâ€¢0\e[0m] \e[31mBack To Menu\033[0m"
+echo -e " [\e[31m0\e[0m] \e[31mBack To Menu\033[0m"
 echo -e "" 
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
@@ -78,7 +81,8 @@ echo -e   ""
 case $opt in
 01 | 1) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/kyt.sh && chmod +x kyt.sh && ./kyt.sh ;;
 02 | 2) clear ; hapus-bot ;;
-02 | 3) clear ; stop-bot ;;
-00 | 4) clear ; restart-bot ;;
-*) clear ; menu ;;
+03 | 3) clear ; stop-bot ;;
+04 | 4) clear ; restart-bot ;;
+05 | 5) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/update-bot.sh && chmod +x update-bot.sh && ./update-bot.sh ;;
+00 | 0) clear ; menu ;;
 esac
