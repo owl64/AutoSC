@@ -15,6 +15,8 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+z="\033[96m"
+NC='\033[0m'
 clear
 function con() {
     local -i bytes=$1;
