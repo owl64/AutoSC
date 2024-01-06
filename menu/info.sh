@@ -159,13 +159,10 @@ function cekupdate(){
          cekupdateinfo="${y}New Update V$IZIN R[Longterm] Cek Menu to Update!${NC}"
    fi
 }
-
-###########
-KANAN="\033[1;32m<\033[1;33m<\033[1;31m<\033[1;31m$NC"
-KIRI="\033[1;32m>\033[1;33m>\033[1;31m>\033[1;31m$NC"
-########
+cekupdate
 r="\033[1;31m"  #REDTERANG
 a=" ${CYAN}ACCOUNT PREMIUM" 
+clear
 echo -e " "
 echo -e " ${z}┌──────────────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}│$NC$purple                    SCRIPT SDC STORE                      $NC${z}│$NC"
@@ -180,8 +177,9 @@ echo -e " ${z}│$NC$r □ $NC${z} IP VPS ${NC}        $Blue=$NC $IPVPS${NC}"
 echo -e " ${z}│$NC$r □ $NC${z} ISP ${NC}           $Blue=$NC $ISP${NC}"
 echo -e " ${z}│$NC$r □ $NC${z} City ${NC}          $Blue=$NC $CITY${NC}"
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
-echo -e "                  ${KIRI} ${purple}YOUR ACCOUNT ON VPS${NC} ${KANAN}"
 echo -e " ${z}┌──────────────────────────────────────────────────────────┐${NC}"
+echo -e "                          ${purple}YOUR ACCOUNT ON VPS${NC} "
+echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
 echo -e "         SSH${NC}    $y:$NC $ssh1${NC}" "     VMESS${NC}  $y:$NC $vma$NC" "     VLESS${NC}  $y:$NC $vla$NC"
 echo -e "              TROJAN${NC} $y:$NC $trb${NC}" "     SHADOWSOCKS${NC} $y:$NC $ssa${NC}"
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
@@ -197,7 +195,6 @@ echo -e " ${z}│$NC${z} Expiry script$NC $Blue=$green $exp $certifacate Days$NC
 echo -e " ${z}└─────────────────────────────────────────────────────┘${NC}"
 echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
 echo -e "                 to access use$YELL >>$green menu$NC commands"
+echo -e "                          ${Blue}[*]$y SCRIPT : $cekupdateinfo"
 echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
-cekupdate
-echo -e " ${Blue}[*]$y SCRIPT : $cekupdateinfo"
 echo -e ""

@@ -60,6 +60,9 @@ function pasang_ssl() {
     /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
     ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
     chmod 777 /etc/xray/xray.key
+
+    rm -fr /etc/haproxy/hap.pem
+    cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
 }
 
 function haproxystatus(){
@@ -87,7 +90,8 @@ function haproxystatus(){
 
         rm -fr /etc/haproxy/hap.pem
         cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
-        
+        clear
+
         systemctl daemon-reload
         systemctl restart nginx
         systemctl restart xray
@@ -117,6 +121,8 @@ function fix(){
         systemctl restart nginx
         systemctl restart xray
         systemctl restart haproxy
+
+        notif_haproxystatus
     fi
 }
 fix

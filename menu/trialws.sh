@@ -43,15 +43,15 @@ clear
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/wingshope/ngentod/main/izin"
+data_ip="https://raw.githubusercontent.com/owl64/AutoSC/main/user/user"
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
@@ -59,7 +59,7 @@ checking_sc() {
     echo -e "             \033[0;33mContact Admin :${NC}"
     echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
-    echo -e "\033[1;93mâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     sleep 5
     reboot
   fi
@@ -243,13 +243,13 @@ if [[ "${DATADB}" != '' ]]; then
 fi
 echo "### ${user} ${exp} ${uuid} " >>/etc/vmess/.vmess.db
 clear
-CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-  TIME="10"
+   CHATID="1624209723"
+   KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
+   TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT="<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+TEXT="<code>◇━━━━━━━━━━━━━━◇</code>
 <code>      XRAY/VMESS</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code>Remarks   : ${user}
 Domain    : ${domain}
 Port TLS  : 400-900
@@ -261,34 +261,34 @@ network   : ws or grpc
 Path      : /Multi-Path
 Dynamic   : https://bugmu.com/path
 Name      : vmess-grpc</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code> VMESS WS TLS</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code>${vmesslink1}</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code>VMESS WS NO TLS</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code>${vmesslink2}</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code> VMESS gRPC</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code>${vmesslink3}</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 Format OpenClash : https://${domain}:81/vmess-$user.txt
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 Aktif Selama   : $masaaktif Hari
 Dibuat Pada    : $tnggl
 Berakhir Pada  : $expe
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 "
 
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 clear
 clear
 echo -e ""
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " Xray/Vmess Account "
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Remarks          : ${user}"
 echo -e "Domain           : ${domain}"
 echo -e "User Quota       : ${Quota} GB"
@@ -301,19 +301,19 @@ echo -e "Network          : ws"
 echo -e "Path             : /Multi-Path"
 echo -e "Dynamic          : https://bugmu.com/path"
 echo -e "ServiceName      : vmess-grpc"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link TLS         : ${vmesslink1}"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link none TLS    : ${vmesslink2}"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link GRPC        : ${vmesslink3}"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[0;34mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 

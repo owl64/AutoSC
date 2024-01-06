@@ -94,7 +94,7 @@ Format SSH OVPN Account
 =========================
 Username         : $Login
 Password         : $Pass
-Berakhir Pada  : $pup Menit
+Berakhir Pada    : $pup Menit
 =========================
 IP               : $IP
 Host             : $domain
