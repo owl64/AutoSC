@@ -83,10 +83,10 @@ clear
 echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
 echo -e " SSH Ovpn Account           "
 echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-read -p " Username : " Login
-read -p " Password : " Pass
-read -p " Limit IP     : " iplimit
-read -p " Limit Quota : " Quota
+read -p " Username       : " Login
+read -p " Password       : " Pass
+read -p " Limit IP       : " iplimit
+read -p " Limit Quota    : " Quota
 read -p " Expired (Days) : " masaaktif
 #limitip
 if [[ $iplimit -gt 0 ]]; then
