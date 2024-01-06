@@ -96,6 +96,7 @@ function haproxystatus(){
         systemctl restart nginx
         systemctl restart xray
         systemctl restart haproxy
+
     fi
 }
 
@@ -112,6 +113,7 @@ function fix(){
             cp /etc/xray/xray.crt /root/backuppanel/xray.crt
         fi
         haproxystatus
+        notif_haproxystatus
     else
         pasang_ssl
 
