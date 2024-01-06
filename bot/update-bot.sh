@@ -1,4 +1,5 @@
 #!/bin/bash
+GREENBG="\033[42;37m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 clear
 fun_bar() {
@@ -38,7 +39,7 @@ res1() {
     rm -rf bot.zip
     rm -rf bot
 
-    cd /usr/bin/kyt
+    cd /usr/bin
     wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/kyt.zip
     unzip kyt.zip
     rm -rf kyt.zip
