@@ -179,6 +179,9 @@ function clearcacheAndFix(){
 	END
 
     systemctl restart cron
+    cat >/home/daily_reboot <<-END
+		7
+	END
 }
 
 function update(){
