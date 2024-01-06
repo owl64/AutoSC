@@ -195,6 +195,6 @@ echo -e " ${z}│$NC${z} Expiry script$NC $Blue=$green $exp $certifacate Days$NC
 echo -e " ${z}└─────────────────────────────────────────────────────┘${NC}"
 echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
 echo -e "                 to access use$YELL >>$green menu$NC commands"
-echo -e "                          ${Blue}[*]$y SCRIPT : $cekupdateinfo"
+echo -e "                    ${Blue}[*]$y SCRIPT : $cekupdateinfo"
 echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
 echo -e ""
