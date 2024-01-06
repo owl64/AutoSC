@@ -22,7 +22,7 @@ nginx_service=$(systemctl status nginx | grep Active | awk '{print $3}' | cut -d
 clear
 # STATUS SERVICE  SSH 
 if [[ $ssh_service == "running" ]]; then 
-   status_ssh="ON✓"
+   status_ssh="🟢ON"
 else
    status_ssh="🔴OFF "
 fi
@@ -30,35 +30,35 @@ fi
 # // SSH Websocket Proxy
 ssh_ws=$( systemctl status ws | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $ssh_ws == "running" ]]; then
-    status_ws_epro="ON✓"
+    status_ws_epro="🟢ON"
 else
     status_ws_epro="🔴OFF "
 fi
 
 # STATUS SERVICE HAPROXY
 if [[ $haproxy_service == "running" ]]; then 
-   status_haproxy="ON✓"
+   status_haproxy="🟢ON"
 else
    status_haproxy="🔴OFF "
 fi
 
 # STATUS SERVICE XRAY
 if [[ $xray_service == "running" ]]; then 
-   status_xray="ON✓"
+   status_xray="🟢ON"
 else
    status_xray="🔴OFF "
 fi
 
 # STATUS SERVICE NGINX
 if [[ $nginx_service == "running" ]]; then 
-   status_nginx="ON✓"
+   status_nginx="🟢ON"
 else
    status_nginx="🔴OFF "
 fi
 
 # STATUS SERVICE Dropbear
 if [[ $dropbear_service == "running" ]]; then 
-   status_dropbear="ON✓"
+   status_dropbear="🟢ON"
 else
    status_dropbear="🔴 "
 fi
