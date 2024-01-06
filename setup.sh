@@ -848,7 +848,7 @@ print_install "Restarting  All Packet"
 /etc/init.d/openvpn restart
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
-/etc/init.d/fail2ban restart
+/etc/init.d/fail2ban restartF
 /etc/init.d/vnstat restart
 systemctl restart haproxy
 /etc/init.d/cron restart
