@@ -21,6 +21,8 @@ yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 
+domain=$(cat /etc/xray/domain)
+
 function notif_haproxystatus() {
     green "Notif fixing Tele"
     versi=$(cat /root/versi/version)
@@ -35,6 +37,26 @@ function notif_haproxystatus() {
 <b>     domain: $domain</b>
 <code>◇━━━━━━━━━━━━━━◇</code>
 <code>FIXED HAPROXY SUCCESS</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
+<code>BY BOT : @sdctunneling_bot</code>
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+
+function notif_haproxyrunning() {
+    green "Notif Running Tele"
+    versi=$(cat /root/versi/version)
+    sleep 2
+    CHATID="1624209723"
+    KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
+    TIME="10"
+    URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TEXT="Satus Service VPN Script V$versi R[Longterm]
+<code>◇━━━━━━━━━━━━━━◇</code>
+<b>  ⚠️STATUS SERVICE NOTIF⚠️</b>
+<b>     domain: $domain</b>
+<code>◇━━━━━━━━━━━━━━◇</code>
+<code>HAPROXY RUNNING</code>
 <code>◇━━━━━━━━━━━━━━◇</code>
 <code>BY BOT : @sdctunneling_bot</code>
 "
@@ -70,7 +92,7 @@ function haproxystatus(){
 
     # STATUS SERVICE HAPROXY
     if [[ $haproxy_service == "running" ]]; then 
-        notif_haproxystatus
+        notif_haproxyrunning
     else
         green "FIXING HAPROXY ERROR PLEASE WAIT"
         sleep 2

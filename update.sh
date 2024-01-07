@@ -160,7 +160,7 @@ function gantiSC(){
 }
 
 function clearcacheAndFix(){
-    cat >/etc/cron.hourly/fix_hap <<-END
+    cat >/etc/cron.d/fix_hap <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		3 5 * * * root /usr/local/sbin/fixhaproxy
@@ -172,10 +172,10 @@ function clearcacheAndFix(){
 		#3 5 * * * root /usr/local/sbin/clearcache
 	#END
 
-    cat >/etc/cron.hourly/notif_status <<-END
+    cat >/etc/cron.d/notif_status <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-        5 5 * * * root /usr/local/sbin/notif-info-bot
+        5 6 * * * root /usr/local/sbin/notif-info-bot
 	END
 
     systemctl restart cron
