@@ -26,8 +26,9 @@ domain=$(cat /etc/xray/domain)
 clear
 IP=$(curl -sS ipv4.icanhazip.com)
 Login=Trial-`</dev/urandom tr -dc X-Z0-9 | head -c4`
-hari="1"
+masaaktif="1"
 Pass=1
+
 clear
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
@@ -42,22 +43,20 @@ exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 expi=`date -d "$masaaktif days" +"%Y-%m-%d"`
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
 echo -e " Set Expired In Minutes           "
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
 read -p " Menit : " pup
-CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-  TIME="10"
+   TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT="<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+TEXT="<code>◇━━━━━━━━━━━━━━◇</code>
 <code>Your Premium VPN Details</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code>IP Address    =</code> <code>$IP</code>
 <code>Hostname      =</code> <code>$domain</code>
 <code>Username      =</code> <code>$Login</code>
 <code>Password      =</code> <code>$Pass</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 <code>OpenSSH       = 22
 Dropbear      = 443, 109, 143
 SSL/TLS       = 400-900
@@ -66,13 +65,13 @@ SSH WS NTLS   = 80, 8080, 8081-9999
 OVPN WS NTLS  = 80, 8080, 8880
 OVPN WS TLS   = 443
 BadVPN UDP    = 7100,7200,7300</code>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 Ovpn Download : https://$domain:81/
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 Save Link Account: https://$domain:81/ssh-$Login.txt
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 Berakhir Pada  : $pup Menit
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
 "
 
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
@@ -118,30 +117,30 @@ OVPN Download : https://$domain:81/
 END
 echo userdel -f "$Login" | at now + $pup minutes
 clear
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
 echo -e "  Trial SSH & OpenVPN"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
 echo -e " Username         : $Login"
 echo -e " Password         : $Pass"
 echo -e " IP/Host          : $IP"
 echo -e " Domain SSH       : $domain"
 echo -e " OpenSSH          : 22"
 echo -e " Dropbear         : 80, 8080"
-echo -e "Port SSH UDP     : 1-65535"
+echo -e "Port SSH UDP      : 1-65535"
 echo -e " SSL/TLS          : 400-900"
 echo -e " SSH Ws Non SSL   : 80, 8080, 8081-9999"
 echo -e " SSH Ws SSL       : 443"
 echo -e " OVPN Ws Non SSL  : 80"
 echo -e " OVPN Ws SSL      : 443"
 echo -e " BadVPN UDPGW     : 7100,7200,7300"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
 echo -e " OVPN Download : https://$domain:81/"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Save Link Account: https://$domain:81/ssh-$Login.txt"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
 #echo -e "Aktif Selama   : $masaaktif Hari"
 #echo -e "Dibuat Pada    : $tnggl"
 echo -e "Berakhir Pada  : $pup Menit"
-echo -e "\033[1;93mâ—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
