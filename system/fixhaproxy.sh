@@ -21,10 +21,16 @@ yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 
+MYIP=$(wget -qO- ipinfo.io/ip);
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
+clear
+
 domain=$(cat /etc/xray/domain)
 
 function notif_haproxystatus() {
-    green "Notif fixing Tele"
     versi=$(cat /root/versi/version)
     sleep 2
     CHATID="1624209723"
@@ -44,7 +50,6 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 }
 
 function notif_haproxyrunning() {
-    green "Notif Running Tele"
     versi=$(cat /root/versi/version)
     sleep 2
     CHATID="1624209723"
@@ -56,7 +61,7 @@ function notif_haproxyrunning() {
 <b>  ⚠️STATUS SERVICE NOTIF⚠️</b>
 <b>     domain: $domain</b>
 <code>◇━━━━━━━━━━━━━━◇</code>
-<code>HAPROXY RUNNING</code>
+<code>HAPROXY : 🟢 RUNNING</code>
 <code>◇━━━━━━━━━━━━━━◇</code>
 <code>BY BOT : @sdctunneling_bot</code>
 "

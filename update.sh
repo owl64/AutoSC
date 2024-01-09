@@ -163,7 +163,13 @@ function clearcacheAndFix(){
     cat >/etc/cron.d/fix_hap <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-		3 5 * * * root /usr/local/sbin/fixhaproxy
+		2 5 * * * root /usr/local/sbin/fixhaproxy
+	END
+
+    cat >/etc/cron.d/daily_reboot <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		0 5 * * * root /sbin/reboot
 	END
 
     #cat >/etc/cron.d/clear_cache <<-END
@@ -175,13 +181,10 @@ function clearcacheAndFix(){
     cat >/etc/cron.d/notif_status <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-        5 6 * * * root /usr/local/sbin/notif-info-bot
+        0 6 * * * root /usr/local/sbin/notif-info-bot
 	END
 
     systemctl restart cron
-    cat >/home/daily_reboot <<-END
-		7
-	END
 }
 
 function update(){
