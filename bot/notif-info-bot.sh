@@ -63,7 +63,7 @@ else
    status_dropbear="🔴 "
 fi
 ###DOMAIN
-domain=$(cat /root/domain)
+domain=$(cat /etc/xray/domain)
 
 function notif_statusvps() {
     green "Notif Status VPS"
