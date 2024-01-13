@@ -1,6 +1,7 @@
 #!/bin/bash
 Green="\e[92;1m"
 RED="\033[31m"
+Suffix="\033[0m"
 YELLOW="\033[33m"
 BLUE="\033[36m"
 FONT="\033[0m"
@@ -83,6 +84,14 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
 echo -e "CREATE VMESS ACCOUNT           "
 echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+
+    echo -e " Just input a number for-"
+    echo -e "  ${Green}Quota Limit${Suffix}"
+    echo -e "  ${Green}Limit IP${Suffix}"
+    echo -e " Format GB"
+    echo -e ""
+    echo -e " ${YELLOW}0${Suffix} for Unlimited"
+    echo -e " ${YELLOW}0${Suffix} for No Limit"
 
 		read -rp "User: " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
