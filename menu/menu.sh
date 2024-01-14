@@ -149,9 +149,9 @@ function installUDP(){
 function setingsmenu(){
     clear
 
-    echo -e " ${z}┌──────────────────────────────────────────────────────────┐${NC}"
-    echo -e " ${z}│$NC$purple                    SETINGS MENU                      $NC${z}│$NC"
-    echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
+    echo -e " ${z}┌─────────────────────────────────────────────┐${NC}"
+    echo -e " ${z}│$NC$purple     SETINGS MENU               $NC${z}│$NC"
+    echo -e " ${z}└─────────────────────────────────────────────┘${NC}"
     echo -e ""
     echo -e " ${z}$NC [${grenbo}01${NC}]${z} Auto Reboot$NC"
     echo -e " ${z}$NC [${grenbo}02${NC}]${z} Backup or Restore$NC"
