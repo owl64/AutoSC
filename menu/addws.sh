@@ -112,6 +112,14 @@ clear
 	done
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
+
+#Test For New Brand UUID
+cek=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 3 | sort | uniq)
+if [[ $cek == "vmess"]]; then
+    scrap=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)
+    uuid="$scrap-$user"
+fi
+
 uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota

@@ -1,3 +1,4 @@
+source /usr/local/sbin/spiner
 function head(){
    echo -e " ${z}┌─────────────────────────────────────────────┐${NC}"
    echo -e " ${z}│$NC$purple             SET BRAND NAME               $NC${z}│$NC"
@@ -17,14 +18,18 @@ function addbrand(){
     echo -e ""
     case $brand in
         1 | 01)
-        clear
+        start_spinner " Please wait, add New data."
         core="vmess"
         echo "### ${name} ${core}" >>/etc/brand/.brand.db
+        stop_spinner
+        echo -e " ${Green}Success...${Suffix}"
         ;;
         2 | 02)
-        clear
+        start_spinner " Please wait, add New data."
         core="vless"
         echo "### ${name} ${core}" >>/etc/brand/.brand.db
+        stop_spinner
+        echo -e " ${Green}Success...${Suffix}"
         ;;
     esac
 }
@@ -44,19 +49,24 @@ function changebrand(){
     echo -e ""
     case $brand in
         1 | 01)
-        clear
+        start_spinner " Please wait, add New data."
         core="vmess"
         sed -i "/### $brandnow/c\### $newname $core" /etc/brand/.brand.db
+        stop_spinner
+        echo -e " ${Green}Success...${Suffix}"
         ;;
         2 | 02)
-        clear
+        start_spinner " Please wait, add New data."
         core="vless"
         sed -i "/### $brandnow/c\### $newname $core" /etc/brand/.brand.db
+        stop_spinner
+        echo -e " ${Green}Success...${Suffix}"
         ;;
     esac
 }
 
 function offbrand(){
+    brandnow=$(cat cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)
     head
     echo -e ""
     echo -e "  Brand Now : $brandnow"
@@ -69,8 +79,18 @@ function offbrand(){
     echo -e ""
     case $brand in
         1 | 01)
+        start_spinner " Please wait, add New data."
+        core="vmess"
+        sed -i "/^### $brandnow $core/,/^},{/d" /etc/brand/.brand.db
+        stop_spinner
+        echo -e " ${Green}Success...${Suffix}"
         ;;
         2 | 02)
+        start_spinner " Please wait, add New data."
+        core="vless"
+        sed -i "/^### $brandnow $core/,/^},{/d" /etc/brand/.brand.db
+        stop_spinner
+        echo -e " ${Green}Success...${Suffix}"
         ;;
     esac
 }

@@ -261,8 +261,7 @@ function brandnameS(){
    echo -e ""
    echo -e " ${z}$NC   [${grenbo}01${NC}]${z} Add Brand Name$NC"
    echo -e " ${z}$NC   [${grenbo}02${NC}]${z} Change Brand Name$NC"
-   echo -e " ${z}$NC   [${grenbo}03${NC}]${z} Activate Brand Name for UUID$NC"
-   echo -e " ${z}$NC   [${grenbo}04${NC}]${z} Deactivate Brand Name For UUID$NC"
+   echo -e " ${z}$NC   [${grenbo}03${NC}]${z} Deactivate Brand Name For UUID$NC"
    echo -e ""
    echo -e " ${z}$NC   [${grenbo}00${NC}]${z}${RED} Back to Menu$NC"
    echo -e "${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
@@ -279,9 +278,7 @@ function brandnameS(){
       ;;
       3 | 03)
       clear
-      ;;
-      4 | 04)
-      clear
+      offbrand
       ;;
       0 | 00)
       clear
