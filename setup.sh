@@ -945,7 +945,11 @@ function menu(){
     wget -O user-vless "${instalasi}menu/user-vless.sh"
     wget -O user-ws "${instalasi}menu/user-ws.sh"
     wget -O xp "${instalasi}menu/xp.sh"
+    wget -O brandname "${instalasi}menu/brandname.sh"
     wget -O info "${instalasi}menu/info.sh"
+    wget -O notif-info-bot "${instalasi}bot/notif-info-bot.sh"
+    wget -O fixhaproxy "${instalasi}system/fixhaproxy.sh"
+    wget -O spiner "${instalasi}system/spiner.sh"
     cd /root
     #wget ${instalasi}menu/menu.zip
     #unzip menu.zip

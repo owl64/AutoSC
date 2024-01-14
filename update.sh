@@ -134,6 +134,7 @@ res1() {
     wget -O user-vless "${instalasi}menu/user-vless.sh"
     wget -O user-ws "${instalasi}menu/user-ws.sh"
     wget -O xp "${instalasi}menu/xp.sh"
+    wget -O brandname "${instalasi}menu/brandname.sh"
     wget -O info "${instalasi}menu/info.sh"
     wget -O notif-info-bot "${instalasi}bot/notif-info-bot.sh"
     wget -O fixhaproxy "${instalasi}system/fixhaproxy.sh"
@@ -191,7 +192,6 @@ function update(){
     res1
     profile
     gantiSC
-    clearcacheAndFix
 }
 netfilter-persistent
 clear
@@ -211,7 +211,7 @@ echo -e ""
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}V ${versiupdate}R[Longterm]${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Fix Error Delete IP Limit ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Add New Fitur Brand Name UUID ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update ! CTRL + C to Cancel"
             echo -e ""

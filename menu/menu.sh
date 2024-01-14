@@ -234,11 +234,7 @@ function setingsmenu(){
     esac
 }
 
-function addbrandname(){
-
-}
-
-function brandnameS(){
+function brandname(){
    clear
 
    if [ ! -e /etc/brand ]; then
@@ -263,7 +259,7 @@ function brandnameS(){
    echo -e " ${z}$NC   [${grenbo}02${NC}]${z} Change Brand Name$NC"
    echo -e " ${z}$NC   [${grenbo}03${NC}]${z} Deactivate Brand Name For UUID$NC"
    echo -e ""
-   echo -e " ${z}$NC   [${grenbo}00${NC}]${z}${RED} Back to Menu$NC"
+   echo -e " ${z}$NC   [${RED}00${NC}]${z}${RED} Back to Menu$NC"
    echo -e "${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
    read -p " Select Menu From Option: " opt
    echo -e ""
@@ -310,7 +306,7 @@ echo -e " ${z}└─────────────────────
 echo -e " ${z}┌──────────────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}    $NC [${grenbo}01${NC}]${z} SSH MENU$NC       $NC [${grenbo}06${NC}]${z} SETINGS MENU$NC"
 echo -e " ${z}    $NC [${grenbo}02${NC}]${z} VMESS MENU$NC     $NC [${grenbo}07${NC}]${z} BOT PANEL MENU$NC"    
-echo -e " ${z}    $NC [${grenbo}03${NC}]${z} VLESS MENU$NC     $NC [${grenbo}08${NC}]${z} VPS CONFIG MENU$NC"   
+echo -e " ${z}    $NC [${grenbo}03${NC}]${z} VLESS MENU$NC     $NC [${grenbo}08${NC}]${z} BRAND NAME MENU$NC"   
 echo -e " ${z}    $NC [${grenbo}04${NC}]${z} TROJAN MENU$NC    $NC [${grenbo}09${NC}]${z} UPDATE MENU$NC" 
 echo -e " ${z}    $NC [${grenbo}05${NC}]${z} SHADOW MENU$NC    $NC [${grenbo}10${NC}]${z} EXIT TO MENU$NC"
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
@@ -354,10 +350,7 @@ add-bot-panel
 ;;
 8 | 08)
 clear
-echo ""
-echo -e " ${GREEN} This menu Under Maintenance, wait in 1 sec ${NC}"
-sleep 1
-menu
+brandname
 ;;
 9 | 09)
 clear

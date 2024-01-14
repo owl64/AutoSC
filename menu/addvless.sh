@@ -93,6 +93,14 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
     menu
   fi
 done
+
+#Test For New Brand UUID
+cek=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 3 | sort | uniq)
+if [[ $cek == "vless"]]; then
+    scrap=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)
+    uuid="$scrap-$user"
+fi
+
 uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota
