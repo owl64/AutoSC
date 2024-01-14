@@ -24,9 +24,9 @@ red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 bot_kyt=$(systemctl status kyt | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 # STATUS SERVICE  BOT 
 if [[ $bot_kyt == "running" ]]; then 
-   status_bot="${GREEN}Online$NC${c} $NC"
+   status_bot="${GREEN}Online$NC${c}$NC"
 else
-   status_bot="${RED}Offline${NC} "
+   status_bot="${RED}Offline${NC}"
 fi
 #####
 KIRI="\033[1;32m>\033[1;33m>\033[1;31m>\033[1;31m$NC"
