@@ -150,7 +150,7 @@ function setingsmenu(){
     clear
 
     echo -e " ${z}┌─────────────────────────────────────────────┐${NC}"
-    echo -e " ${z}│$NC$purple     SETINGS MENU               $NC${z}│$NC"
+    echo -e " ${z}│$NC$purple             SETINGS MENU               $NC${z}│$NC"
     echo -e " ${z}└─────────────────────────────────────────────┘${NC}"
     echo -e ""
     echo -e " ${z}$NC [${grenbo}01${NC}]${z} Auto Reboot$NC"
@@ -189,9 +189,8 @@ function setingsmenu(){
     ;;
     5 | 05)
     clear
-    prot
     echo ""
-    read -n 1 -s -r -p "Press any key to back on Settings Menu"
+    read -n 3 -s -r -p "Fitur Maintenance, Press Enter to Back Menu"
     setingsmenu
     ;;
     6 | 06)
@@ -233,6 +232,62 @@ function setingsmenu(){
     menu
     ;;
     esac
+}
+
+function addbrandname(){
+
+}
+
+function brandnameS(){
+   clear
+
+   if [ ! -e /etc/brand ]; then
+      mkdir -p /etc/brand/.brand.db
+   fi
+   file_path="/etc/brand/.brand.db"
+
+   if [ -s "$file_path" ]; then
+      branduuid="${RED}OFF${NC}"
+   else
+      branduuid=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)
+   fi
+
+   source /usr/local/sbin/brandname
+   echo -e " ${z}┌─────────────────────────────────────────────┐${NC}"
+   echo -e " ${z}│$NC$purple             BRAND NAME               $NC${z}│$NC"
+   echo -e " ${z}└─────────────────────────────────────────────┘${NC}"
+   echo -e ""
+   echo -e "   Set UUID with Brand Name = ${RED}$branduuid"
+   echo -e ""
+   echo -e " ${z}$NC   [${grenbo}01${NC}]${z} Add Brand Name$NC"
+   echo -e " ${z}$NC   [${grenbo}02${NC}]${z} Change Brand Name$NC"
+   echo -e " ${z}$NC   [${grenbo}03${NC}]${z} Activate Brand Name for UUID$NC"
+   echo -e " ${z}$NC   [${grenbo}04${NC}]${z} Deactivate Brand Name For UUID$NC"
+   echo -e ""
+   echo -e " ${z}$NC   [${grenbo}00${NC}]${z}${RED} Back to Menu$NC"
+   echo -e "${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+   read -p " Select Menu From Option: " opt
+   echo -e ""
+   case $opt in
+      1 | 01)
+      clear
+      addbrand
+      ;;
+      2 | 02)
+      clear
+      changebrand
+      ;;
+      3 | 03)
+      clear
+      ;;
+      4 | 04)
+      clear
+      ;;
+      0 | 00)
+      clear
+      menu
+      ;;
+   esac
 }
 
 r="\033[1;31m"  #REDTERANG

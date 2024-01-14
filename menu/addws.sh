@@ -92,7 +92,7 @@ echo -e "\033[1;93m────────────────────�
     echo -e ""
     echo -e " ${YELLOW}0${Suffix} for Unlimited"
     echo -e " ${YELLOW}0${Suffix} for No Limit"
-
+echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
 		read -rp "User: " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
