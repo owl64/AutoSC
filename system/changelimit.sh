@@ -13,7 +13,7 @@ function con() {
 function changelimitquotavmess(){
     clear
     data=( `cat /etc/xray/config.json | grep '###' | cut -d ' ' -f 2 | sort | uniq`);
-    defaultgb="1"
+    defaultgb="60"
     d=$((${defaultgb} * 1024 * 1024 * 1024))
 
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
@@ -26,7 +26,7 @@ function changelimitquotavmess(){
     echo -e ""
         for akun in "${data[@]}"
         if [[ -z "/etc/vmess/$akun" ]]; then
-            echo "${d}" >/etc/vmess/${user}    
+            echo "${d}" >/etc/vmess/${akun}    
         fi
         do
             wey=$(cat /etc/vmess/${akun})
@@ -36,7 +36,7 @@ function changelimitquotavmess(){
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
     read -rp "  Input New Limit : " limitnew
-
+    echo -e ""
     if [[ $data == $change ]]; then
         start_spinner " Please wait...."
         rm /etc/vmess/$change
