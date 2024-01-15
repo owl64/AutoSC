@@ -12,8 +12,7 @@ green='\033[0;32m'
 grenbo="\e[92;1m"
 purple="\033[1;95m"
 YELL='\033[0;33m'
-#INTALLER-UDP
-UDPX="https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2"
+
 ISP=$(cat /etc/xray/isp)
 CITY=$(cat /etc/xray/city)
 IPVPS=$(curl -s ipv4.icanhazip.com)
@@ -143,7 +142,7 @@ versiedition=$(cat /root/versi/version)
 
 #Install UDP
 function installUDP(){
-    wget --load-cookies /tmp/cookies.txt ${UDPX} -O install-udp && rm -rf /tmp/cookies.txt && chmod +x install-udp && ./install-udp
+    wget https://raw.githubusercontent.com/owl64/AutoSC/main/Udp/udp-custom.sh && chmod +x udp-custom.sh && ./udp-custom.sh
 }
 
 #SETTINGS MENU
