@@ -52,4 +52,42 @@ function changelimitquotavmess(){
         m-vmess
     fi
 }
-changelimitquotavmess
+function changeiplimitvmess(){
+    clear
+    data=( `cat /etc/xray/config.json | grep '###' | cut -d ' ' -f 2 | sort | uniq`);
+    defaultip="2"
+
+    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+    echo -e "      $PURPLE      Change Limit Quota              $NC"
+    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+    echo -e ""
+    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e "         Username                 IP Limit     "
+    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e ""
+        for akun in "${data[@]}"
+        if [[ -z "/etc/vmess/$akun" ]]; then
+            echo "${defaultip}" >/etc/kyt/limit/vmess/ip/${akun}    
+        fi
+        do
+            iplimit=$(cat /etc/kyt/limit/vmess/ip/${akun})
+        done
+    printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit";
+    echo -e ""
+    read -rp "  Input Username to Change Limit : " change
+    read -rp "  Input New Limit : " limitnew
+    echo -e ""
+    if [[ $data == $change ]]; then
+        start_spinner " Please wait...."
+        rm /etc/kyt/limit/vmess/ip/$change
+        sleep 1
+        echo "$limitnew" >> /etc/kyt/limit/vmess/ip/$change
+        echo -e " ${Green}Success Change Limit${Suffix}"
+        sleep 2
+        m-vmess
+    else
+        echo -e "     ${RED}Incorect Username Input, Please Try Again"
+        sleep 1
+        m-vmess
+    fi
+}
