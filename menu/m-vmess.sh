@@ -119,6 +119,7 @@ case $menu in
         ;;
     8)
         Clear
+        changeiplimitvmess
         ;;
     9)
         clear

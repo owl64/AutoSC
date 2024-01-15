@@ -152,11 +152,12 @@ versiedition=$(cat /root/versi/version)
 
 ##cek update
 function cekupdate(){
+   versiupdate=$(curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version);
    IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versiedition ); >/dev/null 2>&1
    if [ $versiedition = $IZIN ]; then
          cekupdateinfo="${green}UPTO DATE!${NC}"
    else
-         cekupdateinfo="${y}New Update V$IZIN R[Longterm] Cek Menu to Update!${NC}"
+         cekupdateinfo="${y}New Update V$versiupdate R[Longterm] Cek Menu to Update!${NC}"
    fi
 }
 cekupdate
