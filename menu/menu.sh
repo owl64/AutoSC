@@ -137,6 +137,7 @@ else
    status_dropbear="${RED}🔴${NC} "
 fi
 
+
 ### Version SC
 versiedition=$(cat /root/versi/version)
 
