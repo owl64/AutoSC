@@ -14,6 +14,10 @@ YELL='\033[0;33m'
 Suffix="\033[0m"
 source /usr/local/sbin/spiner
 
+echo -e " ${z}┌─────────────────────────────────────────────┐${NC}"
+echo -e " ${z}│$NC$purple       INSTALATION UDP               $NC${z}│$NC"
+echo -e " ${z}└─────────────────────────────────────────────┘${NC}"
+echo -e ""
 start_spinner " Please wait, Make New data."
 cd
 rm -rf /root/udp
