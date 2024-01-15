@@ -54,53 +54,82 @@ checking_sc() {
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
+    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
+    echo -e "      ${GREEN}WhatsApp${NC} wa.me/628217067357"
     echo -e "\033[1;93────────────────────────────────────────────\033[0m"
     sleep 5
     reboot
   fi
 }
 checking_sc
+source /usr/local/sbin/changelimit
 echo -e "\e[32mloading...\e[0m"
 clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e "                 MENU VMESS              $NC"
-echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e "  ${ORANGE}1.${NC} \033[0;36m Creating Vmess Account WS/GRPC${NC}"
-echo -e "  ${ORANGE}2.${NC} \033[0;36m Creating Trial Vmess Account WS/GRPC${NC}"
-echo -e "  ${ORANGE}3.${NC} \033[0;36m Delete Vmess Account WS/GRPC${NC}"
-echo -e "  ${ORANGE}4.${NC} \033[0;36m Renew Vmess Account${NC}"
-echo -e "  ${ORANGE}5.${NC} \033[0;36m Check Vmess login Account${NC}"
-echo -e "  ${ORANGE}6.${NC} \033[0;36m Check Config Vmess Account${NC}"
-echo -e "  ${ORANGE}7.${NC} \033[0;36m Restore Vmess Account${NC}"
+echo -e "      $PURPLE           MENU VMESS              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-read -p "Select From Options [ 1 - 7 ] : " menu
+echo -e "  ${ORANGE} [1].${NC} \033[0;36m Creating Vmess Account WS/GRPC${NC}"
+echo -e "  ${ORANGE} [2].${NC} \033[0;36m Creating Trial Vmess Account WS/GRPC${NC}"
+echo -e "  ${ORANGE} [3].${NC} \033[0;36m Delete Vmess Account WS/GRPC${NC}"
+echo -e "  ${ORANGE} [4].${NC} \033[0;36m Renew Vmess Account${NC}"
+echo -e "  ${ORANGE} [5].${NC} \033[0;36m Check Vmess login Account${NC}"
+echo -e "  ${ORANGE} [6].${NC} \033[0;36m Check Config Vmess Account${NC}"
+echo -e "  ${ORANGE} [7].${NC} \033[0;36m Restore Vmess Account${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e "      $PURPLE           LIMIT VMESS              $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "  ${ORANGE} [8].${NC} \033[0;36m Change Limit IP${NC}"
+echo -e "  ${ORANGE} [9].${NC} \033[0;36m Change Limit Quota${NC}"
+echo -e ""
+echo -e "  ${ORANGE} [0].${NC} ${RED} Back To Menu${NC}"
+echo -e ""
+echo -e ""
+read -p "Select From Options [ 1 - 9 ] : " menu
 case $menu in
-1)   clear ;
-    addws
-    ;;
-2) clear ;
-    trialws
-    ;;
-3) clear ;
-    delws
-    ;;
-4) clear ;
-    renewws
-    ;;
-5) clear ;
-    cekws
-    ;;
-6) clear ;
-    user-ws
-    ;;
-7) clear ;
-    restorevmess
-    ;;
-*) clear ;
-    menu
-    ;;
+    1)  
+        clear
+        addws
+        ;;
+    2)
+        clear
+        trialws
+        ;;
+    3)
+        clear
+        delws
+        ;;
+    4)
+        clear
+        renewws
+        ;;
+    5) 
+        clear
+        cekws
+        ;;
+    6)
+        clear
+        user-ws
+        ;;
+    7)
+        clear
+        restorevmess
+        ;;
+    8)
+        Clear
+        ;;
+    9)
+        clear
+        changelimitquotavmess
+        ;;
+    0)
+        clear
+        menu
+        ;;
+    *) 
+        clear
+        menu
+        ;;
 esac

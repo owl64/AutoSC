@@ -14,7 +14,7 @@ function addbrand(){
     echo -e "  [${grenbo}01${NC}]${z} Vmess"
     echo -e "  [${grenbo}02${NC}]${z} Vless"
     echo -e ""
-    read -p " Select For Core, From Option: " brand
+    read -rp " Select For Core, From Option: " brand
     echo -e ""
     case $brand in
         1 | 01)
@@ -49,7 +49,7 @@ function changebrand(){
     echo -e "  [${grenbo}01${NC}]${z} Vmess"
     echo -e "  [${grenbo}02${NC}]${z} Vless"
     echo -e ""
-    read -p " Select For Core, From Option: " brand
+    read -rp " Select For Core, From Option: " brand
     echo -e ""
     case $brand in
         1 | 01)
@@ -83,7 +83,7 @@ function offbrand(){
     echo -e "  [${grenbo}01${NC}]${z} Vmess"
     echo -e "  [${grenbo}02${NC}]${z} Vless"
     echo -e ""
-    read -p " Select Name For Core, From Option [type x for Exit]: " brand
+    read -rp " Select Name For Core, From Option [type x for Exit]: " brand
     echo -e ""
     case $brand in
         1 | 01)
