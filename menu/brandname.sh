@@ -23,6 +23,8 @@ function addbrand(){
         echo "### ${name} ${core}" >>/etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
+        sleep 2
+        brandname
         ;;
         2 | 02)
         start_spinner " Please wait, add New data."
@@ -30,6 +32,8 @@ function addbrand(){
         echo "### ${name} ${core}" >>/etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
+        sleep 2
+        brandname
         ;;
     esac
 }
@@ -54,6 +58,8 @@ function changebrand(){
         sed -i "/### $brandnow/c\### $newname $core" /etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
+        sleep 2
+        brandname
         ;;
         2 | 02)
         start_spinner " Please wait, add New data."
@@ -61,6 +67,8 @@ function changebrand(){
         sed -i "/### $brandnow/c\### $newname $core" /etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
+        sleep 2
+        brandname
         ;;
     esac
 }
@@ -84,6 +92,8 @@ function offbrand(){
         sed -i "/^### $brandnow $core/,/^},{/d" /etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
+        sleep 2
+        brandname
         ;;
         2 | 02)
         start_spinner " Please wait, add New data."
@@ -91,6 +101,8 @@ function offbrand(){
         sed -i "/^### $brandnow $core/,/^},{/d" /etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
+        sleep 2
+        brandname
         ;;
     esac
 }
