@@ -77,10 +77,10 @@ for user in ${data[@]}
       send-log
       rm -rf /etc/limit/vmess/${user}
       rm -f /etc/kyt/limit/vmess/ip/$user
-	  rm -f /etc/vmess/$user
-	  rm -f /etc/limit/vmess/$user
-	  rm -f /etc/limit/vmess/quota/$user
-	  rm -f /var/www/html/vmess-$user.txt
+      rm -f /etc/vmess/$user
+      rm -f /etc/limit/vmess/$user
+      rm -f /etc/limit/vmess/quota/$user
+      rm -f /var/www/html/vmess-$user.txt
       systemctl restart xray >> /dev/null 2>&1
       else
       echo ""
