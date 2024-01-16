@@ -1,11 +1,12 @@
 source /usr/local/sbin/spiner
 function head(){
    echo -e " ${z}┌─────────────────────────────────────────────┐${NC}"
-   echo -e " ${z}│$NC$purple             SET BRAND NAME               $NC${z}│$NC"
+   echo -e " ${z}$NC$purple            $msg               $NC${z}$NC"
    echo -e " ${z}└─────────────────────────────────────────────┘${NC}"
 }
 
 function addbrand(){
+    msg="SET BRAND NAME"
     head
     echo -e ""
     echo -e "  Example : Brand-User"
@@ -42,6 +43,7 @@ function addbrand(){
 
 function changebrand(){
     brandnow=$(cat cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)
+    msg="CHANGE BRAND NAME"
     head
     echo -e ""
     echo -e "  Brand Now : $brandnow"
@@ -78,6 +80,7 @@ function changebrand(){
 
 function offbrand(){
     brandnow=$(cat cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)
+    msg="OFF BRAND NAME"
     head
     echo -e ""
     echo -e "  Brand Now : $brandnow"
