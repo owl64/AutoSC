@@ -37,6 +37,11 @@ cp /etc/gshadow backup/
 cp /etc/crontab backup/
 cp -r /var/lib/kyt/ backup/kyt 
 cp -r /etc/xray backup/xray
+cp -r /etc/vmess backup/vmess
+cp -r /etc/vless backup/vless
+cp -r /etc/trojan backup/trojan
+cp -r /etc/shadowsocks backup/shadowsocks
+cp -r /etc/kyt/limit backup/ip
 cp -r /var/www/html/ backup/html
 cd /root
 zip -r $IP-$date.zip backup > /dev/null 2>&1
