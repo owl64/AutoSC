@@ -8,11 +8,13 @@ function head(){
 function addbrand(){
     head
     echo -e ""
-    echo -e " Example : Brand-"
-    echo -e "  Input Brand Name : " name
-    echo -e "  For Core :"
-    echo -e "  [${grenbo}01${NC}]${z} Vmess"
-    echo -e "  [${grenbo}02${NC}]${z} Vless"
+    echo -e "  Example : Brand-User"
+    echo -e ""
+    read -p "   Input Brand Name : " name
+    echo -e ""
+    echo -e "   For Core :"
+    echo -e "       [${grenbo}01${NC}]${z} Vmess"
+    echo -e "       [${grenbo}02${NC}]${z} Vless"
     echo -e ""
     read -rp " Select For Core, From Option: " brand
     echo -e ""
@@ -44,10 +46,11 @@ function changebrand(){
     echo -e ""
     echo -e "  Brand Now : $brandnow"
     echo -e ""
-    echo -e "  Enter New Brand Name : " newname
-    echo -e "  For Core :"
-    echo -e "  [${grenbo}01${NC}]${z} Vmess"
-    echo -e "  [${grenbo}02${NC}]${z} Vless"
+    read -p "   Enter New Brand Name : " newname
+    echo -e ""
+    echo -e "   For Core :"
+    echo -e "       [${grenbo}01${NC}]${z} Vmess"
+    echo -e "       [${grenbo}02${NC}]${z} Vless"
     echo -e ""
     read -rp " Select For Core, From Option: " brand
     echo -e ""
@@ -79,9 +82,9 @@ function offbrand(){
     echo -e ""
     echo -e "  Brand Now : $brandnow"
     echo -e ""
-    echo -e "  Off Brand Name For :"
-    echo -e "  [${grenbo}01${NC}]${z} Vmess"
-    echo -e "  [${grenbo}02${NC}]${z} Vless"
+    echo -e "   Off Brand Name For Core :"
+    echo -e "       [${grenbo}01${NC}]${z} Vmess"
+    echo -e "       [${grenbo}02${NC}]${z} Vless"
     echo -e ""
     read -rp " Select Name For Core, From Option [type x for Exit]: " brand
     echo -e ""
