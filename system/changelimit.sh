@@ -75,14 +75,22 @@ function changeiplimitvmess(){
     echo -e "         Username                 IP Limit     "
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e ""
-        for akun in "${data[@]}"
-        if [[ -z "/etc/vmess/$akun" ]]; then
-            echo "${defaultip}" >/etc/kyt/limit/vmess/ip/${akun}    
-        fi
-        do
-            iplimit=$(cat /etc/kyt/limit/vmess/ip/${akun})
+        directory="/etc/kyt/limit/vmess/ip"
+
+        for akun in "${data[@]}"; do
+            filename="$akun"
+
+            # Mencari file di direktori
+            if [ -e "$directory/$filename" ]; then
+                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit";
+            else
+                echo "File $filename tidak ditemukan di $directory."
+
+                # Membuat file jika tidak ditemukan
+                touch "$directory/$filename"
+                echo "${defaultip}" >"/etc/kyt/limit/vmess/ip/${akun}"
+            fi          
         done
-    printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit";
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
     read -rp "  Input New Limit : " limitnew
