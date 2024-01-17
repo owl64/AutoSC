@@ -19,9 +19,9 @@ function addbrand(){
     fi
 
     if [ -z ${cekvless} ];then
-        statusvmess="${RED}OFF${NC}"
+        statusvless="${RED}OFF${NC}"
     else
-        statusvmess="${green}ON${NC}"
+        statusvless="${green}ON${NC}"
     fi
 
     echo -e "   If indicator Vmess/ Vless ${green}ON${NC} Please dont addnew brand"
@@ -70,9 +70,9 @@ function changebrand(){
     fi
 
     if [ -z ${cekvless} ];then
-        statusvmess="${RED}OFF${NC}"
+        statusvless="${RED}OFF${NC}"
     else
-        statusvmess="${green}ON${NC}"
+        statusvless="${green}ON${NC}"
     fi
 
     echo -e ""
@@ -119,9 +119,9 @@ function offbrand(){
     fi
 
     if [ -z ${cekvless} ];then
-        statusvmess="${RED}OFF${NC}"
+        statusvless="${RED}OFF${NC}"
     else
-        statusvmess="${green}ON${NC}"
+        statusvless="${green}ON${NC}"
     fi
 
     echo -e "   If You off Vmess/Vless, for activate again please addbrand"
