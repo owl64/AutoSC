@@ -242,10 +242,10 @@ function brandname(){
    fi
    file_path="/etc/brand/.brand.db"
 
-   if [ -e "$file_path" ]; then
-      branduuid="${RED}OFF${NC}"
+   if [ -s "$file_path" ]; then
+      branduuid="${green}ON${NC}"
    else
-      branduuid=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)
+      branduuid="${RED}OFF${NC}"
    fi
 
    source /usr/local/sbin/brandname
@@ -253,7 +253,7 @@ function brandname(){
    echo -e " ${z}│$NC$purple             BRAND NAME               $NC${z}│$NC"
    echo -e " ${z}└─────────────────────────────────────────────┘${NC}"
    echo -e ""
-   echo -e "   Set UUID with Brand Name = ${RED}$branduuid"
+   echo -e "   Set UUID with Brand Name = $branduuid"
    echo -e ""
    echo -e " ${z}$NC   [${grenbo}01${NC}]${z} Add Brand Name$NC"
    echo -e " ${z}$NC   [${grenbo}02${NC}]${z} Change Brand Name$NC"

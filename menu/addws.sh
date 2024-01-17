@@ -114,12 +114,14 @@ ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 
 #Test For New Brand UUID
-brand="/etc/brand/.brand.db"
-if [[ -e ${brand} ]]; then
-  uuid="$(cat ${brand})-${user}"
-else
+cekbrand=$(cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
+
+if [[ -z ${cekbrand} ]]; then
   uuid=$(cat /proc/sys/kernel/random/uuid)
+else
+  uuid="${cekbrand}-${user}"
 fi
+
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
