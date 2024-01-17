@@ -20,8 +20,10 @@ fi
   echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   echo -e "                 CONFIG VMESS ACCOUNT          "
   echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-        echo "     No  Expired   User"
-        grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | nl -s ') '
+        #echo "     No  Expired   User"
+        #ambilakun=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | sort | uniq)
+        #echo -e "No " | column -t | sort | uniq | nl -s '. '
+        grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | sort | uniq | awk 'BEGIN{printf "%-4s%-15s%-15s\n", "No", "Username", "Expired"} {printf "%-4s%-15s%-15s\n", NR, $1, $2}'
         until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
                 if [[ ${CLIENT_NUMBER} == '1' ]]; then
                         read -rp "Select one client [1]: " CLIENT_NUMBER
@@ -167,12 +169,12 @@ echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033
 echo -e "Remarks          : ${user}"
 echo -e "Domain           : ${domain}"
 echo -e "User Quota       : ${Quota} GB"
-echo -e "User Ip            : ${iplimit} IP"
+echo -e "User Ip          : ${iplimit} IP"
 echo -e "Port TLS         : 400-900"
 echo -e "Port none TLS    : 80, 8080, 8081-9999"
 echo -e "id               : ${uuid}"
-echo -e "Xray Dns      : ${NS}"
-echo -e "Pubkey        : ${PUB}"
+#echo -e "Xray Dns      : ${NS}"
+#echo -e "Pubkey        : ${PUB}"
 echo -e "alterId          : 0"
 echo -e "Security         : auto"
 echo -e "Network          : ws"
