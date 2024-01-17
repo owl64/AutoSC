@@ -36,7 +36,7 @@ function changelimitquotavmess(){
                 gb=$(con "${wey}")
                 printf "%-13s %-7s %-8s %2s\n" "${akun}" "$gb"
             else
-                echo "File $filename tidak ditemukan di $directory."
+                echo "Account $filename, Limit Quota Not Found in $directory."
 
                 # Membuat file jika tidak ditemukan
                 touch "$directory/$filename"
@@ -53,6 +53,7 @@ function changelimitquotavmess(){
             sleep 1
             lmn=$((${limitnew} * 1024 * 1024 * 1024))
             echo "$lmn" >> /etc/vmess/$change
+            stop_spinner
             echo -e " ${Green}Success Change Limit${Suffix}"
             sleep 2
             m-vmess
@@ -84,7 +85,7 @@ function changeiplimitvmess(){
             if [ -e "$directory/$filename" ]; then
                 printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit";
             else
-                echo "File $filename tidak ditemukan di $directory."
+                echo "Account $filename, Limit Quota Not Found in $directory."
 
                 # Membuat file jika tidak ditemukan
                 touch "$directory/$filename"
@@ -97,9 +98,10 @@ function changeiplimitvmess(){
     echo -e ""
     if [[ $data == $change ]]; then
         start_spinner " Please wait...."
-        rm /etc/kyt/limit/vmess/ip/$change
+        truncate -s 0 /etc/kyt/limit/vmess/ip/$change
         sleep 1
         echo "$limitnew" >> /etc/kyt/limit/vmess/ip/$change
+        stop_spinner
         echo -e " ${Green}Success Change Limit${Suffix}"
         sleep 2
         m-vmess
