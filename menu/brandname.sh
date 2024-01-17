@@ -87,7 +87,7 @@ function changebrand(){
     case $brand in
         1 | 01)
         start_spinner " Please wait, add New data."
-        brandnow=$(cat cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
+        brandnow=$(cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
         sed -i "/#vmess# $brandnow/c\#vmess# $newname" /etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
@@ -96,7 +96,7 @@ function changebrand(){
         ;;
         2 | 02)
         start_spinner " Please wait, add New data."
-        brandnow=$(cat cat /etc/brand/.brand.db | grep '#vless#' | cut -d ' ' -f 2 | sort | uniq)
+        brandnow=$(cat /etc/brand/.brand.db | grep '#vless#' | cut -d ' ' -f 2 | sort | uniq)
         sed -i "/#vless# $brandnow/c\#vless# $newname" /etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
@@ -135,7 +135,7 @@ function offbrand(){
     case $brand in
         1 | 01)
         start_spinner " Please wait, add New data."
-        brandnow=$(cat cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
+        brandnow=$(cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
         sed -i "/^#vmess# $brandnow/,/^},{/d" /etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
@@ -144,7 +144,7 @@ function offbrand(){
         ;;
         2 | 02)
         start_spinner " Please wait, add New data."
-        brandnow=$(cat cat /etc/brand/.brand.db | grep '#vless#' | cut -d ' ' -f 2 | sort | uniq)
+        brandnow=$(cat /etc/brand/.brand.db | grep '#vless#' | cut -d ' ' -f 2 | sort | uniq)
         sed -i "/^#vless# $brandnow/,/^},{/d" /etc/brand/.brand.db
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
