@@ -242,7 +242,7 @@ function brandname(){
    fi
    file_path="/etc/brand/.brand.db"
 
-   if [ -s "$file_path" ]; then
+   if [ -e "$file_path" ]; then
       branduuid="${RED}OFF${NC}"
    else
       branduuid=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)

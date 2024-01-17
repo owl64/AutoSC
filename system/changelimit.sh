@@ -1,5 +1,5 @@
 source /usr/local/sbin/spiner
-function con() {
+function con(){
     local -i bytes=$1;
     if [[ $bytes -lt 1024 ]]; then
         echo "${bytes}B"
@@ -26,10 +26,20 @@ function changelimitquotavmess(){
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e ""
         for akun in "${data[@]}"
-        if [[ -z "/etc/vmess/$akun" ]]; then
-            echo "${d}" >/etc/vmess/${akun}    
-        fi
         do
+        directory="/etc/vmess"
+        filename="$akun"
+
+        # Mencari file di direktori
+            if [ -e "$directory/$filename" ]; then
+                echo ""
+            else
+                echo "File $filename tidak ditemukan di $directory."
+
+                # Membuat file jika tidak ditemukan
+                touch "$directory/$filename"
+                echo "${d}" >/etc/vmess/${akun}
+            fi
             wey=$(cat /etc/vmess/${akun})
             gb=$(con ${wey})
         done
