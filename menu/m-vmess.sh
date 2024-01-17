@@ -62,7 +62,7 @@ checking_sc() {
   fi
 }
 checking_sc
-source /usr/local/sbin/changelimit.sh
+source /usr/local/sbin/changelimit
 echo -e "\e[32mloading...\e[0m"
 clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
