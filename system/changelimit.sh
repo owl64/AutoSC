@@ -50,9 +50,8 @@ function changelimitquotavmess(){
     if [ -z $change ]; then
         m-vmess
     else
-        ceklagi=$(cat /etc/xray/config.json | grep '###' | cut -d ' ' -f 2 | sort | uniq)
-        exp=$(grep -wE "^### $change" "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
-        if [[ $exp == $change ]]; then
+        ceklagi=$(grep -wE "^### $change" "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+        if [[ $ceklagi == $change ]]; then
             start_spinner " Please wait...."
             truncate -s 0 /etc/vmess/$change
             sleep 1
@@ -102,19 +101,24 @@ function changeiplimitvmess(){
     read -rp "  Input Username to Change Limit : " change
     read -rp "  Input New Limit : " limitnew
     echo -e ""
-    if [[ $data == $change ]]; then
-        start_spinner " Please wait...."
-        truncate -s 0 /etc/kyt/limit/vmess/ip/$change
-        sleep 1
-        echo "$limitnew" >> /etc/kyt/limit/vmess/ip/$change
-        stop_spinner
-        echo -e " ${Green}Success Change Limit${Suffix}"
-        sleep 2
+    if [ -z $change ]; then
         m-vmess
     else
-        echo -e "     ${RED}Incorect Username Input, Please Try Again"
-        sleep 1
-        m-vmess
+        ceklagi=$(grep -wE "^### $change" "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+        if [[ $ceklagi == $change ]]; then
+            start_spinner " Please wait...."
+            truncate -s 0 /etc/kyt/limit/vmess/ip/$change
+            sleep 1
+            echo "$limitnew" >> /etc/kyt/limit/vmess/ip/$change
+            stop_spinner
+            echo -e " ${Green}Success Change Limit${Suffix}"
+            sleep 2
+            m-vmess
+        else
+            echo -e "     ${RED}Incorect Username Input, Please Try Again"
+            sleep 1
+            m-vmess
+        fi
     fi
 }
 function resetquotavmess(){
@@ -146,7 +150,11 @@ function resetquotavmess(){
     echo -e ""
     read -rp "  Input Username for Reset Usage : " change
     echo -e ""
-        if [[ $data == $change ]]; then
+    if [ -z $change ]; then
+        m-vmess
+    else
+        ceklagi=$(grep -wE "^### $change" "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+        if [[ $ceklagi == $change ]]; then
             start_spinner " Please wait...."
             truncate -s 0 /etc/limit/vmess/$change
             sleep 1
@@ -159,4 +167,5 @@ function resetquotavmess(){
             sleep 1
             m-vmess
         fi
+    fi
 }
