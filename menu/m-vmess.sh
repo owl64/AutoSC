@@ -83,6 +83,7 @@ echo -e " ${z}└─────────────────────
 echo -e ""
 echo -e "  ${ORANGE} [8].${NC}\033[0;36m Change Limit IP${NC}"
 echo -e "  ${ORANGE} [9].${NC}\033[0;36m Change Limit Quota${NC}"
+echo -e "  ${ORANGE} [10].${NC}\033[0;36m Reset Usage Quota Acount${NC}"
 echo -e ""
 echo -e "  ${ORANGE} [0].${NC}${RED} Back To Menu${NC}"
 echo -e ""
@@ -124,6 +125,10 @@ case $menu in
     9)
         clear
         changelimitquotavmess
+        ;;
+    10)
+        clear
+        resetquotavmess
         ;;
     0)
         clear

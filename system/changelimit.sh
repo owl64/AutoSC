@@ -34,7 +34,7 @@ function changelimitquotavmess(){
             if [ -e "$directory/$filename" ]; then
                 wey=$(cat "/etc/vmess/${akun}")
                 gb=$(con "${wey}")
-                printf "%-13s %-7s %-8s %2s\n" "${akun}" "$gb"
+                printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"
             else
                 echo "Account $filename, Limit Quota Not Found in $directory."
 
@@ -110,4 +110,47 @@ function changeiplimitvmess(){
         sleep 1
         m-vmess
     fi
+}
+function resetquotavmess(){
+    clear
+    data=( `cat /etc/xray/config.json | grep '###' | cut -d ' ' -f 2 | sort | uniq`);
+
+    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+    echo -e "      $PURPLE       Reset Usage               $NC"
+    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+    echo -e ""
+    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e "         Username                 Usage       "
+    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e ""
+        directory="/etc/limit/vmess"
+
+            for akun in "${data[@]}"; do
+                filename="$akun"
+
+                # Mencari file di direktori
+                if [ -e "$directory/$filename" ]; then
+                    wey=$(cat "/etc/limit/vmess/${akun}")
+                    gb=$(con "${wey}")
+                    printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"
+                else
+                    echo "Usage $filename, Quota Not Found in $directory."
+                fi          
+            done
+    echo -e ""
+    read -rp "  Input Username for Reset Usage : " change
+    echo -e ""
+        if [[ $data == $change ]]; then
+            start_spinner " Please wait...."
+            truncate -s 0 /etc/limit/vmess/$change
+            sleep 1
+            stop_spinner
+            echo -e " ${Green}Success Reset Usage Account${Suffix}"
+            sleep 2
+            m-vmess
+        else
+            echo -e "     ${RED}Incorect Username Input, Please Try Again"
+            sleep 1
+            m-vmess
+        fi
 }
