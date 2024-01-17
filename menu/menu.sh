@@ -238,7 +238,7 @@ function brandname(){
    clear
 
    if [ ! -e /etc/brand ]; then
-      mkdir -p /etc/brand/.brand.db
+      mkdir -p /etc/brand
    fi
    file_path="/etc/brand/.brand.db"
 
