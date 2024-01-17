@@ -25,43 +25,42 @@ function changelimitquotavmess(){
     echo -e "         Username                 Quota       "
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e ""
-        for akun in "${data[@]}"
-        do
         directory="/etc/vmess"
-        filename="$akun"
 
-        # Mencari file di direktori
+        for akun in "${data[@]}"; do
+            filename="$akun"
+
+            # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
-                echo ""
+                wey=$(cat "/etc/vmess/${akun}")
+                gb=$(con "${wey}")
+                printf "%-13s %-7s %-8s %2s\n" "${akun}" "$gb"
             else
                 echo "File $filename tidak ditemukan di $directory."
 
                 # Membuat file jika tidak ditemukan
                 touch "$directory/$filename"
-                echo "${d}" >/etc/vmess/${akun}
-            fi
-            wey=$(cat /etc/vmess/${akun})
-            gb=$(con ${wey})
+                echo "${d}" >"/etc/vmess/${akun}"
+            fi          
         done
-    printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $gb";
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
     read -rp "  Input New Limit : " limitnew
     echo -e ""
-    if [[ $data == $change ]]; then
-        start_spinner " Please wait...."
-        rm /etc/vmess/$change
-        sleep 1
-        lmn=$((${limitnew} * 1024 * 1024 * 1024))
-        echo "$lmn" >> /etc/vmess/$change
-        echo -e " ${Green}Success Change Limit${Suffix}"
-        sleep 2
-        m-vmess
-    else
-        echo -e "     ${RED}Incorect Username Input, Please Try Again"
-        sleep 1
-        m-vmess
-    fi
+        if [[ $data == $change ]]; then
+            start_spinner " Please wait...."
+            truncate -s 0 /etc/vmess$change
+            sleep 1
+            lmn=$((${limitnew} * 1024 * 1024 * 1024))
+            echo "$lmn" >> /etc/vmess/$change
+            echo -e " ${Green}Success Change Limit${Suffix}"
+            sleep 2
+            m-vmess
+        else
+            echo -e "     ${RED}Incorect Username Input, Please Try Again"
+            sleep 1
+            m-vmess
+        fi
 }
 function changeiplimitvmess(){
     clear
