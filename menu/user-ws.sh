@@ -23,7 +23,7 @@ fi
         #echo "     No  Expired   User"
         #ambilakun=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | sort | uniq)
         #echo -e "No " | column -t | sort | uniq | nl -s '. '
-        grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | sort | uniq | awk 'BEGIN{printf "%-4s%-15s%-15s\n", "No", "Username", "Expired"} {printf "%-4s%-15s%-15s\n", NR, $1, $2}'
+        grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | sort | uniq | awk 'BEGIN{printf "%-4s%-15s%-15s\n", "    No", "  Username", "  Expired"} {printf "    %-4s%-15s%-15s\n", NR, $1, $2}'
         until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
                 if [[ ${CLIENT_NUMBER} == '1' ]]; then
                         read -rp "Select one client [1]: " CLIENT_NUMBER
