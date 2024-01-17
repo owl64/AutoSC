@@ -47,9 +47,14 @@ function changelimitquotavmess(){
     read -rp "  Input Username to Change Limit : " change
     read -rp "  Input New Limit : " limitnew
     echo -e ""
-        if [[ $data == $change ]]; then
+    if [ -z $change ]; then
+        m-vmess
+    else
+        ceklagi=$(cat /etc/xray/config.json | grep '###' | cut -d ' ' -f 2 | sort | uniq)
+        exp=$(grep -wE "^### $change" "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+        if [[ $exp == $change ]]; then
             start_spinner " Please wait...."
-            truncate -s 0 /etc/vmess$change
+            truncate -s 0 /etc/vmess/$change
             sleep 1
             lmn=$((${limitnew} * 1024 * 1024 * 1024))
             echo "$lmn" >> /etc/vmess/$change
@@ -62,6 +67,7 @@ function changelimitquotavmess(){
             sleep 1
             m-vmess
         fi
+    fi
 }
 function changeiplimitvmess(){
     clear
