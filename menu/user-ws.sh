@@ -40,7 +40,8 @@ Quota=$(cat /etc/vmess/$user)
 uuid=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
 #Quota=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
 exp=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
-hariini=`date -d "0 days" +"%Y-%m-%d"`
+hariini=$(date +"%Y-%m-%d")
+masaaktif=$(( ($(date -d "$exp" +%s) - $(date -d "$hariini" +%s)) / 86400 ))
 asu=`cat<<EOF
       {
       "v": "2",
@@ -196,8 +197,7 @@ echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033
 echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt"
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Aktif Selama     : $masaaktif Hari"
-echo -e "Dibuat Pada      : $tnggl"
-echo -e "Berakhir Pada    : $expe"
+echo -e "Berakhir Pada    : $exp"
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo ""
 read -n 1 -s -r -p "Press [ Enter ] to back on menu"
