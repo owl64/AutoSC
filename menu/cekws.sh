@@ -64,13 +64,15 @@ lim=$(con ${byte})
 wey=$(cat /etc/limit/vmess/${akun})
 gb=$(con ${wey})
 lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -d " " -f 2 | tail -1)
+my_log=$(cat /var/log/xray/access.log | grep -w "email: ${user}" | wc -l)
 echo -e " ${z}┌───────────────────────────────────────────────┐${NC}"
 printf "  %-13s %-7s %-8s %2s\n" "  UserName    : ${akun}"
 printf "  %-13s %-7s %-8s %2s\n" "  Login       : $lastlogin"
 printf "  %-13s %-7s %-8s %2s\n" "  Usage Quota : ${gb}" 
 printf "  %-13s %-7s %-8s %2s\n" "  Limit Quota : ${lim}" 
 printf "  %-13s %-7s %-8s %2s\n" "  Limit IP    : $iplimit" 
-printf "  %-13s %-7s %-8s %2s\n" "  Login IP    : $jum2" 
+printf "  %-13s %-7s %-8s %2s\n" "  Login IP    : $jum2"
+printf "  %-13s %-7s %-8s %2s\n" "  Log User    : $my_log"
 echo -e " ${z}└───────────────────────────────────────────────┘${NC}"
 fi 
 rm -rf /tmp/ipvmess.txt
