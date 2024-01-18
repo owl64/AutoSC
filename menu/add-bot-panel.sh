@@ -158,6 +158,6 @@ case $opt in
 03 | 3) clear ; stop-bot ;;
 04 | 4) clear ; restart-bot ;;
 05 | 5) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/update-bot.sh && chmod +x update-bot.sh && ./update-bot.sh ;;
-06 | 6) clear ; bckp_bot ;;
+06 | 6) clear ; echo -e "Under Maintenenace!"; sleep 2 ; add-bot-panel;;
 00 | 0) clear ; menu ;;
 esac
