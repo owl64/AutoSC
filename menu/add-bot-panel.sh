@@ -74,27 +74,16 @@ function bckp_bot(){
       echo -e "    Please Add Bot First and check runing or not"
     else
 
-      filecek="/etc/list/lst.db"
       filecektime="/etc/list/time.db"
-      if [ -e "$filecek" ]; then
-
-        if [ -s "$filecek" ]; then
-          status="${green}ON${NC}"
-        else
-          status="${RED}OFF${NC}"
-        fi
-
-      else
-        touch "$filecek"
-      fi
-
       if [ -e "$filecektime" ]; then
 
         if [ -s "$filecektime" ]; then
+          status="${green}ON${NC}"
           timecek=$(cat /etc/list/time.db)
           time1="${green}ON${NC} Time-${green}${timecek}${NC}"
         else
           time1="${RED}OFF${NC}"
+          status="${RED}OFF${NC}"
         fi
 
       else
