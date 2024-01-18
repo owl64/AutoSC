@@ -70,10 +70,16 @@ clear
 domain=$(cat /etc/xray/domain)
 masaaktif=1
 Quota=1
-iplimit=10
+iplimit=2
 user=Trial-VM`</dev/urandom tr -dc 0-9 | head -c3`
 clear 
-uuid=$(cat /proc/sys/kernel/random/uuid)
+cekbrand=$(cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
+
+if [[ -z ${cekbrand} ]]; then
+  uuid=$(cat /proc/sys/kernel/random/uuid)
+else
+  uuid="${cekbrand}-${user}"
+fi
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")

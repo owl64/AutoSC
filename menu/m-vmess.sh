@@ -88,7 +88,7 @@ echo -e ""
 echo -e "  ${ORANGE} [0].${NC}${RED} Back To Menu${NC}"
 echo -e ""
 echo -e ""
-read -p "Select From Options [ 1 - 9 ] : " menu
+read -p "Select From Options [ 1 - 10 ] : " menu
 case $menu in
     1)  
         clear
