@@ -189,6 +189,7 @@ function update(){
     res1
     profile
     gantiSC
+    clearcacheAndFix
 }
 netfilter-persistent
 clear

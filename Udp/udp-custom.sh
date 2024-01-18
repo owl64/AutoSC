@@ -88,5 +88,7 @@ systemctl start udp-custom &>/dev/null
 echo enable service udp-custom
 systemctl enable udp-custom &>/dev/null
 
+rm -rf /root/udp-custom.sh
+
 echo reboot
 reboot
