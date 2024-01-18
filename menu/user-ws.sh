@@ -1,25 +1,30 @@
 clear
+Suffix="\033[0m"
+green='\e[0;32m'
+yell='\e[33m'
+NC='\e[0m'
 
+source /usr/local/sbin/spiner
 PUB=$(cat /etc/slowdns/server.pub)
 NS=$(cat /etc/xray/dns)
 CITY=$(cat /etc/xray/city)
 clear
 NUMBER_OF_CLIENTS=$(grep -E "^### " "/etc/xray/config.json" | sort | uniq | cut -d ' ' -f 2 | wc -l)
         if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
-    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo -e "                 CONFIG VMESS ACCOUNT           "
-    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
     echo "You have no existing clients!"
     echo ""
-    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     read -n 1 -s -r -p "Press [ Enter ] to back on menu vmess"
     vmess
 fi
 
-  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   echo -e "            CONFIG VMESS ACCOUNT          "
-  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         #echo "     No  Expired   User"
         #ambilakun=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | sort | uniq)
         #echo -e "No " | column -t | sort | uniq | nl -s '. '
@@ -33,6 +38,7 @@ fi
                         read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
                 fi
         done
+start_spinner " Please wait, Colecting data...."
 user=$(grep -E "^### " "/etc/xray/config.json" | sort | uniq | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
 domain=$(cat /etc/xray/domain)
 iplim=$(cat /etc/kyt/limit/vmess/ip/$user)
@@ -160,6 +166,9 @@ ${vmesslink3}
 =========================
 
 END
+stop_spinner
+echo -e " ${Green}Success Colecting Data....${Suffix}"
+
 vmesslink1="vmess://$(echo $asu | base64 -w 0)"
 vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"

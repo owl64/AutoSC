@@ -2,13 +2,13 @@ source /usr/local/sbin/spiner
 function con(){
     local -i bytes=$1;
     if [[ $bytes -lt 1024 ]]; then
-        echo "${bytes}B"
+        echo "${bytes} B"
     elif [[ $bytes -lt 1048576 ]]; then
-        echo "$(( (bytes + 1023)/1024 ))KB"
+        echo "$(( (bytes + 1023)/1024 )) KB"
     elif [[ $bytes -lt 1073741824 ]]; then
-        echo "$(( (bytes + 1048575)/1048576 ))MB"
+        echo "$(( (bytes + 1048575)/1048576 )) MB"
     else
-        echo "$(( (bytes + 1073741823)/1073741824 ))GB"
+        echo "$(( (bytes + 1073741823)/1073741824 )) GB"
     fi
 }
 function changelimitquotavmess(){
@@ -87,7 +87,7 @@ function changeiplimitvmess(){
             # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
                 iplimit=$(cat $directory/$akun)
-                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit";
+                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";
             else
                 echo "Account $filename, Limit Quota Not Found in $directory."
 
