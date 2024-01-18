@@ -32,7 +32,9 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+Suffix="\033[0m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+source /usr/local/sbin/spiner
 # Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -125,6 +127,7 @@ fi
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
+start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -185,6 +188,11 @@ grpc=`cat<<EOF
       "tls": "tls"
 }
 EOF`
+stop_spinner
+echo -e " ${Green}Success Collecting Data..${Suffix}"
+sleep 1
+echo -e ""
+start_spinner " Please wait, Add New data...."
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmess_base643=$( base64 -w 0 <<< $vmess_json3)
@@ -193,7 +201,8 @@ vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
 systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
-
+stop_spinner
+echo -e " ${Green}Success Add New Data....${Suffix}"
 
 cat >/var/www/html/vmess-$user.txt <<-END
 

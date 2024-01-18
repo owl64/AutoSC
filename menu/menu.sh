@@ -12,6 +12,7 @@ green='\033[0;32m'
 grenbo="\e[92;1m"
 purple="\033[1;95m"
 YELL='\033[0;33m'
+Suffix="\033[0m"
 
 ISP=$(cat /etc/xray/isp)
 CITY=$(cat /etc/xray/city)
