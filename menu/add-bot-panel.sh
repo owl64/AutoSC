@@ -97,6 +97,7 @@ function bckp_bot(){
       echo -e "    [03]. 6 AM"
       echo -e "    [04]. 1 PM"
       echo -e "    [05]. 5 PM"
+      echo -e "    [06]. Off Auto Backup Bot"
       echo -e "    [00]. Back to Panel Bot"
       echo -e ""
       read -rp"    Select Option Menu : " botmenu
@@ -118,6 +119,9 @@ function bckp_bot(){
           clear
           ;;
           5 | 05)
+          clear
+          ;;
+          6 | 06)
           clear
           ;;
           0 | 00)
