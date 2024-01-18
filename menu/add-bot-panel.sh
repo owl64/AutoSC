@@ -60,6 +60,53 @@ echo -e "\e[32mloading...\e[0m"
 clear
 MYIP=$(wget -qO- ipinfo.io/ip);
 clear 
+
+function bckp_bot(){
+  clear
+
+  echo -e ""
+  echo -e " ${yell}┌──────────────────────────────────────────┐${NC}"
+  echo -e "      $PURPLE       Set Backup Time              $NC"
+  echo -e " ${yell}└──────────────────────────────────────────┘${NC}"
+  echo -e ""
+  echo -e "    Status Backup : [$status] - [$time]"
+  echo -e ""
+  echo -e "    [01]. 1 AM"
+  echo -e "    [02]. 3 AM"
+  echo -e "    [03]. 6 AM"
+  echo -e "    [04]. 1 PM"
+  echo -e "    [05]. 5 PM"
+  echo -e "    [00]. Back to Panel Bot"
+  echo -e ""
+  read -rp"    Select Option Menu : " botmenu
+  if [ -z $botmenu ]; then
+    clear
+    add-bot-panel
+  else
+    case $botmenu in
+      1 | 01)
+      clear
+      ;;
+      2 | 02)
+      clear
+      ;;
+      3 | 03)
+      clear
+      ;;
+      4 | 04)
+      clear
+      ;;
+      5 | 05)
+      clear
+      ;;
+      0 | 00)
+      clear
+      add-bot-panel
+      ;;
+    esac
+  fi
+}
+
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "         ${PURPLE} MENU BOT PANEL            "
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
@@ -71,6 +118,7 @@ echo -e " [\e[36m2\e[0m] Delete Bot Panel"
 echo -e " [\e[36m3\e[0m] Stop Bot Panel"
 echo -e " [\e[36m4\e[0m] Restart Bot Panel"
 echo -e " [\e[36m5\e[0m] Update Bot Panel"
+echo -e " [\e[36m2\e[0m] Backup VPS from Bot"
 echo -e "" 
 echo -e " [\e[31m0\e[0m] \e[31mBack To Menu\033[0m"
 echo -e "" 
@@ -84,5 +132,6 @@ case $opt in
 03 | 3) clear ; stop-bot ;;
 04 | 4) clear ; restart-bot ;;
 05 | 5) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/update-bot.sh && chmod +x update-bot.sh && ./update-bot.sh ;;
+06 | 6) clear ; bckp_bot ;;
 00 | 0) clear ; menu ;;
 esac
