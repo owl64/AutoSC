@@ -34,7 +34,7 @@ function addbrand(){
     echo -e "       [${grenbo}01${NC}]${z} Vmess [$statusvmess]"
     echo -e "       [${grenbo}02${NC}]${z} Vless [$statusvless]"
     echo -e ""
-    read -rp " Select For Core, From Option: " brand
+    read -rp " Select For Core, From Option [type x for Exit]: " brand
     echo -e ""
     case $brand in
         1 | 01)
@@ -82,7 +82,7 @@ function changebrand(){
     echo -e "       [${grenbo}01${NC}]${z} Vmess [$statusvmess]"
     echo -e "       [${grenbo}02${NC}]${z} Vless [$statusvless]"
     echo -e ""
-    read -rp " Select For Core, From Option: " brand
+    read -rp " Select For Core, From Option [type x for Exit]: " brand
     echo -e ""
     case $brand in
         1 | 01)
@@ -149,6 +149,10 @@ function offbrand(){
         stop_spinner
         echo -e " ${Green}Success...${Suffix}"
         sleep 2
+        brandname
+        ;;
+        x)
+        clear
         brandname
         ;;
     esac

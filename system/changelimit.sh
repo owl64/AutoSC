@@ -20,7 +20,6 @@ function changelimitquotavmess(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Change Limit Quota              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e ""
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e "         Username                 Quota       "
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
@@ -74,9 +73,8 @@ function changeiplimitvmess(){
     defaultip="2"
 
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-    echo -e "      $PURPLE      Change Limit Quota              $NC"
+    echo -e "      $PURPLE      Change Limit IP              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e ""
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e "         Username                 IP Limit     "
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
@@ -88,6 +86,7 @@ function changeiplimitvmess(){
 
             # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
+                iplimit=$(cat $directory/$akun)
                 printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit";
             else
                 echo "Account $filename, Limit Quota Not Found in $directory."
@@ -128,7 +127,6 @@ function resetquotavmess(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE       Reset Usage               $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e ""
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e "         Username                 Usage       "
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
