@@ -69,42 +69,75 @@ function bckp_bot(){
   echo -e "      $PURPLE       Set Backup Time              $NC"
   echo -e " ${yell}└──────────────────────────────────────────┘${NC}"
   echo -e ""
-  echo -e "    Status Backup : [$status] - [$time]"
-  echo -e ""
-  echo -e "    [01]. 1 AM"
-  echo -e "    [02]. 3 AM"
-  echo -e "    [03]. 6 AM"
-  echo -e "    [04]. 1 PM"
-  echo -e "    [05]. 5 PM"
-  echo -e "    [00]. Back to Panel Bot"
-  echo -e ""
-  read -rp"    Select Option Menu : " botmenu
-  if [ -z $botmenu ]; then
-    clear
-    add-bot-panel
-  else
-    case $botmenu in
-      1 | 01)
-      clear
-      ;;
-      2 | 02)
-      clear
-      ;;
-      3 | 03)
-      clear
-      ;;
-      4 | 04)
-      clear
-      ;;
-      5 | 05)
-      clear
-      ;;
-      0 | 00)
-      clear
-      add-bot-panel
-      ;;
-    esac
-  fi
+
+    if [ $status_bot == "OFF" ]; then
+      echo -e "    Please Add Bot First and check runing or not"
+    else
+
+      filecek="/etc/list/lst.db"
+      filecektime="/etc/list/time.db"
+      if [ -e "$filecek" ]; then
+
+        if [ -s "$filecek" ]; then
+          status="${green}ON${NC}"
+        else
+          status="${RED}OFF${NC}"
+        fi
+
+      else
+        touch "$filecek"
+      fi
+
+      if [ -e "$filecektime" ]; then
+
+        if [ -s "$filecektime" ]; then
+          timecek=$(cat /etc/list/time.db)
+          time1="${green}ON${NC} Time-${green}${timecek}${NC}"
+        else
+          time1="${RED}OFF${NC}"
+        fi
+
+      else
+        touch "$filecektime"
+      fi
+
+      echo -e "    Status Backup : [$status] - [$time1]"
+      echo -e ""
+      echo -e "    [01]. 1 AM"
+      echo -e "    [02]. 3 AM"
+      echo -e "    [03]. 6 AM"
+      echo -e "    [04]. 1 PM"
+      echo -e "    [05]. 5 PM"
+      echo -e "    [00]. Back to Panel Bot"
+      echo -e ""
+      read -rp"    Select Option Menu : " botmenu
+      if [ -z $botmenu ]; then
+        clear
+        add-bot-panel
+      else
+        case $botmenu in
+          1 | 01)
+          clear
+          ;;
+          2 | 02)
+          clear
+          ;;
+          3 | 03)
+          clear
+          ;;
+          4 | 04)
+          clear
+          ;;
+          5 | 05)
+          clear
+          ;;
+          0 | 00)
+          clear
+          add-bot-panel
+          ;;
+        esac
+      fi
+    fi
 }
 
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
