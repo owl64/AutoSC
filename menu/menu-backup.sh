@@ -47,16 +47,14 @@ echo -e "\e[32mloading...\e[0m"
 clear
 MYIP=$(wget -qO- ipinfo.io/ip);
 clear 
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "             â€¢ Backup Menu â€¢         "
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e "      $PURPLE           BACKUP              $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "  ${ORANGE} [01].${NC} \033[0;36m Backup VPS Data${NC}"
+echo -e "  ${ORANGE} [02].${NC} \033[0;36m Restore VPS Data${NC}"
 echo -e "" 
-echo -e " [\e[36mâ€¢1\e[0m] Backup VPS Data"
-echo -e " [\e[36mâ€¢2\e[0m] Restore VPS Data"
-echo -e "" 
-echo -e " [\e[31mâ€¢0\e[0m] \e[31mBack To Menu\033[0m"
-echo -e "" 
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "  ${ORANGE} [00].${NC} \033[0;36m Back To Menu${NC}"
 echo -e ""
 read -p " Select menu :  "  opt
 echo -e   ""
