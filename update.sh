@@ -181,6 +181,7 @@ function clearcacheAndFix(){
 	END
     chmod +x /etc/cron.d/notif_status
     chmod +x /etc/cron.d/fix_hap
+    chmod +x /etc/cron.d/xp_all
 
     systemctl restart cron
 }
@@ -212,6 +213,7 @@ echo -e ""
             echo -e "      ${BLUE}[*] ${YELLOW}Add New Fitur Brand Name UUID ${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Add New Fitur Change Quota & IP Limit ${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Error New Fitur ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Bot Cron ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update ! CTRL + C to Cancel"
             echo -e ""
