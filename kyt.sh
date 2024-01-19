@@ -33,8 +33,7 @@ read -e -p "[*] Input your Bot Token : " bottoken
 read -e -p "[*] Input Your Id Telegram :" admin
 echo -e ""
 start_spinner " Please wait, add New data Bot..."
-echo "#bot# ${bottoken}" >>/etc/bot/.bot.db
-echo "#bot# ${admin}" >>/etc/bot/.bot.db
+echo "#bot# ${bottoken} ${admin}" >>/etc/bot/.bot.db
 echo -e BOT_TOKEN='"'$bottoken'"' >> /usr/bin/kyt/var.txt
 echo -e ADMIN='"'$admin'"' >> /usr/bin/kyt/var.txt
 echo -e DOMAIN='"'$domain'"' >> /usr/bin/kyt/var.txt
