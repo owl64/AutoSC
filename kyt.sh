@@ -2,6 +2,7 @@
 NS=$( cat /etc/xray/dns )
 PUB=$( cat /etc/slowdns/server.pub )
 domain=$(cat /etc/xray/domain)
+source /usr/local/sbin/spiner
 #color
 grenbo="\e[92;1m"
 NC='\e[0m'
@@ -30,13 +31,20 @@ echo -e "${grenbo}[*] Info Id Telegram : @MissRose_bot , perintah /info${NC}"
 echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 read -e -p "[*] Input your Bot Token : " bottoken
 read -e -p "[*] Input Your Id Telegram :" admin
+echo -e ""
+start_spinner " Please wait, add New data Bot..."
+echo "#bot# ${bottoken}" >>/etc/bot/.bot.db
+echo "#bot# ${admin}" >>/etc/bot/.bot.db
 echo -e BOT_TOKEN='"'$bottoken'"' >> /usr/bin/kyt/var.txt
 echo -e ADMIN='"'$admin'"' >> /usr/bin/kyt/var.txt
 echo -e DOMAIN='"'$domain'"' >> /usr/bin/kyt/var.txt
 echo -e PUB='"'$PUB'"' >> /usr/bin/kyt/var.txt
 echo -e HOST='"'$NS'"' >> /usr/bin/kyt/var.txt
 clear
-
+stop_spinner
+echo -e " ${Green}Success Add Data BOT...${Suffix}"
+echo -e ""
+start_spinner " Please wait, Start Service..."
 cat > /etc/systemd/system/kyt.service << END
 [Unit]
 Description=Simple kyt - @kyt
@@ -54,6 +62,8 @@ END
 systemctl start kyt 
 systemctl enable kyt
 systemctl restart kyt
+stop_spinner
+echo -e " ${Green}Success Service Start...${Suffix}"
 cd /root
 rm -rf kyt.sh
 echo "Done"
