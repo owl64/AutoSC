@@ -1,3 +1,4 @@
+#!/bin/bash
 source /usr/local/sbin/spiner
 function con(){
     local -i bytes=$1;

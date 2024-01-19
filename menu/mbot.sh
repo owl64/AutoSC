@@ -1,3 +1,4 @@
+#!/bin/bash
 # COLOR VALIDATION
 clear
 RED='\033[0;31m'

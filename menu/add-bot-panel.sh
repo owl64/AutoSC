@@ -1,3 +1,4 @@
+#!/bin/bash
 DF='\e[39m'
 RED='\033[0;31m'
 Bold='\e[1m'

@@ -1,3 +1,4 @@
+#!/bin/bash
 clear
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 RED='\033[0;31m'

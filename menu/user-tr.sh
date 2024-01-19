@@ -1,3 +1,4 @@
+#!/bin/bash
 clear
 
 PUB=$(cat /etc/slowdns/server.pub)

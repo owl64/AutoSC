@@ -1,3 +1,4 @@
+#!/bin/bash
 source /usr/local/sbin/spiner
 function head(){
    echo -e " ${z}┌─────────────────────────────────────────────┐${NC}"

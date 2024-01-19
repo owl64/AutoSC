@@ -1,3 +1,4 @@
+#!/bin/bash
 # COLOR VALIDATION
 clear
 y='\033[1;33m' #yellow

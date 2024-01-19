@@ -1,3 +1,4 @@
+#!/bin/bash
 clear
 Suffix="\033[0m"
 green='\e[0;32m'
