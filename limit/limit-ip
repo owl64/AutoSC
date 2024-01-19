@@ -20,7 +20,6 @@ function vmip(){
 echo -n > /var/log/xray/access.log
 sleep 440
 data=( `ls /etc/kyt/limit/vmess/ip`);
-#Decrypted By Wings Kang Maling
     for user in "${data[@]}"
     do
         iplimit=$(cat /etc/kyt/limit/vmess/ip/$user)
@@ -45,7 +44,6 @@ function vlip(){
 echo -n > /var/log/xray/access.log
 sleep 440
 data=( `ls /etc/kyt/limit/vless/ip`);
-#Decrypted By Wings Kang Maling
     for user in "${data[@]}"
     do
         iplimit=$(cat /etc/kyt/limit/vless/ip/$user)
@@ -70,7 +68,6 @@ function trip(){
 echo -n > /var/log/xray/access.log
 sleep 440
 data=( `ls /etc/kyt/limit/trojan/ip`);
-#Decrypted By Wings Kang Maling
     for user in "${data[@]}"
     do
         iplimit=$(cat /etc/kyt/limit/trojan/ip/$user)
