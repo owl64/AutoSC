@@ -145,8 +145,15 @@ echo -e " [\e[36m2\e[0m] Delete Bot Panel"
 echo -e " [\e[36m3\e[0m] Stop Bot Panel"
 echo -e " [\e[36m4\e[0m] Restart Bot Panel"
 echo -e " [\e[36m5\e[0m] Update Bot Panel"
-echo -e " [\e[36m2\e[0m] Backup VPS from Bot"
-echo -e "" 
+echo -e " [\e[36m6\e[0m] Backup VPS from Bot"
+echo -e ""
+echo -e " ${yell}┌──────────────────────────────────────────┐${NC}"
+echo -e "      $PURPLE       Set Bot Notif              $NC"
+echo -e " ${yell}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e " [\e[36m7\e[0m] Add Bot Notif"
+echo -e " [\e[36m8\e[0m] Delete Bot Notif"
+echo -e ""
 echo -e " [\e[31m0\e[0m] \e[31mBack To Menu\033[0m"
 echo -e "" 
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
@@ -160,5 +167,7 @@ case $opt in
 04 | 4) clear ; restart-bot ;;
 05 | 5) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/update-bot.sh && chmod +x update-bot.sh && ./update-bot.sh ;;
 06 | 6) clear ; echo -e "Under Maintenenace!"; sleep 2 ; add-bot-panel;;
+07 | 7) clear ; add-bot-notif ;;
+08 | 8) clear ; del-bot-notif ;;
 00 | 0) clear ; menu ;;
 esac
