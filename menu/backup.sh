@@ -66,16 +66,16 @@ clear
    TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
    TEXT="Installasi VPN Script Stable V3.0
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
-<b>   âš ï¸BACKUP NOTIFâš ï¸</b>
+<code>━━━━━━━━━━━━━━━━━━━━━</code>
+<b>   ✅ BACKUP NOTIF ✅</b>
 <b>     Detail Backup VPS</b>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>━━━━━━━━━━━━━━━━━━━━━</code>
 <b>IP VPS  :</b> <code>${IP} </code>
 <b>DOMAIN :</b> <code>${domain}</code>
 <b>Tanggal : $date</b>
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>━━━━━━━━━━━━━━━━━━━━━</code>
 <b>Link Backup   :</b> $link
-<code>â—‡â”â”â”â”â”â”â”â”â”â”â”â”â”â”â—‡</code>
+<code>━━━━━━━━━━━━━━━━━━━━━</code>
 <code>Silahkan copy Link dan restore di VPS baru</code>
 <code>BY BOT : @sdctunneling_bot</code>
 "
