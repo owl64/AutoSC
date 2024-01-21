@@ -17,9 +17,10 @@ cp -r /etc/shadowsocks backup/shadowsocks
 cp -r /etc/kyt/limit backup/ip
 cp -r /var/www/html/ backup/html
 cd /root
-zip -r $IP-$date.zip backup
 domain=$(cat /etc/xray/domain)
 IP=$(curl -sS ipv4.icanhazip.com)
+date=$(date +"%Y-%m-%d")
+zip -r $IP-$date.zip backup
 
 function send_backup(){
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
@@ -35,6 +36,6 @@ TEXT="
 <code>File Backup : v</code>
 <code>────────────────────</code>
 "
-curl -F --max-time $TIME chat_id="$CHATID&disable_web_page_preview=1" -F document=@/path/to/your/backup/file.txt -F caption="$TEXT&parse_mode=html" $URL >/dev/null
+curl -F --max-time $TIME chat_id="$CHATID&disable_web_page_preview=1" -F document=@/root/$IP-$date.zip -F caption="$TEXT&parse_mode=html" $URL >/dev/null
 }
 send_backup
