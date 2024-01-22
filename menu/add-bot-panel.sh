@@ -192,7 +192,8 @@ function bckp_bot(){
             add-bot-panel
             ;;
           esac
-        else
+        fi
+      else
           start_spinner " Making File data Bot..."
           touch "$filecektime"
           sleep 2
@@ -201,7 +202,6 @@ function bckp_bot(){
           sleep 1
           echo -e " ${green}Refresh...${Suffix}"
           add-bot-panel
-        fi
       fi
     else
       echo -e "    ${ORANGE}[*]${NC}${blue2} Please Add Bot Notif & Backup First"
