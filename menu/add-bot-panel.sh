@@ -25,7 +25,7 @@ red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 bot_kyt=$(systemctl status kyt | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 # STATUS SERVICE  BOT 
 if [[ $bot_kyt == "running" ]]; then 
-   status_bot="${GREEN}Online$NC${c}$NC"
+   status_bot="${GREEN}Online${NC}"
 else
    status_bot="${RED}Offline${NC}"
 fi
@@ -101,7 +101,7 @@ function bckp_bot(){
       echo -e "    [06]. Off Auto Backup Bot"
       echo -e "    [00]. Back to Panel Bot"
       echo -e ""
-      read -rp"    Select Option Menu : " botmenu
+      read -rp"    Select Option Menu [ Press ENTER to Back ]: " botmenu
       if [ -z $botmenu ]; then
         clear
         add-bot-panel
