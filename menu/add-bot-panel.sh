@@ -219,7 +219,7 @@ echo -e " ${ORANGE}[02].${NC}${blue2} Delete Bot Panel"
 echo -e " ${ORANGE}[03].${NC}${blue2} Stop Bot Panel"
 echo -e " ${ORANGE}[04].${NC}${blue2} Restart Bot Panel"
 echo -e " ${ORANGE}[05].${NC}${blue2} Update Bot Panel"
-echo -e " ${ORANGE}[06].${NC}${blue2} Backup VPS from Bot"
+echo -e " ${ORANGE}[06].${NC}${blue2} AUTO Backup VPS [ file to Bot ]"
 echo -e ""
 echo -e " ${yell}┌──────────────────────────────────────────┐${NC}"
 echo -e "      $PURPLE       Set Bot Notif              $NC"
@@ -240,7 +240,7 @@ case $opt in
 03 | 3) clear ; stop-bot ;;
 04 | 4) clear ; restart-bot ;;
 05 | 5) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/update-bot.sh && chmod +x update-bot.sh && ./update-bot.sh ;;
-06 | 6) clear ; echo -e "Under Maintenenace!"; sleep 2 ; add-bot-panel;;
+06 | 6) clear ; bckp_bot;;
 07 | 7) clear ; add-bot-notif ;;
 08 | 8) clear ; del-bot-notif ;;
 00 | 0) clear ; menu ;;
