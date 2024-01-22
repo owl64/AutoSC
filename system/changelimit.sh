@@ -71,7 +71,7 @@ function changelimitquotavmess(){
 function changeiplimitvmess(){
     clear
     data=( `cat /etc/xray/config.json | grep '###' | cut -d ' ' -f 2 | sort | uniq`);
-    defaultip="2"
+    defaultip="5"
 
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Change Limit IP              $NC"
