@@ -42,7 +42,7 @@ valid=$(curl -sS https://raw.githubusercontent.com/owl64/AutoSC/main/user/user |
 echo "$valid" >/usr/bin/e
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
-oid=$(cat /usr/bin/ver)
+#oid=$(cat /usr/bin/ver)
 exp=$(cat /usr/bin/e)
 clear
 # CERTIFICATE STATUS
