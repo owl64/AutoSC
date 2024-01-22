@@ -10,6 +10,7 @@ blue='\e[34m'
 YELLOW="\033[33m"
 PURPLE='\e[35m'
 cyan='\e[36m'
+blue2='\033[0;36m'
 Lred='\e[91m'
 Lyellow='\e[93m'
 Lgreen='\e[92m'
@@ -20,6 +21,7 @@ GREENBG="\033[42;37m"
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 Suffix="\033[0m"
+z="\033[96m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
 #satusbot
@@ -76,13 +78,15 @@ function bckp_bot(){
     botbackupcek="/etc/bot/.bot.db"
     if [ -s "$botbackupcek" ]; then   
 
-      filecektime="/etc/list/time.db"
+      filecektime="/etc/list/.time.db"
       if [ -e "$filecektime" ]; then
 
         if [ -s "$filecektime" ]; then
           status="${green}ON${NC}"
-          timecek=$(cat /etc/list/time.db)
-          time1="${green}ON${NC} Time-${green}${timecek}${NC}"
+          timegrep=$(cat /etc/list/.time.db | grep '#time#' | cut -d ' ' -f 2 )
+          timegrep2=$(cat /etc/list/.time.db | grep '#time#' | cut -d ' ' -f 3 )
+          timecek="${green}$timegrep [$timegrep2]"
+          time1="Time-${green}${timecek}${NC}"
         else
           time1="${RED}OFF${NC}"
           status="${RED}OFF${NC}"
@@ -90,13 +94,14 @@ function bckp_bot(){
 
         echo -e "    Status Backup : [$status] - [$time1]"
         echo -e ""
-        echo -e "    [01]. 1 AM"
-        echo -e "    [02]. 3 AM"
-        echo -e "    [03]. 6 AM"
-        echo -e "    [04]. 1 PM"
-        echo -e "    [05]. 5 PM"
-        echo -e "    [06]. Off Auto Backup Bot"
-        echo -e "    [00]. Back to Panel Bot"
+        echo -e "    ${ORANGE} [01].${NC}${blue2} 1 AM"
+        echo -e "    ${ORANGE} [02].${NC}${blue2} 3 AM"
+        echo -e "    ${ORANGE} [03].${NC}${blue2} 6 AM"
+        echo -e "    ${ORANGE} [04].${NC}${blue2} 1 PM"
+        echo -e "    ${ORANGE} [05].${NC}${blue2} 5 PM"
+        echo -e "    ${ORANGE} [06].${NC}${blue2} Off Auto Backup Bot"
+        echo -e ""
+        echo -e "    ${ORANGE} [00].${NC}${RED} Back to Panel Bot"
         echo -e ""
         read -rp"    Select Option Menu [ Press ENTER to Back ]: " botmenu
         if [ -z $botmenu ]; then
@@ -108,9 +113,11 @@ function bckp_bot(){
             start_spinner " Making 1 AM"
             sleep 1
             rm -rf /etc/cron.d/auto_backup
+            truncate -s 0 /etc/list/.time.db
             echo "0 1 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
             chmod +x /etc/cron.d/auto_backup
             service cron restart
+            echo "#time# 1 AM" >>/etc/list/.time.db
             sleep 1
             stop_spinner
             echo -e " ${green}Success${Suffix}"
@@ -120,9 +127,11 @@ function bckp_bot(){
             start_spinner " Making 3 AM"
             sleep 1
             rm -rf /etc/cron.d/auto_backup
+            truncate -s 0 /etc/list/.time.db
             echo "0 3 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
             chmod +x /etc/cron.d/auto_backup
             service cron restart
+            echo "#time# 3 AM" >>/etc/list/.time.db
             sleep 1
             stop_spinner
             echo -e " ${green}Success${Suffix}"
@@ -132,9 +141,11 @@ function bckp_bot(){
             start_spinner " Making 6 AM"
             sleep 1
             rm -rf /etc/cron.d/auto_backup
+            truncate -s 0 /etc/list/.time.db
             echo "0 6 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
             chmod +x /etc/cron.d/auto_backup
             service cron restart
+            echo "#time# 6 AM" >>/etc/list/.time.db
             sleep 1
             stop_spinner
             echo -e " ${green}Success${Suffix}"
@@ -144,9 +155,11 @@ function bckp_bot(){
             start_spinner " Making 1 PM"
             sleep 1
             rm -rf /etc/cron.d/auto_backup
+            truncate -s 0 /etc/list/.time.db
             echo "0 13 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
             chmod +x /etc/cron.d/auto_backup
             service cron restart
+            echo "#time# 1 PM" >>/etc/list/.time.db
             sleep 1
             stop_spinner
             echo -e " ${green}Success${Suffix}"
@@ -156,16 +169,23 @@ function bckp_bot(){
             start_spinner " Making 5 PM"
             sleep 1
             rm -rf /etc/cron.d/auto_backup
+            truncate -s 0 /etc/list/.time.db
             echo "0 17 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
             chmod +x /etc/cron.d/auto_backup
             service cron restart
             sleep 1
+            echo "#time# 5 PM" >>/etc/list/.time.db
             stop_spinner
             echo -e " ${green}Success${Suffix}"
             sleep 2
             ;;
             6 | 06)
-            clear
+            start_spinner " Off Auto Backup..."
+            sleep 1
+            rm -rf /etc/cron.d/auto_backup
+            truncate -s 0 /etc/list/.time.db
+            stop_spinner
+            echo -e " ${green}Success${Suffix}"
             ;;
             0 | 00)
             clear
@@ -184,31 +204,31 @@ function bckp_bot(){
         fi
       fi
     else
-      echo -e "    [*]Please Add Bot Notif & Backup First"
+      echo -e "    ${ORANGE}[*]${NC}${blue2} Please Add Bot Notif & Backup First"
     fi
 }
 
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "         ${PURPLE} MENU BOT PANEL            "
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e "" 
 echo -e " ${KIRI} Status Bot [${status_bot}]"
 echo -e ""
-echo -e " [\e[36m1\e[0m] Add Bot Panel"
-echo -e " [\e[36m2\e[0m] Delete Bot Panel"
-echo -e " [\e[36m3\e[0m] Stop Bot Panel"
-echo -e " [\e[36m4\e[0m] Restart Bot Panel"
-echo -e " [\e[36m5\e[0m] Update Bot Panel"
-echo -e " [\e[36m6\e[0m] Backup VPS from Bot"
+echo -e " ${ORANGE}[01].${NC}${blue2} Add Bot Panel"
+echo -e " ${ORANGE}[02].${NC}${blue2} Delete Bot Panel"
+echo -e " ${ORANGE}[03].${NC}${blue2} Stop Bot Panel"
+echo -e " ${ORANGE}[04].${NC}${blue2} Restart Bot Panel"
+echo -e " ${ORANGE}[05].${NC}${blue2} Update Bot Panel"
+echo -e " ${ORANGE}[06].${NC}${blue2} Backup VPS from Bot"
 echo -e ""
 echo -e " ${yell}┌──────────────────────────────────────────┐${NC}"
 echo -e "      $PURPLE       Set Bot Notif              $NC"
 echo -e " ${yell}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e " [\e[36m7\e[0m] Add Bot Notif & Backup"
-echo -e " [\e[36m8\e[0m] Delete Bot Notif & Backup"
+echo -e " ${ORANGE}[07].${NC}${blue2} Add Bot Notif & Backup"
+echo -e " ${ORANGE}[08].${NC}${blue2} Delete Bot Notif & Backup"
 echo -e ""
-echo -e " [\e[31m0\e[0m] \e[31mBack To Menu\033[0m"
+echo -e " [\e[31m0${NC}${RED} \e[31mBack To Menu\033[0m"
 echo -e "" 
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
