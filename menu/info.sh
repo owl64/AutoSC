@@ -136,7 +136,7 @@ echo -e "         SSH${NC}    $y:$NC $ssh1${NC}" "     VMESS${NC}  $y:$NC $vma$N
 echo -e "              TROJAN${NC} $y:$NC $trb${NC}" "     SHADOWSOCKS${NC} $y:$NC $ssa${NC}"
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌─────────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL}v$versiedition R[Longterm]"
+echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL} v$versiedition R[Longterm]"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username"
 echo -e " ${z}│$NC${z} Script Status$NC ${Blue}=$NC $sts "
 echo -e " ${z}│$NC${z} Expiry script$NC $Blue=$green $exp $certifacate Days$NC "
