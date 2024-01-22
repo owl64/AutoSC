@@ -68,14 +68,13 @@ function bckp_bot(){
   source /usr/local/sbin/spiner
 
   echo -e ""
-  echo -e " ${yell}┌──────────────────────────────────────────┐${NC}"
+  echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
   echo -e "      $PURPLE       Set Backup Time              $NC"
-  echo -e " ${yell}└──────────────────────────────────────────┘${NC}"
+  echo -e " ${z}└──────────────────────────────────────────┘${NC}"
   echo -e ""
 
-    if [ $status_bot == "OFF" ]; then
-      echo -e "    Please Add Bot First and check runing or not"
-    else
+    botbackupcek="/etc/bot/.bot.db"
+    if [ -s "$botbackupcek" ]; then   
 
       filecektime="/etc/list/time.db"
       if [ -e "$filecektime" ]; then
@@ -89,90 +88,103 @@ function bckp_bot(){
           status="${RED}OFF${NC}"
         fi
 
-      else
-        touch "$filecektime"
-      fi
-
-      echo -e "    Status Backup : [$status] - [$time1]"
-      echo -e ""
-      echo -e "    [01]. 1 AM"
-      echo -e "    [02]. 3 AM"
-      echo -e "    [03]. 6 AM"
-      echo -e "    [04]. 1 PM"
-      echo -e "    [05]. 5 PM"
-      echo -e "    [06]. Off Auto Backup Bot"
-      echo -e "    [00]. Back to Panel Bot"
-      echo -e ""
-      read -rp"    Select Option Menu [ Press ENTER to Back ]: " botmenu
-      if [ -z $botmenu ]; then
-        clear
-        add-bot-panel
-      else
-        case $botmenu in
-          1 | 01)
-          start_spinner " Making 1 AM"
-          sleep 1
-          echo "0 1 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
-          chmod +x /etc/cron.d/auto_backup
-          service cron restart
-          sleep 1
-          stop_spinner
-          echo -e " ${green}Success${Suffix}"
-          sleep 2
-          ;;
-          2 | 02)
-          start_spinner " Making 3 AM"
-          sleep 1
-          echo "0 3 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
-          chmod +x /etc/cron.d/auto_backup
-          service cron restart
-          sleep 1
-          stop_spinner
-          echo -e " ${green}Success${Suffix}"
-          sleep 2
-          ;;
-          3 | 03)
-          start_spinner " Making 6 AM"
-          sleep 1
-          echo "0 6 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
-          chmod +x /etc/cron.d/auto_backup
-          service cron restart
-          sleep 1
-          stop_spinner
-          echo -e " ${green}Success${Suffix}"
-          sleep 2
-          ;;
-          4 | 04)
-          start_spinner " Making 1 PM"
-          sleep 1
-          echo "0 13 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
-          chmod +x /etc/cron.d/auto_backup
-          service cron restart
-          sleep 1
-          stop_spinner
-          echo -e " ${green}Success${Suffix}"
-          sleep 2
-          ;;
-          5 | 05)
-          start_spinner " Making 5 PM"
-          sleep 1
-          echo "0 17 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
-          chmod +x /etc/cron.d/auto_backup
-          service cron restart
-          sleep 1
-          stop_spinner
-          echo -e " ${green}Success${Suffix}"
-          sleep 2
-          ;;
-          6 | 06)
-          clear
-          ;;
-          0 | 00)
+        echo -e "    Status Backup : [$status] - [$time1]"
+        echo -e ""
+        echo -e "    [01]. 1 AM"
+        echo -e "    [02]. 3 AM"
+        echo -e "    [03]. 6 AM"
+        echo -e "    [04]. 1 PM"
+        echo -e "    [05]. 5 PM"
+        echo -e "    [06]. Off Auto Backup Bot"
+        echo -e "    [00]. Back to Panel Bot"
+        echo -e ""
+        read -rp"    Select Option Menu [ Press ENTER to Back ]: " botmenu
+        if [ -z $botmenu ]; then
           clear
           add-bot-panel
-          ;;
-        esac
+        else
+          case $botmenu in
+            1 | 01)
+            start_spinner " Making 1 AM"
+            sleep 1
+            rm -rf /etc/cron.d/auto_backup
+            echo "0 1 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+            chmod +x /etc/cron.d/auto_backup
+            service cron restart
+            sleep 1
+            stop_spinner
+            echo -e " ${green}Success${Suffix}"
+            sleep 2
+            ;;
+            2 | 02)
+            start_spinner " Making 3 AM"
+            sleep 1
+            rm -rf /etc/cron.d/auto_backup
+            echo "0 3 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+            chmod +x /etc/cron.d/auto_backup
+            service cron restart
+            sleep 1
+            stop_spinner
+            echo -e " ${green}Success${Suffix}"
+            sleep 2
+            ;;
+            3 | 03)
+            start_spinner " Making 6 AM"
+            sleep 1
+            rm -rf /etc/cron.d/auto_backup
+            echo "0 6 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+            chmod +x /etc/cron.d/auto_backup
+            service cron restart
+            sleep 1
+            stop_spinner
+            echo -e " ${green}Success${Suffix}"
+            sleep 2
+            ;;
+            4 | 04)
+            start_spinner " Making 1 PM"
+            sleep 1
+            rm -rf /etc/cron.d/auto_backup
+            echo "0 13 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+            chmod +x /etc/cron.d/auto_backup
+            service cron restart
+            sleep 1
+            stop_spinner
+            echo -e " ${green}Success${Suffix}"
+            sleep 2
+            ;;
+            5 | 05)
+            start_spinner " Making 5 PM"
+            sleep 1
+            rm -rf /etc/cron.d/auto_backup
+            echo "0 17 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+            chmod +x /etc/cron.d/auto_backup
+            service cron restart
+            sleep 1
+            stop_spinner
+            echo -e " ${green}Success${Suffix}"
+            sleep 2
+            ;;
+            6 | 06)
+            clear
+            ;;
+            0 | 00)
+            clear
+            add-bot-panel
+            ;;
+          esac
+        else
+          start_spinner " Making File data Bot..."
+          touch "$filecektime"
+          sleep 2
+          stop_spinner
+          echo -e " ${green}Success Make file${Suffix}"
+          sleep 1
+          echo -e " ${green}Refresh...${Suffix}"
+          add-bot-panel
+        fi
       fi
+    else
+      echo -e "    [*]Please Add Bot Notif & Backup First"
     fi
 }
 
@@ -193,8 +205,8 @@ echo -e " ${yell}┌────────────────────
 echo -e "      $PURPLE       Set Bot Notif              $NC"
 echo -e " ${yell}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e " [\e[36m7\e[0m] Add Bot Notif"
-echo -e " [\e[36m8\e[0m] Delete Bot Notif"
+echo -e " [\e[36m7\e[0m] Add Bot Notif & Backup"
+echo -e " [\e[36m8\e[0m] Delete Bot Notif & Backup"
 echo -e ""
 echo -e " [\e[31m0\e[0m] \e[31mBack To Menu\033[0m"
 echo -e "" 
