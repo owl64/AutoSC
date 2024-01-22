@@ -88,55 +88,6 @@ tram=$( free -m | awk 'NR==2 {print $2}' )
 uram=$( free -m | awk 'NR==2 {print $3}' )
 fram=$( free -m | awk 'NR==2 {print $4}' )
 clear
-ssh_service=$(/etc/init.d/ssh status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-dropbear_service=$(/etc/init.d/dropbear status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-haproxy_service=$(systemctl status haproxy | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-xray_service=$(systemctl status xray | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-nginx_service=$(systemctl status nginx | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-#Status | Geo Project
-clear
-# STATUS SERVICE  SSH 
-if [[ $ssh_service == "running" ]]; then 
-   status_ssh="${green}ON✓${NC}"
-else
-   status_ssh="${RED}🔴${NC} "
-fi
-
-# // SSH Websocket Proxy
-ssh_ws=$( systemctl status ws | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
-if [[ $ssh_ws == "running" ]]; then
-    status_ws_epro="${green}ON✓${NC}"
-else
-    status_ws_epro="${RED}🔴${NC} "
-fi
-
-# STATUS SERVICE HAPROXY
-if [[ $haproxy_service == "running" ]]; then 
-   status_haproxy="${green}ON✓${NC}"
-else
-   status_haproxy="${RED}🔴${NC} "
-fi
-
-# STATUS SERVICE XRAY
-if [[ $xray_service == "running" ]]; then 
-   status_xray="${green}ON✓${NC}"
-else
-   status_xray="${RED}🔴${NC} "
-fi
-
-# STATUS SERVICE NGINX
-if [[ $nginx_service == "running" ]]; then 
-   status_nginx="${green}ON✓${NC}"
-else
-   status_nginx="${RED}🔴${NC} "
-fi
-
-# STATUS SERVICE Dropbear
-if [[ $dropbear_service == "running" ]]; then 
-   status_dropbear="${green}ON✓${NC}"
-else
-   status_dropbear="${RED}🔴${NC} "
-fi
 #####INFOAKUN
 vlx=$(grep -c -E "^#& " "/etc/xray/config.json")
 let vla=$vlx/2
@@ -180,16 +131,12 @@ echo -e " ${z}│$NC$r □ $NC${z} City ${NC}          $Blue=$NC $CITY${NC}"
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────────────┐${NC}"
 echo -e "                    ${purple}YOUR ACCOUNT ON VPS${NC} "
-echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
+echo -e " ${z} ──────────────────────────────────────────────────────────${NC}"
 echo -e "         SSH${NC}    $y:$NC $ssh1${NC}" "     VMESS${NC}  $y:$NC $vma$NC" "     VLESS${NC}  $y:$NC $vla$NC"
 echo -e "              TROJAN${NC} $y:$NC $trb${NC}" "     SHADOWSOCKS${NC} $y:$NC $ssa${NC}"
 echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
-echo -e " ${z}┌──────────────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│ ${NC}${z} SSH$NC : $status_ssh" "        ${z} NGINX$NC : $status_nginx" "        ${z} XRAY$NC : $status_xray      $NC${z}│$NC" 
-echo -e " ${z}│ ${NC}${z} WS-ePRO$NC : $status_ws_epro" "    ${z} DROPBEAR$NC : $status_dropbear" "     ${z} HAPROXY$NC : $status_haproxy   $NC${z}│$NC" 
-echo -e " ${z}└──────────────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌─────────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC${z} Version$NC       ${Blue}=$NC $YELL V$versiedition R[Longterm]"
+echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL}v$versiedition R[Longterm]"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username"
 echo -e " ${z}│$NC${z} Script Status$NC ${Blue}=$NC $sts "
 echo -e " ${z}│$NC${z} Expiry script$NC $Blue=$green $exp $certifacate Days$NC "
