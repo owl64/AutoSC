@@ -19,6 +19,7 @@ ORANGE='\033[0;33m'
 GREENBG="\033[42;37m"
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+Suffix="\033[0m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
 #satusbot
@@ -64,6 +65,7 @@ clear
 
 function bckp_bot(){
   clear
+  source /usr/local/sbin/spiner
 
   echo -e ""
   echo -e " ${yell}┌──────────────────────────────────────────┐${NC}"
@@ -108,19 +110,59 @@ function bckp_bot(){
       else
         case $botmenu in
           1 | 01)
-          clear
+          start_spinner " Making 1 AM"
+          sleep 1
+          echo "0 1 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+          chmod +x /etc/cron.d/auto_backup
+          service cron restart
+          sleep 1
+          stop_spinner
+          echo -e " ${green}Success${Suffix}"
+          sleep 2
           ;;
           2 | 02)
-          clear
+          start_spinner " Making 3 AM"
+          sleep 1
+          echo "0 3 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+          chmod +x /etc/cron.d/auto_backup
+          service cron restart
+          sleep 1
+          stop_spinner
+          echo -e " ${green}Success${Suffix}"
+          sleep 2
           ;;
           3 | 03)
-          clear
+          start_spinner " Making 6 AM"
+          sleep 1
+          echo "0 6 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+          chmod +x /etc/cron.d/auto_backup
+          service cron restart
+          sleep 1
+          stop_spinner
+          echo -e " ${green}Success${Suffix}"
+          sleep 2
           ;;
           4 | 04)
-          clear
+          start_spinner " Making 1 PM"
+          sleep 1
+          echo "0 13 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+          chmod +x /etc/cron.d/auto_backup
+          service cron restart
+          sleep 1
+          stop_spinner
+          echo -e " ${green}Success${Suffix}"
+          sleep 2
           ;;
           5 | 05)
-          clear
+          start_spinner " Making 5 PM"
+          sleep 1
+          echo "0 17 * * * root /usr/local/sbin/backup-bot" > /etc/cron.d/getdb
+          chmod +x /etc/cron.d/auto_backup
+          service cron restart
+          sleep 1
+          stop_spinner
+          echo -e " ${green}Success${Suffix}"
+          sleep 2
           ;;
           6 | 06)
           clear
