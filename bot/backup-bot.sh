@@ -9,6 +9,7 @@ cp /etc/group backup/
 cp /etc/shadow backup/
 cp /etc/gshadow backup/
 cp /etc/crontab backup/
+cp /etc/cron.d backup/cron.d
 cp -r /var/lib/kyt/ backup/kyt 
 cp -r /etc/xray backup/xray
 cp -r /etc/vmess backup/vmess
