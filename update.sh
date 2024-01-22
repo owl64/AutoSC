@@ -136,6 +136,7 @@ res1() {
     wget -O xp "${instalasi}menu/xp.sh"
     wget -O brandname "${instalasi}menu/brandname.sh"
     wget -O changelimit "${instalasi}system/changelimit.sh"
+    wget -O backup-bot "${instalasi}bot/backup-bot.sh"
     wget -O info "${instalasi}menu/info.sh"
     wget -O notif-info-bot "${instalasi}bot/notif-info-bot.sh"
     wget -O fixhaproxy "${instalasi}system/fixhaproxy.sh"
@@ -217,15 +218,16 @@ echo -e ""
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update ! CTRL + C to Cancel"
             echo -e ""
+            clear
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "  \033[1;91m         UPDATE SCRIPT SERVICE\033[1;37m"
+            echo -e ""
             fun_bar 'update'
             rm update.sh >/dev/null 2>&1
+            echo -e ""
             echo -e "  ${Green}           UPDATE SELESAI !!"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             fi
-echo -e ""
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press [ Enter ] to back"
 info
