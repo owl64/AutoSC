@@ -53,9 +53,10 @@ cp -r vmess /etc/
 cp -r vless /etc/
 cp -r trojan /etc/
 cp -r shadowsocks /etc/
-cp -r ip //etc/kyt/limit/
+cp -r ip /etc/kyt/limit/
 cp -r html /var/www/
 cp crontab /etc/
+cp 
 
 notif_restore
 rm -rf /root/backup

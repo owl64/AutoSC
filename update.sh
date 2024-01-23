@@ -187,11 +187,22 @@ function clearcacheAndFix(){
     systemctl restart cron
 }
 
+function iplimit(){
+    wget -O limit-ip "${instalasi}config/limit-ip"
+    cp /root/limit-ip /usr/bin/
+
+    systemctl daemon-reload
+    systemctl restart vmip
+    systemctl restart vlip
+    systemctl restart trip
+}
+
 function update(){
     res1
     profile
     gantiSC
     clearcacheAndFix
+    iplimit
 }
 netfilter-persistent
 clear
