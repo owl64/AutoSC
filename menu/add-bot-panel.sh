@@ -214,6 +214,8 @@ function bckp_bot(){
       fi
     else
       echo -e "    ${ORANGE}[*]${NC}${blue2} Please Add Bot Notif & Backup First"
+      sleep 3
+      add-bot-panel
     fi
 }
 
