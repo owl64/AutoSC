@@ -39,3 +39,5 @@ curl -F chat_id=$CHATID -F document=@"$1"/root/$IP-$date.zip > /dev/null 2>&1 -F
 
 }
 send_backup
+rm -rf /root/backup
+rm -r /root/$IP-$date.zip
