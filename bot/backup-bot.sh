@@ -1,5 +1,4 @@
 #!/bin/bash
-pip install requests
 clear
 echo "bot backup"
 rm -rf /root/backup
@@ -36,7 +35,7 @@ TEXT="<code>Script Auto Install by SDC Tunneling</code>
  Upload your backup file to a supported file hosting (direct link)
 "
 
-curl -F chat_id=$CHATID -F document=@"$1"/root/$IP-$date.zip > /dev/null 2>&1 -F caption="$TEXT" $URL
+curl -F chat_id=$CHATID -F document=@"$1"/root/$IP-$date.zip > /dev/null 2>&1 -F caption="Backup: ${date}" $URL
 
 }
 send_backup
