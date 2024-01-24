@@ -188,13 +188,33 @@ function clearcacheAndFix(){
 }
 
 function iplimit(){
+    instalasi="https://raw.githubusercontent.com/owl64/AutoSC/main/"
+    cd /root
     wget -O limit-ip "${instalasi}config/limit-ip"
     cp /root/limit-ip /usr/bin/
+
+cat >/etc/systemd/system/ssh.service << EOF
+    [Unit]
+    Description=My
+    ProjectAfter=network.target
+
+    [Service]
+    WorkingDirectory=/root
+    ExecStart=/usr/bin/limit-ip ssh
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+EOF
 
     systemctl daemon-reload
     systemctl restart vmip
     systemctl restart vlip
     systemctl restart trip
+
+    systemctl daemon-reload
+    systemctl restart ssh
+    systemctl enable ssh
 }
 
 function update(){
