@@ -324,27 +324,32 @@ clear
 clear
 #GANTI PASSWORD DEFAULT
 restart_system(){
-    USRSC=$(curl -sS ${instalasi}main/ip | grep $MYIP | awk '{print $2}')
-    EXPSC=$(curl -sS ${instalasi}main/ip | grep $MYIP | awk '{print $3}')
+    username="SDC Tunneling"
+    ipvps=""
+    USRSC=$(curl -sS ${instalasi}user/user | grep $MYIP | awk '{print $2}')
+    EXPSC=$(curl -sS ${instalasi}user/user | grep $MYIP | awk '{print $3}')
     TIMEZONE=$(printf '%(%H:%M:%S)T')
+    CITY=$(cat /etc/xray/city)
+    RAM=$(free -m | awk 'NR==2 {print $2}')
+    ISP=$(cat /etc/xray/isp)
     TEXT="
-<code>${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m</code>
-<b>âš¡AUTOSCRIPT PREMIUMâš¡</b>
-<code>${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m</code>
+<code>────────────────────</code>
+<b> AUTOSCRIPT PREMIUM </b>
+<code>────────────────────</code>
 <code>Owner    :</code><code>$username</code>
+<code>User     :</code><code>$USRSC</code>
 <code>Domain   :</code><code>$domain</code>
-<code>IPVPS    :</code><code>$ipvps</code>
-<code>ISP      :</code><code>$isp</code>
-<code>RAM      :</code><code>$uram</code>
+<code>IPVPS    :</code><code>$IP</code>
+<code>ISP      :</code><code>$ISP</code>
+<code>RAM      :</code><code>$RAM</code>
 <code>CITY     :</code><code>$CITY</code>
 <code>Time     :</code><code>$TIMEZONE</code>
-<code>Exp Sc.  :</code><code>$exp</code>
-<code>${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m</code>
+<code>Exp Sc.  :</code><code>$EXPSC</code>
+<code>────────────────────</code>
 <b> SDC STORE SCRIPT  </b>
-<code>${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m</code>
-<i>Automatic Notifications From Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"á´Ê€á´…á´‡Ê€","url":"https://wa.me/6282217067357"}]]}' 
-#"'&reply_markup={"inline_keyboard":[[{"text":"á´Ê€á´…á´‡Ê€2","url":"https://wa.me/6282217067357"}]]}'
+<code>────────────────────</code>
+<i>Automatic Notifications From Github Instalation</i>
+"'&reply_markup={"inline_keyboard":[[{"text":"Register IP","url":"https://wa.me/6282217067357"}]]}' 
     curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 
 }
