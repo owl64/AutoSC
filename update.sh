@@ -222,7 +222,6 @@ function update(){
     profile
     gantiSC
     clearcacheAndFix
-    iplimit
 }
 netfilter-persistent
 clear
