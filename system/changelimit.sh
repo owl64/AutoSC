@@ -26,6 +26,13 @@ function changelimitquotavmess(){
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e ""
         directory="/etc/vmess"
+        cekada=$(grep -c -E "^### " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-vmess
+        fi
 
         for akun in "${data[@]}"; do
             filename="$akun"
@@ -82,6 +89,14 @@ function changeiplimitvmess(){
     echo -e ""
         directory="/etc/kyt/limit/vmess/ip"
 
+        cekada=$(grep -c -E "^### " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-vmess
+        fi
+
         for akun in "${data[@]}"; do
             filename="$akun"
 
@@ -134,6 +149,14 @@ function resetquotavmess(){
     echo -e ""
         directory="/etc/limit/vmess"
 
+        cekada=$(grep -c -E "^### " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-vmess
+        fi
+
             for akun in "${data[@]}"; do
                 filename="$akun"
 
@@ -184,6 +207,14 @@ function changelimitquotavless(){
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e ""
         directory="/etc/vless"
+
+        cekada=$(grep -c -E "^#& " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-vless
+        fi
 
         for akun in "${data[@]}"; do
             filename="$akun"
@@ -239,6 +270,13 @@ function changeiplimitvless(){
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e ""
         directory="/etc/kyt/limit/vless/ip"
+        cekada=$(grep -c -E "^#& " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-vless
+        fi
 
         for akun in "${data[@]}"; do
             filename="$akun"
@@ -291,6 +329,13 @@ function resetquotavless(){
     echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
     echo -e ""
         directory="/etc/limit/vless"
+        cekada=$(grep -c -E "^#& " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-vless
+        fi
 
             for akun in "${data[@]}"; do
                 filename="$akun"
