@@ -74,57 +74,62 @@ echo -e " ${z}┌─────────────────────
 echo -e " $NC$purple                  SSH & OpenVPN           $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e "  ${ORANGE}[1].${NC}\033[0;36m Create SSH & OpenVPN Account${NC}"
-echo -e "  ${ORANGE}[2].${NC}\033[0;36m Trial SSH & OpenVPN ${NC}"
-echo -e "  ${ORANGE}[3].${NC}\033[0;36m Renew SSH & OpenVPN ${NC}"
-echo -e "  ${ORANGE}[4].${NC}\033[0;36m Check User Login SSH & OpenVPN${NC}"
-echo -e "  ${ORANGE}[5].${NC}\033[0;36m Daftar Member SSH & OpenVPN ${NC}"
-echo -e "  ${ORANGE}[6].${NC}\033[0;36m Hapus SSH & OpenVpn Account ${NC}"
-echo -e "  ${ORANGE}[7].${NC}\033[0;36m Hapus User Expired SSH & OpenVPN ${NC}"
-echo -e "  ${ORANGE}[8].${NC}\033[0;36m Set up Autokill SSH ${NC}"
-echo -e "  ${ORANGE}[9].${NC}\033[0;36m Cek User Multi Login SSH ${NC}"
-echo -e "  ${ORANGE}[10].${NC}\033[0;36mConfig SSH ACCOUNT ${NC}"
-echo -e "  ${ORANGE}[11].${NC}\033[0;36mExit ${NC}"
+echo -e "  ${ORANGE}  [01].${NC}\033[0;36m Create SSH & OpenVPN Account${NC}"
+echo -e "  ${ORANGE}  [02].${NC}\033[0;36m Trial SSH & OpenVPN ${NC}"
+echo -e "  ${ORANGE}  [03].${NC}\033[0;36m Renew SSH & OpenVPN ${NC}"
+echo -e "  ${ORANGE}  [04].${NC}\033[0;36m Check User Login SSH & OpenVPN${NC}"
+echo -e "  ${ORANGE}  [05].${NC}\033[0;36m Daftar Member SSH & OpenVPN ${NC}"
+echo -e "  ${ORANGE}  [06].${NC}\033[0;36m Hapus SSH & OpenVpn Account ${NC}"
+echo -e "  ${ORANGE}  [07].${NC}\033[0;36m Hapus User Expired SSH & OpenVPN ${NC}"
+echo -e "  ${ORANGE}  [08].${NC}\033[0;36m Set up Autokill SSH ${NC}"
+echo -e "  ${ORANGE}  [09].${NC}\033[0;36m Cek User Multi Login SSH ${NC}"
+echo -e "  ${ORANGE}  [10].${NC}\033[0;36m Config SSH ACCOUNT ${NC}"
+echo -e ""
+echo -e "  ${RED}  [00].${NC}${RED} Back to Menu ${NC}"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 read -p "Select From Options [ 1 - 10 ] : " menu
 echo -e ""
 case $menu in
-1)
+1 | 01)
     addssh
     ;;
-2)
+2 | 02)
     trial
     ;;
-3)
+3 | 03)
     renewssh
     ;;
-4)
-clear
+4 | 04)
+    clear
     cekssh
     ;;
-5)
+5 | 05)
     member
     ;;
-6)
+6 | 06)
     delssh
     ;;
-7)
+7 | 07)
     delexp
     ;;
-8)
+8 | 08)
     autokill
     ;;
-9)
+9 | 09)
     clear
     echo -e "Under Maintenance ! Please Try again Later"
     sleep 2
     m-sshws
     ;;
-10)
+10 | 10)
     clear
     echo -e "Under Maintenance ! Please Try again Later"
     sleep 2
     m-sshws
+    ;;
+0 | 00)
+    clear
+    menu
     ;;
 *)
     menu
