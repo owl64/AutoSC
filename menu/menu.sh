@@ -152,9 +152,9 @@ function installUDP(){
 function setingsmenu(){
     clear
 
-    echo -e " ${z}┌─────────────────────────────────────────────┐${NC}"
-    echo -e " ${z}│$NC$purple             SETINGS MENU               $NC${z}│$NC"
-    echo -e " ${z}└─────────────────────────────────────────────┘${NC}"
+    echo -e " ${z}┌────────────────────────────────────┐${NC}"
+    echo -e " $NC$purple             SETINGS MENU               $NC"
+    echo -e " ${z}└────────────────────────────────────┘${NC}"
     echo -e ""
     echo -e " ${y} [01].${NC} Auto Reboot${NC}"
     echo -e " ${y} [02].${NC} Backup or Restore${NC}"
@@ -169,11 +169,12 @@ function setingsmenu(){
     echo -e " ${y} [11].${NC} Install UDP${NC}"
     echo -e " ${y} [12].${NC} Speedtest VPS${NC}"
     echo -e " ${y} [13].${NC} Change Banner${NC}"
+    echo -e " ${y} [14].${NC} Restart Service${NC}"
     echo -e ""
     echo -e " ${RED} [00]${NC}${RED} Back To Menu${NC}"
     echo -e ""
     echo -e "${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    read -p " Select Menu From Option: " opt
+    read -p " Select Menu From Option [ 1-14 ]: " opt
     echo -e ""
     case $opt in
     1 | 01)
@@ -236,6 +237,10 @@ function setingsmenu(){
     13 | 13)
     clear
     nano /etc/kyt.txt
+    ;;
+    14 | 14)
+    clear
+    restart
     ;;
     0)
     menu
