@@ -29,6 +29,7 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+z="\033[96m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
 export CHATID="5008116231"
@@ -64,37 +65,73 @@ checking_sc() {
 checking_sc
 echo -e "\e[32mloading...\e[0m"
 clear
+source /usr/local/sbin/changelimit
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e "                 MENU VLESS              $NC"
+echo -e "  ${PURPLE}               MENU VLESS              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e "  ${ORANGE}1.${NC} \033[0;36m Create Account XRAY Vless WS/GRPC${NC}"
-echo -e "  ${ORANGE}2.${NC} \033[0;36m Create Trial XRAY Vless WS/GRPC${NC}"
-echo -e "  ${ORANGE}3.${NC} \033[0;36m Delete Account XRAY Vless WS/GRPC${NC}"
-echo -e "  ${ORANGE}4.${NC} \033[0;36m Renew Vless Account${NC}"
-echo -e "  ${ORANGE}5.${NC} \033[0;36m Check Vless login Account${NC}"
-echo -e "  ${ORANGE}6.${NC} \033[0;36m Check Config Vless Account${NC}"
+echo -e "  ${ORANGE}  [01].${NC}\033[0;36m Create Account XRAY Vless WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [02].${NC}\033[0;36m Create Trial XRAY Vless WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [03].${NC}\033[0;36m Delete Account XRAY Vless WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [04].${NC}\033[0;36m Renew Vless Account${NC}"
+echo -e "  ${ORANGE}  [05].${NC}\033[0;36m Check Vless login Account${NC}"
+echo -e "  ${ORANGE}  [06].${NC}\033[0;36m Check Config Vless Account${NC}"
+echo -e "  ${ORANGE}  [07].${NC}\033[0;36m Restore Vless Account${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e "      $PURPLE           LIMIT VLESS              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-read -p "Select From Options [ 1 - 6 ] : " menu
+echo -e "  ${ORANGE}  [08].${NC}\033[0;36m Change Limit IP${NC}"
+echo -e "  ${ORANGE}  [09].${NC}\033[0;36m Change Limit Quota${NC}"
+echo -e "  ${ORANGE}  [10].${NC}\033[0;36m Reset Usage Quota Acount${NC}"
+echo -e ""
+echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+read -p "Select From Options [ 1 - 9 ] : " menu
 case $menu in
-1)  clear ;
+1 | 01)  
+    clear
     addvless
     ;;
-2) clear ;
+2 | 02) 
+    clear
     trialvless
     ;;
-3) clear ;
+3 | 03) 
+    clear
     delvless
     ;;
-4) clear ;
+4 | 04) 
+    clear
     renewvless
     ;;
-5) clear ;
+5 | 05) 
+    clear
     cekvless
     ;;
-6) clear ;
+6 | 06) 
+    clear
     user-vless
+    ;;
+7 | 07) 
+    clear
+    echo -e " This Fitur Under Maintenance! Please Try again Later"
+    sleep 2
+    m-vless
+    ;;
+8 | 08) 
+    clear
+    changeiplimitvless
+    ;;
+9 | 09) 
+    clear
+    changelimitquotavless
+    ;;
+10) 
+    clear
+    resetquotavless
     ;;
 *)
     menu
