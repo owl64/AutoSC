@@ -14,6 +14,7 @@ grenbo="\e[92;1m"
 purple="\033[1;95m"
 YELL='\033[0;33m'
 Suffix="\033[0m"
+biru="\033[0;36m"
 
 ISP=$(cat /etc/xray/isp)
 CITY=$(cat /etc/xray/city)
@@ -155,19 +156,21 @@ function setingsmenu(){
     echo -e " ${z}│$NC$purple             SETINGS MENU               $NC${z}│$NC"
     echo -e " ${z}└─────────────────────────────────────────────┘${NC}"
     echo -e ""
-    echo -e " ${z}$NC [${grenbo}01${NC}]${z} Auto Reboot$NC"
-    echo -e " ${z}$NC [${grenbo}02${NC}]${z} Backup or Restore$NC"
-    echo -e " ${z}$NC [${grenbo}03${NC}]${z} Change Domain$NC"
-    echo -e " ${z}$NC [${grenbo}04${NC}]${z} Cert SSL$NC"
-    echo -e " ${z}$NC [${grenbo}05${NC}]${z} Cek Port$NC"
-    echo -e " ${z}$NC [${grenbo}06${NC}]${z} Cek Bandwith$NC"
-    echo -e " ${z}$NC [${grenbo}07${NC}]${z} Cek Service$NC"
-    echo -e " ${z}$NC [${grenbo}08${NC}]${z} Clear Cache$NC"
-    echo -e " ${z}$NC [${grenbo}09${NC}]${z} Clear Log$NC"
-    echo -e " ${z}$NC [${grenbo}10${NC}]${z} Dell ALL Expired Account$NC"
-    echo -e " ${z}$NC [${grenbo}11${NC}]${z} Install UDP$NC"
-    echo -e " ${z}$NC [${grenbo}12${NC}]${z} Speedtest VPS$NC"
-    echo -e " ${z}$NC [${grenbo}0${NC}]${z}  Back To Menu$NC"
+    echo -e " ${y} [01].${NC} Auto Reboot${NC}"
+    echo -e " ${y} [02].${NC} Backup or Restore${NC}"
+    echo -e " ${y} [03].${NC} Change Domain${NC}"
+    echo -e " ${y} [04].${NC} Cert SSL${NC}"
+    echo -e " ${y} [05].${NC} Cek Port${NC}"
+    echo -e " ${y} [06].${NC} Cek Bandwith${NC}"
+    echo -e " ${y} [07].${NC} Cek Service${NC}"
+    echo -e " ${y} [08].${NC} Clear Cache${NC}"
+    echo -e " ${y} [09].${NC} Clear Log${NC}"
+    echo -e " ${y} [10].${NC} Dell ALL Expired Account${NC}"
+    echo -e " ${y} [11].${NC} Install UDP${NC}"
+    echo -e " ${y} [12].${NC} Speedtest VPS${NC}"
+    echo -e " ${y} [13].${NC} Change Banner${NC}"
+    echo -e ""
+    echo -e " ${RED} [00]${NC}${RED} Back To Menu${NC}"
     echo -e ""
     echo -e "${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     read -p " Select Menu From Option: " opt
@@ -211,7 +214,7 @@ function setingsmenu(){
     clear
     clearlog
     ;;
-    10)
+    10 | 10)
     clear
     xp
     echo ""
@@ -219,16 +222,20 @@ function setingsmenu(){
     sleep 1
     setingsmenu
     ;;
-    11)
+    11 | 11)
     clear
     installUDP
     ;;
-    12)
+    12 | 12)
     clear
     speedtest
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
     menu
+    ;;
+    13 | 13)
+    clear
+    nano /etc/kyt.txt
     ;;
     0)
     menu
