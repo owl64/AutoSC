@@ -64,6 +64,11 @@ checking_sc() {
 }
 checking_sc
 source /usr/local/sbin/changelimit
+
+vmc=$(grep -c -E "^### " "/etc/xray/config.json")
+let vma=$vmc/2
+ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
+
 echo -e "\e[32mloading...\e[0m"
 clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
@@ -87,6 +92,10 @@ echo -e "  ${ORANGE} [09].${NC}\033[0;36m Change Limit Quota${NC}"
 echo -e "  ${ORANGE} [10].${NC}\033[0;36m Reset Usage Quota Acount${NC}"
 echo -e ""
 echo -e "  ${ORANGE} [00].${NC}${RED} Back To Menu${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e "     ACCOUNT : ${ORANGE}[ ${vma} ]${NC}   Usage : ${ORANGE}[ ${ttoday} ]${NC} "
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p "Select From Options [ 1 - 10 ] : " menu
 case $menu in
