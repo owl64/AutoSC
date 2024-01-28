@@ -115,10 +115,16 @@ clear
     autokill
     ;;
 9)
-    ceklim
+    clear
+    echo -e "Under Maintenance ! Please Try again Later"
+    sleep 2
+    m-sshws
     ;;
 10)
-    user-ssh
+    clear
+    echo -e "Under Maintenance ! Please Try again Later"
+    sleep 2
+    m-sshws
     ;;
 *)
     menu

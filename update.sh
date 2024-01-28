@@ -79,7 +79,7 @@ res1() {
     wget -O addtr "${instalasi}menu/addtr.sh"
     wget -O addvless "${instalasi}menu/addvless.sh"
     wget -O addws "${instalasi}menu/addws.sh"
-    wget -O autokill "${instalasi}menu/adutokill.sh"
+    wget -O autokill "${instalasi}menu/autokill.sh"
     wget -O autoreboot "${instalasi}menu/autoreboot.sh"
     wget -O backup "${instalasi}menu/backup.sh"
     wget -O bot "${instalasi}menu/bot.sh"
