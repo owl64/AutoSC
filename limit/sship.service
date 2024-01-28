@@ -1,10 +1,10 @@
 [Unit]
-Description=My
+Description=MylimitIP
 ProjectAfter=network.target
 
 [Service]
 WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip ssh
+ExecStart=/usr/bin/limit-ip sship
 Restart=always
 
 [Install]

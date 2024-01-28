@@ -101,7 +101,7 @@ function member1(){
     done
 }
 
-function ssh(){
+function sship(){
 mulog=$(member)
 date=$(date)
 data=( `ls /etc/kyt/limit/ssh/ip`);
@@ -131,7 +131,7 @@ elif [[ ${1} == "vlip" ]]; then
 vlip
 elif [[ ${1} == "trip" ]]; then
 trip
-elif [[ ${1} == "ssh"]]; then
+elif [[ ${1} == "sship"]]; then
 ssh
 fi
 

@@ -193,19 +193,8 @@ function iplimit(){
     wget -O limit-ip "${instalasi}config/limit-ip"
     cp /root/limit-ip /usr/bin/
 
-cat >/etc/systemd/system/ssh.service << EOF
-    [Unit]
-    Description=My
-    ProjectAfter=network.target
-
-    [Service]
-    WorkingDirectory=/root
-    ExecStart=/usr/bin/limit-ip ssh
-    Restart=always
-
-    [Install]
-    WantedBy=multi-user.target
-EOF
+    wget -O /etc/systemd/system/limitipssh.service "${instalasi}limit/limitipssh.service"
+    chmod +x /etc/systemd/system/limitipssh.service
 
     systemctl daemon-reload
     systemctl restart vmip
@@ -213,8 +202,8 @@ EOF
     systemctl restart trip
 
     systemctl daemon-reload
-    systemctl restart ssh
-    systemctl enable ssh
+    systemctl enable sship
+    systemctl restart sship
 }
 
 function update(){
