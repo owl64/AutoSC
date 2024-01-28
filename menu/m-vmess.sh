@@ -88,7 +88,6 @@ echo -e "  ${ORANGE} [10].${NC}\033[0;36m Reset Usage Quota Acount${NC}"
 echo -e ""
 echo -e "  ${ORANGE} [00].${NC}${RED} Back To Menu${NC}"
 echo -e ""
-echo -e ""
 read -p "Select From Options [ 1 - 10 ] : " menu
 case $menu in
     1)  

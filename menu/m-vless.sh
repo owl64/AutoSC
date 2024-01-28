@@ -69,7 +69,7 @@ source /usr/local/sbin/changelimit
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "  ${PURPLE}               MENU VLESS              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e ""
 echo -e "  ${ORANGE}  [01].${NC}\033[0;36m Create Account XRAY Vless WS/GRPC${NC}"
 echo -e "  ${ORANGE}  [02].${NC}\033[0;36m Create Trial XRAY Vless WS/GRPC${NC}"
 echo -e "  ${ORANGE}  [03].${NC}\033[0;36m Delete Account XRAY Vless WS/GRPC${NC}"
@@ -87,9 +87,8 @@ echo -e "  ${ORANGE}  [09].${NC}\033[0;36m Change Limit Quota${NC}"
 echo -e "  ${ORANGE}  [10].${NC}\033[0;36m Reset Usage Quota Acount${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
-echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-read -p "Select From Options [ 1 - 9 ] : " menu
+read -p "Select From Options [ 1 - 10 ] : " menu
 case $menu in
 1 | 01)  
     clear
@@ -132,6 +131,10 @@ case $menu in
 10) 
     clear
     resetquotavless
+    ;;
+0 | 00) 
+    clear
+    menu
     ;;
 *)
     menu
