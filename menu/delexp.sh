@@ -21,7 +21,7 @@ clear
                tuserval=`head -n $i /tmp/expirelist.txt | tail -n 1`
                username=`echo $tuserval | cut -f1 -d:`
                userexp=`echo $tuserval | cut -f2 -d:`
-               userexpireinseconds=$ (($userexp * 86400 ))
+               userexpireinseconds=$(($userexp * 86400 ))
                tglexp=`date -d @$userexpireinseconds`             
                tgl=`echo $tglexp |awk -F" " '{print $3}'`
                while [ ${#tgl} -lt 2 ]
@@ -47,6 +47,6 @@ clear
                echo " "
                echo "--------------------------------------"
                echo "Script are successfully run"
-echo -e "back to menu on 2 second"
+echo -e "back to ssh menu on 2 second"
 sleep 2
-menu               
+m-sshws               

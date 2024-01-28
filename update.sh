@@ -192,9 +192,11 @@ function iplimit(){
     cd /root
     wget -O limit-ip "${instalasi}config/limit-ip"
     cp /root/limit-ip /usr/bin/
+    rm -rf /root/limit-ip
 
-    wget -O /etc/systemd/system/limitipssh.service "${instalasi}limit/limitipssh.service"
-    chmod +x /etc/systemd/system/limitipssh.service
+    wget -O /etc/systemd/system/sship.service "${instalasi}limit/sship.service"
+    chmod +x /etc/systemd/system/sship.service
+    rm -rf /root/sship.service
 
     systemctl daemon-reload
     systemctl restart vmip
@@ -230,11 +232,9 @@ echo -e ""
             echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}V ${versiupdate}R[Longterm]${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Add New Fitur Brand Name UUID ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Add New Fitur Change Quota & IP Limit ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Error New Fitur ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Bot Cron ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Add New Fitur Backup Bot File${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Add Change Banner ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Add Restart Service ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Notif IpLimit ${NC}"
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update ! CTRL + C to Cancel"
             echo -e ""

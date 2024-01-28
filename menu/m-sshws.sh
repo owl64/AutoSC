@@ -99,6 +99,7 @@ case $menu in
     renewssh
     ;;
 4)
+clear
     cekssh
     ;;
 5)

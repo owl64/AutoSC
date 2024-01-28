@@ -38,8 +38,10 @@ read -p "Ketik Usernamenya : " Pengguna
 
 if getent passwd $Pengguna > /dev/null 2>&1; then
         userdel $Pengguna > /dev/null 2>&1
-        echo -e "User $Pengguna Berhasil Di Hapus Sayang."
+        echo -e "User $Pengguna Success deleted"
 else
-        echo -e "Failure: User $Pengguna Tidak Di Temukan."
+        echo -e "Failure: User $Pengguna Not Found"
 fi
+read -n 1 -s -r -p "Press any key to back on ssh menu"
+m-sshws
 
