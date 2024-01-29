@@ -67,9 +67,9 @@ domain=$(cat /etc/xray/domain)
 source /usr/local/sbin/fiturssh
 
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e " $purple                SSH & OpenVPN           $NC"
+echo -e " $PURPLE                SSH & OpenVPN           $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e ""
 echo -e "  ${ORANGE}  [01].${NC}\033[0;36m Create SSH & OpenVPN Account${NC}"
 echo -e "  ${ORANGE}  [02].${NC}\033[0;36m Trial SSH & OpenVPN ${NC}"
 echo -e "  ${ORANGE}  [03].${NC}\033[0;36m Renew SSH & OpenVPN ${NC}"
@@ -82,7 +82,7 @@ echo -e "  ${ORANGE}  [09].${NC}\033[0;36m Cek User Multi Login SSH ${NC}"
 echo -e "  ${ORANGE}  [10].${NC}\033[0;36m Config SSH ACCOUNT ${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu ${NC}"
-echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
 read -p "Select From Options [ 1 - 10 ] : " menu
 echo -e ""
 case $menu in
