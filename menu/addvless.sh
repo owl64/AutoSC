@@ -33,10 +33,6 @@ LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
-export CHATID="5008116231"
-export KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
