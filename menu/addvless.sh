@@ -96,8 +96,11 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 done
 
 #Test For New Brand UUID
-if [ ! -e /etc/brand/.brand.db ]; then
-  touch /etc/brand/.brand.db
+if [ ! -e /etc/brand ]; then
+  mkdir -p /etc/brand
+  if [ ! -e /etc/brand/.brand.db ]; then
+    touch /etc/brand/.brand.db
+  fi
 fi
 
 cekbrand=$(cat /etc/brand/.brand.db | grep '#vless#' | cut -d ' ' -f 2 | sort | uniq)

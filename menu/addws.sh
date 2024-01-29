@@ -116,8 +116,11 @@ ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 
 #Test For New Brand UUID
-if [ ! -e /etc/brand/.brand.db ]; then
-  touch /etc/brand/.brand.db
+if [ ! -e /etc/brand ]; then
+  mkdir -p /etc/brand
+  if [ ! -e /etc/brand/.brand.db ]; then
+    touch /etc/brand/.brand.db
+  fi
 fi
 
 cekbrand=$(cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
