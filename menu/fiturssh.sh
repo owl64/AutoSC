@@ -5,6 +5,7 @@ RED="\033[31m"
 Green="\e[92;1m"
 NC='\033[0m'
 Bold='\e[1m'
+PURPLE='\033[0;35m'
 source /usr/local/sbin/spiner
 
 function configssh(){
@@ -23,9 +24,9 @@ function configssh(){
         status="$(passwd -S $AKUN | awk '{print $2}' )"
         if [[ $ID -ge 1000 ]]; then
             if [[ "$status" = "L" ]]; then
-            printf "%-17s %2s %-17s %2s \n" "  $AKUN"
+            printf "%-17s %2s %-17s %2s \n" "      ${YELLOW}$AKUN${NC}"
             else
-            printf "%-17s %2s %-17s %2s \n" "  $AKUN"
+            printf "%-17s %2s %-17s %2s \n" "      ${YELLOW}$AKUN${NC}"
             fi
         fi
     done < /etc/passwd
