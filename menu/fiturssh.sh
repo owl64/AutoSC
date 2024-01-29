@@ -10,6 +10,7 @@ source /usr/local/sbin/spiner
 function configssh(){
     clear
 
+    echo -e ""
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Show Config SSH              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
@@ -28,6 +29,7 @@ function configssh(){
             fi
         fi
     done < /etc/passwd
+    echo -e ""
     read -p "   Input Username to Show Config : " show
     if [ -z $show ]; then
         m-sshws
@@ -43,7 +45,7 @@ function configssh(){
 
         echo ""
         echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-        echo -e "    SSH OVPN Account Config "
+        echo -e " SSH OVPN Account Config "
         echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         echo -e "Username         : $userssh"
         echo -e "Password         : $passsh"
