@@ -72,6 +72,8 @@ function configssh(){
         echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         echo -e "Berakhir Pada    : $exp"
         echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        read -n 1 -s -r -p "${YELLOW}Press any key to back on ssh menu${NC}"
+        m-sshws
         else
             echo -e "    ${RED} Incorect Username to input, Please Try Again!${NC}"
             sleep 3
