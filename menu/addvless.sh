@@ -100,10 +100,12 @@ if [ ! -e /etc/brand/.brand.db ]; then
   touch /etc/brand/.brand.db
 fi
 
-cek=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 3 | sort | uniq)
-if [[ $cek == "vless"]]; then
-    scrap=$(cat /etc/brand/.brand.db | grep '###' | cut -d ' ' -f 2 | sort | uniq)
-    uuid="$scrap-$user"
+cekbrand=$(cat /etc/brand/.brand.db | grep '#vless#' | cut -d ' ' -f 2 | sort | uniq)
+
+if [[ -z ${cekbrand} ]]; then
+  uuid=$(cat /proc/sys/kernel/random/uuid)
+else
+  uuid="${cekbrand}-${user}"
 fi
 
 uuid=$(cat /proc/sys/kernel/random/uuid)
