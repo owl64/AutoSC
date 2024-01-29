@@ -69,9 +69,10 @@ echo -e "\e[32mloading...\e[0m"
 clear
 #Domain
 domain=$(cat /etc/xray/domain)
+source /usr/local/sbin/fiturssh
 
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e " $NC$purple                  SSH & OpenVPN           $NC"
+echo -e " $purple                SSH & OpenVPN           $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "  ${ORANGE}  [01].${NC}\033[0;36m Create SSH & OpenVPN Account${NC}"
@@ -123,9 +124,7 @@ case $menu in
     ;;
 10 | 10)
     clear
-    echo -e "Under Maintenance ! Please Try again Later"
-    sleep 2
-    m-sshws
+    configssh
     ;;
 0 | 00)
     clear
