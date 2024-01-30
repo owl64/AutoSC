@@ -120,6 +120,7 @@ res1() {
     wget -O restart "${instalasi}menu/restart.sh"
     wget -O restore "${instalasi}menu/restore.sh"
     wget -O restorevmess "${instalasi}menu/restorevmess.sh"
+    wget -O restorevless "${instalasi}menu/restorevless.sh"
     wget -O run "${instalasi}menu/run.sh"
     wget -O sd "${instalasi}menu/sd.sh"
     wget -O stop-bot "${instalasi}menu/stop-bot.sh"
