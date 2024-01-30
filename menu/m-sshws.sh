@@ -64,6 +64,8 @@ echo -e "\e[32mloading...\e[0m"
 clear
 #Domain
 domain=$(cat /etc/xray/domain)
+ssh1="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
+ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
 source /usr/local/sbin/fiturssh
 
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
@@ -82,6 +84,10 @@ echo -e "  ${ORANGE}  [09].${NC}\033[0;36m Cek User Multi Login SSH ${NC}"
 echo -e "  ${ORANGE}  [10].${NC}\033[0;36m Config SSH ACCOUNT ${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu ${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e "     ACCOUNT : ${ORANGE}[ ${ssh1} ]${NC}   Usage : ${ORANGE}[ ${ttoday} ]${NC} "
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p "Select From Options [ 1 - 10 ] : " menu
 echo -e ""
