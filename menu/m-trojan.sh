@@ -59,6 +59,9 @@ checking_sc() {
   fi
 }
 checking_sc
+ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
+trx=$(grep -c -E "^#! " "/etc/xray/config.json")
+let trb=$trx/2
 echo -e "\e[32mloading...\e[0m"
 clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
@@ -73,6 +76,10 @@ echo -e "  ${ORANGE}  [05].${NC} \033[0;36m Check Trojan login Account${NC}"
 echo -e "  ${ORANGE}  [06].${NC} \033[0;36m Check Config Trojan  Account${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e "     ACCOUNT : ${ORANGE}[ ${trb} ]${NC}   Usage : ${ORANGE}[ ${ttoday} ]${NC} "
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p "Select From Options [ 1 - 6 ] : " menu
 case $menu in
