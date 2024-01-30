@@ -101,23 +101,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
   fi
 done
 
-#Test For New Brand UUID
-if [ ! -e /etc/brand ]; then
-  mkdir -p /etc/brand
-fi
-
-if [ ! -e /etc/brand/.brand.db ]; then
-    touch /etc/brand/.brand.db
-fi
-
-cekbrand=$(cat /etc/brand/.brand.db | grep '#vless#' | cut -d ' ' -f 2 | sort | uniq)
-
-if [[ -z ${cekbrand} ]]; then
-  uuid=$(cat /proc/sys/kernel/random/uuid)
-else
-  uuid="${cekbrand}-${user}"
-fi
-
+read -p "UUID : " masaaktif
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
@@ -242,7 +226,7 @@ systemctl restart nginx
 clear
 echo -e ""
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e " CREATE VLESS ACCOUNT           "
+echo -e " RESTORED VLESS ACCOUNT           "
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Remarks     : ${user}"
 echo -e "Domain      : ${domain}"
@@ -271,6 +255,5 @@ echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e ""
 read -n 1 -s -r -p "Press any key to back on vmess menu"
 m-vless
