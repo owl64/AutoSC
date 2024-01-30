@@ -29,12 +29,9 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+z="\033[96m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
-export CHATID="5008116231"
-export KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
 # Getting
 ipsaya=$(wget -qO- ipinfo.io/ip)
@@ -67,14 +64,15 @@ clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "                 MENU TROJAN              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e ""
 echo -e "  ${ORANGE}  [01].${NC} \033[0;36m Create Account XRAY Trojan WS/GRPC${NC}"
 echo -e "  ${ORANGE}  [02].${NC} \033[0;36m Create Trial XRAY Trojan WS/GRPC${NC}"
 echo -e "  ${ORANGE}  [03].${NC} \033[0;36m Delete Account XRAY Trojan WS/GRPC${NC}"
 echo -e "  ${ORANGE}  [04].${NC} \033[0;36m Renew Trojan Account${NC}"
 echo -e "  ${ORANGE}  [05].${NC} \033[0;36m Check Trojan login Account${NC}"
 echo -e "  ${ORANGE}  [06].${NC} \033[0;36m Check Config Trojan  Account${NC}"
-echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
 echo -e ""
 read -p "Select From Options [ 1 - 6 ] : " menu
 case $menu in
@@ -95,6 +93,9 @@ case $menu in
     ;;
 6)
     user-tr
+    ;;
+7)
+    menu
     ;;
 *)
     menu

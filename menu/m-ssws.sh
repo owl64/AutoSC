@@ -70,14 +70,15 @@ clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "             MENU SHADOWSHOCKS            $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e ""
 echo -e "  ${ORANGE}1.${NC} \033[0;36m Create Account Shadowshocks WS/GRPC${NC}"
 echo -e "  ${ORANGE}2.${NC} \033[0;36m Create Trial Shadowshocks WS/GRPC${NC}"
 echo -e "  ${ORANGE}3.${NC} \033[0;36m Delete Account Shadowsocks WS/GRPC${NC}"
 echo -e "  ${ORANGE}4.${NC} \033[0;36m Renew Shadowsocks Account${NC}"
 echo -e "  ${ORANGE}5.${NC} \033[0;36m Check Shadowsocks login Account${NC}"
 echo -e "  ${ORANGE}6.${NC} \033[0;36m Check Config Shadowsocks  Account${NC}"
-echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
 echo -e ""
 read -p "Select From Options [ 1 - 6 ] : " menu
 case $menu in

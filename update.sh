@@ -135,6 +135,7 @@ res1() {
     wget -O user-ws "${instalasi}menu/user-ws.sh"
     wget -O xp "${instalasi}menu/xp.sh"
     wget -O brandname "${instalasi}menu/brandname.sh"
+    wget -O fiturssh "${instalasi}menu/fiturssh.sh"
     wget -O changelimit "${instalasi}system/changelimit.sh"
     wget -O backup-bot "${instalasi}bot/backup-bot.sh"
     wget -O info "${instalasi}menu/info.sh"
