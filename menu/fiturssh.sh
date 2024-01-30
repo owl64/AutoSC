@@ -17,9 +17,9 @@ function configssh(){
         status="$(passwd -S $AKUN | awk '{print $2}' )"
         if [[ $ID -ge 1000 ]]; then
             if [[ "$status" = "L" ]]; then
-            printf "%-17s %2s %-17s %2s \n" "      ${YELLOW}$AKUN${NC}" "$exp   " "LOCKED${NORMAL}"
+            printf "%-17s %2s %-17s %2s \n" "      $AKUN" "$exp   " "LOCKED${NORMAL}"
             else
-            printf "%-17s %2s %-17s %2s \n" "      ${YELLOW}$AKUN${NC}" "$exp   " "UNLOCKED${NORMAL}"
+            printf "%-17s %2s %-17s %2s \n" "      $AKUN" "$exp   " "UNLOCKED${NORMAL}"
             fi
         fi
     done < /etc/passwd
