@@ -73,7 +73,17 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
   echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
   echo -e " CREATE VLESS ACCOUNT           "
   echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-
+  echo -e ""
+    echo -e " Just input a number for-"
+    echo -e "  ${Green}Quota Limit${Suffix}"
+    echo -e "  ${Green}Limit IP${Suffix}"
+    echo -e " Format GB"
+    echo -e ""
+    echo -e " ${YELLOW}0${Suffix} for Unlimited"
+    echo -e " ${YELLOW}0${Suffix} for No Limit"
+    echo -e ""
+  echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+	echo -e ""
   read -rp "User: " -e user
   CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
@@ -94,9 +104,10 @@ done
 #Test For New Brand UUID
 if [ ! -e /etc/brand ]; then
   mkdir -p /etc/brand
-  if [ ! -e /etc/brand/.brand.db ]; then
+fi
+
+if [ ! -e /etc/brand/.brand.db ]; then
     touch /etc/brand/.brand.db
-  fi
 fi
 
 cekbrand=$(cat /etc/brand/.brand.db | grep '#vless#' | cut -d ' ' -f 2 | sort | uniq)
