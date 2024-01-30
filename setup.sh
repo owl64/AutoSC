@@ -988,7 +988,7 @@ cat >/etc/cron.d/xp_all <<-END
 	cat >/etc/cron.d/logclean <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-		*/20 * * * * root /usr/local/sbin/clearlog
+		*/45 * * * * root /usr/local/sbin/clearlog
 		END
     chmod 644 /root/.profile
 	
