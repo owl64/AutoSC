@@ -22,7 +22,9 @@ LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 Suffix="\033[0m"
 z="\033[96m"
+Suffix="\033[0m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+source /usr/local/sbin/spiner
 # Getting
 #satusbot
 bot_kyt=$(systemctl status kyt | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
@@ -67,7 +69,7 @@ clear
 
 function bckp_bot(){
   clear
-  source /usr/local/sbin/spiner
+  
 
   echo -e ""
   echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
@@ -219,6 +221,38 @@ function bckp_bot(){
     fi
 }
 
+function changebotnotif(){
+  clear
+
+  botapi=$(cat /etc/bot/.bot.db | grep "^#bot#" | cut -d ' ' -f 2 | sort | uniq)
+  chatid=$(cat /etc/bot/.bot.db | grep "^#bot#" | cut -d ' ' -f 3 | sort | uniq)
+
+  echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+  echo -e "$PURPLE        Change Bot Notif & Backup        $NC"
+  echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+  echo -e ""
+  echo -e "    ${RED}Please Becareful to change Bot API and Chat ID${NC}"
+  echo -e ""
+  echo -e "    This out BOT API : [ ${botapi} ]"
+  echo -e ""
+  echo -e "    This our CHAT ID : [ ${chatid} ]"
+  echo -e ""
+  read -r " BOT API : " bot
+  read -r " CHAT ID : " chat
+  echo -e ""
+  if [ -z $bot ]; then
+    clear
+    add-bot-panel
+  else
+    start_spinner " ${GREEN}Please wait, Change Bot Notif and Backup...${NC}"
+    sed -i "/#bot# $botapi $chatid/c\#bot# $bot $chat" /etc/bot/.bot.db
+    stop_spinner
+    echo -e " ${GREEN}Success Change Bot...${Suffix}"
+    sleep 2
+    add-bot-panel
+  fi
+}
+
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "         ${PURPLE}       MENU BOT PANEL            "
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
@@ -237,11 +271,12 @@ echo -e "      $PURPLE           Set Bot Notif              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 echo -e " ${ORANGE}   [07].${NC}${blue2} Add Bot Notif & Backup${NC}"
-echo -e " ${ORANGE}   [08].${NC}${blue2} Delete Bot Notif & Backup${NC}"
+echo -e " ${ORANGE}   [08].${NC}${blue2} Change Bot Notif & Backup${NC}"
+echo -e " ${ORANGE}   [09].${NC}${blue2} Delete Bot Notif & Backup${NC}"
 echo -e ""
 echo -e " ${ORANGE}   [00].${NC}${RED} \e[31mBack To Menu\033[0m"
 echo -e ""
-read -p " Select menu [ 1-8 ]:  "  opt
+read -p " Select menu [ 1-9 ]:  "  opt
 echo -e   ""
 case $opt in
 01 | 1) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/kyt.sh && chmod +x kyt.sh && ./kyt.sh ;;
