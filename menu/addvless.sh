@@ -272,5 +272,5 @@ echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e ""
-read -n 1 -s -r -p "Press any key to back on vmess menu"
+read -n 1 -s -r -p "Press any key to back on vless menu"
 m-vless
