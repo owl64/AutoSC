@@ -286,6 +286,7 @@ case $opt in
 05 | 5) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/update-bot.sh && chmod +x update-bot.sh && ./update-bot.sh ;;
 06 | 6) clear ; bckp_bot;;
 07 | 7) clear ; add-bot-notif ;;
-08 | 8) clear ; del-bot-notif ;;
+08 | 8) clear ; changebotnotif ;;
+09 | 9) clear ; del-bot-notif ;;
 00 | 0) clear ; menu ;;
 esac
