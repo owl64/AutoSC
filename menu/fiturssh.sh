@@ -23,12 +23,15 @@ function configssh(){
             fi
         fi
     done < /etc/passwd
+
     echo -e ""
     read -p "   Input Username to Show Config : " show
+    cekakun=$(cat /var/www/html/ssh-$show.txt | grep "Username" | cut -d ' ' -f 11)
+
     if [ -z $show ]; then
         m-sshws
     else
-        if [ $AKUN == $show ]; then
+        if [ $cekakun == $show ]; then
         clear
 
         userssh=$( cat /var/www/html/ssh-$show.txt | grep "Username" | cut -d ' ' -f 11 )
@@ -61,11 +64,12 @@ function configssh(){
         echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         echo -e "OVPN Download    : https://$domain:81/"
         echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-        echo -e "Save Link Account: https://$domain:81/ssh-$Login.txt"
+        echo -e "Save Link Account: https://$domain:81/ssh-$userssh.txt"
         echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         echo -e "Berakhir Pada    : $exp"
         echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-        read -n 1 -s -r -p "${YELLOW}Press any key to back on ssh menu${NC}"
+        echo -e ""
+        read -n 1 -s -r -p "Press any key to back on ssh menu"
         m-sshws
         else
             echo -e "    ${RED} Incorect Username to input, Please Try Again!${NC}"
