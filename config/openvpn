@@ -147,6 +147,7 @@ function install_ovpn() {
     make_follow
     make_follow
     cert_ovpn
+    systemctl daemon-reload
     systemctl enable openvpn
     /etc/init.d/openvpn restart
     
