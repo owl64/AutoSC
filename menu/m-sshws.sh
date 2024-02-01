@@ -119,9 +119,7 @@ case $menu in
     ;;
 9 | 09)
     clear
-    echo -e "Under Maintenance ! Please Try again Later"
-    sleep 2
-    m-sshws
+    ceklim
     ;;
 10 | 10)
     clear
