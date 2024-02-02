@@ -13,6 +13,7 @@ green='\033[0;32m'
 grenbo="\e[92;1m"
 purple="\033[1;95m"
 YELL='\033[0;33m'
+Bold='\e[1m'
 #INTALLER-UDP
 UDPX="https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2"
 ISP=$(cat /etc/xray/isp)
@@ -118,7 +119,7 @@ clear
 
 echo -e " "
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC$purple                SCRIPT SDC STORE                  $NC${z}│$NC"
+echo -e " ${z}│$NC$purple                ${Bold}SCRIPT SDC STORE                  $NC${z}│$NC"
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}│$NC${z} System OS ${NC}     $Blue=$NC $MODEL${NC}"
