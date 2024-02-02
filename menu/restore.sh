@@ -15,13 +15,10 @@ export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
 function notif_restore() {
-    green "Notif AddHost Tele"
     sleep 2
-    CHATID="5008116231"
-    KEY=""
     TIME="10"
     URL="https://api.telegram.org/bot$KEY/sendMessage"
-    TEXT="Installasi VPN Script Stable V3.0
+    TEXT="Restore Data
 <code>━━━━━━━━━━━━━━━━</code>
 <b>  RESTORE NOTIF </b>
 <b>     Detail Restore VPS</b>
