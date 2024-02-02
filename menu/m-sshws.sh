@@ -35,6 +35,7 @@ clear
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
+source /usr/local/sbin/spiner
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -68,6 +69,37 @@ ssh1="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
 source /usr/local/sbin/fiturssh
 
+#set bot notif
+if [ ! -e /etc/active/1-ssh ]; then
+    sts="${RED}${Bold}OFF${NC}"
+else
+    sts="${Green}${Bold}ON${NC}"
+fi
+
+function statusbotoff(){
+    clear
+    if [ $sts = "OFF" ]; then
+        echo -e " ${RED} Status Bot Off, Please On Bot First${NC}"
+    fi
+
+    start_spinner " Please wait, Process...."
+    rm -rf /etc/active/1-ssh
+    stop_spinner
+    echo -e " ${Green} Sucess OFF Bot Notif SSH ${NC}"
+}
+
+function statusboton(){
+    clear
+    if [ $sts = "ON" ]; then
+        echo -e " ${ORANGE} Status Bot Is ON${NC}"
+    fi
+
+    start_spinner " Please wait, Process...."
+    touch /etc/active/1-ssh
+    stop_spinner
+    echo -e " ${Green} Sucess ON Bot Notif SSH ${NC}"
+}
+
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e " $PURPLE                SSH & OpenVPN           $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
@@ -82,6 +114,14 @@ echo -e "  ${ORANGE}  [07].${NC}\033[0;36m Hapus User Expired SSH & OpenVPN ${NC
 echo -e "  ${ORANGE}  [08].${NC}\033[0;36m Set up Autokill SSH ${NC}"
 echo -e "  ${ORANGE}  [09].${NC}\033[0;36m Cek User Multi Login SSH ${NC}"
 echo -e "  ${ORANGE}  [10].${NC}\033[0;36m Config SSH ACCOUNT ${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e " $PURPLE                Set Bot Notif           $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "    STATUS BOT NOTIF : [ $sts ]"
+echo -e "  ${ORANGE}  [11].${NC}\033[0;36m On Bot Notif${NC}"
+echo -e "  ${ORANGE}  [12].${NC}\033[0;36m Off Bot Notif${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu ${NC}"
 echo -e ""
@@ -124,6 +164,14 @@ case $menu in
 10 | 10)
     clear
     configssh
+    ;;
+11)
+    statusboton
+    m-sshws
+    ;;
+12)
+    statusbotoff
+    m-sshws
     ;;
 0 | 00)
     clear

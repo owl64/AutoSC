@@ -256,9 +256,9 @@ clear
    TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
 TEXT="<code>◇━━━━━━━━━━━━━━◇</code>
-<code>      XRAY/VMESS</code>
+<code>   XRAY/VMESS</code>
 <code>◇━━━━━━━━━━━━━━◇</code>
-<code>Remarks   : ${user}
+Remarks   : ${user}
 Domain    : ${domain}
 Port TLS  : 400-900
 Port NTLS : 80, 8080, 8081-9999

@@ -2,6 +2,8 @@
 clear
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 clear
+source /usr/local/sbin/spiner
+source /usr/local/sbin/send-bot
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
@@ -40,11 +42,6 @@ biru='\033[0;36m'
 z='\033[96m'
 grenbo="\e[92;1m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -77,7 +74,6 @@ checking_sc() {
 checking_sc
 echo -e "\e[32mloading...\e[0m"
 clear
-export TIME="10"
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
@@ -142,6 +138,17 @@ fi
 echo "#ssh# ${Login} ${Pass} ${iplimit} ${expe}" >>/etc/ssh/.ssh.db
 clear
 
+#kirim Bot
+if [ ! -e /etc/active ]; then
+  mkdir -p /etc/active
+fi
+
+if [ ! -e /etc/active/1-ssh ]; then
+    echo -e ""
+else
+    send_ssh
+fi
+
 cat > /var/www/html/ssh-$Login.txt <<-END
 =========================
    SDC Vpn Tunneling 
@@ -152,7 +159,6 @@ Format SSH OVPN Account
 Username         : $Login
 Password         : $Pass
 =========================
-IP               : $IP
 Host             : $domain
 Port OpenSSH     : 443, 80, 22
 Port Dropbear    : 443, 109
@@ -182,14 +188,14 @@ OVPN Download : https://$domain:81/
 END
 clear
 echo ""
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "  SSH OVPN Account    "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "Username         : $Login"
 echo -e "Password         : $Pass"
 echo -e "Limit Quota      : $Quota GB"
 echo -e "Limit Ip         : ${iplimit} User"
-echo -e "IP               : $IP"
+#echo -e "IP               : $IP"
 echo -e "Host             : $domain"
 #echo -e "Host Slowdns     : ${NS}"
 #echo -e "Pub Key          : ${PUB}"
@@ -206,20 +212,20 @@ echo -e "Port OVPN SSL    : 443"
 echo -e "Port OVPN TCP    : 443, 1194"
 echo -e "Port OVPN UDP    : 2200"
 echo -e "BadVPN UDP       : 7100, 7300, 7300"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "SSH TLS/SNI : $domain:443@$Login:$Pass"
 echo -e "SSH Non TLS : $domain:80@$Login:$Pass"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "Payload WSS      : GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "OVPN Download    : https://$domain:81/"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "Save Link Account: https://$domain:81/ssh-$Login.txt"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press any key to back on ssh menu"
 m-sshws
