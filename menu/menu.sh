@@ -15,6 +15,7 @@ purple="\033[1;95m"
 YELL='\033[0;33m'
 Suffix="\033[0m"
 biru="\033[0;36m"
+Bold='\e[1m'
 
 ISP=$(cat /etc/xray/isp)
 CITY=$(cat /etc/xray/city)
@@ -315,13 +316,13 @@ echo -e " ${z}┌─────────────────────
 echo -e " ${z}│ ${NC}${z} SSH$NC : $status_ssh" "    ${z} NGINX$NC : $status_nginx" "    ${z} XRAY$NC : $status_xray      $NC${z}│$NC" 
 echo -e " ${z}│ ${NC}${z} WS-ePRO$NC : $status_ws_epro" "${z} DROPBEAR$NC : $status_dropbear" " ${z} HAPROXY$NC : $status_haproxy   $NC${z}│$NC" 
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
-echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}    $NC [${grenbo}01${NC}]${z} SSH MENU$NC       $NC [${grenbo}06${NC}]${z} SETINGS MENU$NC"
-echo -e " ${z}    $NC [${grenbo}02${NC}]${z} VMESS MENU$NC     $NC [${grenbo}07${NC}]${z} BOT PANEL MENU$NC"    
-echo -e " ${z}    $NC [${grenbo}03${NC}]${z} VLESS MENU$NC     $NC [${grenbo}08${NC}]${z} BRAND NAME MENU$NC"   
-echo -e " ${z}    $NC [${grenbo}04${NC}]${z} TROJAN MENU$NC    $NC [${grenbo}09${NC}]${z} UPDATE MENU$NC" 
-echo -e " ${z}    $NC [${grenbo}05${NC}]${z} SHADOW MENU$NC    $NC [${grenbo}10${NC}]${z} EXIT TO MENU$NC"
-echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
+echo -e " ${z}${Bold}┌──────────────────────────────────────────────────┐${NC}"
+echo -e " ${z}    $NC [${y}01${NC}].${biru} SSH MENU$NC       $NC [${y}06${NC}].${biru} SETINGS MENU$NC"
+echo -e " ${z}    $NC [${y}02${NC}].${biru} VMESS MENU$NC     $NC [${y}07${NC}].${biru} BOT PANEL MENU$NC"    
+echo -e " ${z}    $NC [${y}03${NC}].${biru} VLESS MENU$NC     $NC [${y}08${NC}].${biru} BRAND NAME MENU$NC"   
+echo -e " ${z}    $NC [${y}04${NC}].${biru} TROJAN MENU$NC    $NC [${y}09${NC}].${biru} UPDATE MENU$NC" 
+echo -e " ${z}    $NC [${y}05${NC}].${biru} SHADOW MENU$NC    $NC [${y}10${NC}].${biru} EXIT TO MENU$NC"
+echo -e " ${z}${Bold}└──────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL} v${versiedition} R[Longterm]"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username $sts"
