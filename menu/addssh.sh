@@ -36,6 +36,8 @@ NC='\e[0m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
+biru='\033[0;36m'
+z='\033[96m'
 grenbo="\e[92;1m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
@@ -81,13 +83,20 @@ ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
 clear
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-echo -e " SSH Ovpn Account           "
-echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}SSH Ovpn Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z} ──────────────────────────────────${NC}"
+echo -e "     ${biru}Just input a number for-"
+echo -e "${Green}      Limit IP${Suffix}"
+echo -e ""
+echo -e "     ${biru}Example: "
+echo -e "${ORANGE}      0${Suffix} for No Limit"
+echo -e "${z} ──────────────────────────────────${NC}"
+echo -e ""
 read -p " Username       : " Login
 read -p " Password       : " Pass
 read -p " Limit IP       : " iplimit
-read -p " Limit Quota    : " Quota
 read -p " Expired (Days) : " masaaktif
 #limitip
 if [[ $iplimit -gt 0 ]]; then
@@ -112,25 +121,25 @@ echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 expi=`date -d "$masaaktif days" +"%Y-%m-%d"`
 
-if [ ! -e /etc/ssh ]; then
-  mkdir -p /etc/ssh
-fi
+#if [ ! -e /etc/ssh ]; then
+ # mkdir -p /etc/ssh
+#fi
 
-if [ -z ${Quota} ]; then
-  Quota="0"
-fi
+#if [ -z ${Quota} ]; then
+  #Quota="0"
+#fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+#c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
+#d=$((${c} * 1024 * 1024 * 1024))
 
-if [[ ${c} != "0" ]]; then
-  echo "${d}" >/etc/ssh/${Login}
-fi
+#if [[ ${c} != "0" ]]; then
+#  echo "${d}" >/etc/ssh/${Login}
+#fi
 DATADB=$(cat /etc/ssh/.ssh.db | grep "^#ssh#" | grep -w "${Login}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${Login}\b/d" /etc/ssh/.ssh.db
 fi
-echo "#ssh# ${Login} ${Pass} ${Quota} ${iplimit} ${expe}" >>/etc/ssh/.ssh.db
+echo "#ssh# ${Login} ${Pass} ${iplimit} ${expe}" >>/etc/ssh/.ssh.db
 clear
 
 cat > /var/www/html/ssh-$Login.txt <<-END
@@ -164,6 +173,9 @@ Berakhir Pada    : $expe
 =================================
 Payload WSS: GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf] 
 =================================
+SSH TLS/SNI : $domain:443@$Login:$Pass
+SSH Non TLS : $domain:80@$Login:$Pass
+=================================
 OVPN Download : https://$domain:81/
 =================================
 
@@ -171,7 +183,7 @@ END
 clear
 echo ""
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e " SSH OVPN Account    "
+echo -e "  SSH OVPN Account    "
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Username         : $Login"
 echo -e "Password         : $Pass"
@@ -194,6 +206,9 @@ echo -e "Port OVPN SSL    : 443"
 echo -e "Port OVPN TCP    : 443, 1194"
 echo -e "Port OVPN UDP    : 2200"
 echo -e "BadVPN UDP       : 7100, 7300, 7300"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "SSH TLS/SNI : $domain:443@$Login:$Pass"
+echo -e "SSH Non TLS : $domain:80@$Login:$Pass"
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Payload WSS      : GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
