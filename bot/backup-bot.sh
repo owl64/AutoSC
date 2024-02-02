@@ -8,14 +8,18 @@ cp /etc/group backup/
 cp /etc/shadow backup/
 cp /etc/gshadow backup/
 cp /etc/crontab backup/
-cp /etc/cron.d backup/cron.d
+cp -r /etc/cron.d backup/cron.d
 cp -r /var/lib/kyt/ backup/kyt 
 cp -r /etc/xray backup/xray
 cp -r /etc/vmess backup/vmess
 cp -r /etc/vless backup/vless
 cp -r /etc/trojan backup/trojan
 cp -r /etc/shadowsocks backup/shadowsocks
-cp -r /etc/kyt/limit backup/ip
+cp -r /etc/kyt/limit/vmess/ip backup/ip/vmess
+cp -r /etc/kyt/limit/vless/ip backup/ip/vless
+cp -r /etc/kyt/limit/trojan/ip backup/ip/trojan
+cp -r /etc/kyt/limit/shadowsocks/ip backup/ip/shadowsocks
+cp -r /etc/kyt/limit/ssh/ip backup/ip/ssh
 cp -r /var/www/html/ backup/html
 cd /root
 domain=$(cat /etc/xray/domain)

@@ -43,7 +43,11 @@ cp -r /etc/vmess backup/vmess
 cp -r /etc/vless backup/vless
 cp -r /etc/trojan backup/trojan
 cp -r /etc/shadowsocks backup/shadowsocks
-cp -r /etc/kyt/limit backup/ip
+cp -r /etc/kyt/limit/vmess/ip/ backup/ip/vmess
+cp -r /etc/kyt/limit/vless/ip/ backup/ip/vless
+cp -r /etc/kyt/limit/trojan/ip/ backup/ip/trojan
+cp -r /etc/kyt/limit/shadowsocks/ip/ backup/ip/shadowsocks
+cp -r /etc/kyt/limit/ssh/ip/ backup/ip/ssh
 cp -r /var/www/html/ backup/html
 cd /root
 zip -r $IP-$date.zip backup > /dev/null 2>&1
