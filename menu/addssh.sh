@@ -179,6 +179,8 @@ Berakhir Pada    : $expe
 =================================
 Payload WSS: GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf] 
 =================================
+Payload Enchanced: PATCH / HTTP/1.1 \nHost: [host]\nHost: bug.com\nUpgrade: websocket\n\nHTTP/ 3600\nSec-WebSocket-Extensions: superspeed\n
+=================================
 SSH TLS/SNI : $domain:443@$Login:$Pass
 SSH Non TLS : $domain:80@$Login:$Pass
 =================================
@@ -217,6 +219,8 @@ echo -e "SSH TLS/SNI : $domain:443@$Login:$Pass"
 echo -e "SSH Non TLS : $domain:80@$Login:$Pass"
 echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "Payload WSS      : GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
+echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "Payload Enchanced: PATCH / HTTP/1.1 \nHost: [host]\nHost: bug.com\nUpgrade: websocket\n\nHTTP/ 3600\nSec-WebSocket-Extensions: superspeed\n"
 echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "OVPN Download    : https://$domain:81/"
 echo -e "\\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"

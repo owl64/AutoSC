@@ -30,6 +30,8 @@ SSH Non TLS : $domain:80@$Login:$Pass
 <code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
 Payload WSS: GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]
 <code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+Payload Enchanced: PATCH / HTTP/1.1 \nHost: [host]\nHost: bug.com\nUpgrade: websocket\n\nHTTP/ 3600\nSec-WebSocket-Extensions: superspeed\n
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
 Aktif Selama     : $masaaktif Hari
 Dibuat Pada      : $tnggl
 Berakhir Pada    : $expe
