@@ -70,6 +70,10 @@ ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
 source /usr/local/sbin/fiturssh
 
 #set bot notif
+if [ ! -e /etc/active ]; then
+    mkdir -p /etc/active
+fi
+
 if [ ! -e /etc/active/1-ssh ]; then
     sts="${RED}${Bold}OFF${NC}"
 else
@@ -83,6 +87,7 @@ function statusbotoff(){
     fi
 
     start_spinner " Please wait, Process...."
+    sleep 2
     rm -rf /etc/active/1-ssh
     stop_spinner
     echo -e " ${Green} Sucess OFF Bot Notif SSH ${NC}"
@@ -95,6 +100,7 @@ function statusboton(){
     fi
 
     start_spinner " Please wait, Process...."
+    sleep 2
     touch /etc/active/1-ssh
     stop_spinner
     echo -e " ${Green} Sucess ON Bot Notif SSH ${NC}"

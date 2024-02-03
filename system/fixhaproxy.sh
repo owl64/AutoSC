@@ -34,10 +34,6 @@ domain=$(cat /etc/xray/domain)
 function notif_haproxystatus() {
     versi=$(cat /root/versi/version)
     sleep 2
-    CHATID="1624209723"
-    KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
-    TIME="10"
-    URL="https://api.telegram.org/bot$KEY/sendMessage"
     TEXT="Satus Service VPN Script V$versi R[Longterm]
 <code>◇━━━━━━━━━━━━━━◇</code>
 <b>  ⚠️STATUS SERVICE NOTIF⚠️</b>
@@ -53,10 +49,6 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 function notif_haproxyrunning() {
     versi=$(cat /root/versi/version)
     sleep 2
-    CHATID="1624209723"
-    KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
-    TIME="10"
-    URL="https://api.telegram.org/bot$KEY/sendMessage"
     TEXT="Satus Service VPN Script V$versi R[Longterm]
 <code>◇━━━━━━━━━━━━━━◇</code>
 <b>  ⚠️STATUS SERVICE NOTIF⚠️</b>
