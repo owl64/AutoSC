@@ -221,7 +221,7 @@ function bckp_bot(){
     fi
 }
 
-function changebotnotif(){
+function chbtf(){
   clear
 
   botapi=$(cat /etc/bot/.bot.db | grep "^#bot#" | cut -d ' ' -f 2 | sort | uniq)
@@ -233,12 +233,12 @@ function changebotnotif(){
   echo -e ""
   echo -e "    ${RED}Please Becareful to change Bot API and Chat ID${NC}"
   echo -e ""
-  echo -e "    This out BOT API : [ ${botapi} ]"
+  echo -e "    This our BOT API : [ ${botapi} ]"
   echo -e ""
   echo -e "    This our CHAT ID : [ ${chatid} ]"
   echo -e ""
-  read -r " BOT API : " bot
-  read -r " CHAT ID : " chat
+  read -rp " BOT API : " bot
+  read -rp " CHAT ID : " chat
   echo -e ""
   if [ -z $bot ]; then
     clear
@@ -276,17 +276,51 @@ echo -e " ${ORANGE}   [09].${NC}${blue2} Delete Bot Notif & Backup${NC}"
 echo -e ""
 echo -e " ${ORANGE}   [00].${NC}${RED} \e[31mBack To Menu\033[0m"
 echo -e ""
-read -p " Select menu [ 1-9 ]:  "  opt
+read -rp " Select menu [ 1-9 ]:  "  opt
 echo -e   ""
 case $opt in
-01 | 1) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/kyt.sh && chmod +x kyt.sh && ./kyt.sh ;;
-02 | 2) clear ; hapus-bot ;;
-03 | 3) clear ; stop-bot ;;
-04 | 4) clear ; restart-bot ;;
-05 | 5) clear ; wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/update-bot.sh && chmod +x update-bot.sh && ./update-bot.sh ;;
-06 | 6) clear ; bckp_bot;;
-07 | 7) clear ; add-bot-notif ;;
-08 | 8) clear ; changebotnotif ;;
-09 | 9) clear ; del-bot-notif ;;
-00 | 0) clear ; menu ;;
+1 | 01)
+  clear
+  wget https://raw.githubusercontent.com/owl64/AutoSC/main/kyt.sh && chmod +x kyt.sh && ./kyt.sh
+  ;;
+2 | 02)
+  clear
+  hapus-bot
+  ;;
+3 | 03)
+  clear
+  stop-bot
+  ;;
+4 | 04)
+  clear
+  restart-bot
+  ;;
+5 | 05)
+  clear
+  wget https://raw.githubusercontent.com/owl64/AutoSC/main/bot/update-bot.sh && chmod +x update-bot.sh && ./update-bot.sh
+  ;;
+6 | 06)
+  clear
+  bckp_bot
+  ;;
+7 | 07)
+  clear
+  add-bot-notif
+  ;;
+8 | 08)
+  clear
+  chbtf
+  ;;
+9 | 09)
+  clear
+  del-bot-notif
+  ;;
+0 | 00)
+  clear
+  menu
+  ;;
+*)
+  clear
+  menu
+  ;;
 esac
