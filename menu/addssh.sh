@@ -145,10 +145,10 @@ if [ ! -e /etc/active ]; then
   mkdir -p /etc/active
 fi
 
-if [ ! -e /etc/active/1-ssh ]; then
-    echo -e ""
-else
+if [ -e "/etc/active/1-ssh" ]; then
     send_ssh
+else
+    echo -e ""
 fi
 
 cat > /var/www/html/ssh-$Login.txt <<-END
