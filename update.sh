@@ -195,6 +195,7 @@ function clearcacheAndFix(){
     chmod +x /etc/cron.d/udp-fix-semi
 
     systemctl restart cron
+    systemctl restart udp-custom
 }
 
 function iplimit(){
