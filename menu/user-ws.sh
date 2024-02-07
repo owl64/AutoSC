@@ -97,7 +97,7 @@ EOF`
 cat >/var/www/html/vmess-$user.txt <<-END
 
 =========================
-  WINGS VPN TUNNELING 
+  SDC TUNNELING 
 =========================
 # Format Vmess WS TLS
 
