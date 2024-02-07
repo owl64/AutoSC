@@ -31,7 +31,9 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+biru='\033[0;36m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+source /usr/local/sbin/spiner
 # Getting
 clear
 #IZIN SCRIPT
