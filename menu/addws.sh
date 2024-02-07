@@ -213,6 +213,8 @@ systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
 stop_spinner
 echo -e " ${Green}Success Add New Data....${Suffix}"
+echo -e ""
+start_spinner " Please wait, Verif New data...."
 
 cat >/var/www/html/vmess-$user.txt <<-END
 
@@ -313,10 +315,12 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vmess/.vmess.db
+stop_spinner
+echo -e " ${Green}Success Verif New Data....${Suffix}"
 clear
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e " Xray/Vmess Account "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e "    Xray/Vmess Account "
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks          : ${user}"
 echo -e "Domain           : ${domain}"
 echo -e "Wilcard          : bug.${domain}"
@@ -336,19 +340,19 @@ echo -e "ServiceName      : vmess-grpc"
 #echo -e "Host XrayDNS : ${NS}"
 #echo -e "Location         : $CITY"
 #echo -e "Pub Key          : ${PUB}"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link TLS         : ${vmesslink1}"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link none TLS    : ${vmesslink2}"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link GRPC        : ${vmesslink3}"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo ""
 read -n 1 -s -r -p "Press any key to back on vmess menu"
 m-vmess

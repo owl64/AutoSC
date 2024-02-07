@@ -122,6 +122,7 @@ fi
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
+start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -165,7 +166,11 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vless/.vless.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vless/.vless.db
+stop_spinner
+echo -e " ${Green}Success Collecting Data..${Suffix}"
 clear
+echo -e ""
+start_spinner " Please wait, Add New data...."
 cat >/var/www/html/vless-$user.txt <<-END
 
 =========================
@@ -240,11 +245,13 @@ END
 
 systemctl restart xray
 systemctl restart nginx
+stop_spinner
+echo -e " ${Green}Success Collecting Data..${Suffix}"
 clear
 echo -e ""
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e " CREATE VLESS ACCOUNT           "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks     : ${user}"
 echo -e "Domain      : ${domain}"
 echo -e "Wilcard     : bug.${domain}"
@@ -259,19 +266,19 @@ echo -e "User ID     : ${uuid}"
 echo -e "Encryption  : none"
 echo -e "Path        : /Multi-Path"
 echo -e "Dynamic     : https://bugmu.com/path"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link TLS    : ${vlesslink1}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link NTLS   : ${vlesslink2}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link GRPC   : ${vlesslink3}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Format OpenClash : https://${domain}:81/vless-$user.txt"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e ""
 read -n 1 -s -r -p "Press any key to back on vless menu"
 m-vless
