@@ -33,6 +33,7 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 Suffix="\033[0m"
+biru='\033[0;36m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 source /usr/local/sbin/spiner
 # Getting
@@ -63,8 +64,8 @@ checking_sc() {
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
+    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
+    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
     echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
     sleep 5
     reboot
@@ -83,28 +84,27 @@ fi
 #tls="$(cat ~/log-install.txt | grep -w "Vmess TLS" | cut -d: -f2|sed 's/ //g')"
 #none="$(cat ~/log-install.txt | grep -w "Vmess None TLS" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-echo -e "     CREATE VMESS ACCOUNT           "
-echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-echo -e ""
-    echo -e " Just input a number for-"
-    echo -e "  ${Green}Quota Limit${Suffix}"
-    echo -e "  ${Green}Limit IP${Suffix}"
-    echo -e " Format GB"
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Create Vmess Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z} ──────────────────────────────────${NC}"
+    echo -e "    ${biru}Just input a number for-"
+    echo -e "     ${Green}Quota Limit${Suffix}"
+    echo -e "     ${Green}Limit IP${Suffix}"
+    echo -e "    ${biru}Format GB"
     echo -e ""
-    echo -e " ${YELLOW}0${Suffix} for Unlimited"
-    echo -e " ${YELLOW}0${Suffix} for No Limit"
-    echo -e ""
-echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
+echo -e "${z} ──────────────────────────────────${NC}"
 		echo -e ""
     read -rp "User: " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
 clear
-            echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-            echo -e "      CREATE VMESS ACCOUNT           "
-            echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+            echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+            echo -e "         ${biru}Create Vmess Account${NC}           "
+            echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
 
 			echo ""
 			echo "A client with the specified name was already created, please choose another name."

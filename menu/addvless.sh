@@ -70,28 +70,27 @@ clear
 domain=$(cat /etc/xray/domain)
 clear
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e " CREATE VLESS ACCOUNT           "
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-    echo -e " Just input a number for-"
-    echo -e "  ${Green}Quota Limit${Suffix}"
-    echo -e "  ${Green}Limit IP${Suffix}"
-    echo -e " Format GB"
+  echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+  echo -e "         ${biru}Create Vless Account${NC}           "
+  echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+  echo -e "${z} ──────────────────────────────────${NC}"
+    echo -e "    ${biru}Just input a number for-"
+    echo -e "     ${Green}Quota Limit${Suffix}"
+    echo -e "     ${Green}Limit IP${Suffix}"
+    echo -e "    ${biru}Format GB"
     echo -e ""
-    echo -e " ${YELLOW}0${Suffix} for Unlimited"
-    echo -e " ${YELLOW}0${Suffix} for No Limit"
-    echo -e ""
-  echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
+  echo -e "${z} ──────────────────────────────────${NC}"
 	echo -e ""
   read -rp "User: " -e user
   CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
   if [[ ${CLIENT_EXISTS} == '1' ]]; then
     clear
-  echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-  echo -e " CREATE VLESS ACCOUNT           "
-  echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+  echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+  echo -e "         ${biru}Create Vless Account${NC}           "
+  echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
     echo ""
     echo "A client with the specified name was already created, please choose another name."
     echo ""
