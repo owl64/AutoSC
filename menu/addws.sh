@@ -34,6 +34,7 @@ LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 Suffix="\033[0m"
 biru='\033[0;36m'
+z='\033[96m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 source /usr/local/sbin/spiner
 # Getting
@@ -87,7 +88,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
 echo -e "         ${biru}Create Vmess Account${NC}           "
 echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
-echo -e "${z} ──────────────────────────────────${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
     echo -e "    ${biru}Just input a number for-"
     echo -e "     ${Green}Quota Limit${Suffix}"
     echo -e "     ${Green}Limit IP${Suffix}"
@@ -95,7 +96,7 @@ echo -e "${z} ──────────────────────
     echo -e ""
     echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
-echo -e "${z} ──────────────────────────────────${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
 		echo -e ""
     read -rp "User: " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
@@ -134,9 +135,10 @@ else
   uuid="${cekbrand}-${user}"
 fi
 
-read -p "Expired (days): " masaaktif
-read -p "Limit User (GB): " Quota
-read -p "Limit User (IP): " iplimit
+read -p "   Expired (days): " masaaktif
+read -p "   Limit User (GB): " Quota
+read -p "   Limit User (IP): " iplimit
+echo -e ""
 start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
@@ -321,38 +323,38 @@ clear
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "    Xray/Vmess Account "
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Remarks          : ${user}"
-echo -e "Domain           : ${domain}"
-echo -e "Wilcard          : bug.${domain}"
-echo -e "User Quota       : ${Quota} GB"
-echo -e "User Ip          : ${iplimit} IP"
-echo -e "Port TLS         : 400-900"
-echo -e "Port none TLS    : 80, 8080, 8081-9999"
-echo -e "id               : ${uuid}"
+echo -e " Remarks          : ${user}"
+echo -e " Domain           : ${domain}"
+echo -e " Wilcard          : bug.${domain}"
+echo -e " User Quota       : ${Quota} GB"
+echo -e " User Ip          : ${iplimit} IP"
+echo -e " Port TLS         : 400-900"
+echo -e " Port none TLS    : 80, 8080, 8081-9999"
+echo -e " id               : ${uuid}"
 #echo -e "Xray Dns         : ${NS}"
 #echo -e "Pubkey           : ${PUB}"
-echo -e "alterId          : 0"
-echo -e "Security         : auto"
-echo -e "Network          : ws"
-echo -e "Path             : /Multi-Path"
-echo -e "Dynamic          : https://bugmu.com/path"
-echo -e "ServiceName      : vmess-grpc"
+echo -e " alterId          : 0"
+echo -e " Security         : auto"
+echo -e " Network          : ws"
+echo -e " Path             : /Multi-Path"
+echo -e " Dynamic          : https://bugmu.com/path"
+echo -e " ServiceName      : vmess-grpc"
 #echo -e "Host XrayDNS : ${NS}"
 #echo -e "Location         : $CITY"
 #echo -e "Pub Key          : ${PUB}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link TLS         : ${vmesslink1}"
+echo -e " Link TLS         : ${vmesslink1}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link none TLS    : ${vmesslink2}"
+echo -e " Link none TLS    : ${vmesslink2}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link GRPC        : ${vmesslink3}"
+echo -e " Link GRPC        : ${vmesslink3}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt"
+echo -e " Format OpenClash : https://${domain}:81/vmess-$user.txt"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Aktif Selama     : $masaaktif Hari"
-echo -e "Dibuat Pada      : $tnggl"
-echo -e "Berakhir Pada    : $expe"
+echo -e " Aktif Selama     : $masaaktif Hari"
+echo -e " Dibuat Pada      : $tnggl"
+echo -e " Berakhir Pada    : $expe"
 echo -e "${z} ──────────────────────────────${NC}"
 echo ""
-read -n 1 -s -r -p "Press any key to back on vmess menu"
+read -n 1 -s -r -p " Press any key to back on vmess menu"
 m-vmess
