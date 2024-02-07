@@ -1,7 +1,8 @@
+#!/bin/bash
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendDocument"
 
 function send_ssh(){
 TEXT="

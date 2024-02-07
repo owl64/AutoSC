@@ -184,9 +184,15 @@ function clearcacheAndFix(){
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
         0 6 * * * root /usr/local/sbin/notif-info-bot
 	END
+
+    cat >/etc/cron.d/upd-fix-semi <<-END
+        */59 * * * * root systemctl restart udp-custom
+	END
+
     chmod +x /etc/cron.d/notif_status
     chmod +x /etc/cron.d/fix_hap
     chmod +x /etc/cron.d/xp_all
+    chmod +x /etc/cron.d/udp-fix-semi
 
     systemctl restart cron
 }
@@ -241,6 +247,7 @@ echo -e ""
             echo -e "      ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Change Bot API and ID${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Notif create akun ssh ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug UDP ${NC}"
             echo -e ""
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update ! CTRL + C to Cancel"
