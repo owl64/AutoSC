@@ -30,7 +30,10 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 Suffix="\033[0m"
+biru='\033[0;36m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+source /usr/local/sbin/spiner
+source /usr/local/sbin/send-bot
 # Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -69,12 +72,30 @@ checking_sc() {
 checking_sc
 echo -e "\e[32mloading...\e[0m"
 clear
+echo -e ""
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Trial Vmess Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
+echo -e "     ${biru}Just input a number for-"
+echo -e "${Green}      Expired Account${Suffix}"
+echo -e ""
+echo -e "     ${biru}Example: "
+echo -e "${ORANGE}      5${Suffix} for [${ORANGE}5 Minutes]"
+echo -e "${ORANGE}      10${Suffix} for [${ORANGE}10 Minutes]"
+echo -e "${ORANGE}      30${Suffix} for [${ORANGE}30 Minutes]"
+echo -e "${z}  ──────────────────────────────────${NC}"
+read -rp "    Minutes : " pup
+echo -e ""
+start_spinner " Please wait, Colecting New data...."
 domain=$(cat /etc/xray/domain)
 masaaktif=1
 Quota=1
 iplimit=2
 user=Trial-VM`</dev/urandom tr -dc 0-9 | head -c3`
-clear 
+clear
+
+
 cekbrand=$(cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
 
 if [[ -z ${cekbrand} ]]; then
@@ -82,6 +103,7 @@ if [[ -z ${cekbrand} ]]; then
 else
   uuid="${cekbrand}-${user}"
 fi
+
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
@@ -250,53 +272,27 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
 fi
 echo "### ${user} ${exp} ${uuid} " >>/etc/vmess/.vmess.db
-clear
-   CHATID="1624209723"
-   KEY="6568779328:AAHaq75VFPoPwlXLfHtrwie7T-zDsOXabFc"
-   TIME="10"
-   URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT="<code>◇━━━━━━━━━━━━━━◇</code>
-<code>   XRAY/VMESS</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-Remarks   : ${user}
-Domain    : ${domain}
-Port TLS  : 400-900
-Port NTLS : 80, 8080, 8081-9999
-id        : ${uuid}
-alterId   : 0
-Security  : auto
-network   : ws or grpc
-Path      : /Multi-Path
-Dynamic   : https://bugmu.com/path
-Name      : vmess-grpc</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code> VMESS WS TLS</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code>${vmesslink1}</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code>VMESS WS NO TLS</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code>${vmesslink2}</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code> VMESS gRPC</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code>${vmesslink3}</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-Format OpenClash : https://${domain}:81/vmess-$user.txt
-<code>◇━━━━━━━━━━━━━━◇</code>
-Aktif Selama   : $masaaktif Hari
-Dibuat Pada    : $tnggl
-Berakhir Pada  : $expe
-<code>◇━━━━━━━━━━━━━━◇</code>
-"
 
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+function trialvmess(){
+    exp=$(grep -wE "^### $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+    sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
+    sed -i "/^### $user $exp/,/^},{/d" /etc/vmess/.vmess.db
+    rm -rf /etc/vmess/$user
+    rm -rf /etc/kyt/limit/vmess/ip/$user
+    systemctl restart xray > /dev/null 2>&1
+}
+
 clear
-clear
+
+echo trialvmess | at now + $pup minutes
+
+stop_spinner
+echo -e " ${Green}Success Verif New Data....${Suffix}"
+
 echo -e ""
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e " Xray/Vmess Account "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks          : ${user}"
 echo -e "Domain           : ${domain}"
 echo -e "User Quota       : ${Quota} GB"
@@ -309,20 +305,18 @@ echo -e "Network          : ws"
 echo -e "Path             : /Multi-Path"
 echo -e "Dynamic          : https://bugmu.com/path"
 echo -e "ServiceName      : vmess-grpc"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link TLS         : ${vmesslink1}"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link none TLS    : ${vmesslink2}"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link GRPC        : ${vmesslink3}"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Aktif Selama     : $masaaktif Hari"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\e[33m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo ""
-read -n 1 -s -r -p "Press any key to back on menu"
-
-menu
+read -n 1 -s -r -p "Press any key to back on vmess menu"
+m-vmess
