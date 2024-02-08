@@ -16,6 +16,7 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+z='\033[96m'
 # Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -44,10 +45,19 @@ exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 expi=`date -d "$masaaktif days" +"%Y-%m-%d"`
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
-echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-echo -e " Set Expired In Minutes           "
-echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-read -rp " Menit : " pup
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Trial SSH Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
+echo -e "     ${biru}Just input a number for-"
+echo -e "${Green}      Expired Account${Suffix}"
+echo -e ""
+echo -e "     ${biru}Example: "
+echo -e "${ORANGE}      5${Suffix} for [5 Minutes]"
+echo -e "${ORANGE}      10${Suffix} for [10 Minutes]"
+echo -e "${ORANGE}      30${Suffix} for [30 Minutes]"
+echo -e "${z}  ──────────────────────────────────${NC}"
+read -rp "    Menit : " pup
    TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
 TEXT="<code>◇━━━━━━━━━━━━━━◇</code>
@@ -118,9 +128,9 @@ OVPN Download : https://$domain:81/
 END
 echo userdel -f "$Login" | at now + $pup minutes
 clear
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "  Trial SSH & OpenVPN"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e " Username         : $Login"
 echo -e " Password         : $Pass"
 echo -e " IP/Host          : $IP"
@@ -134,14 +144,14 @@ echo -e " SSH Ws SSL       : 443"
 echo -e " OVPN Ws Non SSL  : 80"
 echo -e " OVPN Ws SSL      : 443"
 echo -e " BadVPN UDPGW     : 7100,7200,7300"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e " OVPN Download : https://$domain:81/"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Save Link Account: https://$domain:81/ssh-$Login.txt"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 #echo -e "Aktif Selama   : $masaaktif Hari"
 #echo -e "Dibuat Pada    : $tnggl"
 echo -e "Berakhir Pada  : $pup Menit"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
