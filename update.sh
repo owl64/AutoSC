@@ -198,7 +198,7 @@ function clearcacheAndFix(){
     systemctl restart udp-custom
 }
 
-function trianinminutes(){
+function trialinminutes(){
 
 # Memeriksa apakah paket 'at' sudah terinstal
 if ! command -v at &> /dev/null; then
@@ -249,6 +249,7 @@ function update(){
     profile
     gantiSC
     clearcacheAndFix
+    trialinminutes
 }
 netfilter-persistent
 clear
