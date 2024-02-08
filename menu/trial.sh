@@ -18,6 +18,7 @@ LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 z='\033[96m'
 biru='\033[0;36m'
+Suffix="\033[0m"
 # Getting
 source /usr/local/sbin/spiner
 source /usr/local/sbin/send-bot
