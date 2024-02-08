@@ -47,7 +47,7 @@ echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
 echo -e " Set Expired In Minutes           "
 echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-read -p " Menit : " pup
+read -rp " Menit : " pup
    TIME="10"
    URL="https://api.telegram.org/bot$KEY/sendMessage"
 TEXT="<code>◇━━━━━━━━━━━━━━◇</code>
