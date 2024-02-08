@@ -198,6 +198,31 @@ function clearcacheAndFix(){
     systemctl restart udp-custom
 }
 
+function trianinminutes(){
+
+# Memeriksa apakah paket 'at' sudah terinstal
+if ! command -v at &> /dev/null; then
+    echo "Paket 'at' belum terinstal. Memulai proses instalasi..."
+    
+    # Memeriksa sistem operasi dan menginstal 'at' sesuai dengan distribusi
+    if [ -x "$(command -v apt-get)" ]; then
+        apt-get install -y at
+    elif [ -x "$(command -v yum)" ]; then
+        sudo yum install -y at
+    elif [ -x "$(command -v apk)" ]; then
+        sudo apk add at
+    else
+        echo "Sistem operasi tidak didukung untuk instalasi 'at'. Silakan instal secara manual."
+        exit 1
+    fi
+    
+    echo "Paket 'at' berhasil diinstal."
+else
+    echo "Paket 'at' sudah terinstal."
+fi
+
+}
+
 function iplimit(){
     instalasi="https://raw.githubusercontent.com/owl64/AutoSC/main/"
     cd /root
@@ -249,6 +274,7 @@ echo -e ""
             echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Change Bot API and ID${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Notif create akun ssh ${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug UDP ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Trial Account SSH ${NC}"
             echo -e ""
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update ! CTRL + C to Cancel"
