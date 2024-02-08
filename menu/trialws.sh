@@ -31,6 +31,7 @@ LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 Suffix="\033[0m"
 biru='\033[0;36m'
+z='\033[96m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 source /usr/local/sbin/spiner
 source /usr/local/sbin/send-bot
