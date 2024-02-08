@@ -38,3 +38,34 @@ TEXT="
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
+
+function send_sshtrial(){
+TEXT="<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+<code>Your Trial VPN Details</code>
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+<code>Hostname  :</code> <code>$domain</code>
+<code>Username  :</code> <code>$Login</code>
+<code>Password  :</code> <code>$Pass</code>
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+OpenSSH       : 22
+Dropbear      : 443, 109, 143
+SSL/TLS       : 400-900
+SSH WS TLS    : 443
+SSH WS NTLS   : 80, 8080, 8081-9999
+OVPN WS NTLS  : 80, 8080, 8880
+OVPN WS TLS   : 443
+BadVPN UDP    : 7100,7200,7300</code>
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+SSH TLS/SNI   : $domain:443@$Login:$Pass
+SSH Non TLS   : $domain:80@$Login:$Pass
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+Ovpn Download : https://$domain:81/
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+Save Link Account: https://$domain:81/ssh-$Login.txt
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+Dibuat Pada    : $tnggl
+Berakhir Pada  : $pup Menit
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}

@@ -17,11 +17,10 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 z='\033[96m'
+biru='\033[0;36m'
 # Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
+source /usr/local/sbin/spiner
+source /usr/local/sbin/send-bot
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
@@ -30,7 +29,7 @@ IP=$(curl -sS ipv4.icanhazip.com)
 Login=Trial-`</dev/urandom tr -dc X-Z0-9 | head -c4`
 masaaktif="1"
 Pass=1
-
+limitip=1
 clear
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
@@ -53,60 +52,45 @@ echo -e "     ${biru}Just input a number for-"
 echo -e "${Green}      Expired Account${Suffix}"
 echo -e ""
 echo -e "     ${biru}Example: "
-echo -e "${ORANGE}      5${Suffix} for [5 Minutes]"
-echo -e "${ORANGE}      10${Suffix} for [10 Minutes]"
-echo -e "${ORANGE}      30${Suffix} for [30 Minutes]"
+echo -e "${ORANGE}      5${Suffix} for [${ORANGE}5 Minutes]"
+echo -e "${ORANGE}      10${Suffix} for [${ORANGE}10 Minutes]"
+echo -e "${ORANGE}      30${Suffix} for [${ORANGE}30 Minutes]"
 echo -e "${z}  ──────────────────────────────────${NC}"
-read -rp "    Menit : " pup
-   TIME="10"
-   URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT="<code>◇━━━━━━━━━━━━━━◇</code>
-<code>Your Premium VPN Details</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code>IP Address    =</code> <code>$IP</code>
-<code>Hostname      =</code> <code>$domain</code>
-<code>Username      =</code> <code>$Login</code>
-<code>Password      =</code> <code>$Pass</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code>OpenSSH       = 22
-Dropbear      = 443, 109, 143
-SSL/TLS       = 400-900
-SSH WS TLS    = 443
-SSH WS NTLS   = 80, 8080, 8081-9999
-OVPN WS NTLS  = 80, 8080, 8880
-OVPN WS TLS   = 443
-BadVPN UDP    = 7100,7200,7300</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-Ovpn Download : https://$domain:81/
-<code>◇━━━━━━━━━━━━━━◇</code>
-Save Link Account: https://$domain:81/ssh-$Login.txt
-<code>◇━━━━━━━━━━━━━━◇</code>
-Berakhir Pada  : $pup Menit
-<code>◇━━━━━━━━━━━━━━◇</code>
-"
-
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-echo ""
-mkdir -p /etc/ssh
-
-if [[ ${c} != "0" ]]; then
-  echo "${d}" >/etc/ssh/${Login}
+read -rp "    Minutes : " pup
+echo -e ""
+start_spinner " Please wait, Colecting New data...."
+if [[ $limitip -gt 0 ]]; then
+mkdir -p /etc/kyt/limit/ssh/ip
+echo -e "$limitip" > /etc/kyt/limit/ssh/ip/$Login
+else
+echo > /dev/null
 fi
+
+if [ ! -e /etc/ssh ]; then
+  mkdir -p /etc/ssh
+fi
+
 DATADB=$(cat /etc/ssh/.ssh.db | grep "^###" | grep -w "${Login}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${Login}\b/d" /etc/ssh/.ssh.db
 fi
 echo "### ${Login} " >>/etc/ssh/.ssh.db
 echo ""
+
+if [ -e "/etc/active/1-ssh" ]; then
+    send_sshtrial
+else
+    echo -e ""
+fi
+
 cat > /var/www/html/ssh-$Login.txt <<-END
 =========================
-Format SSH OVPN Account
+Format SSH Account
 =========================
 Username         : $Login
 Password         : $Pass
 Berakhir Pada    : $pup Menit
 =========================
-IP               : $IP
 Host             : $domain
 Port OpenSSH     : 443, 80, 22
 Port Dropbear    : 443, 109
@@ -127,17 +111,20 @@ OVPN Download : https://$domain:81/
 
 END
 echo userdel -f "$Login" | at now + $pup minutes
+
+stop_spinner
+echo -e " ${Green}Success Collecting Data..${Suffix}"
+
 clear
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "  Trial SSH & OpenVPN"
+echo -e "    ${biru}Trial SSH & OpenVPN"
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e " Username         : $Login"
 echo -e " Password         : $Pass"
-echo -e " IP/Host          : $IP"
 echo -e " Domain SSH       : $domain"
 echo -e " OpenSSH          : 22"
 echo -e " Dropbear         : 80, 8080"
-echo -e "Port SSH UDP      : 1-65535"
+echo -e " Port SSH UDP     : 1-65535"
 echo -e " SSL/TLS          : 400-900"
 echo -e " SSH Ws Non SSL   : 80, 8080, 8081-9999"
 echo -e " SSH Ws SSL       : 443"
@@ -145,13 +132,16 @@ echo -e " OVPN Ws Non SSL  : 80"
 echo -e " OVPN Ws SSL      : 443"
 echo -e " BadVPN UDPGW     : 7100,7200,7300"
 echo -e "${z} ──────────────────────────────${NC}"
+echo -e " SSH TLS/SNI : $domain:443@$Login:$Pass"
+echo -e " SSH Non TLS : $domain:80@$Login:$Pass"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e " OVPN Download : https://$domain:81/"
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Save Link Account: https://$domain:81/ssh-$Login.txt"
 echo -e "${z} ──────────────────────────────${NC}"
 #echo -e "Aktif Selama   : $masaaktif Hari"
-#echo -e "Dibuat Pada    : $tnggl"
+echo -e "Dibuat Pada    : $tnggl"
 echo -e "Berakhir Pada  : $pup Menit"
 echo -e "${z} ──────────────────────────────${NC}"
-read -n 1 -s -r -p "Press any key to back on menu"
-menu
+read -n 1 -s -r -p "Press any key to back on ssh menu"
+m-sshws
