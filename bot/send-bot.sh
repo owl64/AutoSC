@@ -47,7 +47,7 @@ TEXT="<code>━━━━━━━━━━━━━━━━━━━━━━�
 <code>Username  :</code> <code>$Login</code>
 <code>Password  :</code> <code>$Pass</code>
 <code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
-OpenSSH       : 22
+<code>OpenSSH       : 22
 Dropbear      : 443, 109, 143
 SSL/TLS       : 400-900
 SSH WS TLS    : 443
@@ -58,6 +58,8 @@ BadVPN UDP    : 7100,7200,7300</code>
 <code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
 SSH TLS/SNI   : $domain:443@$Login:$Pass
 SSH Non TLS   : $domain:80@$Login:$Pass
+<code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
+<code>Payload WSS: GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]</code>
 <code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
 Ovpn Download : https://$domain:81/
 <code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
