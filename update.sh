@@ -173,12 +173,6 @@ function clearcacheAndFix(){
 		3 5 * * * root /usr/local/sbin/fixhaproxy
 	END
 
-    #cat >/etc/cron.d/clear_cache <<-END
-		#SHELL=/bin/sh
-		#PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-		#3 5 * * * root /usr/local/sbin/clearcache
-	#END
-
     cat >/etc/cron.d/notif_status <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
