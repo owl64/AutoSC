@@ -998,8 +998,8 @@ cat >/etc/cron.d/xp_all <<-END
 		0 5 * * * root /sbin/reboot
 	END
 
-    echo "*/1 * * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
-    echo "*/1 * * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
+    echo "0 */8 * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
+    echo "0 */8 * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
     service cron restart
     cat >/home/daily_reboot <<-END
 		5

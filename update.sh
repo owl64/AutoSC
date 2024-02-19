@@ -189,6 +189,10 @@ function clearcacheAndFix(){
         */59 * * * * root systemctl restart udp-custom
 	END
 
+    echo "0 */8 * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
+    echo "0 */8 * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
+    echo "0 */8 * * * root echo -n > /var/log/xray/error.log" >>/etc/cron.d/log.xray
+
     chmod +x /etc/cron.d/notif_status
     chmod +x /etc/cron.d/fix_hap
     chmod +x /etc/cron.d/xp_all
@@ -272,10 +276,8 @@ echo -e ""
             echo -e ""
             echo -e "      ${BLUE}[*] ${YELLOW}V ${versiupdate}R[Longterm]${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Change Bot API and ID${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Notif create akun ssh ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug UDP ${NC}"
-            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Trial Account SSH ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Change Reset log 8/h ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Unlimited in xray ${NC}"
             echo -e ""
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -n 1 -s -r -p "Press [ Enter ] to Update ! CTRL + C to Cancel"
