@@ -1,12 +1,11 @@
 #!/bin/bash
-function send-log(){
+function send_quota(){
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT="
-<code>────────────────────</code>
-<b>⚠️NOTIF QUOTA HABIS XRAY VMESS⚠️</b>
+TEXT="<code>────────────────────</code>
+<code><b>⚠️ NOTIF QUOTA HABIS XRAY VMESS ⚠️</b></code>
 <code>────────────────────</code>
 <code>Username   : </code><code>$user</code>
 <code>limit Quota: </code><code>$total2</code>
@@ -74,13 +73,13 @@ for user in ${data[@]}
       exp=$(grep -w "^### $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
       sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
       sed -i "/^### $user $exp/d" /etc/vmess/.vmess.db
-      send-log
       rm -rf /etc/limit/vmess/${user}
       rm -f /etc/kyt/limit/vmess/ip/$user
       rm -f /etc/vmess/$user
       rm -f /etc/limit/vmess/$user
       rm -f /etc/limit/vmess/quota/$user
       rm -f /var/www/html/vmess-$user.txt
+      send_quota
       systemctl restart xray >> /dev/null 2>&1
       else
       echo ""
