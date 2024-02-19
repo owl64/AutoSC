@@ -96,5 +96,5 @@ rm -rf /tmp/ipvmess.txt
 done
 rm -rf /tmp/other.txt
 echo ""
-echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo ""
+read -n 1 -s -r -p "Press [ Enter ] to back"
+m-vmess
