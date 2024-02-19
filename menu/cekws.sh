@@ -58,12 +58,28 @@ jum=$(cat /tmp/ipvmess.txt)
 if [[ -z "$jum" ]]; then
 echo > /dev/null
 else
-iplimit=$(cat /etc/kyt/limit/vmess/ip/${akun})
+
+if [ ! -e /etc/kyt/limit/vmess/ip/${akun} ]; then
+    iplimit='Unlimited'
+else
+    iplimit=$(cat /etc/kyt/limit/vmess/ip/${akun})
+fi
 jum2=$(cat /tmp/ipvmess.txt | wc -l)
-byte=$(cat /etc/vmess/${akun})
-lim=$(con ${byte})
-wey=$(cat /etc/limit/vmess/${akun})
-gb=$(con ${wey})
+
+if [ ! -e /etc/vmess/${akun} ]; then
+    lim='Unlimited'
+else
+    byte=$(cat /etc/vmess/${akun})
+    lim=$(con ${byte})
+fi
+
+if [ ! -e /etc/limit/vmess/${akun} ]; then
+    gb='No Usage'
+else
+    wey=$(cat /etc/limit/vmess/${akun})
+    gb=$(con ${wey})
+fi
+
 lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -d " " -f 2 | tail -1)
 my_log=$(cat /var/log/xray/access.log | grep -w "email: ${user}" | wc -l)
 echo -e " ${z}┌───────────────────────────────────────────────┐${NC}"
