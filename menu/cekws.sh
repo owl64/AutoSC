@@ -81,7 +81,7 @@ else
 fi
 
 lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -d " " -f 2 | tail -1)
-my_log=$(cat /var/log/xray/access.log | grep -w "email: ${user}" | wc -l)
+my_log=$(cat /var/log/xray/access.log | grep -w "email: ${akun}" | wc -l)
 echo -e " ${z}┌───────────────────────────────────────────────┐${NC}"
 printf "  %-13s %-7s %-8s %2s\n" "  UserName    : ${akun}"
 printf "  %-13s %-7s %-8s %2s\n" "  Login       : $lastlogin"
