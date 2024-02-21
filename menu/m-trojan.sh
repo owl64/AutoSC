@@ -30,6 +30,7 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 z="\033[96m"
+biru="\033[0;36m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
 clear
@@ -51,7 +52,7 @@ checking_sc() {
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
+    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     sleep 5
@@ -68,12 +69,21 @@ echo -e " ${z}┌─────────────────────
 echo -e "                 MENU TROJAN              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  ${ORANGE}  [01].${NC} \033[0;36m Create Account XRAY Trojan WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [02].${NC} \033[0;36m Create Trial XRAY Trojan WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [03].${NC} \033[0;36m Delete Account XRAY Trojan WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [04].${NC} \033[0;36m Renew Trojan Account${NC}"
-echo -e "  ${ORANGE}  [05].${NC} \033[0;36m Check Trojan login Account${NC}"
-echo -e "  ${ORANGE}  [06].${NC} \033[0;36m Check Config Trojan  Account${NC}"
+echo -e "  ${ORANGE}  [01].${NC} ${biru} Create Account XRAY Trojan WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [02].${NC} ${biru} Create Trial XRAY Trojan WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [03].${NC} ${biru} Delete Account XRAY Trojan WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [04].${NC} ${biru} Renew Trojan Account${NC}"
+echo -e "  ${ORANGE}  [05].${NC} ${biru} Check Trojan login Account${NC}"
+echo -e "  ${ORANGE}  [06].${NC} ${biru} Check Config Trojan  Account${NC}"
+echo -e "  ${ORANGE}  [07].${NC} ${biru} Restore Trojan Account${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e "      $PURPLE           LIMIT TROJAN              $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "  ${ORANGE}  [08].${NC} ${biru} Change Limit IP${NC}"
+echo -e "  ${ORANGE}  [09].${NC} ${biru} Change Limit Quota${NC}"
+echo -e "  ${ORANGE}  [10].${NC} ${biru} Reset Usage Quota Acount${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
 echo -e ""
@@ -81,30 +91,58 @@ echo -e " ${z}┌─────────────────────
 echo -e "     ACCOUNT : ${ORANGE}[ ${trb} ]${NC}   Usage : ${ORANGE}[ ${ttoday} ]${NC} "
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-read -p "Select From Options [ 1 - 6 ] : " menu
-case $menu in
-1)
-    addtr
-    ;;
-2)
-    trialtr
-    ;;
-3)
-    deltr
-    ;;
-4)
-    renewtr
-    ;;
-5)
-    cektr
-    ;;
-6)
-    user-tr
-    ;;
-7)
+read -p "Select From Options [ 1 - 10 ] : " menu
+
+if [ -z $menu ]; then
     menu
-    ;;
-*)
-    menu
-    ;;
-esac
+else
+    case $menu in
+    01 | 1)
+        clear
+        addtr
+        ;;
+    02 | 2)
+        clear
+        trialtr
+        ;;
+    03 | 3)
+        clear
+        deltr
+        ;;
+    04 | 4)
+        clear
+        renewtr
+        ;;
+    05 | 5)
+        cektr
+        ;;
+    06 | 6)
+        clear
+        user-tr
+        ;;
+    07 | 7)
+        clear
+        menu
+        ;;
+    08 | 8)
+        clear
+        menu
+        ;;
+    09 | 9)
+        clear
+        menu
+        ;;
+    10)
+        clear
+        menu
+        ;;
+    00 | 0)
+        clear
+        menu
+        ;;
+    *)
+        clear
+        menu
+        ;;
+    esac
+fi
