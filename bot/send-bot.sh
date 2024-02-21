@@ -47,7 +47,7 @@ TEXT="<code>━━━━━━━━━━━━━━━━━━━━━━�
 <code>Username  :</code> <code>$Login</code>
 <code>Password  :</code> <code>$Pass</code>
 <code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code>
-<code>OpenSSH       : 22
+<code>OpenSSH : 22
 Dropbear      : 443, 109, 143
 SSL/TLS       : 400-900
 SSH WS TLS    : 443
