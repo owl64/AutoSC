@@ -63,6 +63,7 @@ checking_sc
 ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
 trx=$(grep -c -E "^#! " "/etc/xray/config.json")
 let trb=$trx/2
+source /usr/local/sbin/changelimit
 echo -e "\e[32mloading...\e[0m"
 clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
@@ -122,19 +123,19 @@ else
         ;;
     07 | 7)
         clear
-        menu
+        restoretrojan
         ;;
     08 | 8)
         clear
-        menu
+        changeiplimittrojan
         ;;
     09 | 9)
         clear
-        menu
+        changelimitquotatrojan
         ;;
     10)
         clear
-        menu
+        resetquotatrojan
         ;;
     00 | 0)
         clear
