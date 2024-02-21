@@ -98,7 +98,7 @@ echo -e "${z}  ─────────────────────�
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
 echo -e "${z}  ──────────────────────────────────${NC}"
 		echo -e ""
-    read -rp "User: " -e user
+    read -rp "   User: " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then

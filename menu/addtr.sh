@@ -79,18 +79,27 @@ domain=$IP
 fi
 #tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-echo -e " CREATE TROJAN ACCOUNT          "
-echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-
-		read -rp "User: " -e user
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Create Trojan Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
+    echo -e "    ${biru}Just input a number for-"
+    echo -e "     ${Green}Quota Limit${Suffix}"
+    echo -e "     ${Green}Limit IP${Suffix}"
+    echo -e "    ${biru}Format GB"
+    echo -e ""
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
+echo -e "${z}  ──────────────────────────────────${NC}"
+echo -e ""
+		read -rp "   User: " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${user_EXISTS} == '1' ]]; then
 clear
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e " CREATE TROJAN ACCOUNT          "
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Create Trojan Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
 			echo ""
 			echo "A client with the specified name was already created, please choose another name."
 			echo ""
@@ -100,10 +109,25 @@ clear
 		fi
 	done
 
-uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "Expired (days): " masaaktif
-read -p "Limit User (GB): " Quota
-read -p "Limit User (IP): " iplimit
+if [ ! -e /etc/brand ]; then
+  mkdir -p /etc/brand
+fi
+
+if [ ! -e /etc/brand/.brand.db ]; then
+    touch /etc/brand/.brand.db
+fi
+
+cekbrand=$(cat /etc/brand/.brand.db | grep '#trojan#' | cut -d ' ' -f 2 | sort | uniq)
+
+if [[ -z ${cekbrand} ]]; then
+  uuid=$(cat /proc/sys/kernel/random/uuid)
+else
+  uuid="${cekbrand}-${user}"
+fi
+
+read -p "   Expired (days) : " masaaktif
+read -p "   Limit User (GB): " Quota
+read -p "   Limit User (IP): " iplimit
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -125,7 +149,7 @@ trojanlink="trojan://${uuid}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host
 
 cat >/var/www/html/trojan-$user.txt <<-END
 =========================
-   SDC VpN Tunneling 
+   SDC VPN Tunneling 
 =========================
 
 # Format Trojan GO/WS
