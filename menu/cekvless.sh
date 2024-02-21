@@ -34,7 +34,7 @@ function con() {
 echo -n > /tmp/other.txt
 data=( `cat /etc/xray/config.json | grep '#&' | cut -d ' ' -f 2 | sort | uniq`);
 echo -e " ${z}┌───────────────────────────────────────────────┐${NC}"
-echo -e " \e[1;97;101m           CEK VLESS ACCOUNT            \e[0m"
+echo -e "               CEK VLESS ACCOUNT            "
 echo -e " ${z}└───────────────────────────────────────────────┘${NC}"
 for akun in "${data[@]}"
 do
@@ -58,25 +58,45 @@ jum=$(cat /tmp/ipvless.txt)
 if [[ -z "$jum" ]]; then
 echo > /dev/null
 else
-iplimit=$(cat /etc/kyt/limit/vless/ip/${akun})
+
+if [ ! -e /etc/kyt/limit/vless/ip/${akun} ]; then
+    iplimit='Unlimited'
+else
+    iplimit=$(cat /etc/kyt/limit/vless/ip/${akun})
+fi
 jum2=$(cat /tmp/ipvless.txt | wc -l)
-byte=$(cat /etc/vless/${akun})
-lim=$(con ${byte})
-wey=$(cat /etc/limit/vless/${akun})
-gb=$(con ${wey})
+
+if [ ! -e /etc/vless/${akun} ]; then
+    lim='Unlimited'
+else
+    byte=$(cat /etc/vless/${akun})
+    lim=$(con ${byte})
+fi
+
+if [ ! -e /etc/limit/vless/${akun} ]; then
+    gb='No Usage'
+else
+    wey=$(cat /etc/limit/vless/${akun})
+    gb=$(con ${wey})
+fi
+
 lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -d " " -f 2 | tail -1)
+my_log=$(cat /var/log/xray/access.log | grep -w "email: ${akun}" | wc -l)
+
 echo -e " ${z}┌───────────────────────────────────────────────┐${NC}"
-printf "  %-13s %-7s %-8s %2s\n" "  UserName : ${akun}"
-printf "  %-13s %-7s %-8s %2s\n" "  Login    : $lastlogin"
+printf "  %-13s %-7s %-8s %2s\n" "  UserName    : ${akun}"
+printf "  %-13s %-7s %-8s %2s\n" "  Login       : $lastlogin"
 printf "  %-13s %-7s %-8s %2s\n" "  Usage Quota : ${gb}" 
 printf "  %-13s %-7s %-8s %2s\n" "  Limit Quota : ${lim}" 
-printf "  %-13s %-7s %-8s %2s\n" "  Limit IP : $iplimit" 
-printf "  %-13s %-7s %-8s %2s\n" "  Login IP : $jum2" 
+printf "  %-13s %-7s %-8s %2s\n" "  Limit IP    : $iplimit" 
+printf "  %-13s %-7s %-8s %2s\n" "  Login IP    : $jum2"
+printf "  %-13s %-7s %-8s %2s\n" "  Log User    : $my_log"
 echo -e " ${z}└───────────────────────────────────────────────┘${NC}"
 fi 
 rm -rf /tmp/ipvless.txt
 done
 rm -rf /tmp/other.txt
+echo -e "       No Client Online/ No Client"
 echo ""
-echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo ""
+read -n 1 -s -r -p "Press [ Enter ] to back"
+m-vless

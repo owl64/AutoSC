@@ -24,7 +24,7 @@ clear
 echo -n >/tmp/other.txt
 data=($(cat /etc/xray/config.json | grep '^#!#' | cut -d ' ' -f 2 | sort | uniq))
 echo -e " ${z}┌───────────────────────────────────────────────┐${NC}"
-echo -e "           SHADOWSOCKS USER LOGIN        "
+echo -e "              SHADOWSOCKS USER LOGIN            "
 echo -e " ${z}└───────────────────────────────────────────────┘${NC}"
 echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 for akun in "${data[@]}"; do
@@ -60,7 +60,6 @@ done
 
 rm -rf /tmp/other.txt
 echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "            Autoscript by Zenhost         "
+echo -e "                 SDC TUNNELING              "
 echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo ""
