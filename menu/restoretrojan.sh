@@ -31,6 +31,7 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+z='\033[96m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
@@ -81,7 +82,7 @@ fi
 #none="$(cat ~/log-install.txt | grep -w "Vmess None TLS" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-echo -e "RESTORE VMESS ACCOUNT           "
+echo -e "RESTORE TROJAN ACCOUNT           "
 echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
 
 		read -rp "User: " -e user
@@ -90,7 +91,7 @@ echo -e "\033[1;93m────────────────────�
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
 clear
             echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-            echo -e " RESTORE VMESS ACCOUNT           "
+            echo -e " RESTORE TROJAN ACCOUNT           "
             echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
 
 			echo ""
@@ -116,147 +117,65 @@ bln2=$(date +"%b")
 thn2=$(date +"%Y")
 tnggl="$tgl2 $bln2, $thn2"
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmess$/a\### '"$user $exp"'\
+sed -i '/#trojanws$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
+sed -i '/#trojangrpc$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 
-asu=`cat<<EOF
-      {
-      "v": "2",
-      "ps": "${user}",
-      "add": "${domain}",
-      "port": "443",
-      "id": "${uuid}",
-      "aid": "0",
-      "net": "ws",
-      "path": "/vmess",
-      "type": "none",
-      "host": "${domain}",
-      "tls": "tls"
-}
-EOF`
-ask=`cat<<EOF
-      {
-      "v": "2",
-      "ps": "${user}",
-      "add": "${domain}",
-      "port": "80",
-      "id": "${uuid}",
-      "aid": "0",
-      "net": "ws",
-      "path": "/vmess",
-      "type": "none",
-      "host": "${domain}",
-      "tls": "none"
-}
-EOF`
-grpc=`cat<<EOF
-      {
-      "v": "2",
-      "ps": "${user}",
-      "add": "${domain}",
-      "port": "443",
-      "id": "${uuid}",
-      "aid": "0",
-      "net": "grpc",
-      "path": "vmess-grpc",
-      "type": "none",
-      "host": "${domain}",
-      "tls": "tls"
-}
-EOF`
-vmess_base641=$( base64 -w 0 <<< $vmess_json1)
-vmess_base642=$( base64 -w 0 <<< $vmess_json2)
-vmess_base643=$( base64 -w 0 <<< $vmess_json3)
-vmesslink1="vmess://$(echo $asu | base64 -w 0)"
-vmesslink2="vmess://$(echo $ask | base64 -w 0)"
-vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
-systemctl restart xray > /dev/null 2>&1
-service cron restart > /dev/null 2>&1
+# Link Trojan Akun
+systemctl restart xray
+trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=bug.com#${user}"
+trojanlink="trojan://${uuid}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 
-
-cat >/var/www/html/vmess-$user.txt <<-END
-
+cat >/var/www/html/trojan-$user.txt <<-END
 =========================
-  SDC VPN TUNNELING 
+   SDC VpN Tunneling 
 =========================
-# Format Vmess WS TLS
 
-- name: Vmess-$user-WS TLS
-  type: vmess
+# Format Trojan GO/WS
+
+- name: Trojan-$user-GO/WS
   server: ${domain}
   port: 443
-  uuid: ${uuid}
-  alterId: 0
-  cipher: auto
-  udp: true
-  tls: true
+  type: trojan
+  password: ${uuid}
+  network: ws
+  sni: ${domain}
   skip-cert-verify: true
-  servername: ${domain}
-  network: ws
-  ws-opts:
-    path: /vmess
-    headers:
-      Host: ${domain}
-
-# Format Vmess WS Non TLS
-
-- name: Vmess-$user-WS Non TLS
-  type: vmess
-  server: ${domain}
-  port: 80
-  uuid: ${uuid}
-  alterId: 0
-  cipher: auto
   udp: true
-  tls: false
-  skip-cert-verify: false
-  servername: ${domain}
-  network: ws
   ws-opts:
-    path: /vmess
+    path: /trojan-ws
     headers:
-      Host: ${domain}
+        Host: ${domain}
 
-# Format Vmess gRPC
+# Format Trojan gRPC
 
-- name: Vmess-$user-gRPC (SNI)
+- name: Trojan-$user-gRPC
+  type: trojan
   server: ${domain}
   port: 443
-  type: vmess
-  uuid: ${uuid}
-  alterId: 0
-  cipher: auto
+  password: ${uuid}
+  udp: true
+  sni: ${domain}
+  skip-cert-verify: true
   network: grpc
-  tls: true
-  servername: ${domain}
-  skip-cert-verify: true
   grpc-opts:
-    grpc-service-name: vmess-grpc
-
-=========================
- Link Akun Vmess                   
-=========================
-Link TLS         : 
-${vmesslink1}
-=========================
-Link none TLS    : 
-${vmesslink2}
-=========================
-Link GRPC        : 
-${vmesslink3}
-=========================
-
+    grpc-service-name: trojan-grpc
 END
-if [ ! -e /etc/vmess ]; then
-  mkdir -p /etc/vmess
+
+systemctl reload xray
+systemctl reload nginx
+service cron restart
+trojanlink="trojan://${uuid}@${domain}:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
+if [ ! -e /etc/trojan ]; then
+  mkdir -p /etc/trojan
 fi
 
 if [[ $iplimit -gt 0 ]]; then
-mkdir -p /etc/kyt/limit/vmess/ip
-echo -e "$iplimit" > /etc/kyt/limit/vmess/ip/$user
+mkdir -p /etc/kyt/limit/trojan/ip
+echo -e "$iplimit" > /etc/kyt/limit/trojan/ip/$user
 else
 echo > /dev/null
 fi
@@ -269,48 +188,40 @@ c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
 d=$((${c} * 1024 * 1024 * 1024))
 
 if [[ ${c} != "0" ]]; then
-  echo "${d}" >/etc/vmess/${user}
+  echo "${d}" >/etc/trojan/${user}
 fi
-DATADB=$(cat /etc/vmess/.vmess.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
+DATADB=$(cat /etc/trojan/.trojan.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
-  sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
+  sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
 fi
-echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vmess/.vmess.db
+echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
 clear
+echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "  RESTORED Account Vmess"
+echo -e " SUCCESS TROJAN ACCOUNT RESTORE         "
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Remarks          : ${user}"
-echo -e "Domain           : ${domain}"
+echo -e "Remarks          : ${user}" 
+echo -e "Host/IP          : ${domain}"
+echo -e "Wilcard          : bug.${domain}"
 echo -e "User Quota       : ${Quota} GB"
 echo -e "User Ip          : ${iplimit} IP"
-echo -e "Port TLS         : 400-900"
-echo -e "Port none TLS    : 80, 8080, 8081-9999"
-echo -e "id               : ${uuid}"
-#echo -e "Xray Dns         : ${NS}"
-#echo -e "Pubkey           : ${PUB}"
-echo -e "alterId          : 0"
-echo -e "Security         : auto"
-echo -e "Network          : ws"
-echo -e "Path             : /Multi-Path"
-echo -e "Dynamic          : https://bugmu.com/path"
-echo -e "ServiceName      : vmess-grpc"
-#echo -e "Host XrayDNS : ${NS}"
-#echo -e "Location         : $CITY"
-#echo -e "Pub Key          : ${PUB}"
+echo -e "port             : 400-900" 
+echo -e "Key              : ${uuid}" 
+echo -e "Xray Dns.        : ${NS}"
+echo -e "Pubkey.          : ${PUB}"
+echo -e "Path             : /trojan-ws" 
+echo -e "ServiceName      : trojan-grpc" 
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link TLS         : ${vmesslink1}"
+echo -e "Link WS          : ${trojanlink}" 
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link none TLS    : ${vmesslink2}"
+echo -e "Link GRPC        : ${trojanlink1}" 
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link GRPC        : ${vmesslink3}"
-echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt"
+echo -e "Format OpenClash : https://${domain}:81/trojan-$user.txt" 
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
 echo -e "${z} ──────────────────────────────${NC}"
-echo ""
-read -n 1 -s -r -p "Press any key to back on vmess menu"
-m-vmess
+echo -e ""
+read -n 1 -s -r -p "Press any key to back on trojan menu"
+m-trojan

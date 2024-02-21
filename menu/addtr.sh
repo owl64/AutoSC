@@ -31,6 +31,7 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+z='\033[96m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 # Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
@@ -191,9 +192,9 @@ fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
 clear
 echo -e ""
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e " CREATE TROJAN ACCOUNT          "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks          : ${user}" 
 echo -e "Host/IP          : ${domain}"
 echo -e "Wilcard          : bug.${domain}"
@@ -205,15 +206,17 @@ echo -e "Xray Dns.        : ${NS}"
 echo -e "Pubkey.          : ${PUB}"
 echo -e "Path             : /trojan-ws" 
 echo -e "ServiceName      : trojan-grpc" 
-echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\033[0m" 
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link WS          : ${trojanlink}" 
-echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\033[0m" 
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link GRPC        : ${trojanlink1}" 
-echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\033[0m" 
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Format OpenClash : https://${domain}:81/trojan-$user.txt" 
-echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\033[0m" 
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[0;34◇━━━━━━━━━━━━━━━━━◇\033[0m" 
-echo ""
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e ""
+read -n 1 -s -r -p "Press any key to back on trojan menu"
+m-trojan
