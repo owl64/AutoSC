@@ -35,6 +35,21 @@ grenbo="\e[92;1m"
 Suffix="\033[0m"
 biru='\033[0;36m'
 z='\033[96m'
+
+##FUngsi Hitung GB
+function con(){
+    local -i bytes=$1;
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes} B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$(( (bytes + 1023)/1024 )) KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$(( (bytes + 1048575)/1048576 )) MB"
+    else
+        echo "$(( (bytes + 1073741823)/1073741824 )) GB"
+    fi
+}
+
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 source /usr/local/sbin/spiner
 # Getting
@@ -90,15 +105,15 @@ echo -e "         ${biru}Create Vmess Account${NC}           "
 echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
 echo -e "${z}  ──────────────────────────────────${NC}"
     echo -e "    ${biru}Just input a number for-"
-    echo -e "     ${Green}Quota Limit${Suffix}"
     echo -e "     ${Green}Limit IP${Suffix}"
-    echo -e "    ${biru}Format GB"
     echo -e ""
+    echo -e "    ${biru}Format GB"
+    echo -e "     ${ORANGE}20MB/2GB For Quota Limit${Suffix}"
     echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
 echo -e "${z}  ──────────────────────────────────${NC}"
 		echo -e ""
-    read -rp "   User: " -e user
+    read -rp "   User : " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
@@ -135,9 +150,9 @@ else
   uuid="${cekbrand}-${user}"
 fi
 
-read -p "   Expired (days): " masaaktif
-read -p "   Limit User (GB): " Quota
-read -p "   Limit User (IP): " iplimit
+read -p "   Expired (days)    : " masaaktif
+read -p "   Limit User (MB/GB): " Quota
+read -p "   Limit User (IP)   : " iplimit
 echo -e ""
 start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")
@@ -306,12 +321,32 @@ if [ -z ${Quota} ]; then
   Quota="0"
 fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
+fi
 
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/vmess/${user}
 fi
+
+if [ ! -e /etc/vmess/${user} ]; then
+    Quota1="Unlimited"
+else
+    baca1=$(cat /etc/vmess/${user})
+    Quota1=$(con ${baca1})
+fi
+
 DATADB=$(cat /etc/vmess/.vmess.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
@@ -319,6 +354,7 @@ fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vmess/.vmess.db
 stop_spinner
 echo -e " ${Green}Success Verif New Data....${Suffix}"
+
 clear
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "    Xray/Vmess Account "
@@ -326,7 +362,7 @@ echo -e "${z} ──────────────────────
 echo -e " Remarks          : ${user}"
 echo -e " Domain           : ${domain}"
 echo -e " Wilcard          : bug.${domain}"
-echo -e " User Quota       : ${Quota} GB"
+echo -e " User Quota       : ${Quota1}"
 echo -e " User Ip          : ${iplimit} IP"
 echo -e " Port TLS         : 400-900"
 echo -e " Port none TLS    : 80, 8080, 8081-9999"

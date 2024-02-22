@@ -84,15 +84,15 @@ echo -e "         ${biru}Create Trojan Account${NC}           "
 echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
 echo -e "${z}  ──────────────────────────────────${NC}"
     echo -e "    ${biru}Just input a number for-"
-    echo -e "     ${Green}Quota Limit${Suffix}"
     echo -e "     ${Green}Limit IP${Suffix}"
-    echo -e "    ${biru}Format GB"
     echo -e ""
+    echo -e "    ${biru}Format GB"
+    echo -e "     ${ORANGE}20MB/2GB For Quota Limit${Suffix}"
     echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
 echo -e "${z}  ──────────────────────────────────${NC}"
 echo -e ""
-		read -rp "   User: " -e user
+		read -rp "   User : " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${user_EXISTS} == '1' ]]; then
@@ -125,9 +125,9 @@ else
   uuid="${cekbrand}-${user}"
 fi
 
-read -p "   Expired (days) : " masaaktif
-read -p "   Limit User (GB): " Quota
-read -p "   Limit User (IP): " iplimit
+read -p "   Expired (days)    : " masaaktif
+read -p "   Limit User (MB/GB): " Quota
+read -p "   Limit User (IP)   : " iplimit
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -203,12 +203,32 @@ if [ -z ${Quota} ]; then
   Quota="0"
 fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
+fi
 
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/trojan/${user}
 fi
+
+if [ ! -e /etc/trojan/${user} ]; then
+    Quota1="Unlimited"
+else
+    baca1=$(cat /etc/trojan/${user})
+    Quota1=$(con ${baca1})
+fi
+
 DATADB=$(cat /etc/trojan/.trojan.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
@@ -222,13 +242,14 @@ echo -e "${z} ──────────────────────
 echo -e "Remarks          : ${user}" 
 echo -e "Host/IP          : ${domain}"
 echo -e "Wilcard          : bug.${domain}"
-echo -e "User Quota       : ${Quota} GB"
+echo -e "User Quota       : ${Quota1}"
 echo -e "User Ip          : ${iplimit} IP"
 echo -e "port             : 400-900" 
 echo -e "Key              : ${uuid}" 
 echo -e "Xray Dns.        : ${NS}"
 echo -e "Pubkey.          : ${PUB}"
-echo -e "Path             : /trojan-ws" 
+echo -e "Path             : /Multi-Path/trojan-ws"
+echo -e "Dynamic          : https://bugmu.com/path"
 echo -e "ServiceName      : trojan-grpc" 
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link WS          : ${trojanlink}" 
