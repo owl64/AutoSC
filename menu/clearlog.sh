@@ -35,6 +35,5 @@ echo > /var/log/btmp
 echo > /var/log/messages
 echo > /var/log/debug
 echo -e ""
-notif_clearlog
 echo -e " ${GREEN} Clear Log Berhasil ${NC}"
 echo ""
