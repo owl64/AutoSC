@@ -86,7 +86,8 @@ case $res in
     echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
     echo -e "         ${biru}Link Backup Data${NC}           "
     echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
-    read -rp " Link File: " -e url
+    echo -e ""
+    read -rp "    Link File: " -e url
     start_spinner " Please wait, Process Restore...."
     wget -O backup.zip "$url"
     unzip backup.zip
