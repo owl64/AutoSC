@@ -67,7 +67,7 @@ source /usr/local/sbin/changelimit
 echo -e "\e[32mloading...\e[0m"
 clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e "                 MENU TROJAN              $NC"
+echo -e "      $PURPLE           MENU TROJAN              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 echo -e "  ${ORANGE}  [01].${NC} ${biru} Create Account XRAY Trojan WS/GRPC${NC}"
