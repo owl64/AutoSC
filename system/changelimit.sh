@@ -39,15 +39,13 @@ function changelimitquotavmess(){
 
             # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
-                wey=$(cat "/etc/vmess/${akun}")
-                gb=$(con "${wey}")
+                if [ ! -e /etc/vmess/${akun} ]; then
+                    gb="Unlimited"
+                else
+                    wey=$(cat "/etc/vmess/${akun}")
+                    gb=$(con "${wey}")
+                fi
                 printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"
-            else
-                echo "Account $filename, Limit Quota Not Found in $directory."
-
-                # Membuat file jika tidak ditemukan
-                touch "$directory/$filename"
-                echo "${d}" >"/etc/vmess/${akun}"
             fi          
         done
     echo -e ""
@@ -102,14 +100,12 @@ function changeiplimitvmess(){
 
             # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
-                iplimit=$(cat $directory/$akun)
+                if [ ! -e ${directory}/${akun} ]; then
+                    iplimit="Unlimited"
+                else
+                    iplimit=$(cat $directory/$akun)
+                fi
                 printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";
-            else
-                echo "Account $filename, Limit Quota Not Found in $directory."
-
-                # Membuat file jika tidak ditemukan
-                touch "$directory/$filename"
-                echo "${defaultip}" >"/etc/kyt/limit/vmess/ip/${akun}"
             fi          
         done
     echo -e ""
@@ -162,11 +158,13 @@ function resetquotavmess(){
 
                 # Mencari file di direktori
                 if [ -e "$directory/$filename" ]; then
-                    wey=$(cat "/etc/limit/vmess/${akun}")
-                    gb=$(con "${wey}")
+                    if [ ! -e /etc/limit/vmess/${akun} ]; then
+                        gb="Unlimited"
+                    else
+                        wey=$(cat "/etc/limit/vmess/${akun}")
+                        gb=$(con "${wey}")
+                    fi
                     printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"
-                else
-                    echo "Usage $filename, Quota Not Found in $directory."
                 fi          
             done
     echo -e ""
@@ -221,15 +219,13 @@ function changelimitquotavless(){
 
             # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
-                wey=$(cat "/etc/vless/${akun}")
-                gb=$(con "${wey}")
+                if [ ! -e /etc/vless/${akun} ]; then
+                    gb="Unlimited"
+                else
+                    wey=$(cat "/etc/vless/${akun}")
+                    gb=$(con "${wey}")
+                fi
                 printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"
-            else
-                echo "Account $filename, Limit Quota Not Found in $directory."
-
-                # Membuat file jika tidak ditemukan
-                touch "$directory/$filename"
-                echo "${d}" >"/etc/vless/${akun}"
             fi          
         done
     echo -e ""
@@ -283,14 +279,12 @@ function changeiplimitvless(){
 
             # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
-                iplimit=$(cat $directory/$akun)
+                if [ ! -e ${directory}/${akun} ]; then
+                    iplimit="Unlimited"
+                else
+                    iplimit=$(cat $directory/$akun)
+                fi
                 printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";
-            else
-                echo "Account $filename, Limit Quota Not Found in $directory."
-
-                # Membuat file jika tidak ditemukan
-                touch "$directory/$filename"
-                echo "${defaultip}" >"/etc/kyt/limit/vless/ip/${akun}"
             fi          
         done
     echo -e ""
@@ -342,11 +336,13 @@ function resetquotavless(){
 
                 # Mencari file di direktori
                 if [ -e "$directory/$filename" ]; then
-                    wey=$(cat "/etc/limit/vless/${akun}")
-                    gb=$(con "${wey}")
+                    if [ ! -e /etc/limit/vless/${akun} ]; then
+                        gb="Unlimited"
+                    else
+                        wey=$(cat "/etc/limit/vless/${akun}")
+                        gb=$(con "${wey}")
+                    fi
                     printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"
-                else
-                    echo "Usage $filename, Quota Not Found in $directory."
                 fi          
             done
     echo -e ""
@@ -400,15 +396,13 @@ function changelimitquotatrojan(){
 
             # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
-                wey=$(cat "/etc/trojan/${akun}")
-                gb=$(con "${wey}")
+                if [ ! -e /etc/trojan/${akun} ]; then
+                    gb="Unlimited"
+                else
+                    wey=$(cat "/etc/trojan/${akun}")
+                    gb=$(con "${wey}")
+                fi
                 printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"
-            else
-                echo "Account $filename, Limit Quota Not Found in $directory."
-
-                # Membuat file jika tidak ditemukan
-                touch "$directory/$filename"
-                echo "${d}" >"/etc/trojan/${akun}"
             fi          
         done
     echo -e ""
@@ -462,14 +456,12 @@ function changeiplimittrojan(){
 
             # Mencari file di direktori
             if [ -e "$directory/$filename" ]; then
-                iplimit=$(cat $directory/$akun)
+                if [ ! -e ${directory}/${akun} ]; then
+                    iplimit="Unlimited"
+                else
+                    iplimit=$(cat $directory/$akun)
+                fi
                 printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";
-            else
-                echo "Account $filename, Limit Quota Not Found in $directory."
-
-                # Membuat file jika tidak ditemukan
-                touch "$directory/$filename"
-                echo "${defaultip}" >"/etc/kyt/limit/trojan/ip/${akun}"
             fi          
         done
     echo -e ""
@@ -521,11 +513,13 @@ function resetquotatrojan(){
 
                 # Mencari file di direktori
                 if [ -e "$directory/$filename" ]; then
-                    wey=$(cat "/etc/limit/trojan/${akun}")
-                    gb=$(con "${wey}")
+                    if [ ! -e /etc/limit/trojan/${akun} ]; then
+                        gb="Unlimited"
+                    else
+                        wey=$(cat "/etc/limit/trojan/${akun}")
+                        gb=$(con "${wey}")
+                    fi
                     printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"
-                else
-                    echo "Usage $filename, Quota Not Found in $directory."
                 fi          
             done
     echo -e ""
