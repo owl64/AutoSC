@@ -9,8 +9,6 @@ BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
-#####BOT
-
 # ==========================================
 data=(`find /var/log/ -name *.log`);
 for log in "${data[@]}"
