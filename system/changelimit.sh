@@ -21,9 +21,9 @@ function changelimitquotavmess(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Change Limit Quota              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 Quota       "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/vmess"
         cekada=$(grep -c -E "^### " "/etc/xray/config.json")
@@ -35,18 +35,13 @@ function changelimitquotavmess(){
         fi
 
         for akun in "${data[@]}"; do
-            filename="$akun"
-
-            # Mencari file di direktori
-            if [ -e "$directory/$filename" ]; then
                 if [ ! -e /etc/vmess/${akun} ]; then
                     gb="Unlimited"
                 else
                     wey=$(cat "/etc/vmess/${akun}")
                     gb=$(con "${wey}")
                 fi
-                printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"
-            fi          
+                printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          ${gb}"
         done
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
@@ -81,9 +76,9 @@ function changeiplimitvmess(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Change Limit IP              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 IP Limit     "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/kyt/limit/vmess/ip"
 
@@ -96,17 +91,12 @@ function changeiplimitvmess(){
         fi
 
         for akun in "${data[@]}"; do
-            filename="$akun"
-
-            # Mencari file di direktori
-            if [ -e "$directory/$filename" ]; then
                 if [ ! -e ${directory}/${akun} ]; then
                     iplimit="Unlimited"
                 else
                     iplimit=$(cat $directory/$akun)
                 fi
-                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";
-            fi          
+                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";        
         done
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
@@ -139,9 +129,9 @@ function resetquotavmess(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE       Reset Usage               $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 Usage       "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/limit/vmess"
 
@@ -154,18 +144,13 @@ function resetquotavmess(){
         fi
 
             for akun in "${data[@]}"; do
-                filename="$akun"
-
-                # Mencari file di direktori
-                if [ -e "$directory/$filename" ]; then
                     if [ ! -e /etc/limit/vmess/${akun} ]; then
                         gb="Unlimited"
                     else
                         wey=$(cat "/etc/limit/vmess/${akun}")
                         gb=$(con "${wey}")
                     fi
-                    printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"
-                fi          
+                    printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"    
             done
     echo -e ""
     read -rp "  Input Username for Reset Usage : " change
@@ -200,9 +185,9 @@ function changelimitquotavless(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Change Limit Quota              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 Quota       "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/vless"
 
@@ -215,10 +200,6 @@ function changelimitquotavless(){
         fi
 
         for akun in "${data[@]}"; do
-            filename="$akun"
-
-            # Mencari file di direktori
-            if [ -e "$directory/$filename" ]; then
                 if [ ! -e /etc/vless/${akun} ]; then
                     gb="Unlimited"
                 else
@@ -226,7 +207,6 @@ function changelimitquotavless(){
                     gb=$(con "${wey}")
                 fi
                 printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"
-            fi          
         done
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
@@ -261,9 +241,9 @@ function changeiplimitvless(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Change Limit IP              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 IP Limit     "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/kyt/limit/vless/ip"
         cekada=$(grep -c -E "^#& " "/etc/xray/config.json")
@@ -275,17 +255,12 @@ function changeiplimitvless(){
         fi
 
         for akun in "${data[@]}"; do
-            filename="$akun"
-
-            # Mencari file di direktori
-            if [ -e "$directory/$filename" ]; then
                 if [ ! -e ${directory}/${akun} ]; then
                     iplimit="Unlimited"
                 else
                     iplimit=$(cat $directory/$akun)
                 fi
-                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";
-            fi          
+                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";     
         done
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
@@ -318,9 +293,9 @@ function resetquotavless(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE       Reset Usage               $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 Usage       "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/limit/vless"
         cekada=$(grep -c -E "^#& " "/etc/xray/config.json")
@@ -332,18 +307,13 @@ function resetquotavless(){
         fi
 
             for akun in "${data[@]}"; do
-                filename="$akun"
-
-                # Mencari file di direktori
-                if [ -e "$directory/$filename" ]; then
                     if [ ! -e /etc/limit/vless/${akun} ]; then
                         gb="Unlimited"
                     else
                         wey=$(cat "/etc/limit/vless/${akun}")
                         gb=$(con "${wey}")
                     fi
-                    printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"
-                fi          
+                    printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"         
             done
     echo -e ""
     read -rp "  Input Username for Reset Usage : " change
@@ -377,9 +347,9 @@ function changelimitquotatrojan(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Change Limit Quota              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 Quota       "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/trojan"
 
@@ -392,18 +362,13 @@ function changelimitquotatrojan(){
         fi
 
         for akun in "${data[@]}"; do
-            filename="$akun"
-
-            # Mencari file di direktori
-            if [ -e "$directory/$filename" ]; then
                 if [ ! -e /etc/trojan/${akun} ]; then
                     gb="Unlimited"
                 else
                     wey=$(cat "/etc/trojan/${akun}")
                     gb=$(con "${wey}")
                 fi
-                printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"
-            fi          
+                printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"        
         done
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
@@ -438,9 +403,9 @@ function changeiplimittrojan(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE      Change Limit IP              $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 IP Limit     "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/kyt/limit/trojan/ip"
         cekada=$(grep -c -E "^#! " "/etc/xray/config.json")
@@ -452,17 +417,12 @@ function changeiplimittrojan(){
         fi
 
         for akun in "${data[@]}"; do
-            filename="$akun"
-
-            # Mencari file di direktori
-            if [ -e "$directory/$filename" ]; then
                 if [ ! -e ${directory}/${akun} ]; then
                     iplimit="Unlimited"
                 else
                     iplimit=$(cat $directory/$akun)
                 fi
-                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";
-            fi          
+                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";         
         done
     echo -e ""
     read -rp "  Input Username to Change Limit : " change
@@ -495,9 +455,9 @@ function resetquotatrojan(){
     echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
     echo -e "      $PURPLE       Reset Usage               $NC"
     echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e "         Username                 Usage       "
-    echo -e " ${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
     echo -e ""
         directory="/etc/limit/trojan"
         cekada=$(grep -c -E "^#! " "/etc/xray/config.json")
@@ -509,18 +469,13 @@ function resetquotatrojan(){
         fi
 
             for akun in "${data[@]}"; do
-                filename="$akun"
-
-                # Mencari file di direktori
-                if [ -e "$directory/$filename" ]; then
                     if [ ! -e /etc/limit/trojan/${akun} ]; then
                         gb="Unlimited"
                     else
                         wey=$(cat "/etc/limit/trojan/${akun}")
                         gb=$(con "${wey}")
                     fi
-                    printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"
-                fi          
+                    printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"       
             done
     echo -e ""
     read -rp "  Input Username for Reset Usage : " change
