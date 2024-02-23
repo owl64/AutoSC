@@ -145,7 +145,7 @@ function resetquotavmess(){
 
             for akun in "${data[@]}"; do
                     if [ ! -e /etc/limit/vmess/${akun} ]; then
-                        gb="Unlimited"
+                        gb="No Usage"
                     else
                         wey=$(cat "/etc/limit/vmess/${akun}")
                         gb=$(con "${wey}")
@@ -308,7 +308,7 @@ function resetquotavless(){
 
             for akun in "${data[@]}"; do
                     if [ ! -e /etc/limit/vless/${akun} ]; then
-                        gb="Unlimited"
+                        gb="No Usage"
                     else
                         wey=$(cat "/etc/limit/vless/${akun}")
                         gb=$(con "${wey}")
@@ -470,7 +470,7 @@ function resetquotatrojan(){
 
             for akun in "${data[@]}"; do
                     if [ ! -e /etc/limit/trojan/${akun} ]; then
-                        gb="Unlimited"
+                        gb="No Usage"
                     else
                         wey=$(cat "/etc/limit/trojan/${akun}")
                         gb=$(con "${wey}")
