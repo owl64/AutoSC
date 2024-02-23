@@ -229,6 +229,12 @@ else
     Quota1=$(con ${baca1})
 fi
 
+if [ ! -e /etc/kyt/limit/vmess/ip/$user ]; then
+    iplimit="Unlimited"
+else
+    iplimit=$(cat /etc/kyt/limit/vmess/ip/$user)
+fi
+
 DATADB=$(cat /etc/trojan/.trojan.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
