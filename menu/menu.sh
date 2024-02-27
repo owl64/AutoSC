@@ -174,6 +174,7 @@ function setingsmenu(){
     echo -e " ${y}  [12].${NC}${biru} Speedtest VPS${NC}"
     echo -e " ${y}  [13].${NC}${biru} Change Banner${NC}"
     echo -e " ${y}  [14].${NC}${biru} Restart Service${NC}"
+    echo -e " ${y}  [15].${NC}${biru} WARP CLOUDFLARE${NC}"
     echo -e ""
     echo -e " ${RED} [00]${NC}${RED} Back To Menu${NC}"
     echo -e ""
@@ -245,6 +246,13 @@ function setingsmenu(){
     14 | 14)
     clear
     restart
+    ;;
+    15)
+    echo -e "   Coomingson!, Waiting Beta Tester!"
+    sleep 2
+    exit
+    clear
+    menu
     ;;
     0)
     menu
@@ -328,7 +336,7 @@ echo -e " ${z}│ ${NC}${z} SSH$NC : $status_ssh" "    ${z} NGINX$NC : $status_n
 echo -e " ${z}│ ${NC}${z} WS-ePRO$NC : $status_ws_epro" "${z} DROPBEAR$NC : $status_dropbear" " ${z} HAPROXY$NC : $status_haproxy   $NC${z}│$NC" 
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}${Bold}┌──────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}    $NC [${y}01${NC}].${biru} SSH MENU$NC       $NC [${y}06${NC}].${biru} SETINGS MENU$NC"
+echo -e " ${z}    $NC [${y}01${NC}].${biru} SSH MENU$NC       $NC [${y}06${NC}].${biru} FEATURE MENU$NC"
 echo -e " ${z}    $NC [${y}02${NC}].${biru} VMESS MENU$NC     $NC [${y}07${NC}].${biru} BOT PANEL MENU$NC"    
 echo -e " ${z}    $NC [${y}03${NC}].${biru} VLESS MENU$NC     $NC [${y}08${NC}].${biru} BRAND NAME MENU$NC"   
 echo -e " ${z}    $NC [${y}04${NC}].${biru} TROJAN MENU$NC    $NC [${y}09${NC}].${biru} UPDATE MENU$NC" 
