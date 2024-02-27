@@ -119,7 +119,7 @@ clear
 
 echo -e " "
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC$purple                ${Bold}SCRIPT SDC STORE                  $NC${z}│$NC"
+echo -e " ${z}│$NC$purple                ${Bold}INFORMATION VPS                  $NC${z}│$NC"
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}│$NC${z} System OS ${NC}     $Blue=$NC $MODEL${NC}"
