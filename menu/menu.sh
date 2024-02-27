@@ -154,30 +154,33 @@ function setingsmenu(){
     clear
 
     echo -e " ${z}┌────────────────────────────────────┐${NC}"
-    echo -e " $NC$purple             SETINGS MENU               $NC"
+    echo -e " $NC$purple           FEATURE MENU               $NC"
     echo -e " ${z}└────────────────────────────────────┘${NC}"
+    echo -e " ${y}  [01].${NC}${biru} Auto Reboot${NC}"
+    echo -e " ${y}  [02].${NC}${biru} Backup or Restore${NC}"
+    echo -e " ${y}  [03].${NC}${biru} Change Domain${NC}"
+    echo -e " ${y}  [04].${NC}${biru} Cert SSL${NC}"
+    echo -e " ${y}  [05].${NC}${biru} Cek Port${NC}"
+    echo -e " ${y}  [06].${NC}${biru} Cek Bandwith${NC}"
+    echo -e " ${y}  [07].${NC}${biru} Cek Service${NC}"
+    echo -e " ${y}  [08].${NC}${biru} Clear Cache${NC}"
+    echo -e " ${y}  [09].${NC}${biru} Clear Log${NC}"
+    echo -e " ${y}  [10].${NC}${biru} Dell ALL Expired Account${NC}"
     echo -e ""
-    echo -e " ${y} [01].${NC}${biru} Auto Reboot${NC}"
-    echo -e " ${y} [02].${NC}${biru} Backup or Restore${NC}"
-    echo -e " ${y} [03].${NC}${biru} Change Domain${NC}"
-    echo -e " ${y} [04].${NC}${biru} Cert SSL${NC}"
-    echo -e " ${y} [05].${NC}${biru} Cek Port${NC}"
-    echo -e " ${y} [06].${NC}${biru} Cek Bandwith${NC}"
-    echo -e " ${y} [07].${NC}${biru} Cek Service${NC}"
-    echo -e " ${y} [08].${NC}${biru} Clear Cache${NC}"
-    echo -e " ${y} [09].${NC}${biru} Clear Log${NC}"
-    echo -e " ${y} [10].${NC}${biru} Dell ALL Expired Account${NC}"
-    echo -e " ${y} [11].${NC}${biru} Install UDP${NC}"
-    echo -e " ${y} [12].${NC}${biru} Speedtest VPS${NC}"
-    echo -e " ${y} [13].${NC}${biru} Change Banner${NC}"
-    echo -e " ${y} [14].${NC}${biru} Restart Service${NC}"
+    echo -e " ${z}┌────────────────────────────────────┐${NC}"
+    echo -e " $NC$purple           VPS MENU               $NC"
+    echo -e " ${z}└────────────────────────────────────┘${NC}"
+    echo -e " ${y}  [11].${NC}${biru} Install UDP${NC}"
+    echo -e " ${y}  [12].${NC}${biru} Speedtest VPS${NC}"
+    echo -e " ${y}  [13].${NC}${biru} Change Banner${NC}"
+    echo -e " ${y}  [14].${NC}${biru} Restart Service${NC}"
     echo -e ""
     echo -e " ${RED} [00]${NC}${RED} Back To Menu${NC}"
     echo -e ""
-    echo -e "${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    read -p " Select Menu From Option [ 1-14 ]: " opt
+    echo -e "${z} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    read -p " Select Menu From Option [ 1-14 ]: " feature
     echo -e ""
-    case $opt in
+    case $feature in
     1 | 01)
     clear
     autoreboot
@@ -246,6 +249,10 @@ function setingsmenu(){
     0)
     menu
     ;;
+    *)
+   echo -e "   Ops No Menu Choice, Please Try Again!"
+   exit
+;;
     esac
 }
 
@@ -276,9 +283,9 @@ function brandname(){
    echo -e ""
    echo -e " ${RED}   [00].${NC}${RED} Back to Menu$NC"
    echo -e ""
-   read -p " Select Menu From Option [ 1-3 ]: " opt
+   read -p "   Select Menu From Option [ 1-3 ]: " brand
    echo -e ""
-   case $opt in
+   case $brand in
       1 | 01)
       clear
       addbrand
@@ -295,6 +302,10 @@ function brandname(){
       clear
       menu
       ;;
+      *)
+      echo -e "   Ops No Menu Choice, Please Try Again!"
+      exit
+;;
    esac
 }
 
@@ -369,6 +380,7 @@ clear
 wget https://raw.githubusercontent.com/owl64/AutoSC/main/update.sh && chmod +x update.sh && ./update.sh
 ;;
 10 | 10)
+clear
 figlet SDC STORE 
 exit
 ;;
@@ -376,7 +388,7 @@ x)
 menu
 ;;
 *)
-echo -e ""
-menu
+echo -e "   Ops No Menu Choice, Please Try Again!"
+exit
 ;;
 esac
