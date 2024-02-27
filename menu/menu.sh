@@ -343,7 +343,7 @@ echo -e " ${z}    $NC [${y}04${NC}].${biru} TROJAN MENU$NC    $NC [${y}09${NC}].
 echo -e " ${z}    $NC [${y}05${NC}].${biru} SHADOW MENU$NC    $NC [${y}10${NC}].${biru} EXIT TO MENU$NC"
 echo -e " ${z}${Bold}└──────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL} v${versiedition} R[Longterm]"
+echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL} v${versiedition} LTS Rev.1"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username $sts"
 echo -e " ${z}│$NC${z} Expiry script$NC ${Blue}=${green} $certifacate Days$NC "
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
