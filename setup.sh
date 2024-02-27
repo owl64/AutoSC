@@ -564,10 +564,17 @@ print_success "Password SSH"
 function udp_mini(){
 clear
 print_install "Memasang Service Limit Quota"
-wget https://raw.githubusercontent.com/owl64/AutoSC/main/limit/limit.sh && chmod +x limit.sh && ./limit.sh
+clear
+print_install "Memasang Service Limit Quota"
+wget -q -O /usr/local/sbin/quota "${instalasi}limit/quota"
+chmod +x /usr/local/sbin/quota
+chmod + x /usr/local/sbin/quota
+cd /usr/local/sbin/
+sed -i 's/\r//' quota
+# wget https://raw.githubusercontent.com/owl64/AutoSC/main/limit/limit.sh && chmod +x limit.sh && ./limit.sh
 
 cd
-wget -q -O /usr/bin/limit-ip "${instalasi}config/limit-ip"
+wget -q -O /usr/bin/limit-ip "${instalasi}limit/limit-ip"
 chmod +x /usr/bin/*
 cd /usr/bin
 sed -i 's/\r//' limit-ip
@@ -624,9 +631,63 @@ EOF
 systemctl daemon-reload
 systemctl restart trip
 systemctl enable trip
+
 #SERVICE LIMIT QUOTA
 
 #SERVICE VMESS
+cat >/etc/systemd/system/qmv.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/local/sbin/quota vmess
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart qmv
+systemctl enable qmv
+
+#SERVICE VLESS
+cat >/etc/systemd/system/qmvl.service << EOF
+[Unit]
+Description=My 
+ProjectAfter=network.target
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/local/sbin/quota vless
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart qmvl
+systemctl enable qmvl
+
+#SERVICE TROJAN
+cat >/etc/systemd/system/qmtr.service << EOF
+[Unit]
+Description=My 
+ProjectAfter=network.target
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/local/sbin/quota trojan
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart qmtr
+systemctl enable qmtr
+
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
 wget -q -O /usr/local/kyt/udp-mini "${instalasi}Udp/udp-mini"
