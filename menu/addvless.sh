@@ -141,6 +141,7 @@ sed -i '/#vlessgrpc$/a\#& '"$user $exp"'\
 vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws#${user}"
 vlesslink2="vless://${uuid}@${domain}:80?path=/vless&encryption=none&type=ws#${user}"
 vlesslink3="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${user}"
+systemctl restart xray > /dev/null 2>&1
 if [ ! -e /etc/vless ]; then
   mkdir -p /etc/vless
 fi
@@ -196,8 +197,7 @@ echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vless/.vless.db
 stop_spinner
 echo -e " ${Green}Success Collecting Data..${Suffix}"
 clear
-echo -e ""
-start_spinner " Please wait, Add New data...."
+
 cat >/var/www/html/vless-$user.txt <<-END
 
 =========================
@@ -267,13 +267,8 @@ Link GRPC     :
 ${vlesslink3}
 =========================
 
-
 END
 
-systemctl restart xray
-systemctl restart nginx
-stop_spinner
-echo -e " ${Green}Success Collecting Data..${Suffix}"
 clear
 echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
