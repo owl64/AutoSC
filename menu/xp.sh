@@ -12,6 +12,7 @@ for user in "${data[@]}"; do
     if [[ "$exp2" -le "0" ]]; then
         sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
         sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
+        rm -rf /var/www/html/vmess-$user.txt
     fi
 done
 
@@ -26,6 +27,7 @@ for user in "${data[@]}"; do
     if [[ "$exp2" -le "0" ]]; then
         sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
         sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
+        rm -rf /var/www/html/vless-$user.txt
     fi
 done
 
@@ -40,6 +42,7 @@ for user in "${data[@]}"; do
     if [[ "$exp2" -le "0" ]]; then
         sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
         sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
+        rm -rf /var/www/html/trojan-$user.txt
     fi
 done
 
@@ -54,6 +57,7 @@ for user in "${data[@]}"; do
     if [[ "$exp2" -le "0" ]]; then
         sed -i "/^#!# $user $exp/,/^},{/d" /etc/xray/config.json
         sed -i "/^#!# $user $exp/,/^},{/d" /etc/xray/config.json
+        rm -rf /var/www/html/sodosokws-$user.txt
     fi
 done
 systemctl restart xray
@@ -81,6 +85,7 @@ for ((i = 1; i <= $totalaccounts; i++)); do
         :
     else
         userdel --force $username
+        rm -rf /var/www/html/ssh-$username.txt
     fi
 done
 systemctl reload ssh
