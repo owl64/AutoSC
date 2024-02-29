@@ -184,7 +184,7 @@ cat >/var/www/html/trojan-$user.txt <<-END
 END
 
 systemctl reload xray
-systemctl reload nginx
+#systemctl reload nginx
 service cron restart
 trojanlink="trojan://${uuid}@${domain}:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
@@ -250,8 +250,8 @@ echo -e "Host/IP          : ${domain}"
 echo -e "Wilcard          : bug.${domain}"
 echo -e "User Quota       : ${Quota1}"
 echo -e "User Ip          : ${iplimit} IP"
-echo -e "port             : 400-900" 
-echo -e "Key              : ${uuid}" 
+echo -e "Port             : 400-900" 
+echo -e "Uuid             : ${uuid}" 
 echo -e "Xray Dns.        : ${NS}"
 echo -e "Pubkey.          : ${PUB}"
 echo -e "Path             : /Multi-Path/trojan-ws"

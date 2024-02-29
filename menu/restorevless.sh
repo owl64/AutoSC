@@ -101,7 +101,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
   fi
 done
 
-read -p "UUID : " masaaktif
+read -p "UUID : " uuid
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
@@ -220,9 +220,8 @@ ${vlesslink3}
 
 
 END
-
 systemctl restart xray
-systemctl restart nginx
+
 clear
 echo -e ""
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"

@@ -53,17 +53,17 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
+    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     sleep 5
     reboot
   fi
@@ -77,37 +77,42 @@ domain=$(cat /etc/xray/domain)
 else
 domain=$IP
 fi
+#tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
+until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Create Trojan Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
+    echo -e "    ${biru}Just input a number for-"
+    echo -e "     ${Green}Limit IP${Suffix}"
+    echo -e ""
+    echo -e "    ${biru}Format GB"
+    echo -e "     ${ORANGE}20MB/2GB For Quota Limit${Suffix}"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
+echo -e "${z}  ──────────────────────────────────${NC}"
+echo -e ""
+		read -rp "   User : " -e user
+		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
-#tls="$(cat ~/log-install.txt | grep -w "Vmess TLS" | cut -d: -f2|sed 's/ //g')"
-#none="$(cat ~/log-install.txt | grep -w "Vmess None TLS" | cut -d: -f2|sed 's/ //g')"
-until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-echo -e "RESTORE TROJAN ACCOUNT           "
-echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-
-		read -rp "User: " -e user
-		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
-
-		if [[ ${CLIENT_EXISTS} == '1' ]]; then
+		if [[ ${user_EXISTS} == '1' ]]; then
 clear
-            echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-            echo -e " RESTORE TROJAN ACCOUNT           "
-            echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
-
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Create Trojan Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
 			echo ""
 			echo "A client with the specified name was already created, please choose another name."
 			echo ""
-			echo -e "\033[0;34────────────────────────────────────────────\\033[0m"
+			echo -e "\033[0;34────────────────────────────────────────────\033[0m"
 			read -n 1 -s -r -p "Press any key to back on menu"
-      menu
+			m-trojan
 		fi
 	done
-ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
-CITY=$(curl -s ipinfo.io/city )
-read -p "UUID : " uuid
-read -p "Expired (days): " masaaktif
-read -p "Limit User (GB): " Quota
-read -p "Limit User (IP): " iplimit
+
+read -p "   Uuid : " uuid
+read -p "   Expired (days) : " masaaktif
+read -p "   Limit User (MB/GB) : " Quota
+read -p "   Limit User (IP) : " iplimit
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -117,11 +122,10 @@ bln2=$(date +"%b")
 thn2=$(date +"%Y")
 tnggl="$tgl2 $bln2, $thn2"
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#trojanws$/a\### '"$user $exp"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#trojangrpc$/a\### '"$user $exp"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+sed -i '/#trojanws$/a\#! '"$user $exp"'\
+},{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
+sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
+},{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 
 # Link Trojan Akun
 systemctl restart xray
@@ -130,7 +134,7 @@ trojanlink="trojan://${uuid}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host
 
 cat >/var/www/html/trojan-$user.txt <<-END
 =========================
-   SDC VpN Tunneling 
+   SDC VPN Tunneling 
 =========================
 
 # Format Trojan GO/WS
@@ -164,9 +168,8 @@ cat >/var/www/html/trojan-$user.txt <<-END
     grpc-service-name: trojan-grpc
 END
 
-systemctl reload xray
-systemctl reload nginx
-service cron restart
+systemctl restart xray
+
 trojanlink="trojan://${uuid}@${domain}:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
 if [ ! -e /etc/trojan ]; then
@@ -184,12 +187,38 @@ if [ -z ${Quota} ]; then
   Quota="0"
 fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
+fi
 
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/trojan/${user}
 fi
+
+if [ ! -e /etc/trojan/${user} ]; then
+    Quota1="Unlimited"
+else
+    baca1=$(cat /etc/trojan/${user})
+    Quota1=$(con ${baca1})
+fi
+
+if [ ! -e /etc/kyt/limit/vmess/ip/$user ]; then
+    iplimit="Unlimited"
+else
+    iplimit=$(cat /etc/kyt/limit/vmess/ip/$user)
+fi
+
 DATADB=$(cat /etc/trojan/.trojan.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
@@ -198,18 +227,19 @@ echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
 clear
 echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e " SUCCESS TROJAN ACCOUNT RESTORE         "
+echo -e " CREATE TROJAN ACCOUNT          "
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks          : ${user}" 
 echo -e "Host/IP          : ${domain}"
 echo -e "Wilcard          : bug.${domain}"
-echo -e "User Quota       : ${Quota} GB"
+echo -e "User Quota       : ${Quota1}"
 echo -e "User Ip          : ${iplimit} IP"
-echo -e "port             : 400-900" 
-echo -e "Key              : ${uuid}" 
-echo -e "Xray Dns.        : ${NS}"
-echo -e "Pubkey.          : ${PUB}"
-echo -e "Path             : /trojan-ws" 
+echo -e "Port             : 400-900" 
+echo -e "Uuid             : ${uuid}" 
+#echo -e "Xray Dns.        : ${NS}"
+#echo -e "Pubkey.          : ${PUB}"
+echo -e "Path             : /Multi-Path/trojan-ws"
+echo -e "Dynamic          : https://bugmu.com/path"
 echo -e "ServiceName      : trojan-grpc" 
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link WS          : ${trojanlink}" 
