@@ -6,7 +6,7 @@ TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 TEXT="
 <code>────────────────────</code>
-<b>⚠️NOTIF QUOTA HABIS⚠️</b>
+<b>⚠️NOTIF TROJAN QUOTA HABIS⚠️</b>
 <code>────────────────────</code>
 <code>Username  : </code><code>$user</code>
 <code>Usage     : </code><code>$total</code>
@@ -77,7 +77,7 @@ for user in ${data[@]}
        rm -f /etc/limit/trojan/$user
        rm -f /etc/limit/trojan/quota/$user
        rm -f /etc/trojan/$user
-	   rm -f /var/www/html/trojan-$user.txt
+	     rm -f /var/www/html/trojan-$user.txt
       systemctl restart xray >> /dev/null 2>&1
       else
       echo ""
