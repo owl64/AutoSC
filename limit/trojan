@@ -75,9 +75,8 @@ for user in ${data[@]}
       sed -i "/^#! $user $exp/d" /etc/trojan/.trojan.db
        total=$(con ${Usage})
        send-log
-       rm -f /etc/funny/limit/trojan/ip/$user
+       rm -f /etc/kyt/limit/vless/ip/$user
        rm -f /etc/limit/trojan/$user
-       rm -f /etc/limit/trojan/quota/$user
        rm -f /etc/trojan/$user
 	     rm -f /var/www/html/trojan-$user.txt
       systemctl restart xray >> /dev/null 2>&1
