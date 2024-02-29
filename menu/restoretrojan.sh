@@ -168,8 +168,6 @@ cat >/var/www/html/trojan-$user.txt <<-END
     grpc-service-name: trojan-grpc
 END
 
-systemctl restart xray
-
 trojanlink="trojan://${uuid}@${domain}:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
 if [ ! -e /etc/trojan ]; then
