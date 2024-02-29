@@ -123,6 +123,7 @@ fi
 read -p "   Expired (days)    : " masaaktif
 read -p "   Limit User (MB/GB): " Quota
 read -p "   Limit User (IP)   : " iplimit
+echo -e ""
 start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
@@ -142,62 +143,11 @@ vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=no
 vlesslink2="vless://${uuid}@${domain}:80?path=/vless&encryption=none&type=ws#${user}"
 vlesslink3="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${user}"
 systemctl restart xray > /dev/null 2>&1
-if [ ! -e /etc/vless ]; then
-  mkdir -p /etc/vless
-fi
-
-if [[ $iplimit -gt 0 ]]; then
-mkdir -p /etc/kyt/limit/vless/ip
-echo -e "$iplimit" > /etc/kyt/limit/vless/ip/$user
-else
-echo > /dev/null
-fi
-
-if [ -z ${Quota} ]; then
-  Quota="0"
-fi
-
-# Menghapus semua karakter kecuali angka, MB, dan GB
-sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
-
-# Mendeteksi apakah input berisi MB atau GB
-if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
-  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
-  d=$((${c} * 1024 * 1024))
-elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
-  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
-  d=$((${c} * 1024 * 1024 * 1024))
-else
-  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
-  exit 1
-fi
-
-if [[ ${c} != "0" ]]; then
-  echo "${d}" >/etc/vless/${user}
-fi
-
-if [ ! -e /etc/vless/${user} ]; then
-    Quota1="Unlimited"
-else
-    baca1=$(cat /etc/vless/${user})
-    Quota1=$(con ${baca1})
-fi
-
-if [ ! -e /etc/kyt/limit/vmess/ip/$user ]; then
-    iplimit="Unlimited"
-else
-    iplimit=$(cat /etc/kyt/limit/vmess/ip/$user)
-fi
-
-DATADB=$(cat /etc/vless/.vless.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
-if [[ "${DATADB}" != '' ]]; then
-  sed -i "/\b${user}\b/d" /etc/vless/.vless.db
-fi
-echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vless/.vless.db
 stop_spinner
 echo -e " ${Green}Success Collecting Data..${Suffix}"
-clear
-
+echo -e ""
+sleep 2
+start_spinner " Please wait, Verify New data...."
 cat >/var/www/html/vless-$user.txt <<-END
 
 =========================
@@ -268,6 +218,61 @@ ${vlesslink3}
 =========================
 
 END
+if [ ! -e /etc/vless ]; then
+  mkdir -p /etc/vless
+fi
+
+if [[ $iplimit -gt 0 ]]; then
+mkdir -p /etc/kyt/limit/vless/ip
+echo -e "$iplimit" > /etc/kyt/limit/vless/ip/$user
+else
+echo > /dev/null
+fi
+
+if [ -z ${Quota} ]; then
+  Quota="0"
+fi
+
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
+fi
+
+if [[ ${c} != "0" ]]; then
+  echo "${d}" >/etc/vless/${user}
+fi
+
+if [ ! -e /etc/vless/${user} ]; then
+    Quota1="Unlimited"
+else
+    baca1=$(cat /etc/vless/${user})
+    Quota1=$(con ${baca1})
+fi
+
+if [ ! -e /etc/kyt/limit/vmess/ip/$user ]; then
+    iplimit="Unlimited"
+else
+    iplimit=$(cat /etc/kyt/limit/vmess/ip/$user)
+fi
+
+DATADB=$(cat /etc/vless/.vless.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
+if [[ "${DATADB}" != '' ]]; then
+  sed -i "/\b${user}\b/d" /etc/vless/.vless.db
+fi
+echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vless/.vless.db
+stop_spinner
+echo -e " ${Green}Success Verify Data..${Suffix}"
+sleep 2
 
 clear
 echo -e ""
