@@ -5,12 +5,14 @@ KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 TEXT="
-<code>────────────────────</code>
+<code>────────────────────────────</code>
 <b>⚠️NOTIF VMESS QUOTA HABIS⚠️</b>
-<code>────────────────────</code>
+<code>────────────────────────────</code>
 <code>Username  : </code><code>$user</code>
-<code>Usage     : </code><code>$total</code>
-<code>────────────────────</code>
+<code>Limit     : </code><code>$checkLimit</code>
+<code>────────────────────────────</code>
+<b><code>Usage  : </code><code>$total</code></b>
+<code>────────────────────────────</code>
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
