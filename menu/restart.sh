@@ -23,7 +23,7 @@ systemctl restart openvpn
 systemctl restart ssh
 /etc/init.d/dropbear restart
 /etc/init.d/openvpn restart
-/etc/init.d/fail2ban restart
+#/etc/init.d/fail2ban restart
 /etc/init.d/nginx restart
 systemctl disable udp-mini-1
 systemctl stop udp-mini-1
