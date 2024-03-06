@@ -13,6 +13,8 @@ for user in "${data[@]}"; do
         sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
         sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
         rm -rf /var/www/html/vmess-$user.txt
+        rm -f /etc/vmess/$user
+        rm -f /etc/kyt/limit/vmess/ip/$user
     fi
 done
 
@@ -28,6 +30,8 @@ for user in "${data[@]}"; do
         sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
         sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
         rm -rf /var/www/html/vless-$user.txt
+        rm -f /etc/vless/$user
+        rm -f /etc/kyt/limit/vless/ip/$user
     fi
 done
 
@@ -43,6 +47,8 @@ for user in "${data[@]}"; do
         sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
         sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
         rm -rf /var/www/html/trojan-$user.txt
+        rm -f /etc/trojan/$user
+        rm -f /etc/kyt/limit/trojan/ip/$user
     fi
 done
 
@@ -58,6 +64,8 @@ for user in "${data[@]}"; do
         sed -i "/^#!# $user $exp/,/^},{/d" /etc/xray/config.json
         sed -i "/^#!# $user $exp/,/^},{/d" /etc/xray/config.json
         rm -rf /var/www/html/sodosokws-$user.txt
+        rm -f /etc/shadowsocks/$user
+        rm -f /etc/kyt/limit/shadowsocks/ip/$user
     fi
 done
 systemctl restart xray
