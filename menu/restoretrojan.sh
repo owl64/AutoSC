@@ -113,6 +113,7 @@ read -p "   Uuid : " uuid
 read -p "   Expired (days) : " masaaktif
 read -p "   Limit User (MB/GB) : " Quota
 read -p "   Limit User (IP) : " iplimit
+echo -e ""
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -170,6 +171,7 @@ END
 
 trojanlink="trojan://${uuid}@${domain}:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
+
 if [ ! -e /etc/trojan ]; then
   mkdir -p /etc/trojan
 fi
@@ -182,7 +184,7 @@ echo > /dev/null
 fi
 
 if [ -z ${Quota} ]; then
-  Quota="0"
+  Quota="0MB"
 fi
 
 # Menghapus semua karakter kecuali angka, MB, dan GB
@@ -222,6 +224,7 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
+
 clear
 echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
