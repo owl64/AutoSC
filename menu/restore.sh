@@ -9,6 +9,7 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 Bold='\e[1m'
+biru="\033[0;36m"
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
@@ -41,8 +42,8 @@ echo -e ""
 echo -e "  ${ORANGE}If You Chose 1, make sure file backup upload in dir /root${NC}"
 echo -e "  ${ORANGE}and Rename file : backup.zip${NC}"
 echo -e ""
-echo -e "  ${ORANGE}  [01].${NC}\033[0;36m Restore From File${NC}"
-echo -e "  ${ORANGE}  [02].${NC}\033[0;36m Restore From Link${NC}"
+echo -e "  ${ORANGE}  [01].${NC}${biru} Restore From File${NC}"
+echo -e "  ${ORANGE}  [02].${NC}${biru} Restore From Link${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu ${NC}"
 echo -e ""

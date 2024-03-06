@@ -38,6 +38,7 @@ clear
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
+source /usr/local/sbin/spiner
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -105,6 +106,8 @@ read -p "UUID : " uuid
 read -p "Expired (days): " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
+echo -e ""
+start_spinner " Please wait, Restore data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -118,10 +121,16 @@ sed -i '/#vless$/a\#& '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 sed -i '/#vlessgrpc$/a\#& '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
+systemctl restart xray
+sleep 1
+stop_spinner
+echo -e " ${Green}Success Restore Data....${Suffix}"
+sleep 2
 
 vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws#${user}"
 vlesslink2="vless://${uuid}@${domain}:80?path=/vless&encryption=none&type=ws#${user}"
 vlesslink3="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${user}"
+
 if [ ! -e /etc/vless ]; then
   mkdir -p /etc/vless
 fi
@@ -149,6 +158,7 @@ if [[ "${DATADB}" != '' ]]; then
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vless/.vless.db
 clear
+
 cat >/var/www/html/vless-$user.txt <<-END
 
 =========================
@@ -217,10 +227,7 @@ ${vlesslink2}
 Link GRPC     : 
 ${vlesslink3}
 =========================
-
-
 END
-systemctl restart xray
 
 clear
 echo -e ""
