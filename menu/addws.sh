@@ -318,7 +318,7 @@ echo > /dev/null
 fi
 
 if [ -z ${Quota} ]; then
-  Quota="0"
+  Quota="0MB"
 fi
 
 # Menghapus semua karakter kecuali angka, MB, dan GB
