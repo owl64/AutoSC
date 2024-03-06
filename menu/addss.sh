@@ -347,7 +347,7 @@ cat > /var/www/html/sodosokgrpc-$user.txt <<-END
   "stats": {}
 }
 END
-systemctl reload xray >/dev/null 2>&1
+
 service cron restart >/dev/null 2>&1
 if [ ! -e /etc/shadowsocks ]; then
   mkdir -p /etc/shadowsocks
