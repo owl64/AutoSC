@@ -146,12 +146,38 @@ if [ -z ${Quota} ]; then
   Quota="0"
 fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
+fi
 
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/vless/${user}
 fi
+
+if [ ! -e /etc/trojan/${user} ]; then
+    Quota1="Unlimited"
+else
+    baca1=$(cat /etc/vless/${user})
+    Quota1=$(con ${baca1})
+fi
+
+if [ ! -e /etc/kyt/limit/vless/ip/$user ]; then
+    iplimit="Unlimited"
+else
+    iplimit=$(cat /etc/kyt/limit/vless/ip/$user)
+fi
+
 DATADB=$(cat /etc/vless/.vless.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vless/.vless.db
@@ -237,7 +263,7 @@ echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033
 echo -e "Remarks     : ${user}"
 echo -e "Domain      : ${domain}"
 echo -e "Wilcard     : bug.${domain}"
-echo -e "User Quota  : ${Quota} GB"
+echo -e "User Quota  : ${Quota}"
 echo -e "User Ip     : ${iplimit} IP"
 echo -e "port TLS    : 400-900"
 #echo -e "Port DNS    : 443"
