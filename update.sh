@@ -288,4 +288,4 @@ echo -e ""
             fi
 echo -e ""
 read -n 1 -s -r -p "Press [ Enter ] to back"
-info
+menu
