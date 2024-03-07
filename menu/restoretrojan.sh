@@ -1,44 +1,15 @@
 #!/bin/bash
-Green="\e[92;1m"
-RED="\033[31m"
-YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-GREENBG="\033[42;37m"
-NS=$( cat /etc/xray/dns )
-PUB=$( cat /etc/slowdns/server.pub )
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
-NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
-Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
-blue='\e[34m'
-PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
-NC='\e[0m'
-GREEN='\033[0;32m'
+
+##Color
+z="\033[96m"
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
-z='\033[96m'
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
-clear
+NC='\033[0m'
+RED="\033[31m"
+PURPLE='\e[35m'
+biru="\033[0;36m"
+
+source /usr/local/sbin/spiner
+
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
@@ -77,43 +48,43 @@ domain=$(cat /etc/xray/domain)
 else
 domain=$IP
 fi
+
 #tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
-echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
-echo -e "         ${biru}Create Trojan Account${NC}           "
-echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
-echo -e "${z}  ──────────────────────────────────${NC}"
-    echo -e "    ${biru}Just input a number for-"
-    echo -e "     ${Green}Limit IP${Suffix}"
-    echo -e ""
+echo -e "${ORANGE} ┌──────────────────────────────────┐${NC}"
+echo -e " ${biru}       Restore Trojan Account        "
+echo -e "${ORANGE} └──────────────────────────────────┘${NC}"
+  echo -e "${z}  ──────────────────────────────────${NC}"
     echo -e "    ${biru}Format GB"
-    echo -e "     ${ORANGE}20MB/2GB For Quota Limit${Suffix}"
-    echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
+    echo -e "     ${ORANGE}20MB/2GB, 20mb/2gb For Quota Limit${Suffix}"
+    echo -e "     ${ORANGE}0MB/0mb${Suffix} ${biru}for Unlimited"
+    echo -e ""
+    echo -e "    ${biru}Format IP, Just Input Number"
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
-echo -e "${z}  ──────────────────────────────────${NC}"
+  echo -e "${z}  ──────────────────────────────────${NC}"
 echo -e ""
-		read -rp "   User : " -e user
+		read -rp "  User : " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
-		if [[ ${user_EXISTS} == '1' ]]; then
+		if [[ ${user_EXISTS} > '1' ]]; then
 clear
-echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
-echo -e "         ${biru}Create Trojan Account${NC}           "
-echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${ORANGE} ┌──────────────────────────────────┐${NC}"
+echo -e " ${biru}       Restore Trojan Account        "
+echo -e "${ORANGE} └──────────────────────────────────┘${NC}"
 			echo ""
-			echo "A client with the specified name was already created, please choose another name."
+			echo -e " ${RED}Name was already created, please choose another name${NC}"
 			echo ""
-			echo -e "\033[0;34────────────────────────────────────────────\033[0m"
-			read -n 1 -s -r -p "Press any key to back on menu"
-			m-trojan
+			read -n 1 -s -r -p "Press any key to back and try again"
+			restoretrojan
 		fi
 	done
 
-read -p "   Uuid : " uuid
-read -p "   Expired (days) : " masaaktif
-read -p "   Limit User (MB/GB) : " Quota
-read -p "   Limit User (IP) : " iplimit
+read -p "  Uuid : " uuid
+read -p "  Expired (days) : " masaaktif
+read -p "  Limit User (MB/GB) : " Quota
+read -p "  Limit User (IP) : " iplimit
 echo -e ""
+start_spinner " Please wait, Restore data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -187,15 +158,17 @@ if [ -z ${Quota} ]; then
   Quota="0MB"
 fi
 
-# Menghapus semua karakter kecuali angka, MB, dan GB
-sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
-
-# Mendeteksi apakah input berisi MB atau GB
 if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
   c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
   d=$((${c} * 1024 * 1024))
 elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
   c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
   d=$((${c} * 1024 * 1024 * 1024))
 else
   echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
@@ -224,11 +197,14 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
+sleep 2
+stop_spinner
+echo -e " ${biru}Success Restore Data....${NC}"
 
 clear
 echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e " CREATE TROJAN ACCOUNT          "
+echo -e " RESTORED TROJAN ACCOUNT          "
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks          : ${user}" 
 echo -e "Host/IP          : ${domain}"

@@ -122,10 +122,9 @@ clear
             echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
 
 			echo ""
-			echo -e "A client with the specified name was already created, please choose another name."
+			echo -e " ${RED}Name was already created, please choose another name${NC}"
 			echo ""
-			echo -e "\e[33m────────────────────────────────────────────\\033[0m"
-			read -n 1 -s -r -p "Press any key to back on menu"
+			read -n 1 -s -r -p "Press any key to back and try again"
       addws
 		fi
 	done
@@ -317,7 +316,7 @@ echo > /dev/null
 fi
 
 if [ -z ${Quota} ]; then
-  Quota="0"
+  Quota="0MB"
 fi
 
 

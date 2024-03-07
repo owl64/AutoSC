@@ -1,44 +1,20 @@
 #!/bin/bash
-Green="\e[92;1m"
-RED="\033[31m"
-YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-NS=$( cat /etc/xray/dns )
-PUB=$( cat /etc/slowdns/server.pub )
-GREENBG="\033[42;37m"
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
-NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
-Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
-blue='\e[34m'
-PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
-NC='\e[0m'
-GREEN='\033[0;32m'
+##Color
+z="\033[96m"
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
+NC='\033[0m'
+RED="\033[31m"
+PURPLE='\e[35m'
+biru="\033[0;36m"
+
+source /usr/local/sbin/spiner
+
 clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
-source /usr/local/sbin/spiner
+
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -71,34 +47,31 @@ clear
 domain=$(cat /etc/xray/domain)
 clear
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e " CREATE VLESS ACCOUNT           "
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-    echo -e " Just input a number for-"
-    echo -e "  ${Green}Quota Limit${Suffix}"
-    echo -e "  ${Green}Limit IP${Suffix}"
-    echo -e " Format GB"
+echo -e "${ORANGE} ┌──────────────────────────────────┐${NC}"
+echo -e " ${biru}       Restore Vless Account        "
+echo -e "${ORANGE} └──────────────────────────────────┘${NC}"
+  echo -e "${z}  ──────────────────────────────────${NC}"
+    echo -e "    ${biru}Format GB"
+    echo -e "     ${ORANGE}20MB/2GB, 20mb/2gb For Quota Limit${Suffix}"
+    echo -e "     ${ORANGE}0MB/0mb${Suffix} ${biru}for Unlimited"
     echo -e ""
-    echo -e " ${YELLOW}0${Suffix} for Unlimited"
-    echo -e " ${YELLOW}0${Suffix} for No Limit"
-    echo -e ""
-  echo -e "\033[1;93m────────────────────────────────────────────\\033[0m"
+    echo -e "    ${biru}Format IP, Just Input Number"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
+  echo -e "${z}  ──────────────────────────────────${NC}"
 	echo -e ""
-  read -rp "User: " -e user
+  read -rp "User : " -e user
   CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
-  if [[ ${CLIENT_EXISTS} == '1' ]]; then
+  if [[ ${CLIENT_EXISTS} > '1' ]]; then
     clear
-  echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-  echo -e " CREATE VLESS ACCOUNT           "
-  echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e "${ORANGE} ┌──────────────────────────────────┐${NC}"
+    echo -e " ${biru}       Restore Vless Accoun        "
+    echo -e "${ORANGE} └──────────────────────────────────┘${NC}"
     echo ""
-    echo "A client with the specified name was already created, please choose another name."
+    echo -e " ${RED}Name was already created, please choose another name${NC}"
     echo ""
-    echo -e "\033[0;34────────────────────────────────────────────\033[0m"
-    read -n 1 -s -r -p "Press any key to back on menu"
-    menu
+    read -n 1 -s -r -p "Press any key to back and try again"
+    restorevless
   fi
 done
 
@@ -123,9 +96,6 @@ sed -i '/#vlessgrpc$/a\#& '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 systemctl restart xray
 sleep 1
-stop_spinner
-echo -e " ${Green}Success Restore Data....${Suffix}"
-sleep 2
 
 vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws#${user}"
 vlesslink2="vless://${uuid}@${domain}:80?path=/vless&encryption=none&type=ws#${user}"
@@ -143,18 +113,20 @@ echo > /dev/null
 fi
 
 if [ -z ${Quota} ]; then
-  Quota="0"
+  Quota="0MB"
 fi
 
-# Menghapus semua karakter kecuali angka, MB, dan GB
-sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
-
-# Mendeteksi apakah input berisi MB atau GB
 if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
   c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
   d=$((${c} * 1024 * 1024))
 elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
   c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
   d=$((${c} * 1024 * 1024 * 1024))
 else
   echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
@@ -254,12 +226,15 @@ Link GRPC     :
 ${vlesslink3}
 =========================
 END
+sleep 2
+stop_spinner
+echo -e " ${biru}Success Restore Data....${NC}"
 
 clear
 echo -e ""
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e " RESTORED VLESS ACCOUNT           "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks     : ${user}"
 echo -e "Domain      : ${domain}"
 echo -e "Wilcard     : bug.${domain}"
@@ -274,18 +249,18 @@ echo -e "User ID     : ${uuid}"
 echo -e "Encryption  : none"
 echo -e "Path        : /Multi-Path"
 echo -e "Dynamic     : https://bugmu.com/path"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link TLS    : ${vlesslink1}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link NTLS   : ${vlesslink2}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link GRPC   : ${vlesslink3}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Format OpenClash : https://${domain}:81/vless-$user.txt"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 read -n 1 -s -r -p "Press any key to back on vless menu"
 m-vless
