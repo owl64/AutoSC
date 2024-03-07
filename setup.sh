@@ -213,7 +213,7 @@ print_install "Membuat direktori xray"
     export OS_Name=$( cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' )
     export Kernel=$( uname -r )
     export Arch=$( uname -m )
-    export IP=$( curl -s https://ipinfo.io/ip/ )
+    export IP=$(wget -qO- ipinfo.io/ip)
 
 # Change Environment System
 function first_setup(){
@@ -326,7 +326,6 @@ clear
 function restart_system() {
     sleep 10
     username="SDC Tunneling"
-    ipvps=""
     USRSC=$(curl -sS ${instalasi}user/user | grep $MYIP | awk '{print $2}')
     EXPSC=$(curl -sS ${instalasi}user/user | grep $MYIP | awk '{print $3}')
     TIMEZONE=$(printf '%(%H:%M:%S)T')
