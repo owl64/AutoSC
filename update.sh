@@ -274,18 +274,81 @@ echo -e ""
             echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Menu ${NC}"
             echo -e ""
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
-            read -n 1 -s -r -p "Press [ Enter ] to Update ! CTRL + C to Cancel"
-            echo -e ""
-            clear
-            echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-            echo -e "  \033[1;91m         UPDATE SCRIPT SERVICE\033[1;37m"
-            echo -e ""
-            fun_bar 'update'
-            rm update.sh >/dev/null 2>&1
-            echo -e ""
-            echo -e "  ${Green}           UPDATE SELESAI !!"
-            echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+            read -p "  Update system menu and etc? [yes/no/y/n] : " yes
+                if [ ${yes} = 'yes' ]; then
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "  \033[1;91m         UPDATE SCRIPT SERVICE\033[1;37m"
+                    echo -e ""
+                    fun_bar 'update'
+                    rm update.sh >/dev/null 2>&1
+                    echo -e ""
+                    echo -e "  ${Green}           UPDATE SELESAI !!"
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                elif [ ${yes} = 'Yes' ]; then
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "  \033[1;91m         UPDATE SCRIPT SERVICE\033[1;37m"
+                    echo -e ""
+                    fun_bar 'update'
+                    rm update.sh >/dev/null 2>&1
+                    echo -e ""
+                    echo -e "  ${Green}           UPDATE SELESAI !!"
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                elif [ ${yes} = 'y' ]; then
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "  \033[1;91m         UPDATE SCRIPT SERVICE\033[1;37m"
+                    echo -e ""
+                    fun_bar 'update'
+                    rm update.sh >/dev/null 2>&1
+                    echo -e ""
+                    echo -e "  ${Green}           UPDATE SELESAI !!"
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                elif [ ${yes} = 'Y' ]; then
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "  \033[1;91m         UPDATE SCRIPT SERVICE\033[1;37m"
+                    echo -e ""
+                    fun_bar 'update'
+                    rm update.sh >/dev/null 2>&1
+                    echo -e ""
+                    echo -e "  ${Green}           UPDATE SELESAI !!"
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                elif [ ${yes} = 'no' ]; then
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "    ${RED}Update Cancel by User${NC}"
+                    rm update.sh >/dev/null 2>&1
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                elif [ ${yes} = 'No' ]; then
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "    ${RED}Update Cancel by User${NC}"
+                    rm update.sh >/dev/null 2>&1
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                elif [ ${yes} = 'n' ]; then
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "    ${RED}Update Cancel by User${NC}"
+                    rm update.sh >/dev/null 2>&1
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                elif [ ${yes} = 'N' ]; then
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "    ${RED}Update Cancel by User${NC}"
+                    rm update.sh >/dev/null 2>&1
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                else
+                    clear
+                    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+                    echo -e "    ${RED}Incorect Answer, Please Try Again!${NC}"
+                    rm update.sh >/dev/null 2>&1
+                    menu
+                    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+                fi
+
             fi
 echo -e ""
-read -n 1 -s -r -p "Press [ Enter ] to back"
+read -n 1 -s -r -p "Press [ Enter ] to back Menu"
 menu
