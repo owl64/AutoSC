@@ -323,7 +323,7 @@ clear
 
 clear
 #GANTI PASSWORD DEFAULT
-restart_system(){
+function restart_system() {
     username="SDC Tunneling"
     ipvps=""
     USRSC=$(curl -sS ${instalasi}user/user | grep $MYIP | awk '{print $2}')
