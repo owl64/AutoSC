@@ -112,7 +112,7 @@ echo -e "${ORANGE}${Bold} └─────────────────
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
   echo -e "${z}  ──────────────────────────────────${NC}"
 		echo -e ""
-    read -rp "   User : " -e user
+    read -rp "  User : " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${CLIENT_EXISTS} > '1' ]]; then
@@ -148,9 +148,9 @@ else
   uuid="${cekbrand}-${user}"
 fi
 
-read -p "   Expired (days)    : " masaaktif
-read -p "   Limit User (MB/GB): " Quota
-read -p "   Limit User (IP)   : " iplimit
+read -p "  Expired (days) : " masaaktif
+read -p "  Limit Quota (MB/GB) : " Quota
+read -p "  Limit User (IP) : " iplimit
 echo -e ""
 start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")

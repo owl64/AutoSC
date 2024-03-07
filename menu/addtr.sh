@@ -91,20 +91,19 @@ echo -e "${ORANGE}${Bold} └─────────────────
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
   echo -e "${z}  ──────────────────────────────────${NC}"
 echo -e ""
-		read -rp "   User : " -e user
+		read -rp "  User : " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
-		if [[ ${user_EXISTS} == '1' ]]; then
+		if [[ ${user_EXISTS} > '1' ]]; then
 clear
 echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
 echo -e "         ${biru}Create Trojan Account${NC}           "
 echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
 			echo ""
-			echo "A client with the specified name was already created, please choose another name."
+			echo -e " ${RED}Name was already created, please choose another name${NC}"
 			echo ""
-			echo -e "\033[0;34────────────────────────────────────────────\033[0m"
-			read -n 1 -s -r -p "Press any key to back on menu"
-			m-trojan
+			read -n 1 -s -r -p "Press any key to back and try again"
+			addtr
 		fi
 	done
 
@@ -124,9 +123,11 @@ else
   uuid="${cekbrand}-${user}"
 fi
 
-read -p "   Expired (days)    : " masaaktif
-read -p "   Limit User (MB/GB): " Quota
-read -p "   Limit User (IP)   : " iplimit
+read -p "  Expired (days) : " masaaktif
+read -p "  Limit Quota (MB/GB) : " Quota
+read -p "  Limit User (IP) : " iplimit
+echo -e ""
+start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -241,6 +242,9 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
+stop_spinner
+echo -e " ${Green}Success Collecting Data..${Suffix}"
+
 clear
 echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
