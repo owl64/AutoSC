@@ -1,45 +1,17 @@
 #!/bin/bash
-Green="\e[92;1m"
-RED="\033[31m"
-YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-GREENBG="\033[42;37m"
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
-NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
-Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
-blue='\e[34m'
-PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
-NC='\e[0m'
-GREEN='\033[0;32m'
+z="\033[96m"
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
+NC='\033[0m'
+RED="\033[31m"
+PURPLE='\e[35m'
+biru="\033[0;36m"
+GREEN='\033[0;32m'
 Suffix="\033[0m"
-biru='\033[0;36m'
-z='\033[96m'
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+Bold='\e[1m'
+
 source /usr/local/sbin/spiner
 source /usr/local/sbin/send-bot
-# Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
+
 clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -91,11 +63,10 @@ echo -e ""
 start_spinner " Please wait, Colecting New data...."
 domain=$(cat /etc/xray/domain)
 masaaktif=1
-Quota=1
-iplimit=2
+Quota='500MB'
+iplimit=3
 user=Trial-VM`</dev/urandom tr -dc 0-9 | head -c3`
 clear
-
 
 cekbrand=$(cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
 
@@ -177,7 +148,7 @@ service cron restart > /dev/null 2>&1
 cat >/var/www/html/vmess-$user.txt <<-END
 
 =========================
-  WINGS VPN TUNNELING 
+  SDC VPN TUNNELING 
 =========================
 # Format Vmess WS TLS
 
@@ -259,11 +230,30 @@ echo > /dev/null
 fi
 
 if [ -z ${Quota} ]; then
-  Quota="0"
+  Quota="0MB"
 fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
+fi
 
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/vmess/${user}
@@ -292,7 +282,7 @@ echo -e " ${Green}Success Verif New Data....${Suffix}"
 
 echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e " Xray/Vmess Account "
+echo -e " Trial Vmess Account "
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks          : ${user}"
 echo -e "Domain           : ${domain}"

@@ -1,40 +1,17 @@
 #!/bin/bash
-Green="\e[92;1m"
-RED="\033[31m"
-YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-GREENBG="\033[42;37m"
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
-NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
-Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
-blue='\e[34m'
-PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
-NC='\e[0m'
-GREEN='\033[0;32m'
+z="\033[96m"
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
+NC='\033[0m'
+RED="\033[31m"
+PURPLE='\e[35m'
+biru="\033[0;36m"
+GREEN='\033[0;32m'
+Suffix="\033[0m"
+Bold='\e[1m'
+
+source /usr/local/sbin/spiner
+source /usr/local/sbin/send-bot
+
 clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -67,10 +44,26 @@ checking_sc() {
 checking_sc
 echo -e "\e[32mloading...\e[0m"
 clear
+echo -e ""
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Trial Trojan Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
+echo -e "     ${biru}Just input a number for-"
+echo -e "${Green}      Expired Account${Suffix}"
+echo -e ""
+echo -e "     ${biru}Example: "
+echo -e "${ORANGE}      5${Suffix} for [${ORANGE}5 Minutes${NC}]"
+echo -e "${ORANGE}      10${Suffix} for [${ORANGE}10 Minutes${NC}]"
+echo -e "${ORANGE}      30${Suffix} for [${ORANGE}30 Minutes${NC}]"
+echo -e "${z}  ──────────────────────────────────${NC}"
+read -rp "    Minutes : " pup
+echo -e ""
+start_spinner " Please wait, Colecting New data...."
 domain=$(cat /etc/xray/domain)
 masaaktif=1
-Quota=1
-iplimit=10
+Quota='500MB'
+iplimit=3
 user=Trial-TR`</dev/urandom tr -dc 0-9 | head -c3`
 clear
 uuid=$(cat /proc/sys/kernel/random/uuid)
@@ -94,9 +87,7 @@ trojanlink="trojan://${uuid}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host
 
 cat >/var/www/html/trojan-$user.txt <<-END
 =========================
-  WINGS VPN TUNNELING 
-=========================
- https://github.com/wingshope
+  SDC VPN TUNNELING 
 =========================
 # Format Trojan GO/WS
 
@@ -140,9 +131,9 @@ ${trojanlink1}
 
 END
 
-service cron restart
 trojanlink="trojan://${uuid}@${domain}:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
+
 if [ ! -e /etc/trojan ]; then
   mkdir -p /etc/trojan
 fi
@@ -155,11 +146,30 @@ echo > /dev/null
 fi
 
 if [ -z ${Quota} ]; then
-  Quota="0"
+  Quota="0MB"
 fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
+fi
 
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/trojan/${user}
@@ -169,31 +179,45 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
-curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL
+
+function trialtrojan(){
+    exp=$(grep -wE "^#! $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+    sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
+    sed -i "/^#! $user $exp/,/^},{/d" /etc/trojan/.trojan.db
+    rm -rf /etc/trojan/$user
+    rm -rf /etc/kyt/limit/trojan/ip/$user
+    systemctl restart xray > /dev/null 2>&1
+}
+
+echo trialtrojan | at now + $pup minutes
+
+stop_spinner
+echo -e " ${Green}Success Verif New Data....${Suffix}"
+
 clear
 echo -e ""
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e " CREATE TROJAN ACCOUNT          "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e " Trial Trojan Account          "
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks          : ${user}" 
 echo -e "Host/IP          : ${domain}"
-echo -e "User Quota       : ${Quota} GB"
+echo -e "User Quota       : ${Quota}"
 echo -e "User IP          : ${iplimit} IP"
 echo -e "port             : 400-900" 
 echo -e "Key              : ${uuid}" 
 echo -e "Path             : /trojan-ws" 
 echo -e "ServiceName      : trojan-grpc" 
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link WS          : ${trojanlink}" 
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link GRPC        : ${trojanlink1}" 
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Format OpenClash : https://${domain}:81/trojan-$user.txt" 
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $expe"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo "" 
 read -n 1 -s -r -p "Press any key to back on menu"
-menu
+m-trojan

@@ -1,40 +1,17 @@
 #!/bin/bash
-Green="\e[92;1m"
-RED="\033[31m"
-YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-GREENBG="\033[42;37m"
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
-NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
-Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
-blue='\e[34m'
-PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
-NC='\e[0m'
-GREEN='\033[0;32m'
+z="\033[96m"
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
+NC='\033[0m'
+RED="\033[31m"
+PURPLE='\e[35m'
+biru="\033[0;36m"
+GREEN='\033[0;32m'
+Suffix="\033[0m"
+Bold='\e[1m'
+
+source /usr/local/sbin/spiner
+source /usr/local/sbin/send-bot
+
 clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -68,13 +45,36 @@ checking_sc() {
 checking_sc
 echo -e "\e[32mloading...\e[0m"
 clear
+echo -e ""
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Trial Vless Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
+echo -e "     ${biru}Just input a number for-"
+echo -e "${Green}      Expired Account${Suffix}"
+echo -e ""
+echo -e "     ${biru}Example: "
+echo -e "${ORANGE}      5${Suffix} for [${ORANGE}5 Minutes${NC}]"
+echo -e "${ORANGE}      10${Suffix} for [${ORANGE}10 Minutes${NC}]"
+echo -e "${ORANGE}      30${Suffix} for [${ORANGE}30 Minutes${NC}]"
+echo -e "${z}  ──────────────────────────────────${NC}"
+read -rp "    Minutes : " pup
+echo -e ""
+start_spinner " Please wait, Colecting New data...."
 domain=$(cat /etc/xray/domain)
 masaaktif=1
-Quota=1
-iplimit=10
+Quota='500MB'
+iplimit=3
 user=Trial-VL`</dev/urandom tr -dc 0-9 | head -c3`
 clear 
-uuid=$(cat /proc/sys/kernel/random/uuid)
+cekbrand=$(cat /etc/brand/.brand.db | grep '#vmess#' | cut -d ' ' -f 2 | sort | uniq)
+
+if [[ -z ${cekbrand} ]]; then
+  uuid=$(cat /proc/sys/kernel/random/uuid)
+else
+  uuid="${cekbrand}-${user}"
+fi
+
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
@@ -89,6 +89,7 @@ sed -i '/#vless$/a\#& '"$user $exp"'\
 sed -i '/#vlessgrpc$/a\#& '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 clear
+systemctl restart xray
 vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws#${user}"
 vlesslink2="vless://${uuid}@${domain}:80?path=/vless&encryption=none&type=ws#${user}"
 vlesslink3="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${user}"
@@ -164,8 +165,6 @@ ${vlesslink3}
 
 END
 
-systemctl restart xray
-systemctl restart nginx
 if [ ! -e /etc/vless ]; then
   mkdir -p /etc/vless
 fi
@@ -178,11 +177,31 @@ echo > /dev/null
 fi
 
 if [ -z ${Quota} ]; then
-  Quota="0"
+  Quota="0MB"
 fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
+fi
+
 
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/vless/${user}
@@ -192,13 +211,29 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vless/.vless.db
 fi
 echo "#& ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vless/.vless.db
+
+function trialvless(){
+    exp=$(grep -wE "^#& $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+    sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
+    sed -i "/^#& $user $exp/,/^},{/d" /etc/vless/.vless.db
+    rm -rf /etc/vless/$user
+    rm -rf /etc/kyt/limit/vless/ip/$user
+    systemctl restart xray > /dev/null 2>&1
+}
+
+echo trialvless | at now + $pup minutes
+
+stop_spinner
+echo -e " ${Green}Success Verif New Data....${Suffix}"
+
 clear
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e " CREATE VLESS ACCOUNT           "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e " Trial Vless Account           "
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks     : ${user}"
 echo -e "Domain      : ${domain}"
-echo -e "User Quota  : ${Quota} GB"
+echo -e "User Quota  : ${Quota}"
+echo -e "Limit IP    : ${iplimit} IP"
 echo -e "port TLS    : 400-900"
 #echo -e "Port DNS    : 443"
 echo -e "Port NTLS   : 80, 8080, 8081-9999"
@@ -206,20 +241,18 @@ echo -e "User ID     : ${uuid}"
 echo -e "Encryption  : none"
 echo -e "Path TLS    : /vless "
 echo -e "ServiceName : vless-grpc"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link TLS    : ${vlesslink1}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link NTLS   : ${vlesslink2}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link GRPC   : ${vlesslink3}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Format OpenClash : https://${domain}:81/vless-$user.txt"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Aktif Selama     : $masaaktif Hari"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Dibuat Pada      : $tnggl"
-echo -e "Berakhir Pada    : $expe"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "Berakhir Pada    : $pup Minutes"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e ""
 read -n 1 -s -r -p "Press any key to back on menu"
-
-menu
+m-vless
