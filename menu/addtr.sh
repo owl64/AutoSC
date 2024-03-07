@@ -33,6 +33,7 @@ LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 z='\033[96m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+source /usr/local/sbin/spiner
 # Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
