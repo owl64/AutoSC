@@ -113,7 +113,6 @@ function cekupdate(){
    fi
 }
 cekupdate
-r="\033[1;31m"  #REDTERANG
 a=" ${CYAN}ACCOUNT" 
 clear
 
