@@ -82,15 +82,14 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
 echo -e "         ${biru}Create Trojan Account${NC}           "
 echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
-echo -e "${z}  ──────────────────────────────────${NC}"
-    echo -e "    ${biru}Just input a number for-"
-    echo -e "     ${Green}Limit IP${Suffix}"
-    echo -e ""
+  echo -e "${z}  ──────────────────────────────────${NC}"
     echo -e "    ${biru}Format GB"
-    echo -e "     ${ORANGE}20MB/2GB For Quota Limit${Suffix}"
-    echo -e "     ${ORANGE}0${Suffix} ${biru}for Unlimited"
+    echo -e "     ${ORANGE}20MB/2GB, 20mb/2gb For Quota Limit${Suffix}"
+    echo -e "     ${ORANGE}0MB/0mb${Suffix} ${biru}for Unlimited"
+    echo -e ""
+    echo -e "    ${biru}Format IP, Just Input Number"
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
-echo -e "${z}  ──────────────────────────────────${NC}"
+  echo -e "${z}  ──────────────────────────────────${NC}"
 echo -e ""
 		read -rp "   User : " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
@@ -203,12 +202,17 @@ fi
 # Menghapus semua karakter kecuali angka, MB, dan GB
 sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
 
-# Mendeteksi apakah input berisi MB atau GB
 if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
   c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
   d=$((${c} * 1024 * 1024))
 elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
   c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
   d=$((${c} * 1024 * 1024 * 1024))
 else
   echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
