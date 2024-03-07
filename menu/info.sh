@@ -114,7 +114,7 @@ function cekupdate(){
 }
 cekupdate
 r="\033[1;31m"  #REDTERANG
-a=" ${CYAN}ACCOUNT PREMIUM" 
+a=" ${CYAN}ACCOUNT" 
 clear
 
 echo -e " "
@@ -129,15 +129,13 @@ echo -e " ${z}│$NC${z} Uptime Server ${NC} $Blue=$NC $SERONLINE${NC}"
 echo -e " ${z}│$NC${z} IP/Domain ${NC}     $Blue=$NC ${domain}/${IPVPS}${NC}"
 echo -e " ${z}│$NC${z} ISP/CITY ${NC}      $Blue=$NC ${ISP}/${CITY}${NC}"
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
-echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
-echo -e "             ${y}  YOUR ACCOUNT IN VPS${NC}               "
-echo -e "               SSH/OVPN    $y:$NC $ssh1 $a${NC}"
-echo -e "               VMESS       $y:$NC $vma $a${NC}"
-echo -e "               VLESS       $y:$NC $vla $a${NC}"
-echo -e "               TROJAN      $y:$NC $trb $a${NC}"    
-echo -e "               SHADOWSOCKS $y:$NC $ssa $a${NC}"   
-echo -e "               NOBZVPN     $y:$NC 0 $a${NC}"
-echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
+echo -e " ${z}    ┌─────────────────────────────────────────┐${NC}"
+echo -e "               SSH/OVPN    $y:$NC $ssh1  $a${NC}"
+echo -e "               VMESS       $y:$NC $vma  $a${NC}"
+echo -e "               VLESS       $y:$NC $vla  $a${NC}"
+echo -e "               TROJAN      $y:$NC $trb  $a${NC}"    
+echo -e "               SHADOWSOCKS $y:$NC $ssa  $a${NC}" 
+echo -e " ${z}    └─────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL} v${versiedition} LTS Rev.1"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username $sts"
