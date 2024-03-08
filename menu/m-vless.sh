@@ -30,7 +30,7 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 z="\033[96m"
-biru="\033[0;36m"
+biru="${biru}"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 clear
 # Getting
@@ -51,7 +51,7 @@ checking_sc() {
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
+    echo -e "      ${biru}Telegram${NC} t.me/owl64"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     sleep 5
@@ -60,6 +60,44 @@ checking_sc() {
 }
 checking_sc
 echo -e "\e[32mloading...\e[0m"
+
+#set bot notif
+if [ ! -e /etc/active ]; then
+    mkdir -p /etc/active
+fi
+
+if [ ! -e /etc/active/2-vless ]; then
+    sts="${RED}${Bold}OFF${NC}"
+else
+    sts="${Green}${Bold}ON${NC}"
+fi
+
+function statusbotoffvless(){
+    clear
+    if [ $sts = "OFF" ]; then
+        echo -e " ${RED} Status Bot Off, Please On Bot First${NC}"
+    fi
+
+    start_spinner " Please wait, Process...."
+    sleep 2
+    rm -rf /etc/active/1-vless
+    stop_spinner
+    echo -e " ${Green} Sucess OFF Bot Notif SSH ${NC}"
+}
+
+function statusbotonvless(){
+    clear
+    if [ $sts = "ON" ]; then
+        echo -e " ${ORANGE} Status Bot Is ON${NC}"
+    fi
+
+    start_spinner " Please wait, Process...."
+    sleep 2
+    touch /etc/active/1-vless
+    stop_spinner
+    echo -e " ${Green} Sucess ON Bot Notif SSH ${NC}"
+}
+
 vlx=$(grep -c -E "^#& " "/etc/xray/config.json")
 let vla=$vlx/2
 ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
@@ -69,21 +107,29 @@ echo -e " ${z}┌─────────────────────
 echo -e "  ${PURPLE}               MENU VLESS              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  ${ORANGE}  [01].${NC}\033[0;36m Create Account XRAY Vless WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [02].${NC}\033[0;36m Create Trial XRAY Vless WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [03].${NC}\033[0;36m Delete Account XRAY Vless WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [04].${NC}\033[0;36m Renew Vless Account${NC}"
-echo -e "  ${ORANGE}  [05].${NC}\033[0;36m Check Vless login Account${NC}"
-echo -e "  ${ORANGE}  [06].${NC}\033[0;36m Check Config Vless Account${NC}"
-echo -e "  ${ORANGE}  [07].${NC}\033[0;36m Restore Vless Account${NC}"
+echo -e "  ${ORANGE}  [01].${NC}${biru} Create Account XRAY Vless WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [02].${NC}${biru} Create Trial XRAY Vless WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [03].${NC}${biru} Delete Account XRAY Vless WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [04].${NC}${biru} Renew Vless Account${NC}"
+echo -e "  ${ORANGE}  [05].${NC}${biru} Check Vless login Account${NC}"
+echo -e "  ${ORANGE}  [06].${NC}${biru} Check Config Vless Account${NC}"
+echo -e "  ${ORANGE}  [07].${NC}${biru} Restore Vless Account${NC}"
 echo -e ""
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "      $PURPLE           LIMIT VLESS              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  ${ORANGE}  [08].${NC}\033[0;36m Change Limit IP${NC}"
-echo -e "  ${ORANGE}  [09].${NC}\033[0;36m Change Limit Quota${NC}"
-echo -e "  ${ORANGE}  [10].${NC}\033[0;36m Reset Usage Quota Acount${NC}"
+echo -e "  ${ORANGE}  [08].${NC}${biru} Change Limit IP${NC}"
+echo -e "  ${ORANGE}  [09].${NC}${biru} Change Limit Quota${NC}"
+echo -e "  ${ORANGE}  [10].${NC}${biru} Reset Usage Quota Acount${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e " $PURPLE                Set Bot Notif           $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "    STATUS BOT NOTIF : [ $sts ]"
+echo -e "  ${ORANGE}  [11].${NC}${biru} On Bot Notif${NC}"
+echo -e "  ${ORANGE}  [12].${NC}${biru} Off Bot Notif${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
 echo -e ""
@@ -132,6 +178,14 @@ case $menu in
 10) 
     clear
     resetquotavless
+    ;;
+11)
+    statusbotonvless
+    m-vless
+    ;;
+12)
+    statusbotoffvless
+    m-vless
     ;;
 0 | 00) 
     clear

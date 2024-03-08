@@ -29,6 +29,7 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
+biru='${biru}'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 clear
 #IZIN SCRIPT
@@ -54,7 +55,7 @@ checking_sc() {
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
+    echo -e "      ${biru}Telegram${NC} t.me/owl64"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     exit
@@ -110,24 +111,24 @@ echo -e " ${z}┌─────────────────────
 echo -e " $PURPLE                SSH & OpenVPN           $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  ${ORANGE}  [01].${NC}\033[0;36m Create SSH & OpenVPN Account${NC}"
-echo -e "  ${ORANGE}  [02].${NC}\033[0;36m Trial SSH & OpenVPN ${NC}"
-echo -e "  ${ORANGE}  [03].${NC}\033[0;36m Renew SSH & OpenVPN ${NC}"
-echo -e "  ${ORANGE}  [04].${NC}\033[0;36m Check User Login SSH & OpenVPN${NC}"
-echo -e "  ${ORANGE}  [05].${NC}\033[0;36m Daftar Member SSH & OpenVPN ${NC}"
-echo -e "  ${ORANGE}  [06].${NC}\033[0;36m Hapus SSH & OpenVpn Account ${NC}"
-echo -e "  ${ORANGE}  [07].${NC}\033[0;36m Hapus User Expired SSH & OpenVPN ${NC}"
-echo -e "  ${ORANGE}  [08].${NC}\033[0;36m Set up Autokill SSH ${NC}"
-echo -e "  ${ORANGE}  [09].${NC}\033[0;36m Cek User Multi Login SSH ${NC}"
-echo -e "  ${ORANGE}  [10].${NC}\033[0;36m Config SSH ACCOUNT ${NC}"
+echo -e "  ${ORANGE}  [01].${NC}${biru} Create SSH & OpenVPN Account${NC}"
+echo -e "  ${ORANGE}  [02].${NC}${biru} Trial SSH & OpenVPN ${NC}"
+echo -e "  ${ORANGE}  [03].${NC}${biru} Renew SSH & OpenVPN ${NC}"
+echo -e "  ${ORANGE}  [04].${NC}${biru} Check User Login SSH & OpenVPN${NC}"
+echo -e "  ${ORANGE}  [05].${NC}${biru} Daftar Member SSH & OpenVPN ${NC}"
+echo -e "  ${ORANGE}  [06].${NC}${biru} Hapus SSH & OpenVpn Account ${NC}"
+echo -e "  ${ORANGE}  [07].${NC}${biru} Hapus User Expired SSH & OpenVPN ${NC}"
+echo -e "  ${ORANGE}  [08].${NC}${biru} Set up Autokill SSH ${NC}"
+echo -e "  ${ORANGE}  [09].${NC}${biru} Cek User Multi Login SSH ${NC}"
+echo -e "  ${ORANGE}  [10].${NC}${biru} Config SSH ACCOUNT ${NC}"
 echo -e ""
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e " $PURPLE                Set Bot Notif           $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 echo -e "    STATUS BOT NOTIF : [ $sts ]"
-echo -e "  ${ORANGE}  [11].${NC}\033[0;36m On Bot Notif${NC}"
-echo -e "  ${ORANGE}  [12].${NC}\033[0;36m Off Bot Notif${NC}"
+echo -e "  ${ORANGE}  [11].${NC}${biru} On Bot Notif${NC}"
+echo -e "  ${ORANGE}  [12].${NC}${biru} Off Bot Notif${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu ${NC}"
 echo -e ""
