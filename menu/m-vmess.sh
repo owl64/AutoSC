@@ -30,7 +30,7 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 Suffix="\033[0m"
 grenbo="\e[92;1m"
-biru='${biru}'
+biru='\033[0;36m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 clear
 # Getting
@@ -129,8 +129,8 @@ echo -e " $PURPLE                Set Bot Notif           $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 echo -e "    STATUS BOT NOTIF : [ $sts ]"
-echo -e "  ${ORANGE}  [11].${NC}${biru} On Bot Notif${NC}"
-echo -e "  ${ORANGE}  [12].${NC}${biru} Off Bot Notif${NC}"
+echo -e "  ${ORANGE} [11].${NC}${biru} On Bot Notif${NC}"
+echo -e "  ${ORANGE} [12].${NC}${biru} Off Bot Notif${NC}"
 echo -e ""
 echo -e "  ${ORANGE} [00].${NC}${RED} Back To Menu${NC}"
 echo -e ""
