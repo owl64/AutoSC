@@ -99,7 +99,7 @@ nginx_service=$(systemctl status nginx | grep Active | awk '{print $3}' | cut -d
 clear
 # STATUS SERVICE  SSH 
 if [[ $ssh_service == "running" ]]; then 
-   status_ssh="${green}ON✓${NC}"
+   status_ssh="${green}🟢${NC}"
 else
    status_ssh="${RED}🔴${NC} "
 fi
@@ -107,35 +107,35 @@ fi
 # // SSH Websocket Proxy
 ssh_ws=$( systemctl status ws | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $ssh_ws == "running" ]]; then
-    status_ws_epro="${green}ON✓${NC}"
+    status_ws_epro="${green}🟢${NC}"
 else
     status_ws_epro="${RED}🔴${NC} "
 fi
 
 # STATUS SERVICE HAPROXY
 if [[ $haproxy_service == "running" ]]; then 
-   status_haproxy="${green}ON✓${NC}"
+   status_haproxy="${green}🟢${NC}"
 else
    status_haproxy="${RED}🔴${NC} "
 fi
 
 # STATUS SERVICE XRAY
 if [[ $xray_service == "running" ]]; then 
-   status_xray="${green}ON✓${NC}"
+   status_xray="${green}🟢${NC}"
 else
    status_xray="${RED}🔴${NC} "
 fi
 
 # STATUS SERVICE NGINX
 if [[ $nginx_service == "running" ]]; then 
-   status_nginx="${green}ON✓${NC}"
+   status_nginx="${green}🟢${NC}"
 else
    status_nginx="${RED}🔴${NC} "
 fi
 
 # STATUS SERVICE Dropbear
 if [[ $dropbear_service == "running" ]]; then 
-   status_dropbear="${green}ON✓${NC}"
+   status_dropbear="${green}🟢${NC}"
 else
    status_dropbear="${RED}🔴${NC} "
 fi
@@ -333,8 +333,7 @@ echo -e " ${z}│$NC${z} IP/Domain ${NC}     $Blue=$NC ${domain}/${IPVPS}${NC}"
 echo -e " ${z}│$NC${z} ISP/CITY ${NC}      $Blue=$NC ${ISP}/${CITY}${NC}"
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│ ${NC}${z} SSH$NC : $status_ssh" "    ${z} NGINX$NC : $status_nginx" "    ${z} XRAY$NC : $status_xray      $NC${z}│$NC" 
-echo -e " ${z}│ ${NC}${z} WS-ePRO$NC : $status_ws_epro" "${z} DROPBEAR$NC : $status_dropbear" " ${z} HAPROXY$NC : $status_haproxy   $NC${z}│$NC" 
+echo -e " ${z}│ ${NC}${z} SSH$NC : $status_ssh" "${z} NGINX$NC : $status_nginx" "${z} XRAY$NC : $status_xray $NC" " | ${green}RUNNING $NC${z}│$NC" 
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}${Bold}┌──────────────────────────────────────────────────┐${NC}"
 echo -e " ${z}    $NC [${y}01${NC}].${biru} SSH MENU$NC       $NC [${y}06${NC}].${biru} FEATURE MENU$NC"
