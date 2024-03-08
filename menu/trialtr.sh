@@ -12,6 +12,19 @@ Bold='\e[1m'
 source /usr/local/sbin/spiner
 source /usr/local/sbin/send-bot
 
+function con(){
+    local -i bytes=$1;
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes} B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$(( (bytes + 1023)/1024 )) KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$(( (bytes + 1048575)/1048576 )) MB"
+    else
+        echo "$(( (bytes + 1073741823)/1073741824 )) GB"
+    fi
+}
+
 clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -174,6 +187,10 @@ fi
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/trojan/${user}
 fi
+
+baca1=$(cat /etc/vmess/${user})
+Quota=$(con ${baca1})
+
 DATADB=$(cat /etc/trojan/.trojan.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
@@ -188,6 +205,7 @@ function trialtrojan(){
     rm -rf /etc/kyt/limit/trojan/ip/$user
     systemctl restart xray > /dev/null 2>&1
 }
+
 
 echo trialtrojan | at now + $pup minutes
 

@@ -271,6 +271,10 @@ fi
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/vmess/${user}
 fi
+
+baca1=$(cat /etc/vmess/${user})
+Quota=$(con ${baca1})
+
 DATADB=$(cat /etc/vmess/.vmess.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
