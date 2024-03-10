@@ -34,12 +34,21 @@ grenbo="\e[92;1m"
 z='\033[96m'
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 source /usr/local/sbin/spiner
-# Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
-clear
+
+##FUngsi Hitung GB
+function con(){
+    local -i bytes=$1;
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes} B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$(( (bytes + 1023)/1024 )) KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$(( (bytes + 1048575)/1048576 )) MB"
+    else
+        echo "$(( (bytes + 1073741823)/1073741824 )) GB"
+    fi
+}
+
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
@@ -258,8 +267,8 @@ echo -e "User Quota       : ${Quota1}"
 echo -e "User Ip          : ${iplimit} IP"
 echo -e "Port             : 400-900" 
 echo -e "Uuid             : ${uuid}" 
-echo -e "Xray Dns.        : ${NS}"
-echo -e "Pubkey.          : ${PUB}"
+#echo -e "Xray Dns.        : ${NS}"
+#echo -e "Pubkey.          : ${PUB}"
 echo -e "Path             : /Multi-Path/trojan-ws"
 echo -e "Dynamic          : https://bugmu.com/path"
 echo -e "ServiceName      : trojan-grpc" 
