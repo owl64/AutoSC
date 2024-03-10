@@ -231,6 +231,7 @@ echo -e " ${blue}➤ ${Blue}Service Xray Trojan gRPC          $blue=$NC $status_
 echo -e " ${blue}➤ ${Blue}Service Xray Shadowsocks WS       $blue=$NC $status_ss"
 echo -e " ${blue}➤ ${Blue}Service Xray Shadowsocks Non WS   $blue=$NC $status_ss"
 echo -e " ${blue}➤ ${Blue}Service Xray Shadowsocks gRPC     $blue=$NC $status_ss"
+echo -e " ${blue}➤ ${Blue}UDP SSH                           $blue=$NC $status_udp"
 echo -e " ${blue}➤ ${Blue}Service Iptables                  $blue=$NC $status_galo"
 echo -e " ${blue}➤ ${Blue}Service RClocal                   $blue=$NC $status_galoo"
 echo -e " ${blue}➤ ${Blue}Service Autoreboot                $blue=$NC $status_galooo"
