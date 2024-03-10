@@ -1,29 +1,13 @@
 #!/bin/bash
-DF='\e[39m'
-RED='\033[0;31m'
-Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
-blue='\e[34m'
+
 YELLOW="\033[33m"
 PURPLE='\e[35m'
-cyan='\e[36m'
 blue2='\033[0;36m'
-Lred='\e[91m'
-Lyellow='\e[93m'
-Lgreen='\e[92m'
 NC='\e[0m'
-GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
-GREENBG="\033[42;37m"
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
-Suffix="\033[0m"
 z="\033[96m"
 Suffix="\033[0m"
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+
 source /usr/local/sbin/spiner
 # Getting
 #satusbot
@@ -40,14 +24,15 @@ ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
 data_ip="https://raw.githubusercontent.com/owl64/AutoSC/main/user/user"
+
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          ${NC}"
+    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
@@ -55,14 +40,13 @@ checking_sc() {
     echo -e "             \033[0;33mContact Admin :${NC}"
     echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     sleep 5
     reboot
   fi
 }
 checking_sc
 
-echo -e "\e[32mloading...\e[0m"
 clear
 MYIP=$(wget -qO- ipinfo.io/ip);
 clear 
@@ -274,7 +258,7 @@ echo -e " ${ORANGE}   [07].${NC}${blue2} Add Bot Notif & Backup${NC}"
 echo -e " ${ORANGE}   [08].${NC}${blue2} Change Bot Notif & Backup${NC}"
 echo -e " ${ORANGE}   [09].${NC}${blue2} Delete Bot Notif & Backup${NC}"
 echo -e ""
-echo -e " ${ORANGE}   [00].${NC}${RED} \e[31mBack To Menu\033[0m"
+echo -e " ${ORANGE}   [00].${NC}${RED} \e[31mBack To Menu${NC}"
 echo -e ""
 read -rp " Select menu [ 1-9 ]:  "  opt
 echo -e   ""

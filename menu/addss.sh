@@ -1,44 +1,34 @@
 #!/bin/bash
-Green="\e[92;1m"
-RED="\033[31m"
-YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-GREENBG="\033[42;37m"
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
-NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
-Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
-blue='\e[34m'
-PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
-NC='\e[0m'
-GREEN='\033[0;32m'
+
+z="\033[96m"
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
-clear
+NC='\033[0m'
+RED="\033[31m"
+PURPLE='\e[35m'
+biru="\033[0;36m"
+GREEN='\033[0;32m'
+Suffix="\033[0m"
+Bold='\e[1m'
+
+source /usr/local/sbin/spiner
+
+##FUngsi Hitung GB
+function con(){
+    local -i bytes=$1;
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes} B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$(( (bytes + 1023)/1024 )) KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$(( (bytes + 1048575)/1048576 )) MB"
+    else
+        echo "$(( (bytes + 1073741823)/1073741824 )) GB"
+    fi
+}
+
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
+
 clear
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
@@ -58,7 +48,7 @@ checking_sc() {
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
+    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
     echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     exit
@@ -78,31 +68,41 @@ fi
 
 #tls="$(cat ~/log-install.txt | grep -w "Sodosok WS/GRPC" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e "       CREATE SHADOWSOCKS ACCOUNT        "
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-
-		read -rp "User: " -e user
+echo -e " ${z}┌──────────────────────────────────┐${NC}"
+echo -e "${ORANGE}   Create Shadowshock Account              $NC"
+echo -e " ${z}└──────────────────────────────────┘${NC}"
+  echo -e "${z} ──────────────────────────────────${NC}"
+    echo -e "    ${biru}Format GB"
+    echo -e "     ${ORANGE}20MB/2GB, 20mb/2gb For Quota Limit${Suffix}"
+    echo -e "     ${ORANGE}0MB/0mb${Suffix} ${biru}for Unlimited"
+    echo -e ""
+    echo -e "    ${biru}Format IP, Just Input Number"
+    echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
+  echo -e "${z} ──────────────────────────────────${NC}"
+    echo -e ""
+		read -rp " User : " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
-		if [[ ${CLIENT_EXISTS} == '1' ]]; then
+		if [[ ${CLIENT_EXISTS} > '1' ]]; then
 clear
-            echo -e "\033[0;34m────────────────────────────────────────────\033[0m"
-            echo -e "\\E[0;41;36m      Add Shadowsock Ws/Grpc Account      \E[0m"
-            echo -e "\033[0;34m────────────────────────────────────────────\033[0m"
+            echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+            echo -e "${ORANGE}   Create Shadowshock Account              $NC"
+            echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 			echo ""
-			echo "A client with the specified name was already created, please choose another name."
+			echo -e " ${RED}Name was already created, please choose another name${NC}"
 			echo ""
-			echo -e "\033[0;34m────────────────────────────────────────────\033[0m"
-			read -n 1 -s -r -p "Press any key to back on menu"
-v2ray-menu
+			read -n 1 -s -r -p "Press any key to back and try again"
+      addss
 		fi
 	done
 
 cipher="aes-128-gcm"
 uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "Expired (days): " masaaktif
-read -p "Limit User (GB): " Quota
+read -p " Expired (days): " masaaktif
+read -p " Limit Quota (MB/GB) : " Quota
+read -p " Limit User (IP) : " iplimit
+echo -e ""
+start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -135,6 +135,7 @@ systemctl restart xray
 #buatshadowsocks custom
 rm -rf /tmp/log
 rm -rf /tmp/log1
+
 cat > /var/www/html/sodosokws-$user.txt <<-END
 { 
  "dns": {
@@ -242,6 +243,7 @@ cat > /var/www/html/sodosokws-$user.txt <<-END
   "stats": {}
 }
 END
+
 cat > /var/www/html/sodosokgrpc-$user.txt <<-END
 {
     "dns": {
@@ -349,51 +351,94 @@ cat > /var/www/html/sodosokgrpc-$user.txt <<-END
 END
 
 service cron restart >/dev/null 2>&1
+
 if [ ! -e /etc/shadowsocks ]; then
   mkdir -p /etc/shadowsocks
 fi
 
-if [ -z ${Quota} ]; then
-  Quota="0"
+if [[ $iplimit -gt 0 ]]; then
+mkdir -p /etc/kyt/limit/shadowsocks/ip
+echo -e "$iplimit" > /etc/kyt/limit/shadowsocks/ip/$user
+else
+echo > /dev/null
 fi
 
-c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-d=$((${c} * 1024 * 1024 * 1024))
+if [ -z ${Quota} ]; then
+  Quota="0MB"
+fi
+
+# Menghapus semua karakter kecuali angka, MB, dan GB
+sanitized_input=$(echo "${Quota}" | sed -E 's/[^0-9MBmbGBgb]*//g')
+
+# Mendeteksi apakah input berisi MB atau GB
+
+if [[ $sanitized_input =~ [Mm][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Mm][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
+  d=$((${c} * 1024 * 1024))
+elif [[ $sanitized_input =~ [Gg][Bb]$ ]]; then
+  c=$(echo "${sanitized_input}" | sed 's/[Gg][Bb]$//')
+  if [[ $c -eq 0 ]]; then
+    echo > /dev/null 2>&1
+  fi
+  d=$((${c} * 1024 * 1024 * 1024))
+else
+  echo "Input tidak valid. Harap masukkan nilai dengan satuan MB atau GB (contoh: 20MB, 2GB)"
+  exit 1
 
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/shadowsocks/${user}
 fi
+
+if [ ! -e /etc/shadowsocks/${user} ]; then
+    Quota1="Unlimited"
+else
+    baca1=$(cat /etc/shadowsocks/${user})
+    Quota1=$(con ${baca1})
+fi
+
+if [ ! -e /etc/kyt/limit/shadowsocks/ip/$user ]; then
+    iplimit="Unlimited"
+else
+    iplimit=$(cat /etc/kyt/limit/shadowsocks/ip/$user)
+fi
+
 DATADB=$(cat /etc/shadowsocks/.shadowsocks.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/shadowsocks/.shadowsocks.db
 fi
 echo "### ${user} ${exp} ${uuid}" >>/etc/shadowsocks/.shadowsocks.db
-clear
+stop_spinner
+echo -e " ${Green}Success Verif New Data....${Suffix}"
 
 clear
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e " CREATE SHADOWSOCKS         "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Remarks     : ${user}"
-echo -e "Domain      : ${domain}"
-echo -e "Wilcard     : bug.${domain}"
-echo -e "User Quota  : ${Quota} GB"
-echo -e "Port TLS    : 400-900"
-echo -e "Password    : ${uuid}"
-echo -e "Cipers      : aes-128-gcm"
-echo -e "Network     : ws/grpc"
-echo -e "Path        : /ss-ws"
-echo -e "ServiceName : ss-grpc"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Link WS TLS : ${sslinkws}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Link WS None TLS : ${nonsslinkws}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Link GRPC : ${sslinkgrpc}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Aktif Selama   : $masaaktif Hari"
-echo -e "Dibuat Pada    : $tnggl"
-echo -e "Berakhir Pada  : $expe"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e " Remarks     : ${user}"
+echo -e " Domain      : ${domain}"
+echo -e " Wilcard     : bug.${domain}"
+echo -e " User Quota  : ${Quota}"
+echo -e " User Ip     : ${iplimit} IP"
+echo -e " Port TLS    : 400-900"
+echo -e " Password    : ${uuid}"
+echo -e " Cipers      : aes-128-gcm"
+echo -e " Network     : ws/grpc"
+echo -e " Path        : /ss-ws"
+echo -e " ServiceName : ss-grpc"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e " Link WS TLS : ${sslinkws}"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e " Link WS None TLS : ${nonsslinkws}"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e " Link GRPC : ${sslinkgrpc}"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e " Aktif Selama   : $masaaktif Hari"
+echo -e " Dibuat Pada    : $tnggl"
+echo -e " Berakhir Pada  : $expe"
+echo -e "${z} ──────────────────────────────${NC}"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
+m-ssws
