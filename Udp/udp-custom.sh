@@ -79,6 +79,7 @@ else
     read -p "  Are you sure, installed UDP? [y/n]: " yes
         if [ $yes = 'y' ]; then
             udp >/dev/null 2>&1
+            rm udp-custom.sh >/dev/null 2>&1
         elif [ $yes = 'n' ]; then
             menu
         else
