@@ -243,12 +243,38 @@ function iplimit(){
     systemctl restart sship
 }
 
+function limitxrayip(){
+    instalasi="https://raw.githubusercontent.com/owl64/AutoSC/main/"
+    cd /root
+    wget -O limit-ip "${instalasi}config/limit-ip"
+    cp /root/limit-ip /usr/bin/
+    rm -rf /root/limit-ip
+
+    cat >/etc/systemd/system/ssws.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/limit-ip ssws
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart ssws
+systemctl enable ssws
+}
+
 function update(){
     res1
     profile
     gantiSC
     clearcacheAndFix
     trialinminutes
+    limitxrayip
 }
 netfilter-persistent
 clear
@@ -272,6 +298,7 @@ echo -e ""
             echo -e "      ${BLUE}[*] ${YELLOW}V ${versiupdate}R[Longterm]${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Optimasi Menu ${NC}"
             echo -e "      ${BLUE}[*] ${YELLOW}Fix Bug Menu ${NC}"
+            echo -e "      ${BLUE}[*] ${YELLOW}Add Limit Quota and IP for SSWS ${NC}"
             echo -e ""
             echo -e " ${z}└──────────────────────────────────────────┘${NC}"
             read -p "  Update system menu and etc? [yes/no/y/n] : " yes

@@ -632,6 +632,23 @@ systemctl daemon-reload
 systemctl restart trip
 systemctl enable trip
 
+cat >/etc/systemd/system/ssws.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/limit-ip ssws
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart ssws
+systemctl enable ssws
+
 #SERVICE LIMIT QUOTA
 
 #SERVICE VMESS

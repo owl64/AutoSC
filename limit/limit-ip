@@ -89,6 +89,31 @@ data=( `ls /etc/kyt/limit/trojan/ip`);
         sleep 0.1
     done
 }
+
+##Limit SS
+function ssws(){
+echo -n > /var/log/xray/access.log
+sleep 440
+data=( `ls /etc/kyt/limit/shadowsocks/ip`);
+    for user in "${data[@]}"
+    do
+        iplimit=$(cat /etc/kyt/limit/shadowsocks/ip/$user)
+        ehh=$(cat /var/log/xray/access.log | grep "$user" | cut -d " " -f 3 | sed 's/tcp://g' | cut -d ":" -f 1 | sort | uniq);
+        cekcek=$(echo -e "$ehh" | wc -l);
+        if [[ $cekcek -gt $iplimit ]]; then
+            exp=$(grep -w "^#ssws $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+                  sed -i "/^#ssws $user $exp/,/^},{/d" /etc/xray/config.json
+                  sed -i "/^### $user $exp/d" /etc/shadowsocks/.shadowsocks.db
+                  systemctl restart xray >> /dev/null 2>&1
+                  jum2=$(cat /tmp/ipshadowsocks.txt | wc -l)
+                  rm -rf /etc/kyt/limit/shadowsocks/ip/$user
+                  send_log
+                else
+            echo ""
+        fi
+        sleep 0.1
+    done
+}
 function member1(){
     data=( `ps aux | grep "\[priv\]" | sort -k 72 | awk '{print $2}'`);
     for PID in "${data[@]}"
@@ -134,8 +159,8 @@ elif [[ ${1} == "vlip" ]]; then
 vlip
 elif [[ ${1} == "trip" ]]; then
 trip
-elif [[ ${1} == "sship"]]; then
-ssh
+elif [[ ${1} == "ssws"]]; then
+ssws
 fi
 
 
