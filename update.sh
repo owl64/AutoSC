@@ -243,6 +243,10 @@ function iplimit(){
     systemctl restart sship
 }
 
+function limitquotaxray(){
+    wget https://raw.githubusercontent.com/owl64/AutoSC/main/limit/limit.sh && chmod +x limit.sh && ./limit.sh
+}
+
 function limitxrayip(){
     instalasi="https://raw.githubusercontent.com/owl64/AutoSC/main/"
     cd /root
@@ -274,6 +278,11 @@ function restart-service(){
     systemctl restart vmip
     systemctl restart vlip
     systemctl restart trip
+
+    systemctl restart limitvmess
+    systemctl restart limitvless
+    systemctl restart limittrojan
+    systemctl restart limitshadowsocks
 }
 
 function update(){

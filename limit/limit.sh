@@ -21,7 +21,4 @@ systemctl enable --now limitshadowsocks
 # systemctl start limitvless
 # systemctl start limittrojan
 # systemctl start limitshadowsocks
-# systemctl restart limitvmess
-# systemctl restart limitvless
-# systemctl restart limittrojan
-# systemctl restart limitshadowsocks
+
