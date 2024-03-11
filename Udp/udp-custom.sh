@@ -80,6 +80,7 @@ else
         if [ $yes = 'y' ]; then
             udp >/dev/null 2>&1
             rm udp-custom.sh >/dev/null 2>&1
+            echo -e " Success Install UDP!! check the service first"
         elif [ $yes = 'n' ]; then
             menu
         else
