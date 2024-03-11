@@ -292,6 +292,7 @@ function update(){
     clearcacheAndFix
     trialinminutes
     limitxrayip
+    limitquotaxray
     restart-service
 }
 netfilter-persistent
