@@ -347,7 +347,7 @@ echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL} v${versiedition} 
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username $sts"
 echo -e " ${z}│$NC${z} Expiry script$NC ${Blue}=${green} $certifacate Days$NC "
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
-echo
+echo -e ""
 read -p " Select menu [ 1-10 ]: " opt
 echo -e ""
 case $opt in
