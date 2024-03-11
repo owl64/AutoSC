@@ -499,3 +499,165 @@ function resetquotatrojan(){
         fi
     fi
 }
+
+## Limit Shadowshock
+function changelimitquotashadowshocks(){
+    data=( `cat /etc/xray/config.json | grep '#!#' | cut -d ' ' -f 2 | sort | uniq`);
+    defaultgb="60"
+    d=$((${defaultgb} * 1024 * 1024 * 1024))
+
+    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+    echo -e "      $PURPLE      Change Limit Quota              $NC"
+    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
+    echo -e "         Username                 Quota       "
+    echo -e " ${z} ------------------------------------------ ${NC}"
+    echo -e ""
+        directory="/etc/shadowsocks"
+
+        cekada=$(grep -c -E "^#!# " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-ssws
+        fi
+
+        for akun in "${data[@]}"; do
+                if [ ! -e /etc/shadowsocks/${akun} ]; then
+                    gb="Unlimited"
+                else
+                    wey=$(cat "/etc/shadowsocks/${akun}")
+                    gb=$(con "${wey}")
+                fi
+                printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          $gb"        
+        done
+    echo -e ""
+    read -rp "  Input Username to Change Limit : " change
+    read -rp "  Input New Limit : " limitnew
+    echo -e ""
+    if [ -z $change ]; then
+        m-ssws
+    else
+        ceklagi=$(grep -wE "^#!# $change" "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+        if [[ $ceklagi == $change ]]; then
+            start_spinner " Please wait...."
+            truncate -s 0 /etc/shadowsocks/$change
+            sleep 1
+            lmn=$((${limitnew} * 1024 * 1024 * 1024))
+            echo "$lmn" >> /etc/shadowsocks/$change
+            stop_spinner
+            echo -e " ${Green}Success Change Limit${Suffix}"
+            sleep 2
+            m-ssws
+        else
+            echo -e "     ${RED}Incorect Username Input, Please Try Again"
+            sleep 1
+            m-ssws
+        fi
+    fi
+}
+function changeiplimitshadowshocks(){
+    clear
+    data=( `cat /etc/xray/config.json | grep '#!#' | cut -d ' ' -f 2 | sort | uniq`);
+    defaultip="5"
+
+    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+    echo -e "      $PURPLE      Change Limit IP              $NC"
+    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
+    echo -e "         Username                 IP Limit     "
+    echo -e " ${z} ------------------------------------------ ${NC}"
+    echo -e ""
+        directory="/etc/kyt/limit/shadowshocks/ip"
+        cekada=$(grep -c -E "^#!# " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-ssws
+        fi
+
+        for akun in "${data[@]}"; do
+                if [ ! -e ${directory}/${akun} ]; then
+                    iplimit="Unlimited"
+                else
+                    iplimit=$(cat $directory/$akun)
+                fi
+                printf "         %-13s %-7s %-8s %2s\n"   "${akun}" "          $iplimit IP";         
+        done
+    echo -e ""
+    read -rp "  Input Username to Change Limit : " change
+    read -rp "  Input New Limit : " limitnew
+    echo -e ""
+    if [ -z $change ]; then
+        m-ssws
+    else
+        ceklagi=$(grep -wE "^#!# $change" "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+        if [[ $ceklagi == $change ]]; then
+            start_spinner " Please wait...."
+            truncate -s 0 /etc/kyt/limit/shadowshocks/ip/$change
+            sleep 1
+            echo "$limitnew" >> /etc/kyt/limit/shadowshocks/ip/$change
+            stop_spinner
+            echo -e " ${Green}Success Change Limit${Suffix}"
+            sleep 2
+            m-ssws
+        else
+            echo -e "     ${RED}Incorect Username Input, Please Try Again"
+            sleep 1
+            m-ssws
+        fi
+    fi
+}
+function resetquotashadowshocks(){
+    clear
+    data=( `cat /etc/xray/config.json | grep '#!#' | cut -d ' ' -f 2 | sort | uniq`);
+
+    echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+    echo -e "      $PURPLE       Reset Usage               $NC"
+    echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+    echo -e " ${z} ------------------------------------------ ${NC}"
+    echo -e "         Username                 Usage       "
+    echo -e " ${z} ------------------------------------------ ${NC}"
+    echo -e ""
+        directory="/etc/limit/shadowshocks"
+        cekada=$(grep -c -E "^#!# " "/etc/xray/config.json")
+
+        if [ $cekada == "0" ]; then
+            echo -e "          No Exiting Client!"
+            sleep 2
+            m-ssws
+        fi
+
+            for akun in "${data[@]}"; do
+                    if [ ! -e /etc/limit/shadowshocks/${akun} ]; then
+                        gb="No Usage"
+                    else
+                        wey=$(cat "/etc/limit/shadowshocks/${akun}")
+                        gb=$(con "${wey}")
+                    fi
+                    printf "         %-13s %-7s %-8s %2s\n"     "${akun}" "          $gb"       
+            done
+    echo -e ""
+    read -rp "  Input Username for Reset Usage : " change
+    echo -e ""
+    if [ -z $change ]; then
+        m-ssws
+    else
+        ceklagi=$(grep -wE "^#!# $change" "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+        if [[ $ceklagi == $change ]]; then
+            start_spinner " Please wait...."
+            truncate -s 0 /etc/limit/shadowshocks/$change
+            sleep 1
+            stop_spinner
+            echo -e " ${Green}Success Reset Usage Account${Suffix}"
+            sleep 2
+            m-ssws
+        else
+            echo -e "     ${RED}Incorect Username Input, Please Try Again"
+            sleep 1
+            m-ssws
+        fi
+    fi
+}

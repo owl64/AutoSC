@@ -13,6 +13,8 @@ Bold='\e[1m'
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
+source /usr/local/sbin/changelimit
+source /usr/local/sbin/spiner
 
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
@@ -148,21 +150,15 @@ case $menu in
     ;;
 8 | 08) 
     clear
-    echo -e " Under Maintenance!"
-    #changeiplimitshadowshocks
-    m-ssws
+    changeiplimitshadowshocks
     ;;
 9 | 09) 
     clear
-    echo -e " Under Maintenance!"
-    #changelimitquotashadowshocks
-    m-ssws
+    changelimitquotashadowshocks
     ;;
 10) 
     clear
-    echo -e " Under Maintenance!"
-    #resetquotashadowshocks
-    m-ssws
+    resetquotashadowshocks
     ;;
 11)
     statusbotonshadowshocks
