@@ -138,6 +138,7 @@ res1() {
     wget -O brandname "${instalasi}menu/brandname.sh"
     wget -O fiturssh "${instalasi}menu/fiturssh.sh"
     wget -O restoretrojan "${instalasi}menu/restoretrojan.sh"
+    wget -O restoressws "${instalasi}menu/restoressws.sh"
     wget -O send-bot "${instalasi}bot/send-bot.sh"
     wget -O ceklim "${instalasi}menu/ceklim.sh"
     wget -O changelimit "${instalasi}system/changelimit.sh"

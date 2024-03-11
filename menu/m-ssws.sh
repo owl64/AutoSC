@@ -144,9 +144,7 @@ case $menu in
     ;;
 7 | 07) 
     clear
-    echo -e " Under Maintenance!"
-    #restoreshadowshocks
-    m-ssws
+    restoressws
     ;;
 8 | 08) 
     clear
