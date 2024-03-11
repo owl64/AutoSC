@@ -246,7 +246,7 @@ function iplimit(){
 function limitxrayip(){
     instalasi="https://raw.githubusercontent.com/owl64/AutoSC/main/"
     cd /root
-    wget -O limit-ip "${instalasi}config/limit-ip"
+    wget -O limit-ip "${instalasi}limit/limit-ip"
     cp /root/limit-ip /usr/bin/
     rm -rf /root/limit-ip
 
@@ -268,6 +268,14 @@ systemctl restart ssws
 systemctl enable ssws
 }
 
+function restart-service(){
+    systemctl daemon-reload
+    systemctl restart ssws
+    systemctl restart vmip
+    systemctl restart vlip
+    systemctl restart trip
+}
+
 function update(){
     res1
     profile
@@ -275,6 +283,7 @@ function update(){
     clearcacheAndFix
     trialinminutes
     limitxrayip
+    restart-service
 }
 netfilter-persistent
 clear
