@@ -60,6 +60,44 @@ checking_sc() {
   fi
 }
 checking_sc
+
+#set bot notif
+if [ ! -e /etc/active ]; then
+    mkdir -p /etc/active
+fi
+
+if [ ! -e /etc/active/4-trojan ]; then
+    sts="${RED}${Bold}OFF${NC}"
+else
+    sts="${Green}${Bold}ON${NC}"
+fi
+
+function statusbotofftrojan(){
+    clear
+    if [ $sts = "OFF" ]; then
+        echo -e " ${RED} Status Bot Off, Please On Bot First${NC}"
+    fi
+
+    start_spinner " Please wait, Process...."
+    sleep 2
+    rm -rf /etc/active/4-trojan
+    stop_spinner
+    echo -e " ${Green} Sucess OFF Bot Notif SSH ${NC}"
+}
+
+function statusbotontrojan(){
+    clear
+    if [ $sts = "ON" ]; then
+        echo -e " ${ORANGE} Status Bot Is ON${NC}"
+    fi
+
+    start_spinner " Please wait, Process...."
+    sleep 2
+    touch /etc/active/4-trojan
+    stop_spinner
+    echo -e " ${Green} Sucess ON Bot Notif SSH ${NC}"
+}
+
 ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
 trx=$(grep -c -E "^#! " "/etc/xray/config.json")
 let trb=$trx/2
@@ -70,21 +108,29 @@ echo -e " ${z}┌─────────────────────
 echo -e "      $PURPLE           MENU TROJAN              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  ${ORANGE}  [01].${NC} ${biru} Create Account XRAY Trojan WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [02].${NC} ${biru} Create Trial XRAY Trojan WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [03].${NC} ${biru} Delete Account XRAY Trojan WS/GRPC${NC}"
-echo -e "  ${ORANGE}  [04].${NC} ${biru} Renew Trojan Account${NC}"
-echo -e "  ${ORANGE}  [05].${NC} ${biru} Check Trojan login Account${NC}"
-echo -e "  ${ORANGE}  [06].${NC} ${biru} Check Config Trojan  Account${NC}"
-echo -e "  ${ORANGE}  [07].${NC} ${biru} Restore Trojan Account${NC}"
+echo -e "  ${ORANGE}  [01].${NC}${biru} Create Account XRAY Trojan WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [02].${NC}${biru} Create Trial XRAY Trojan WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [03].${NC}${biru} Delete Account XRAY Trojan WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [04].${NC}${biru} Renew Trojan Account${NC}"
+echo -e "  ${ORANGE}  [05].${NC}${biru} Check Trojan login Account${NC}"
+echo -e "  ${ORANGE}  [06].${NC}${biru} Check Config Trojan  Account${NC}"
+echo -e "  ${ORANGE}  [07].${NC}${biru} Restore Trojan Account${NC}"
 echo -e ""
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
 echo -e "      $PURPLE           LIMIT TROJAN              $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  ${ORANGE}  [08].${NC} ${biru} Change Limit IP${NC}"
-echo -e "  ${ORANGE}  [09].${NC} ${biru} Change Limit Quota${NC}"
-echo -e "  ${ORANGE}  [10].${NC} ${biru} Reset Usage Quota Acount${NC}"
+echo -e "  ${ORANGE}  [08].${NC}${biru} Change Limit IP${NC}"
+echo -e "  ${ORANGE}  [09].${NC}${biru} Change Limit Quota${NC}"
+echo -e "  ${ORANGE}  [10].${NC}${biru} Reset Usage Quota Acount${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e " $PURPLE                Set Bot Notif           $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "   STATUS BOT NOTIF : [ $sts ]"
+echo -e "  ${ORANGE} [11].${NC}${biru} On Bot Notif${NC}"
+echo -e "  ${ORANGE} [12].${NC}${biru} Off Bot Notif${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
 echo -e ""
@@ -136,6 +182,14 @@ else
     10)
         clear
         resetquotatrojan
+        ;;
+    11)
+        statusbotontrojan
+        m-trojan
+        ;;
+    12)
+        statusbotofftrojan
+        m-trojan
         ;;
     00 | 0)
         clear

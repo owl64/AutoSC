@@ -80,7 +80,7 @@ function statusbotoffvmess(){
 
     start_spinner " Please wait, Process...."
     sleep 2
-    rm -rf /etc/active/1-vmess
+    rm -rf /etc/active/2-vmess
     stop_spinner
     echo -e " ${Green} Sucess OFF Bot Notif SSH ${NC}"
 }
@@ -93,7 +93,7 @@ function statusbotonvmess(){
 
     start_spinner " Please wait, Process...."
     sleep 2
-    touch /etc/active/1-vmess
+    touch /etc/active/2-vmess
     stop_spinner
     echo -e " ${Green} Sucess ON Bot Notif SSH ${NC}"
 }
@@ -128,7 +128,7 @@ echo -e " ${z}┌─────────────────────
 echo -e " $PURPLE                Set Bot Notif           $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "    STATUS BOT NOTIF : [ $sts ]"
+echo -e "   STATUS BOT NOTIF : [ $sts ]"
 echo -e "  ${ORANGE} [11].${NC}${biru} On Bot Notif${NC}"
 echo -e "  ${ORANGE} [12].${NC}${biru} Off Bot Notif${NC}"
 echo -e ""

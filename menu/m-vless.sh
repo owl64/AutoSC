@@ -66,7 +66,7 @@ if [ ! -e /etc/active ]; then
     mkdir -p /etc/active
 fi
 
-if [ ! -e /etc/active/2-vless ]; then
+if [ ! -e /etc/active/3-vless ]; then
     sts="${RED}${Bold}OFF${NC}"
 else
     sts="${Green}${Bold}ON${NC}"
@@ -80,7 +80,7 @@ function statusbotoffvless(){
 
     start_spinner " Please wait, Process...."
     sleep 2
-    rm -rf /etc/active/1-vless
+    rm -rf /etc/active/3-vless
     stop_spinner
     echo -e " ${Green} Sucess OFF Bot Notif SSH ${NC}"
 }
@@ -93,7 +93,7 @@ function statusbotonvless(){
 
     start_spinner " Please wait, Process...."
     sleep 2
-    touch /etc/active/1-vless
+    touch /etc/active/3-vless
     stop_spinner
     echo -e " ${Green} Sucess ON Bot Notif SSH ${NC}"
 }

@@ -1,45 +1,19 @@
 #!/bin/bash
-Green="\e[92;1m"
-RED="\033[31m"
-YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-GREENBG="\033[42;37m"
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
-NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
-Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
-blue='\e[34m'
-PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
-NC='\e[0m'
-GREEN='\033[0;32m'
+z="\033[96m"
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
-export CHATID="5008116231"
-export KEY="6638955090:AAESojtt1ZPmuTNESoNHfgyPdU92Ue7d4H4"
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
-clear
+NC='\033[0m'
+RED="\033[31m"
+PURPLE='\e[35m'
+biru="\033[0;36m"
+GREEN='\033[0;32m'
+Suffix="\033[0m"
+Bold='\e[1m'
+
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
+
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -65,21 +39,76 @@ checking_sc() {
   fi
 }
 checking_sc
+
+#set bot notif
+if [ ! -e /etc/active ]; then
+    mkdir -p /etc/active
+fi
+
+if [ ! -e /etc/active/5-shadowshocks ]; then
+    sts="${RED}${Bold}OFF${NC}"
+else
+    sts="${Green}${Bold}ON${NC}"
+fi
+
+function statusbotoffshadowshocks(){
+    clear
+    if [ $sts = "OFF" ]; then
+        echo -e " ${RED} Status Bot Off, Please On Bot First${NC}"
+    fi
+
+    start_spinner " Please wait, Process...."
+    sleep 2
+    rm -rf /etc/active/5-shadowshocks
+    stop_spinner
+    echo -e " ${Green} Sucess OFF Bot Notif SSH ${NC}"
+}
+
+function statusbotonshadowshocks(){
+    clear
+    if [ $sts = "ON" ]; then
+        echo -e " ${ORANGE} Status Bot Is ON${NC}"
+    fi
+
+    start_spinner " Please wait, Process...."
+    sleep 2
+    touch /etc/active/5-shadowshocks
+    stop_spinner
+    echo -e " ${Green} Sucess ON Bot Notif SSH ${NC}"
+}
+
 echo -e "\e[32mloading...\e[0m"
 ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
 ssx=$(grep -c -E "^#ss# " "/etc/xray/config.json")
 let ssa=$ssx/2
 clear
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e "             MENU SHADOWSHOCKS            $NC"
+echo -e "$PURPLE             MENU SHADOWSHOCKS            $NC"
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  ${ORANGE}1.${NC} \033[0;36m Create Account Shadowshocks WS/GRPC${NC}"
-echo -e "  ${ORANGE}2.${NC} \033[0;36m Create Trial Shadowshocks WS/GRPC${NC}"
-echo -e "  ${ORANGE}3.${NC} \033[0;36m Delete Account Shadowsocks WS/GRPC${NC}"
-echo -e "  ${ORANGE}4.${NC} \033[0;36m Renew Shadowsocks Account${NC}"
-echo -e "  ${ORANGE}5.${NC} \033[0;36m Check Shadowsocks login Account${NC}"
-echo -e "  ${ORANGE}6.${NC} \033[0;36m Check Config Shadowsocks  Account${NC}"
+echo -e "  ${ORANGE}  [01].${NC}${biru} Create Account Shadowshocks WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [02].${NC}${biru} Create Trial Shadowshocks WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [03].${NC}${biru} Delete Account Shadowsocks WS/GRPC${NC}"
+echo -e "  ${ORANGE}  [04].${NC}${biru} Renew Shadowsocks Account${NC}"
+echo -e "  ${ORANGE}  [05].${NC}${biru} Check Shadowsocks login Account${NC}"
+echo -e "  ${ORANGE}  [06].${NC}${biru} Check Config Shadowsocks  Account${NC}"
+echo -e "  ${ORANGE}  [07].${NC}${biru} Restore Shadowshocks Account${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e "      $PURPLE      LIMIT SHADOWSHOCKS              $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "  ${ORANGE}  [08].${NC}${biru} Change Limit IP${NC}"
+echo -e "  ${ORANGE}  [09].${NC}${biru} Change Limit Quota${NC}"
+echo -e "  ${ORANGE}  [10].${NC}${biru} Reset Usage Quota Acount${NC}"
+echo -e ""
+echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
+echo -e " $PURPLE                Set Bot Notif           $NC"
+echo -e " ${z}└──────────────────────────────────────────┘${NC}"
+echo -e ""
+echo -e "    STATUS BOT NOTIF : [ $sts ]"
+echo -e "  ${ORANGE}  [11].${NC}${biru} On Bot Notif${NC}"
+echo -e "  ${ORANGE}  [12].${NC}${biru} Off Bot Notif${NC}"
 echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
 echo -e ""
@@ -89,26 +118,68 @@ echo -e " ${z}└─────────────────────
 echo -e ""
 read -p "Select From Options [ 1 - 6 ] : " menu
 case $menu in
-1)
+1 | 01)
+    clear
     addss
     ;;
-2)
+2 | 02)
+    clear
     trialss
     ;;
-3)
+3 | 03)
+    clear
     delss
-    ;;
-4)
+   ;;
+4 | 04)
+    clear
     renewss
     ;;
-5)
+5 | 05)
+    clear
     cekss
     ;;
-6)
+6 | 06)
+    clear
     user-ss
-    ;;   
- 
+    ;;
+7 | 07) 
+    clear
+    echo -e " Under Maintenance!"
+    #restoreshadowshocks
+    m-ssws
+    ;;
+8 | 08) 
+    clear
+    echo -e " Under Maintenance!"
+    #changeiplimitshadowshocks
+    m-ssws
+    ;;
+9 | 09) 
+    clear
+    echo -e " Under Maintenance!"
+    #changelimitquotashadowshocks
+    m-ssws
+    ;;
+10) 
+    clear
+    echo -e " Under Maintenance!"
+    #resetquotashadowshocks
+    m-ssws
+    ;;
+11)
+    statusbotonshadowshocks
+    m-ssws
+    ;;
+12)
+    statusbotoffshadowshocks
+    m-ssws
+    ;;
+0 | 00)
+    clear
+    menu
+    ;;
 *)
+    clear
     menu
     ;;
 esac

@@ -30,8 +30,8 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 biru='\033[0;36m'
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-clear
+
+
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"

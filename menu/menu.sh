@@ -348,7 +348,7 @@ echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username $sts"
 echo -e " ${z}│$NC${z} Expiry script$NC ${Blue}=${green} $certifacate Days$NC "
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
 echo
-read -p " Select menu : " opt
+read -p " Select menu [ 1-10 ]: " opt
 echo -e ""
 case $opt in
 1 | 01)
