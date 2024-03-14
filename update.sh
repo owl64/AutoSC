@@ -246,6 +246,7 @@ function iplimit(){
 
 function limitquotaxray(){
     wget https://raw.githubusercontent.com/owl64/AutoSC/main/limit/limit.sh && chmod +x limit.sh && ./limit.sh
+    rm -rf /root/limit.sh
 }
 
 function limitxrayip(){
