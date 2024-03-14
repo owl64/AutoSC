@@ -22,3 +22,5 @@ grenbo="\e[92;1m"
 Suffix="\033[0m"
 z="\033[96m"
 Suffix="\033[0m"
+bgz="\033[106;36m"
+white='\e[97m'
