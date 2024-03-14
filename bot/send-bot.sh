@@ -93,7 +93,7 @@ function send_vmess(){
     <code> Dynamic          : https://bugmu.com/path</code>
     <code> ServiceName      : vmess-grpc</code>
     <code> ────────────────────────────── </code>
-    <code> Link TLS         : <code>
+    <code> Link TLS         : </code>
     <code> `${vmesslink1}` </code>
     <code> ────────────────────────────── </code>
     <code> Link none TLS    : </code>
@@ -132,7 +132,7 @@ function send_trialvmess(){
     <code> Dynamic          : https://bugmu.com/path </code>
     <code> ServiceName      : vmess-grpc </code>
     <code> ────────────────────────────── </code>
-    <code> Link TLS         : <code>
+    <code> Link TLS         : </code>
     <code> `${vmesslink1}` </code>
     <code> ────────────────────────────── </code>
     <code> Link none TLS    : </code>
