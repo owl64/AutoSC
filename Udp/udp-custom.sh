@@ -53,7 +53,6 @@ Type=simple
 ExecStart=/root/udp/udp-custom server -exclude $1
 WorkingDirectory=/root/udp/
 Restart=always
-RestartSec=2s
 
 [Install]
 WantedBy=default.target
