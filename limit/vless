@@ -9,7 +9,7 @@ TEXT="
 <b>⚠️NOTIF VLESS QUOTA HABIS⚠️</b>
 <code>────────────────────────────</code>
 <code>Username  : </code><code>$user</code>
-<code>Limit     : </code><code>$checkLimit</code>
+<code>Limit     : </code><code>$total2</code>
 <code>────────────────────────────</code>
 <b><code>Usage  : </code><code>$total</code></b>
 <code>────────────────────────────</code>

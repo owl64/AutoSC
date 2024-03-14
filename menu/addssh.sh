@@ -1,52 +1,19 @@
 #!/bin/bash
-clear
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-clear
 source /usr/local/sbin/spiner
 source /usr/local/sbin/send-bot
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
-clear
-# Valid Script
-Green="\e[92;1m"
+
 RED="\033[31m"
 YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-GREENBG="\033[42;37m"
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
 NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
 Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
 blue='\e[34m'
 PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
 NC='\e[0m'
-GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
 biru='\033[0;36m'
 z='\033[96m'
 grenbo="\e[92;1m"
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-clear
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
-clear
+
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -57,23 +24,42 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    echo -e "${REDBG}          EXPIRED AUTOSCRIPT          ${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
     echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    exit
+    echo -e " ${RED}IP Address access is not allowed${NC}"
+    echo -e ""
+    echo -e " Price For 1 Month"
+    echo -e ""
+    echo -e "   1 IP Address :    3 USD"
+    echo -e "   5 IP Address :   13 USD"
+    echo -e "  10 IP Address :   25 USD"
+    echo -e ""
+    echo -e " Price For 1 Year"
+    echo -e ""
+    echo -e "   1 IP Address :    6 USD"
+    echo -e "   5 IP Address :   25 USD"
+    echo -e "  10 IP Address :   50 USD"
+    echo -e ""
+    echo -e " Purchases in USD can use Paypal or Binance Crypto"
+    echo -e ""
+    echo -e " If you live in Indonesia"
+    echo -e ""
+    echo -e "   1 IP Address : 15K"
+    echo -e ""
+    echo -e " ${blue}Instagram : @_andi64                   ${NC}"
+    echo -e " ${blue}Whatsapp  : +6282217067357             ${NC}"
+    echo -e " ${blue}Telegram  : @andiowl                   ${NC}"
+    echo -e " ${blue}Channel   : @sdctunel                  ${NC}"
+    exit 0
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    sleep 5
+    reboot
   fi
 }
 checking_sc
-echo -e "\e[32mloading...\e[0m"
-clear
+
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
@@ -119,20 +105,6 @@ echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 expi=`date -d "$masaaktif days" +"%Y-%m-%d"`
 
-#if [ ! -e /etc/ssh ]; then
- # mkdir -p /etc/ssh
-#fi
-
-#if [ -z ${Quota} ]; then
-  #Quota="0"
-#fi
-
-#c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
-#d=$((${c} * 1024 * 1024 * 1024))
-
-#if [[ ${c} != "0" ]]; then
-#  echo "${d}" >/etc/ssh/${Login}
-#fi
 DATADB=$(cat /etc/ssh/.ssh.db | grep "^#ssh#" | grep -w "${Login}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${Login}\b/d" /etc/ssh/.ssh.db

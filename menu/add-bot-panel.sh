@@ -7,6 +7,9 @@ NC='\e[0m'
 ORANGE='\033[0;33m'
 z="\033[96m"
 Suffix="\033[0m"
+REDBG="\033[41;37m"
+blue='\e[34m'
+RED="\033[31m"
 
 source /usr/local/sbin/spiner
 # Getting
@@ -30,17 +33,36 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          ${NC}"
-    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    echo -e "${REDBG}          EXPIRED AUTOSCRIPT          ${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
     echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e " ${RED}IP Address access is not allowed${Suffix}"
+    echo -e ""
+    echo -e " Price For 1 Month"
+    echo -e ""
+    echo -e "   1 IP Address :    3 USD"
+    echo -e "   5 IP Address :   13 USD"
+    echo -e "  10 IP Address :   25 USD"
+    echo -e ""
+    echo -e " Price For 1 Year"
+    echo -e ""
+    echo -e "   1 IP Address :    6 USD"
+    echo -e "   5 IP Address :   25 USD"
+    echo -e "  10 IP Address :   50 USD"
+    echo -e ""
+    echo -e " Purchases in USD can use Paypal or Binance Crypto"
+    echo -e ""
+    echo -e " If you live in Indonesia"
+    echo -e ""
+    echo -e "   1 IP Address : 15K"
+    echo -e ""
+    echo -e " ${blue}Instagram : @_andi64                   ${NC}"
+    echo -e " ${blue}Whatsapp  : +6282217067357             ${NC}"
+    echo -e " ${blue}Telegram  : @andiowl                   ${NC}"
+    echo -e " ${blue}Channel   : @sdctunel                  ${NC}"
+    exit 0
+    echo -e "${z}────────────────────────────────────────────${NC}"
     sleep 5
     reboot
   fi

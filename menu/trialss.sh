@@ -1,45 +1,18 @@
 #!/bin/bash
-Green="\e[92;1m"
+
 RED="\033[31m"
-YELLOW="\033[33m"
-BLUE="\033[36m"
-FONT="\033[0m"
-GREENBG="\033[42;37m"
-REDBG="\033[41;37m"
-OK="${Green}--->${FONT}"
-ERROR="${RED}[ERROR]${FONT}"
-GRAY="\e[1;30m"
 NC='\e[0m'
-red='\e[1;31m'
-green='\e[0;32m'
-DF='\e[39m'
+REDBG="\033[41;37m"
 Bold='\e[1m'
-Blink='\e[5m'
-yell='\e[33m'
-red='\e[31m'
-green='\e[32m'
 blue='\e[34m'
 PURPLE='\e[35m'
-cyan='\e[36m'
-Lred='\e[91m'
-Lgreen='\e[92m'
-Lyellow='\e[93m'
-NC='\e[0m'
-GREEN='\033[0;32m'
+Suffix="\033[0m"
 ORANGE='\033[0;33m'
-LIGHT='\033[0;37m'
-grenbo="\e[92;1m"
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
-clear
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
-clear
+z="\033[96m"
+
+source /usr/local/sbin/send-bot
+source /usr/local/sbin/spiner
+
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -50,22 +23,57 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    echo -e "${REDBG}          EXPIRED AUTOSCRIPT          ${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
     echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/wingsofhope"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282261333421"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    exit
+    echo -e " ${RED}IP Address access is not allowed${Suffix}"
+    echo -e ""
+    echo -e " Price For 1 Month"
+    echo -e ""
+    echo -e "   1 IP Address :    3 USD"
+    echo -e "   5 IP Address :   13 USD"
+    echo -e "  10 IP Address :   25 USD"
+    echo -e ""
+    echo -e " Price For 1 Year"
+    echo -e ""
+    echo -e "   1 IP Address :    6 USD"
+    echo -e "   5 IP Address :   25 USD"
+    echo -e "  10 IP Address :   50 USD"
+    echo -e ""
+    echo -e " Purchases in USD can use Paypal or Binance Crypto"
+    echo -e ""
+    echo -e " If you live in Indonesia"
+    echo -e ""
+    echo -e "   1 IP Address : 15K"
+    echo -e ""
+    echo -e " ${blue}Instagram : @_andi64                   ${NC}"
+    echo -e " ${blue}Whatsapp  : +6282217067357             ${NC}"
+    echo -e " ${blue}Telegram  : @andiowl                   ${NC}"
+    echo -e " ${blue}Channel   : @sdctunel                  ${NC}"
+    exit 0
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    sleep 5
+    reboot
   fi
 }
 checking_sc
-echo -e "\e[32mloading...\e[0m"
+
+echo -e ""
+echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
+echo -e "         ${biru}Trial SS Account${NC}           "
+echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
+echo -e "${z}  ──────────────────────────────────${NC}"
+echo -e "     ${biru}Just input a number for-"
+echo -e "${Green}      Expired Account${Suffix}"
+echo -e ""
+echo -e "     ${biru}Example: "
+echo -e "${ORANGE}      5${Suffix} for [${ORANGE}5 Minutes${NC}]"
+echo -e "${ORANGE}      10${Suffix} for [${ORANGE}10 Minutes${NC}]"
+echo -e "${ORANGE}      30${Suffix} for [${ORANGE}30 Minutes${NC}]"
+echo -e "${z}  ──────────────────────────────────${NC}"
+read -rp "    Minutes : " pup
+echo -e ""
 clear
 sspwd=$(cat /etc/xray/passwd)
 clear
@@ -77,11 +85,14 @@ domain=$IP
 fi
 clear
 masaaktif=1
-Quota=1
+Quota='500MB'
 user=Trial-SS`</dev/urandom tr -dc 0-9 | head -c3`
+iplimit=3
 clear
 cipher="aes-128-gcm"
 uuid=$(cat /proc/sys/kernel/random/uuid)
+
+start_spinner " Please wait, Colecting New data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -110,7 +121,6 @@ nonsslinkws="ss://${shadowsocks_base64e}@${domain}:80?path=/ss-ws&security=none&
 sslinkgrpc="ss://${shadowsocks_base64e}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=ss-grpc&sni=bug.com#${user}"
 nonsslinkgrpc="ss://${shadowsocks_base64e}@${domain}:80?mode=gun&security=none&encryption=none&type=grpc&serviceName=ss-grpc&sni=bug.com#${user}"
 
-systemctl restart xray
 #buatshadowsocks custom
 rm -rf /tmp/log
 rm -rf /tmp/log1
@@ -326,8 +336,7 @@ cat > /var/www/html/sodosokgrpc-$user.txt <<-END
   "stats": {}
 }
 END
-systemctl reload xray >/dev/null 2>&1
-service cron restart >/dev/null 2>&1
+
 if [ ! -e /etc/shadowsocks ]; then
   mkdir -p /etc/shadowsocks
 fi
@@ -342,18 +351,48 @@ d=$((${c} * 1024 * 1024 * 1024))
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/shadowsocks/${user}
 fi
+
 DATADB=$(cat /etc/shadowsocks/.shadowsocks.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/shadowsocks/.shadowsocks.db
 fi
+
 echo "### ${user} ${exp} ${uuid}" >>/etc/shadowsocks/.shadowsocks.db
+
+#kirim Bot
+if [ ! -e /etc/active ]; then
+  mkdir -p /etc/active
+fi
+
+if [ -e "/etc/active/5-shadowshocks" ]; then
+    send_trialshadowshocks
+else
+    echo -e ""
+fi
+
+function trialshadowshock(){
+    exp=$(grep -wE "^#!# $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+    sed -i "/^#!# $user $exp/,/^},{/d" /etc/xray/config.json
+    sed -i "/^#!# $user $exp/,/^},{/d" /etc/shadowshock/.shadowshock.db
+    rm -rf /etc/shadowshock/$user
+    rm -rf /etc/kyt/limit/shadowshock/ip/$user
+    systemctl restart xray > /dev/null 2>&1
+}
+
+
+echo trialshadowshock | at now + $pup minutes
+
+systemctl restart xray >/dev/null 2>&1
+
 clear
+stop_spinner
+echo -e " ${Green}Success Verif New Data....${Suffix}"
 
 clear
 echo -e ""
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e " CREATE SHADOWSOCKS         "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
+echo -e "   TRIAL SHADOWSOCKS         "
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Remarks     : ${user}"
 echo -e "Domain      : ${domain}"
 echo -e "User Quota  : ${Quota} GB"
@@ -363,17 +402,16 @@ echo -e "Cipers      : aes-128-gcm"
 echo -e "Network     : ws/grpc"
 echo -e "Path        : /ss-ws"
 echo -e "ServiceName : ss-grpc"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link WS TLS : ${sslinkws}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link WS None TLS : ${nonsslinkws}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Link GRPC : ${sslinkgrpc}"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Aktif Selama   : $masaaktif Hari"
+echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Dibuat Pada    : $tnggl"
-echo -e "Berakhir Pada  : $expe"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "Berakhir Pada  : $pup Minutes"
+echo -e "${z} ──────────────────────────────${NC}"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
-menu
+m-ssws

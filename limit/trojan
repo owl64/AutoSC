@@ -9,7 +9,7 @@ TEXT="
 <b>⚠️NOTIF TROJAN QUOTA HABIS⚠️</b>
 <code>────────────────────────────</code>
 <code>Username  : </code><code>$user</code>
-<code>Limit     : </code><code>$checkLimit</code>
+<code>Limit     : </code><code>$total2</code>
 <code>────────────────────────────</code>
 <b><code>Usage  : </code><code>$total</code></b>
 <code>────────────────────────────</code>
@@ -74,6 +74,7 @@ for user in ${data[@]}
       sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
       sed -i "/^#! $user $exp/d" /etc/trojan/.trojan.db
        total=$(con ${Usage})
+       total2=$(con ${checkLimit})
        send-log
        rm -f /etc/kyt/limit/vless/ip/$user
        rm -f /etc/limit/trojan/$user

@@ -9,6 +9,8 @@ biru="\033[0;36m"
 GREEN='\033[0;32m'
 Suffix="\033[0m"
 Bold='\e[1m'
+REDBG="\033[41;37m"
+blue='\e[34m'
 
 source /usr/local/sbin/spiner
 
@@ -26,9 +28,6 @@ function con(){
     fi
 }
 
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-
 clear
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
@@ -40,18 +39,38 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    echo -e "${REDBG}          EXPIRED AUTOSCRIPT          ${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
     echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    exit
+    echo -e " ${RED}IP Address access is not allowed${Suffix}"
+    echo -e ""
+    echo -e " Price For 1 Month"
+    echo -e ""
+    echo -e "   1 IP Address :    3 USD"
+    echo -e "   5 IP Address :   13 USD"
+    echo -e "  10 IP Address :   25 USD"
+    echo -e ""
+    echo -e " Price For 1 Year"
+    echo -e ""
+    echo -e "   1 IP Address :    6 USD"
+    echo -e "   5 IP Address :   25 USD"
+    echo -e "  10 IP Address :   50 USD"
+    echo -e ""
+    echo -e " Purchases in USD can use Paypal or Binance Crypto"
+    echo -e ""
+    echo -e " If you live in Indonesia"
+    echo -e ""
+    echo -e "   1 IP Address : 15K"
+    echo -e ""
+    echo -e " ${blue}Instagram : @_andi64                   ${NC}"
+    echo -e " ${blue}Whatsapp  : +6282217067357             ${NC}"
+    echo -e " ${blue}Telegram  : @andiowl                   ${NC}"
+    echo -e " ${blue}Channel   : @sdctunel                  ${NC}"
+    exit 0
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    sleep 5
+    reboot
   fi
 }
 checking_sc
@@ -410,6 +429,18 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/shadowsocks/.shadowsocks.db
 fi
 echo "### ${user} ${exp} ${uuid}" >>/etc/shadowsocks/.shadowsocks.db
+
+#kirim Bot
+if [ ! -e /etc/active ]; then
+  mkdir -p /etc/active
+fi
+
+if [ -e "/etc/active/5-shadowshocks" ]; then
+    send_shadowshocks
+else
+    echo -e ""
+fi
+
 stop_spinner
 echo -e " ${Green}Success Verif New Data....${Suffix}"
 

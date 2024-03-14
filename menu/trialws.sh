@@ -294,6 +294,17 @@ clear
 
 echo trialvmess | at now + $pup minutes
 
+#kirim Bot
+if [ ! -e /etc/active ]; then
+  mkdir -p /etc/active
+fi
+
+if [ -e "/etc/active/2-vmess" ]; then
+    send_trialvmess
+else
+    echo -e ""
+fi
+
 stop_spinner
 echo -e " ${Green}Success Verif New Data....${Suffix}"
 
@@ -304,6 +315,7 @@ echo -e "${z} ──────────────────────
 echo -e "Remarks          : ${user}"
 echo -e "Domain           : ${domain}"
 echo -e "User Quota       : ${Quota}"
+echo -e "Limit IP         : ${iplimit} IP"
 echo -e "Port TLS         : 400-900"
 echo -e "Port none TLS    : 80, 8080, 8081-9999"
 echo -e "id               : ${uuid}"

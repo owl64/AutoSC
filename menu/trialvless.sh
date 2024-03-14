@@ -8,6 +8,8 @@ biru="\033[0;36m"
 GREEN='\033[0;32m'
 Suffix="\033[0m"
 Bold='\e[1m'
+blue='\e[34m'
+REDBG="\033[41;37m"
 
 source /usr/local/sbin/spiner
 source /usr/local/sbin/send-bot
@@ -239,6 +241,17 @@ function trialvless(){
 }
 
 echo trialvless | at now + $pup minutes
+
+#kirim Bot
+if [ ! -e /etc/active ]; then
+  mkdir -p /etc/active
+fi
+
+if [ -e "/etc/active/3-vless" ]; then
+    send_trialvless
+else
+    echo -e ""
+fi
 
 stop_spinner
 echo -e " ${Green}Success Verif New Data....${Suffix}"

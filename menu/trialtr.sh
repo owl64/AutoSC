@@ -8,6 +8,7 @@ biru="\033[0;36m"
 GREEN='\033[0;32m'
 Suffix="\033[0m"
 Bold='\e[1m'
+blue='\e[34m'
 
 source /usr/local/sbin/spiner
 source /usr/local/sbin/send-bot
@@ -209,6 +210,16 @@ function trialtrojan(){
 
 echo trialtrojan | at now + $pup minutes
 
+if [ ! -e /etc/active ]; then
+  mkdir -p /etc/active
+fi
+
+if [ -e "/etc/active/4-trojan" ]; then
+    send_trialtrojan
+else
+    echo -e ""
+fi
+
 stop_spinner
 echo -e " ${Green}Success Verif New Data....${Suffix}"
 
@@ -232,9 +243,8 @@ echo -e "Link GRPC        : ${trojanlink1}"
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "Format OpenClash : https://${domain}:81/trojan-$user.txt" 
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
-echo -e "Berakhir Pada    : $expe"
+echo -e "Berakhir Pada    : $pup Minutes"
 echo -e "${z} ──────────────────────────────${NC}"
 echo "" 
 read -n 1 -s -r -p "Press any key to back on menu"

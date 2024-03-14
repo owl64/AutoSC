@@ -52,6 +52,7 @@ function con(){
 
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
 source /usr/local/sbin/spiner
+source /usr/local/sbin/send-bot
 # Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -364,6 +365,18 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vmess/.vmess.db
+
+#kirim Bot
+if [ ! -e /etc/active ]; then
+  mkdir -p /etc/active
+fi
+
+if [ -e "/etc/active/2-vmess" ]; then
+    send_vmess
+else
+    echo -e ""
+fi
+
 stop_spinner
 echo -e " ${Green}Success Verif New Data....${Suffix}"
 
