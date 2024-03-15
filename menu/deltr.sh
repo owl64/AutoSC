@@ -61,6 +61,6 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^#! " "/etc/xray/config.json")
         else
             echo -e " ${RED}  User Not Found, Please Try again${NC}"
             sleep 3
-            delws  
+            deltr
         fi
     fi

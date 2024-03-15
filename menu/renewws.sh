@@ -42,12 +42,12 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/etc/xray/config.json")
         if [ $ceklagi != $user ]; then
             echo -e " ${RED}  User Not Found, Please Try again${NC}"
             sleep 3
-            delws
+            renewws
         else
             read -p "Expired (days): " masaaktif
             rm -f /etc/kyt/limit/vmess/ip/${user}
             rm -f /etc/vmess/$user
-            read -p "Limit User (GB): " Quota
+            read -p "Limit Quota (MB/GB): " Quota
             read -p "Limit User (IP): " iplim
             exp=$(grep -wE "^### $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
             mkdir -p /etc/kyt/limit/vmess/ip
