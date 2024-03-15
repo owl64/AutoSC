@@ -115,7 +115,7 @@ echo -e ""
 echo -e "  ${RED}  [00].${NC}${RED} Back to Menu${NC}"
 echo -e ""
 echo -e " ${z}┌──────────────────────────────────────────┐${NC}"
-echo -e "     ACCOUNT : ${ORANGE}[ ${trb} ]${NC}   Usage : ${ORANGE}[ ${ttoday} ]${NC} "
+echo -e "     ACCOUNT : ${ORANGE}[ ${ssa} ]${NC}   Usage : ${ORANGE}[ ${ttoday} ]${NC} "
 echo -e " ${z}└──────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p "Select From Options [ 1 - 6 ] : " menu
