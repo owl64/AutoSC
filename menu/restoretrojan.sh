@@ -1,19 +1,19 @@
 #!/bin/bash
 
 ##Color
-z="\033[96m"
-ORANGE='\033[0;33m'
-NC='\033[0m'
 RED="\033[31m"
+Suffix="\033[0m"
+REDBG="\033[41;37m"
+NC='\e[0m'
+Bold='\e[1m'
+blue='\e[34m'
 PURPLE='\e[35m'
-biru="\033[0;36m"
+ORANGE='\033[0;33m'
+biru='\033[0;36m'
+z='\033[96m'
 
 source /usr/local/sbin/spiner
 
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
-clear
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -24,23 +24,42 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    echo -e "${REDBG}          EXPIRED AUTOSCRIPT          ${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
     echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/owl64"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e " ${RED}IP Address access is not allowed${Suffix}"
+    echo -e ""
+    echo -e " Price For 1 Month"
+    echo -e ""
+    echo -e "   1 IP Address :    3 USD"
+    echo -e "   5 IP Address :   13 USD"
+    echo -e "  10 IP Address :   25 USD"
+    echo -e ""
+    echo -e " Price For 1 Year"
+    echo -e ""
+    echo -e "   1 IP Address :    6 USD"
+    echo -e "   5 IP Address :   25 USD"
+    echo -e "  10 IP Address :   50 USD"
+    echo -e ""
+    echo -e " Purchases in USD can use Paypal or Binance Crypto"
+    echo -e ""
+    echo -e " If you live in Indonesia"
+    echo -e ""
+    echo -e "   1 IP Address : 15K"
+    echo -e ""
+    echo -e " ${blue}Instagram : @_andi64                   ${NC}"
+    echo -e " ${blue}Whatsapp  : +6282217067357             ${NC}"
+    echo -e " ${blue}Telegram  : @andiowl                   ${NC}"
+    echo -e " ${blue}Channel   : @sdctunel                  ${NC}"
+    exit 0
+    echo -e "${z}────────────────────────────────────────────${NC}"
     sleep 5
     reboot
   fi
 }
 checking_sc
-echo -e "\e[32mloading...\e[0m"
+
 clear
 source /var/lib/kyt/ipvps.conf
 if [[ "$IP" = "" ]]; then
@@ -100,7 +119,7 @@ sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 
 # Link Trojan Akun
-systemctl restart xray
+
 trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=bug.com#${user}"
 trojanlink="trojan://${uuid}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 
@@ -197,6 +216,8 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/trojan/.trojan.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
+systemctl restart xray
+
 sleep 2
 stop_spinner
 echo -e " ${biru}Success Restore Data....${NC}"

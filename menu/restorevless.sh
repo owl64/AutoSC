@@ -1,18 +1,18 @@
 #!/bin/bash
 ##Color
-z="\033[96m"
-ORANGE='\033[0;33m'
-NC='\033[0m'
 RED="\033[31m"
+Suffix="\033[0m"
+REDBG="\033[41;37m"
+NC='\e[0m'
+Bold='\e[1m'
+blue='\e[34m'
 PURPLE='\e[35m'
-biru="\033[0;36m"
+ORANGE='\033[0;33m'
+biru='\033[0;36m'
+z='\033[96m'
 
 source /usr/local/sbin/spiner
 
-clear
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
 clear
 
 # Valid Script
@@ -25,24 +25,41 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    echo -e "${REDBG}          EXPIRED AUTOSCRIPT          ${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
     echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e " ${RED}IP Address access is not allowed${Suffix}"
+    echo -e ""
+    echo -e " Price For 1 Month"
+    echo -e ""
+    echo -e "   1 IP Address :    3 USD"
+    echo -e "   5 IP Address :   13 USD"
+    echo -e "  10 IP Address :   25 USD"
+    echo -e ""
+    echo -e " Price For 1 Year"
+    echo -e ""
+    echo -e "   1 IP Address :    6 USD"
+    echo -e "   5 IP Address :   25 USD"
+    echo -e "  10 IP Address :   50 USD"
+    echo -e ""
+    echo -e " Purchases in USD can use Paypal or Binance Crypto"
+    echo -e ""
+    echo -e " If you live in Indonesia"
+    echo -e ""
+    echo -e "   1 IP Address : 15K"
+    echo -e ""
+    echo -e " ${blue}Instagram : @_andi64                   ${NC}"
+    echo -e " ${blue}Whatsapp  : +6282217067357             ${NC}"
+    echo -e " ${blue}Telegram  : @andiowl                   ${NC}"
+    echo -e " ${blue}Channel   : @sdctunel                  ${NC}"
+    exit 0
+    echo -e "${z}────────────────────────────────────────────${NC}"
     sleep 5
     reboot
   fi
 }
 checking_sc
-echo -e "\e[32mloading...\e[0m"
-clear
 
 domain=$(cat /etc/xray/domain)
 clear
@@ -94,7 +111,6 @@ sed -i '/#vless$/a\#& '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 sed -i '/#vlessgrpc$/a\#& '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-systemctl restart xray
 sleep 1
 
 vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws#${user}"
@@ -226,6 +242,9 @@ Link GRPC     :
 ${vlesslink3}
 =========================
 END
+
+systemctl restart xray
+
 sleep 2
 stop_spinner
 echo -e " ${biru}Success Restore Data....${NC}"

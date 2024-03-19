@@ -10,6 +10,7 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 Bold='\e[1m'
 biru="\033[0;36m"
+
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"

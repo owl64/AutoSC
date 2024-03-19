@@ -1,19 +1,19 @@
 #!/bin/bash
 
 ##Color
-z="\033[96m"
-ORANGE='\033[0;33m'
-NC='\033[0m'
 RED="\033[31m"
+Suffix="\033[0m"
+REDBG="\033[41;37m"
+NC='\e[0m'
+Bold='\e[1m'
+blue='\e[34m'
 PURPLE='\e[35m'
-biru="\033[0;36m"
+ORANGE='\033[0;33m'
+biru='\033[0;36m'
+z='\033[96m'
 
 source /usr/local/sbin/spiner
 
-clear
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
 clear
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
@@ -25,25 +25,45 @@ checking_sc() {
   if [[ $date_list < $useexp ]]; then
     echo -ne
   else
-    echo -e "${ORANGE}────────────────────────────────────────────${NC}"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "${ORANGE}────────────────────────────────────────────${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
+    echo -e "${REDBG}          EXPIRED AUTOSCRIPT          ${NC}"
+    echo -e "${z}────────────────────────────────────────────${NC}"
     echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/andiowl"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282217067357"
-    echo -e "${ORANGE}────────────────────────────────────────────${NC}"
+    echo -e " ${RED}IP Address access is not allowed${Suffix}"
+    echo -e ""
+    echo -e " Price For 1 Month"
+    echo -e ""
+    echo -e "   1 IP Address :    3 USD"
+    echo -e "   5 IP Address :   13 USD"
+    echo -e "  10 IP Address :   25 USD"
+    echo -e ""
+    echo -e " Price For 1 Year"
+    echo -e ""
+    echo -e "   1 IP Address :    6 USD"
+    echo -e "   5 IP Address :   25 USD"
+    echo -e "  10 IP Address :   50 USD"
+    echo -e ""
+    echo -e " Purchases in USD can use Paypal or Binance Crypto"
+    echo -e ""
+    echo -e " If you live in Indonesia"
+    echo -e ""
+    echo -e "   1 IP Address : 15K"
+    echo -e ""
+    echo -e " ${blue}Instagram : @_andi64                   ${NC}"
+    echo -e " ${blue}Whatsapp  : +6282217067357             ${NC}"
+    echo -e " ${blue}Telegram  : @andiowl                   ${NC}"
+    echo -e " ${blue}Channel   : @sdctunel                  ${NC}"
+    exit 0
+    echo -e "${z}────────────────────────────────────────────${NC}"
     sleep 5
     reboot
   fi
 }
 checking_sc
-echo -e "\e[32mloading...\e[0m"
+
 clear
 source /var/lib/kyt/ipvps.conf
+
 if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
 else
@@ -65,7 +85,7 @@ echo -e "${ORANGE} └───────────────────�
     echo -e "     ${ORANGE}0${Suffix} ${biru}for No Limit"
   echo -e "${z}  ──────────────────────────────────${NC}"
     echo -e ""
-		read -rp "User: " -e user
+		read -rp "  User : " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${CLIENT_EXISTS} > '1' ]]; then
@@ -83,12 +103,13 @@ clear
 	done
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
-read -p "UUID : " uuid
-read -p "Expired (days): " masaaktif
-read -p "Limit User (GB): " Quota
-read -p "Limit User (IP): " iplimit
+
+read -p "  UUID : " uuid
+read -p "  Expired (days) : " masaaktif
+read -p "  Limit Quota (MB/GB) : " Quota
+read -p "  Limit User (IP) : " iplimit
 echo -e ""
-start_spinner " ${biru}Please wait, restore data....${NC}"
+start_spinner " Please wait, restore data...."
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -155,8 +176,6 @@ vmess_base643=$( base64 -w 0 <<< $vmess_json3)
 vmesslink1="vmess://$(echo $asu | base64 -w 0)"
 vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
-systemctl restart xray > /dev/null 2>&1
-service cron restart > /dev/null 2>&1
 
 cat >/var/www/html/vmess-$user.txt <<-END
 
@@ -276,6 +295,8 @@ if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
 fi
 echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vmess/.vmess.db
+systemctl restart xray > /dev/null 2>&1
+
 sleep 2
 stop_spinner
 echo -e " ${biru}Success restore Data..${NC}"
