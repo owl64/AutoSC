@@ -76,9 +76,9 @@ echo -e "     ${biru}Example: "
 echo -e "${ORANGE}      0${Suffix} for No Limit"
 echo -e "${z}  ──────────────────────────────────${NC}"
 echo -e ""
-read -p "   Username       : " Login
-read -p "   Password       : " Pass
-read -p "   Limit IP       : " iplimit
+read -p "   Username : " Login
+read -p "   Password : " Pass
+read -p "   Limit IP : " iplimit
 read -p "   Expired (Days) : " masaaktif
 echo -e ""
 start_spinner " Please wait, Colecting New data...."
