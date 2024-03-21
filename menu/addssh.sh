@@ -147,18 +147,18 @@ Port OVPN TCP    : 1194
 Port OVPN UDP    : 2200
 BadVPN UDP       : 7100, 7300, 7300
 =================================
-Aktif Selama     : $masaaktif Hari
-Dibuat Pada      : $tnggl
-Berakhir Pada    : $expe
-=================================
 Payload WSS: GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf] 
 =================================
-Payload Enchanced: PATCH / HTTP/1.1 \nHost: [host]\nHost: bug.com\nUpgrade: websocket\n\nHTTP/ 3600\nSec-WebSocket-Extensions: superspeed\n
+Payload Enchanced: PATCH / HTTP/1.1[crlf]Host: [host][crlf]Host: bug.com[crlf]Upgrade: websocket[crlf]HTTP/ 3600[crlf]Sec-WebSocket-Extensions: superspeed[crlf]
 =================================
 SSH TLS/SNI : $domain:443@$Login:$Pass
 SSH Non TLS : $domain:80@$Login:$Pass
 =================================
 OVPN Download : https://$domain:81/
+=================================
+Aktif Selama     : $masaaktif Hari
+Dibuat Pada      : $tnggl
+Berakhir Pada    : $expe
 =================================
 
 END
