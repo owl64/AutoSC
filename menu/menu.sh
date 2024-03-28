@@ -318,6 +318,17 @@ function brandname(){
    esac
 }
 
+##cek update
+function cekupdatemenu(){
+   IZIN=$( curl https://raw.githubusercontent.com/owl64/AutoSC/main/system/version | grep $versiedition ); >/dev/null 2>&1
+   if [ $versiedition = $IZIN ]; then
+         cekupdateinfo=""
+   else
+         cekupdateinfo="${RED}[ New Update! ]${NC}"
+   fi
+}
+cekupdatemenu
+
 r="\033[1;31m"  #REDTERANG
 a=" ${CYAN}ACCOUNT PREMIUM" 
 echo -e " "
@@ -343,7 +354,7 @@ echo -e " ${z}    $NC [${y}04${NC}].${biru} TROJAN MENU$NC    $NC [${y}09${NC}].
 echo -e " ${z}    $NC [${y}05${NC}].${biru} SHADOW MENU$NC    $NC [${y}10${NC}].${biru} EXIT TO MENU$NC"
 echo -e " ${z}${Bold}└──────────────────────────────────────────────────┘${NC}"
 echo -e " ${z}┌──────────────────────────────────────────────────┐${NC}"
-echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL} v${versiedition} LTS Rev.1"
+echo -e " ${z}│$NC${z} Version$NC       ${Blue}=${NC}${YELL} v${versiedition} LTS Rev.1 $cekupdateinfo"
 echo -e " ${z}│$NC${z} User$NC          ${Blue}=$NC $username $sts"
 echo -e " ${z}│$NC${z} Expiry script$NC ${Blue}=${green} $certifacate Days$NC "
 echo -e " ${z}└──────────────────────────────────────────────────┘${NC}"
