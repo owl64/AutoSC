@@ -14,6 +14,20 @@ z='\033[96m'
 
 source /usr/local/sbin/spiner
 
+##FUngsi Hitung GB
+function con(){
+    local -i bytes=$1;
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes} B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$(( (bytes + 1023)/1024 )) KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$(( (bytes + 1048575)/1048576 )) MB"
+    else
+        echo "$(( (bytes + 1073741823)/1073741824 )) GB"
+    fi
+}
+
 clear
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
@@ -287,9 +301,23 @@ else
   exit 1
 fi
 
+if [ ! -e /etc/kyt/limit/vmess/ip/$user ]; then
+    iplimit="Unlimited"
+else
+    iplimit=$(cat /etc/kyt/limit/vmess/ip/$user)
+fi
+
 if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/vmess/${user}
 fi
+
+if [ ! -e /etc/vmess/${user} ]; then
+    Quota1="Unlimited"
+else
+    baca1=$(cat /etc/vmess/${user})
+    Quota1=$(con ${baca1})
+fi
+
 DATADB=$(cat /etc/vmess/.vmess.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
@@ -305,36 +333,36 @@ clear
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e "  RESTORED Account Vmess"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Remarks          : ${user}"
-echo -e "Domain           : ${domain}"
-echo -e "User Quota       : ${Quota} GB"
-echo -e "User Ip          : ${iplimit} IP"
-echo -e "Port TLS         : 400-900"
-echo -e "Port none TLS    : 80, 8080, 8081-9999"
-echo -e "id               : ${uuid}"
+echo -e " Remarks          : ${user}"
+echo -e " Domain           : ${domain}"
+echo -e " User Quota       : ${Quota1}"
+echo -e " User Ip          : ${iplimit} IP"
+echo -e " Port TLS         : 400-900"
+echo -e " Port none TLS    : 80, 8080, 8081-9999"
+echo -e " id               : ${uuid}"
 #echo -e "Xray Dns         : ${NS}"
 #echo -e "Pubkey           : ${PUB}"
-echo -e "alterId          : 0"
-echo -e "Security         : auto"
-echo -e "Network          : ws"
-echo -e "Path             : /Multi-Path"
-echo -e "Dynamic          : https://bugmu.com/path"
-echo -e "ServiceName      : vmess-grpc"
+echo -e " alterId          : 0"
+echo -e " Security         : auto"
+echo -e " Network          : ws"
+echo -e " Path             : /Multi-Path"
+echo -e " Dynamic          : https://bugmu.com/path"
+echo -e " ServiceName      : vmess-grpc"
 #echo -e "Host XrayDNS : ${NS}"
 #echo -e "Location         : $CITY"
 #echo -e "Pub Key          : ${PUB}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link TLS         : ${vmesslink1}"
+echo -e " Link TLS         : ${vmesslink1}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link none TLS    : ${vmesslink2}"
+echo -e " Link none TLS    : ${vmesslink2}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link GRPC        : ${vmesslink3}"
+echo -e " Link GRPC        : ${vmesslink3}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt"
+echo -e " Format OpenClash : https://${domain}:81/vmess-$user.txt"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Aktif Selama     : $masaaktif Hari"
-echo -e "Dibuat Pada      : $tnggl"
-echo -e "Berakhir Pada    : $expe"
+echo -e " Aktif Selama     : $masaaktif Hari"
+echo -e " Restore Pada     : $tnggl"
+echo -e " Berakhir Pada    : $expe"
 echo -e "${z} ──────────────────────────────${NC}"
 echo ""
 read -n 1 -s -r -p "Press any key to back on vmess menu"

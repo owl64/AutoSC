@@ -14,6 +14,20 @@ z='\033[96m'
 
 source /usr/local/sbin/spiner
 
+##FUngsi Hitung GB
+function con(){
+    local -i bytes=$1;
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes} B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$(( (bytes + 1023)/1024 )) KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$(( (bytes + 1048575)/1048576 )) MB"
+    else
+        echo "$(( (bytes + 1073741823)/1073741824 )) GB"
+    fi
+}
+
 # Valid Script
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -227,28 +241,28 @@ echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e " RESTORED TROJAN ACCOUNT          "
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Remarks          : ${user}" 
-echo -e "Host/IP          : ${domain}"
-echo -e "Wilcard          : bug.${domain}"
-echo -e "User Quota       : ${Quota1}"
-echo -e "User Ip          : ${iplimit} IP"
-echo -e "Port             : 400-900" 
-echo -e "Uuid             : ${uuid}" 
+echo -e " Remarks          : ${user}" 
+echo -e " Host/IP          : ${domain}"
+echo -e " Wilcard          : bug.${domain}"
+echo -e " User Quota       : ${Quota1}"
+echo -e " User Ip          : ${iplimit} IP"
+echo -e " Port             : 400-900" 
+echo -e " Uuid             : ${uuid}" 
 #echo -e "Xray Dns.        : ${NS}"
 #echo -e "Pubkey.          : ${PUB}"
-echo -e "Path             : /Multi-Path/trojan-ws"
-echo -e "Dynamic          : https://bugmu.com/path"
-echo -e "ServiceName      : trojan-grpc" 
+echo -e " Path             : /Multi-Path/trojan-ws"
+echo -e " Dynamic          : https://bugmu.com/path"
+echo -e " ServiceName      : trojan-grpc" 
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link WS          : ${trojanlink}" 
+echo -e " Link WS          : ${trojanlink}" 
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link GRPC        : ${trojanlink1}" 
+echo -e " Link GRPC        : ${trojanlink1}" 
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Format OpenClash : https://${domain}:81/trojan-$user.txt" 
+echo -e " Format OpenClash : https://${domain}:81/trojan-$user.txt" 
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Aktif Selama     : $masaaktif Hari"
-echo -e "Dibuat Pada      : $tnggl"
-echo -e "Berakhir Pada    : $expe"
+echo -e " Aktif Selama     : $masaaktif Hari"
+echo -e " Restore Pada     : $tnggl"
+echo -e " Berakhir Pada    : $expe"
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e ""
 read -n 1 -s -r -p "Press any key to back on trojan menu"

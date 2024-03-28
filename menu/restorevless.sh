@@ -13,6 +13,20 @@ z='\033[96m'
 
 source /usr/local/sbin/spiner
 
+##FUngsi Hitung GB
+function con(){
+    local -i bytes=$1;
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes} B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$(( (bytes + 1023)/1024 )) KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$(( (bytes + 1048575)/1048576 )) MB"
+    else
+        echo "$(( (bytes + 1073741823)/1073741824 )) GB"
+    fi
+}
+
 clear
 
 # Valid Script
@@ -153,7 +167,7 @@ if [[ ${c} != "0" ]]; then
   echo "${d}" >/etc/vless/${user}
 fi
 
-if [ ! -e /etc/trojan/${user} ]; then
+if [ ! -e /etc/vless/${user} ]; then
     Quota1="Unlimited"
 else
     baca1=$(cat /etc/vless/${user})
@@ -241,6 +255,7 @@ ${vlesslink2}
 Link GRPC     : 
 ${vlesslink3}
 =========================
+
 END
 
 systemctl restart xray
@@ -254,32 +269,32 @@ echo -e ""
 echo -e "${z} ──────────────────────────────${NC}"
 echo -e " RESTORED VLESS ACCOUNT           "
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Remarks     : ${user}"
-echo -e "Domain      : ${domain}"
-echo -e "Wilcard     : bug.${domain}"
-echo -e "User Quota  : ${Quota}"
-echo -e "User Ip     : ${iplimit} IP"
-echo -e "port TLS    : 400-900"
+echo -e " Remarks     : ${user}"
+echo -e " Domain      : ${domain}"
+echo -e " Wilcard     : bug.${domain}"
+echo -e " User Quota  : ${Quota1}"
+echo -e " User Ip     : ${iplimit} IP"
+echo -e " Port TLS    : 400-900"
 #echo -e "Port DNS    : 443"
-echo -e "Port NTLS   : 80, 8080, 8081-9999"
-echo -e "User ID     : ${uuid}"
+echo -e " Port NTLS   : 80, 8080, 8081-9999"
+echo -e " User ID     : ${uuid}"
 #echo -e "Xray Dns.   : ${NS}"
 #echo -e "Pubkey.     : ${PUB}"
-echo -e "Encryption  : none"
-echo -e "Path        : /Multi-Path"
-echo -e "Dynamic     : https://bugmu.com/path"
+echo -e " Encryption  : none"
+echo -e " Path        : /Multi-Path"
+echo -e " Dynamic     : https://bugmu.com/path"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link TLS    : ${vlesslink1}"
+echo -e " Link TLS    : ${vlesslink1}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link NTLS   : ${vlesslink2}"
+echo -e " Link NTLS   : ${vlesslink2}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Link GRPC   : ${vlesslink3}"
+echo -e " Link GRPC   : ${vlesslink3}"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Format OpenClash : https://${domain}:81/vless-$user.txt"
+echo -e " Format OpenClash : https://${domain}:81/vless-$user.txt"
 echo -e "${z} ──────────────────────────────${NC}"
-echo -e "Aktif Selama     : $masaaktif Hari"
-echo -e "Dibuat Pada      : $tnggl"
-echo -e "Berakhir Pada    : $expe"
+echo -e " Aktif Selama     : $masaaktif Hari"
+echo -e " Restore Pada      : $tnggl"
+echo -e " Berakhir Pada    : $expe"
 echo -e "${z} ──────────────────────────────${NC}"
 read -n 1 -s -r -p "Press any key to back on vless menu"
 m-vless

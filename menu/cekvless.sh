@@ -40,6 +40,7 @@ for akun in "${data[@]}"
 do
 if [[ -z "$akun" ]]; then
 akun="tidakada"
+echo -e "   No Login Account Here! Try Again Later!"
 fi
 echo -n > /tmp/ipvless.txt
 data2=( `cat /var/log/xray/access.log | tail -n 500 | cut -d " " -f 3 | sed 's/tcp://g' | cut -d ":" -f 1 | sort | uniq`);
@@ -96,7 +97,6 @@ fi
 rm -rf /tmp/ipvless.txt
 done
 rm -rf /tmp/other.txt
-echo -e "       No Client Online/ No Client"
 echo ""
 read -n 1 -s -r -p "Press [ Enter ] to back"
 m-vless

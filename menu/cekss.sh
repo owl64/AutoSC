@@ -30,6 +30,7 @@ echo -e "${yell}━━━━━━━━━━━━━━━━━━━━━�
 for akun in "${data[@]}"; do
     if [[ -z "$akun" ]]; then
         akun="tidakada"
+        echo -e "   No Login Account Here! Try Again Later!"
     fi
 
     echo -n >/tmp/ipshadowsocks.txt

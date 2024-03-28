@@ -40,6 +40,7 @@ for akun in "${data[@]}"
 do
 if [[ -z "$akun" ]]; then
 akun="tidakada"
+echo -e "   No Login Account Here! Try Again Later!"
 fi
 echo -n > /tmp/ipvmess.txt
 data2=( `cat /var/log/xray/access.log | tail -n 500 | cut -d " " -f 3 | sed 's/tcp://g' | cut -d ":" -f 1 | sort | uniq`);

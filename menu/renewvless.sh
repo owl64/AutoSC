@@ -25,13 +25,13 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^#& " "/etc/xray/config.json")
 	echo -e "${ORANGE}${Bold} ┌──────────────────────────────────┐${NC}"
     echo -e "         ${biru}Renew Vless Account${NC}           "
     echo -e "${ORANGE}${Bold} └──────────────────────────────────┘${NC}"
-    echo -e " ${z} ------------------------------------------ ${NC}"
-    echo -e "         Username                 Expired       "
-    echo -e " ${z} ------------------------------------------ ${NC}"
+    echo -e " ${z} ---------------------------------- ${NC}"
+    echo -e "        Username         Expired       "
+    echo -e " ${z} ---------------------------------- ${NC}"
             data=( `cat /etc/xray/config.json | grep '#&' | cut -d ' ' -f 2 | sort | uniq`);
             for akun in "${data[@]}"; do
                 expired=$(grep -wE "^#& $akun" "/etc/xray/config.json" | cut -d ' ' -f 3 | uniq)
-                printf "         %-13s %-7s %-8s %2s\n"    "${akun}" "          ${expired}"
+                printf "        %-13s %-7s %-8s %2s\n"    "${akun}" "   ${expired}"
             done
     echo -e ""
 	read -rp "Input Username [ Pres enter to go back Menu vless ]: " user
